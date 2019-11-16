@@ -8,6 +8,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+    <string name="ticketNote">Please tell the driver your boarding number upon boarding the bus. Drivers are required to match your boarding number against booking record before allowing passengers to board</string>
+
     <string name="menu_routes">Routes search</string>
     <string name="menu_myrides">My rides</string>
     <string name="menu_transaction">Transaction</string>
