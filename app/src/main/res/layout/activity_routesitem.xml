@@ -129,7 +129,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider2"
-        app:srcCompat="@drawable/ic_call_split_black_24dp"
+        app:srcCompat="@drawable/ic_airline_seat_recline_normal_black_24dp"
         tools:ignore="VectorDrawableCompat" />
 
     <View
@@ -150,7 +150,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Seats Remaning: 12"
+        android:text="Seats Remaning: 14"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView11"
         app:layout_constraintTop_toBottomOf="@+id/divider2" />
