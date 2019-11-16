@@ -11,7 +11,11 @@
         android:label="Pickup Location"
         tools:layout="@layout/fragment_home" />
 
-
+    <fragment
+        android:id="@+id/nav_routes"
+        android:name="com.example.prototype.ui.routesearch.RoutesearchFragment"
+        android:label="@string/menu_routes"
+        tools:layout="@layout/fragment_routesearch" />
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -21,17 +25,17 @@
     <fragment
         android:id="@+id/nav_freerides"
         android:name="com.example.prototype.ui.freerides.FreeridesFragment"
-        android:label="@string/menu_transaction"
+        android:label="@string/menu_freerides"
         tools:layout="@layout/fragment_freerides" />
     <fragment
         android:id="@+id/nav_wallet"
         android:name="com.example.prototype.ui.wallet.WalletFragment"
-        android:label="@string/menu_transaction"
+        android:label="@string/menu_wallet"
         tools:layout="@layout/fragment_wallet" />
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.prototype.ui.settings.SettingsFragment"
-        android:label="@string/menu_transaction"
+        android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 
 <!--    <fragment-->

@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_routes"
+            android:icon="@drawable/ic_swap_calls_black_24dp"
+            android:title="@string/menu_routes" />
+        <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_schedule_black_24dp"
             android:title="@string/menu_myrides" />
@@ -36,6 +40,10 @@
             android:id="@+id/nav_help"
             android:icon="@drawable/ic_help_black_24dp"
             android:title="@string/menu_help" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/menu_logout" />
     </group>
 
 
