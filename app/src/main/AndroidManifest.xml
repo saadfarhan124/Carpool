@@ -32,7 +32,7 @@
         <activity
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
-        <activity android:name=".TicketActvity">
+        <activity android:name=".navdrawer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,6 +60,7 @@
             android:name=".SignupPasswordActivity"
             android:parentActivityName=".SignupEmailActivity" /> <!-- <activity android:name=".navdrawer"></activity> -->
         <activity android:name=".SignupUsernameActivity" />
+        <activity android:name=".TicketActvity" />
     </application>
 
 </manifest>

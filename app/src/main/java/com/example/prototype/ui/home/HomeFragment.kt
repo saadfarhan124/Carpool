@@ -36,6 +36,8 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.io.IOException
 
 
@@ -84,6 +86,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         autocompleteSupportFragment = childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
 
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         getLocationPermission()
 
@@ -93,7 +96,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     //Fifth
     //Setting Editor On Action Listener for the Enter Key
     private fun init(){
-
+        btn_service.setOnClickListener {
+            val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
+            val dialog = BottomSheetDialog(root.context)
+            dialog.setContentView(view)
+            dialog.show()
+        }
         mGPS!!.setOnClickListener {
             getDevicesLocation()
         }

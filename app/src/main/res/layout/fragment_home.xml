@@ -67,7 +67,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="64dp"
         android:paddingTop="14dp"
@@ -76,12 +75,29 @@
         android:textColor="@color/colorText"
         android:textSize="16sp"
         app:backgroundTint="@color/colorAccent"
-        app:cornerRadius="12dp"
+        app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_username"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_service"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="8dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"
+        android:text="Services"
+        android:textSize="16sp"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSelectPickUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

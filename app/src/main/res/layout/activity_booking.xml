@@ -447,6 +447,7 @@
         android:paddingRight="92dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
+        app:cornerRadius="8dp"
         android:text="Book now"
         android:textSize="18sp"
         app:backgroundTint="@color/colorPrimary"
