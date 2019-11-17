@@ -1,4 +1,4 @@
-package com.example.prototype.ui.freerides
+package com.example.prototype.ui.feedback
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,18 +8,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.prototype.R
 
-class FreeridesFragment : Fragment() {
+class FeedbackFragment:Fragment() {
 
-    private lateinit var freeridesViewModel: FreeridesViewModel
+    private lateinit var feedbackViewModel: FeedbackViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        freeridesViewModel =
-            ViewModelProviders.of(this).get(FreeridesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_freerides, container, false)
+        feedbackViewModel =
+            ViewModelProviders.of(this).get(FeedbackViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_feedback, container, false)
 //        val textView: TextView = root.findViewById(R.id.text_gallery)
 //        galleryViewModel.text.observe(this, Observer {
 //            textView.text = it
