@@ -32,7 +32,7 @@
         <activity
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
-        <activity android:name=".navdrawer">
+        <activity android:name=".TicketActvity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
