@@ -18,5 +18,10 @@ class TicketActvity: AppCompatActivity(){
             dialog.setContentView(view)
             dialog.show()
         }
+
+//        btn_return.setOnClickListener {
+//            val bottomSheetFragment = BottomSheetFragment()
+//            bottomSheetFragment.show(supportFragmentManager, bottomSheetFragment.tag)
+//        }
     }
 }
