@@ -17,6 +17,7 @@
         android:paddingRight="92dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
+        app:cornerRadius="8dp"
         android:text="Book now"
         app:layout_constraintEnd_toEndOf="@+id/textView41"
         app:layout_constraintStart_toStartOf="@+id/textView42"
@@ -38,7 +39,7 @@
 
     <TextView
         android:id="@+id/textView41"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"

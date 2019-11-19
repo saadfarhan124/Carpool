@@ -6,12 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
+import com.example.prototype.adapters.NotificationAdapter
 
 
 class NotificationFragment:Fragment() {
     private lateinit var notificationViewModel: NotificationViewModel
-
+    private lateinit var mRecyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,6 +27,9 @@ class NotificationFragment:Fragment() {
 //        galleryViewModel.text.observe(this, Observer {
 //            textView.text = it
 //        })
+        mRecyclerView = root.findViewById(R.id.notificationRecyclerView)
+        mRecyclerView.layoutManager = LinearLayoutManager(root.context)
+        mRecyclerView.adapter = NotificationAdapter()
         return root
     }
 }

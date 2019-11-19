@@ -8,8 +8,9 @@
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="12dp">
+    app:cardElevation="6dp"
+    app:cardCornerRadius="18dp"
+    android:outlineSpotShadowColor="@color/colorPrimaryDark">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -127,6 +128,7 @@
             android:layout_marginBottom="8dp"
             app:iconTint="@color/colorGreen"
             android:textColor="@color/colorGreen"
+            app:rippleColor="@color/colorGreen"
             android:text="Track"
             app:icon="@drawable/ic_track_changes_black_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -141,6 +143,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
             android:text="Change"
+            app:rippleColor="@color/colorAccent"
             android:textColor="@color/colorAccent"
             app:icon="@drawable/ic_sync_black_24dp"
             app:iconTint="@color/colorAccent"
@@ -155,11 +158,15 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginLeft="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:text="Cancel"
-            app:iconTint="@color/colorRed"
             android:textColor="@color/colorRed"
             app:icon="@drawable/ic_delete_black_24dp"
+            app:iconTint="@color/colorRed"
+            app:rippleColor="@color/colorRed"
             app:layout_constraintBottom_toBottomOf="@+id/button9"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button9"
             app:layout_constraintTop_toTopOf="@+id/button9" />
 
