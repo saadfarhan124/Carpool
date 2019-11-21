@@ -32,7 +32,7 @@
         <activity
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
-        <activity android:name=".navdrawer">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,7 +58,8 @@
             android:parentActivityName=".AfterSplashActivity" />
         <activity
             android:name=".SignupPasswordActivity"
-            android:parentActivityName=".SignupEmailActivity" /> <!-- <activity android:name=".navdrawer"></activity> -->
+            android:parentActivityName=".SignupEmailActivity" />
+         <activity android:name=".navdrawer"></activity>
         <activity android:name=".SignupUsernameActivity" />
         <activity android:name=".TicketActvity" />
     </application>

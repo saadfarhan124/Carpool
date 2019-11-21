@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private val COARSE_LOCATION:String = Manifest.permission.ACCESS_COARSE_LOCATION
 
     //Utility Vars
-    private var DEFAULT_ZOOM = 25f
+    private var DEFAULT_ZOOM = 20f
     private var permissionFlag = false
     private val locationPermissionCode = 1234
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient

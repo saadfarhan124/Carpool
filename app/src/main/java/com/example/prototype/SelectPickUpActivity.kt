@@ -138,7 +138,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             )
                             mMap.addPolyline(
                                 PolylineOptions().addAll(PolyUtil.decode(encodedString)).color(
-                                    Color.RED
+                                    Color.BLUE
                                 )
                             )
                         }

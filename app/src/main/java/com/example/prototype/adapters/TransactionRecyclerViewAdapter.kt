@@ -23,5 +23,4 @@ class TransactionAdapter:RecyclerView.Adapter<TransactionViewHolder>() {
     }
 }
 class TransactionViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-
 }

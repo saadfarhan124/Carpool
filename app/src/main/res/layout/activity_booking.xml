@@ -237,7 +237,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
-                android:src="@drawable/ic_location_on_black_24dp"
+                android:src="@drawable/ic_marker"
                 android:layout_marginLeft="16dp" />
 
 
@@ -317,7 +317,7 @@
                 android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
-                android:src="@drawable/ic_location_on_black_24dp"
+                android:src="@drawable/ic_marker"
                 android:layout_marginLeft="16dp" />
 
 
