@@ -81,4 +81,5 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:+'
     implementation 'androidx.constraintlayout:constraintlayout:+'
+    implementation 'com.google.firebase:firebase-firestore:17.1.2'
 }
