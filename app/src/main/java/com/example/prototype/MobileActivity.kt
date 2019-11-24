@@ -20,7 +20,7 @@ class MobileActivity : AppCompatActivity() {
 
     fun verify(v : View){
         var intent = Intent(applicationContext, VerifyCodeActivity::class.java)
-        intent.putExtra("Number","+92"+editTextPhoneNumber.text.toString() )
+        intent.putExtra("Number","+92"+lgd.text.toString() )
         startActivity(intent)
 
     }

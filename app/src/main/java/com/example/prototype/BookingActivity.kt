@@ -45,8 +45,8 @@ class BookingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_booking)
 
         //progress bar
-//        progressBar = findViewById(R.id.bookingProgressBar)
-//        progressBar.visibility = View.VISIBLE
+        progressBar = findViewById(R.id.bookingProgressBar)
+        progressBar.visibility = View.VISIBLE
 
         initializeVariables()
         routeObject = intent.extras!!.getSerializable("routeDetails") as Routes
@@ -58,7 +58,7 @@ class BookingActivity : AppCompatActivity() {
         scheduledDate.text = LocalDateTime.now().plusDays(1)
             .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
         initializeSpinner(routeObject.remainingSeats)
-//        progressBar.visibility = View.INVISIBLE
+        progressBar.visibility = View.INVISIBLE
     }
 
     private fun initializeVariables() {
