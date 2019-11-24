@@ -35,7 +35,7 @@
         <activity
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
-        <activity android:name=".SeeRoutesActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,7 +46,7 @@
         <!-- android:label="@string/title_activity_navdrawer" -->
         <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
         <activity android:name=".AfterSplashActivity" />
-<!--        <activity android:name=".SeeRoutesActivity"></activity>-->
+        <activity android:name=".SeeRoutesActivity"></activity>
         <activity
             android:name=".MobileActivity"
             android:parentActivityName=".AfterSplashActivity" />
