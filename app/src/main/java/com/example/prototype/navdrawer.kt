@@ -13,10 +13,14 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.widget.TextView
+import com.example.prototype.companion.Companion
 
 class navdrawer : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var labelUserName: TextView
+    private lateinit var labelUserEmail: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +39,17 @@ class navdrawer : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.navdrawer, menu)
+        var globals = Companion.Globals
+        labelUserName = findViewById(R.id.txtUsername)
+        labelUserEmail = findViewById(R.id.textViewEmail)
+        labelUserName.text = globals.user!!.displayName
+        labelUserEmail.text = globals.user!!.email
         return true
     }
 
@@ -51,4 +61,6 @@ class navdrawer : AppCompatActivity() {
     override fun onBackPressed() {
         this.moveTaskToBack(true);
     }
+
+
 }
