@@ -113,11 +113,12 @@ class BookingActivity : AppCompatActivity() {
                                     updatedRoute["endingTime"].toString(),
                                     updatedRoute["endingPoint"].toString(),
                                     bookingId.getValue("booking_id").toString().toLong(),
-                                    updatedRoute["seatsRemaining"].toString().toLong(),
+                                    seatsSpinner.selectedItem.toString().toLong(),
                                     scheduledDate.text.toString(),
                                     "Saad",
                                     calculatedFare.text.toString().toLong()
                                 )
+                                Toast.makeText(applicationContext,updatedRoute["seatsRemaining"].toString(), Toast.LENGTH_LONG).show()
 
                                 //inserting a new booking
                                 FirebaseFirestore
@@ -141,6 +142,7 @@ class BookingActivity : AppCompatActivity() {
                                                             applicationContext,
                                                             TicketActvity::class.java
                                                         )
+
                                                         intent.putExtra("bookingDetails", booking)
                                                         startActivity(intent)
                                                     }

@@ -3,6 +3,7 @@ package com.example.prototype
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import com.example.prototype.dataModels.Booking
 import com.example.prototype.dataModels.Routes
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.activity_ticket.*
@@ -13,10 +14,11 @@ class TicketActvity: AppCompatActivity(){
     private lateinit var endingTime: TextView
     private lateinit var startingPoint: TextView
     private lateinit var endingPoint: TextView
-    private lateinit var seatsRemaining: TextView
+    private lateinit var seatsBooked: TextView
     private lateinit var scheduledDate: TextView
+    private lateinit var bookingID: TextView
 
-    private lateinit var routeObject: Routes
+    private lateinit var bookingObject: Booking
     private lateinit var progressBar: ProgressBar
     private val TAG = "Ticket Activity"
 
@@ -24,5 +26,24 @@ class TicketActvity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ticket)
 
+        bookingObject = intent.extras!!.getSerializable("bookingDetails") as Booking
+        initilizeVariables()
+        startingTime.text = bookingObject.startingTime
+        endingTime.text = bookingObject.endingTime
+        startingPoint.text = bookingObject.startingPoint
+        endingPoint.text = bookingObject.endingPoint
+        seatsBooked.text = bookingObject.numberOfSeats.toString()
+        scheduledDate.text = bookingObject.bookingDate
+        bookingID.text = bookingObject.bookingId.toString()
+    }
+
+    private fun initilizeVariables(){
+        startingTime = findViewById(R.id.ticketStartTime)
+        endingTime = findViewById(R.id.ticketEndTime)
+        startingPoint = findViewById(R.id.ticketStartingLocation)
+        endingPoint = findViewById(R.id.ticketEndingLocation)
+        seatsBooked = findViewById(R.id.ticketNumberOfSeats)
+        scheduledDate = findViewById(R.id.ticketDate)
+        bookingID = findViewById(R.id.ticketBookingId)
     }
 }
