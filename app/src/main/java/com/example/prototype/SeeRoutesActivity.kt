@@ -2,6 +2,7 @@ package com.example.prototype
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,7 +17,7 @@ import com.google.firebase.firestore.QuerySnapshot
 class SeeRoutesActivity : AppCompatActivity() {
 
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var db:FirebaseFirestore
+    private lateinit var db: FirebaseFirestore
     private var mAdapter: RoutesAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,13 +29,13 @@ class SeeRoutesActivity : AppCompatActivity() {
 
     }
 
-    private fun loadRoutes(){
+    private fun loadRoutes() {
         db.collection("routes")
             .get()
-            .addOnCompleteListener{ task ->
-                if (task.isSuccessful){
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     val routes = mutableListOf<Routes>()
-                    for(document in task.result!!){
+                    for (document in task.result!!) {
                         val route = document.toObject(Routes::class.java)
                         route.startingTime = document["starting_time"].toString()
                         route.startingPoint = document["starting_point"].toString()
@@ -42,6 +43,7 @@ class SeeRoutesActivity : AppCompatActivity() {
                         route.endingPoint = document["ending_point"].toString()
                         route.remainingSeats = document["seats_remaining"] as Long
                         route.id = document.id
+                        Log.d("Collection", route.id)
                         routes.add(route)
                     }
                     mAdapter = RoutesAdapter(routes, applicationContext, db!!)
@@ -50,8 +52,9 @@ class SeeRoutesActivity : AppCompatActivity() {
                     mRecyclerView.layoutManager = mLayoutManager
                     mRecyclerView.itemAnimator = DefaultItemAnimator()
                     mRecyclerView.adapter = mAdapter
-                }else{
-                    Toast.makeText(applicationContext, task.exception.toString(), Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(applicationContext, task.exception.toString(), Toast.LENGTH_LONG)
+                        .show()
                 }
             }
     }

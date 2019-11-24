@@ -12,8 +12,11 @@ import com.example.prototype.R
 import com.example.prototype.dataModels.Routes
 import com.google.firebase.firestore.FirebaseFirestore
 
-class RoutesAdapter(private val routesList:MutableList<Routes>, private val context:Context, private val firestoreDB:FirebaseFirestore)
-    : RecyclerView.Adapter<RoutesAdapter.RoutesViewHolder>() {
+class RoutesAdapter(
+    private val routesList: MutableList<Routes>,
+    private val context: Context,
+    private val firestoreDB: FirebaseFirestore
+) : RecyclerView.Adapter<RoutesAdapter.RoutesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoutesViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -32,7 +35,7 @@ class RoutesAdapter(private val routesList:MutableList<Routes>, private val cont
         holder.endingTime.text = route!!.endingTime
         holder.endingPoint.text = route!!.endingPoint
         holder.seatsRemaining.text = route!!.remainingSeats.toString()
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             val intent = Intent(context, BookingActivity::class.java)
             intent.putExtra("routeDetails", route)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -41,8 +44,7 @@ class RoutesAdapter(private val routesList:MutableList<Routes>, private val cont
     }
 
 
-
-    inner class RoutesViewHolder internal constructor(view : View) : RecyclerView.ViewHolder(view){
+    inner class RoutesViewHolder internal constructor(view: View) : RecyclerView.ViewHolder(view) {
         internal var startingPoint: TextView = view.findViewById(R.id.startingPoint)
         internal var startingTime: TextView = view.findViewById(R.id.startingTime)
         internal var endingPoint: TextView = view.findViewById(R.id.endingPoint)
