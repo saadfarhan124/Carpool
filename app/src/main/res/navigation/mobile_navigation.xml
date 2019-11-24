@@ -20,7 +20,7 @@
         android:id="@+id/nav_myrides"
         android:name="com.example.prototype.ui.myrides.MyridesFragment"
         android:label="@string/menu_myrides"
-        tools:layout="@layout/fragment_myrides" />
+        tools:layout="@layout/fragment_myrides_current" />
     <fragment
         android:id="@+id/nav_transaction"
         android:name="com.example.prototype.ui.transaction.TransactionFragment"

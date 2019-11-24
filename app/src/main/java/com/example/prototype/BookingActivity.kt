@@ -33,6 +33,7 @@ class BookingActivity : AppCompatActivity() {
     private lateinit var seatsSpinner: Spinner
     private lateinit var btnBookNow: Button
     private lateinit var routeObject: Routes
+    private val TAG = "Booking Activity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,13 +80,13 @@ class BookingActivity : AppCompatActivity() {
             docRef.get()
                 .addOnSuccessListener { document ->
                     if (document != null) {
-                        Log.d("Collection", "DocumentSnapshot data: ${document.data}")
+                        Log.d(TAG, "DocumentSnapshot data: ${document["ending_point"]}")
                     } else {
-                        Log.d("Collection", "No such document")
+                        Log.d(TAG, "No such document")
                     }
                 }
                 .addOnFailureListener { exception ->
-                    Log.d("Collection", "get failed with ", exception)
+                    Log.d(TAG, "get failed with ", exception)
                 }
 
         }

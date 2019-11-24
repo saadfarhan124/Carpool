@@ -20,7 +20,7 @@ class MyridesFragment: Fragment() {
     ): View? {
         myridesViewModel =
             ViewModelProviders.of(this).get(MyridesViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_myrides, container, false)
+        val root = inflater.inflate(R.layout.fragment_myrides_current, container, false)
 //        val textView: TextView = root.findViewById(R.id.text_gallery)
 //        galleryViewModel.text.observe(this, Observer {
 //            textView.text = it
