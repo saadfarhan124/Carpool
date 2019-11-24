@@ -16,7 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".BookingActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.DarkActionBar"
+            android:parentActivityName=".SeeRoutesActivity"
+            ></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -42,8 +45,7 @@
         <!-- android:name=".navdrawer" -->
         <!-- android:label="@string/title_activity_navdrawer" -->
         <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
-        <activity android:name=".AfterSplashActivity" />
-<!--        <activity android:name=".SeeRoutesActivity"></activity>-->
+        <activity android:name=".AfterSplashActivity" /> <!-- <activity android:name=".SeeRoutesActivity"></activity> -->
         <activity
             android:name=".MobileActivity"
             android:parentActivityName=".AfterSplashActivity" />
@@ -59,7 +61,7 @@
         <activity
             android:name=".SignupPasswordActivity"
             android:parentActivityName=".SignupEmailActivity" />
-         <activity android:name=".navdrawer"></activity>
+        <activity android:name=".navdrawer" />
         <activity android:name=".SignupUsernameActivity" />
         <activity android:name=".TicketActvity" />
     </application>

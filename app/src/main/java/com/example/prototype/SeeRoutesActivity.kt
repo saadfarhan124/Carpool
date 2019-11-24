@@ -25,11 +25,10 @@ class SeeRoutesActivity : AppCompatActivity() {
         db = FirebaseFirestore.getInstance()
         loadRoutes()
 
-//        mRecyclerView.layoutManager = LinearLayoutManager(this)
-//        mRecyclerView.adapter = RoutesAdapter()
+
     }
 
-    fun loadRoutes(){
+    private fun loadRoutes(){
         db.collection("routes")
             .get()
             .addOnCompleteListener{ task ->
@@ -52,7 +51,7 @@ class SeeRoutesActivity : AppCompatActivity() {
                     mRecyclerView.itemAnimator = DefaultItemAnimator()
                     mRecyclerView.adapter = mAdapter
                 }else{
-
+                    Toast.makeText(applicationContext, task.exception.toString(), Toast.LENGTH_LONG).show()
                 }
             }
     }

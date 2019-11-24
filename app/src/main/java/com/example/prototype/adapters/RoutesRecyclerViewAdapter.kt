@@ -1,11 +1,13 @@
 package com.example.prototype.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prototype.BookingActivity
 import com.example.prototype.R
 import com.example.prototype.dataModels.Routes
 import com.google.firebase.firestore.FirebaseFirestore
@@ -30,7 +32,15 @@ class RoutesAdapter(private val routesList:MutableList<Routes>, private val cont
         holder.endingTime.text = route!!.endingTime
         holder.endingPoint.text = route!!.endingPoint
         holder.seatsRemaining.text = route!!.remainingSeats.toString()
+        holder.itemView.setOnClickListener{
+            val intent = Intent(context, BookingActivity::class.java)
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
+        }
     }
+
+
 
     inner class RoutesViewHolder internal constructor(view : View) : RecyclerView.ViewHolder(view){
         internal var startingPoint: TextView = view.findViewById(R.id.startingPoint)
