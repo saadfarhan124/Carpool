@@ -26,6 +26,8 @@
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip2"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorText"
         style="@style/Widget.MaterialComponents.Chip.Action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,6 +75,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -86,7 +89,21 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewRoutes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+        </androidx.recyclerview.widget.RecyclerView>
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/routesProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/nestedScrollView3"
+        app:layout_constraintTop_toTopOf="@+id/appBarLayout" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -37,11 +37,16 @@ class BookingActivity : AppCompatActivity() {
     private lateinit var seatsSpinner: Spinner
     private lateinit var btnBookNow: Button
     private lateinit var routeObject: Routes
+    private lateinit var progressBar: ProgressBar
     private val TAG = "Booking Activity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_booking)
+
+        //progress bar
+//        progressBar = findViewById(R.id.bookingProgressBar)
+//        progressBar.visibility = View.VISIBLE
 
         initializeVariables()
         routeObject = intent.extras!!.getSerializable("routeDetails") as Routes
@@ -53,6 +58,7 @@ class BookingActivity : AppCompatActivity() {
         scheduledDate.text = LocalDateTime.now().plusDays(1)
             .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
         initializeSpinner(routeObject.remainingSeats)
+//        progressBar.visibility = View.INVISIBLE
     }
 
     private fun initializeVariables() {
@@ -67,20 +73,17 @@ class BookingActivity : AppCompatActivity() {
         btnBookNow = findViewById(R.id.btnBookNow)
         btnBookNow.setOnClickListener { bookARide() }
 
+
     }
 
     private fun bookARide() {
-//        MaterialAlertDialogBuilder(applicationContext, R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog)
-//            .setTitle("Title")
-//            .setMessage("Message")
-//            .setPositiveButton("Ok", null)
-//            .show();
         var bookingId = HashMap<String, Any>().toMutableMap()
         val confirmDialog =
             AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
         confirmDialog.setTitle("Sath Chaloo")
         confirmDialog.setMessage("Are you sure you want to proceed with your booking?")
         confirmDialog.setPositiveButton("Yes") { _, _ ->
+            progressBar.visibility = View.VISIBLE
             var updatedRoute = routeObject.toMap().toMutableMap()
             //Gettting new number of seats and updating it on routes calculation
             updatedRoute["seatsRemaining"] =
@@ -122,16 +125,19 @@ class BookingActivity : AppCompatActivity() {
                                     .collection("booking")
                                     .add(booking)
                                     .addOnCompleteListener { task ->
-                                        //increasing booking id
-                                        bookingId["booking_id"] = bookingId.getValue("booking_id").toString().toLong() + 1
+                                        //increasing and updating booking id
+                                        bookingId["booking_id"] =
+                                            bookingId.getValue("booking_id").toString().toLong() + 1
                                         if (task.isSuccessful) {
                                             FirebaseFirestore
                                                 .getInstance()
                                                 .collection("booking_id")
                                                 .document("bSjvfO0c2zWLG2SI0eyC")
                                                 .set(bookingId)
-                                                .addOnCompleteListener {
-
+                                                .addOnCompleteListener {task ->
+                                                    if(task.isSuccessful){
+                                                        progressBar.visibility = View.INVISIBLE
+                                                    }
                                                 }
                                         }
                                     }
@@ -140,10 +146,6 @@ class BookingActivity : AppCompatActivity() {
                 }).addOnFailureListener(OnFailureListener { e ->
                     Log.w(TAG, "Error writing document", e)
                 })
-
-
-//            updatedSeats.put("seats_remaining", )
-
         }
         confirmDialog.setNegativeButton("No") { _, _ ->
             Toast.makeText(applicationContext, "Clicked negative button", Toast.LENGTH_LONG).show()

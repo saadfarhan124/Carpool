@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:paddingTop="18dp"
-        android:paddingBottom="18dp"
         android:paddingLeft="52dp"
+        android:paddingTop="18dp"
         android:paddingRight="52dp"
+        android:paddingBottom="18dp"
         android:text="Continue with mobile number"
         android:textColor="@color/colorText"
         android:textSize="16sp"
@@ -24,10 +24,9 @@
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toTopOf="@+id/login_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.96" />
+        app:layout_constraintVertical_bias="0.957" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"

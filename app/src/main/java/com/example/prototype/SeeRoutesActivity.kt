@@ -3,6 +3,8 @@ package com.example.prototype
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,19 +20,26 @@ class SeeRoutesActivity : AppCompatActivity() {
 
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var db: FirebaseFirestore
+    private lateinit var progressBar: ProgressBar
     private val TAG = "SeeRoutes"
     private var mAdapter: RoutesAdapter? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seeroutes)
         db = FirebaseFirestore.getInstance()
-        loadRoutes()
 
+        //progress bar
+        progressBar = findViewById(R.id.routesProgressBar)
+        progressBar.visibility = View.VISIBLE
+
+        loadRoutes()
 
     }
 
     private fun loadRoutes() {
+
         db.collection("routes")
             .get()
             .addOnCompleteListener { task ->
@@ -53,6 +62,8 @@ class SeeRoutesActivity : AppCompatActivity() {
                     mRecyclerView.layoutManager = mLayoutManager
                     mRecyclerView.itemAnimator = DefaultItemAnimator()
                     mRecyclerView.adapter = mAdapter
+                    //progress bar
+                    progressBar.visibility = View.INVISIBLE
                 } else {
                     Toast.makeText(applicationContext, task.exception.toString(), Toast.LENGTH_LONG)
                         .show()
