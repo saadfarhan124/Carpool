@@ -26,6 +26,9 @@ class RoutesearchFragment : Fragment() {
 //        galleryViewModel.text.observe(this, Observer {
 //            textView.text = it
 //        })
+
         return root
     }
+
+
 }

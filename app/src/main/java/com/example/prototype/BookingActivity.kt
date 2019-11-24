@@ -10,12 +10,14 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.widget.Toolbar
 import com.example.prototype.dataModels.Booking
 import com.example.prototype.dataModels.Routes
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_booking.*
 import org.jetbrains.anko.AlertDialogBuilder
 import org.jetbrains.anko.find
 import java.time.LocalDateTime
@@ -38,11 +40,32 @@ class BookingActivity : AppCompatActivity() {
     private lateinit var btnBookNow: Button
     private lateinit var routeObject: Routes
     private lateinit var progressBar: ProgressBar
+    //private lateinit var toolbars: Toolbar
     private val TAG = "Booking Activity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_booking)
+
+
+        setSupportActionBar(Toolbar(applicationContext))
+
+        // Now get the support action bar
+        val actionBar = supportActionBar
+
+        // Set toolbar title/app title
+        actionBar!!.title = "Hello APP"
+
+        // Set action bar/toolbar sub title
+//        actionBar.subtitle = "App subtitle"
+
+        // Set action bar elevation
+//        actionBar.elevation = 4.0F
+
+        // Display the app icon in action bar/toolbar
+//        actionBar.setDisplayShowHomeEnabled(true)
+//        actionBar.setLogo(R.mipmap.ic_launcher)
+//        actionBar.setDisplayUseLogoEnabled(true)
 
         //progress bar
         progressBar = findViewById(R.id.bookingProgressBar)
@@ -60,6 +83,11 @@ class BookingActivity : AppCompatActivity() {
         initializeSpinner(routeObject.remainingSeats)
         progressBar.visibility = View.INVISIBLE
     }
+
+//    override fun onSupportNavigateUp(): Boolean {
+//        onBackPressed()
+//        return true
+//    }
 
     private fun initializeVariables() {
         startingTime = findViewById(R.id.bookingStartTime)
