@@ -58,10 +58,10 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView40" />
+                app:layout_constraintTop_toBottomOf="@+id/ticketUser" />
 
             <TextView
-                android:id="@+id/textView27"
+                android:id="@+id/ticketStartingLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -81,11 +81,11 @@
                 android:text="Start"
                 android:textColor="@color/colorText1"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/textView27"
-                app:layout_constraintTop_toBottomOf="@+id/textView27" />
+                app:layout_constraintStart_toStartOf="@+id/ticketStartingLocation"
+                app:layout_constraintTop_toBottomOf="@+id/ticketStartingLocation" />
 
             <TextView
-                android:id="@+id/textView29"
+                android:id="@+id/ticketStartTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -94,7 +94,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
             <TextView
-                android:id="@+id/textView30"
+                android:id="@+id/ticketEndingLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -114,11 +114,11 @@
                 android:text="End"
                 android:textColor="@color/colorText1"
                 android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/textView30"
-                app:layout_constraintTop_toBottomOf="@+id/textView30" />
+                app:layout_constraintStart_toStartOf="@+id/ticketEndingLocation"
+                app:layout_constraintTop_toBottomOf="@+id/ticketEndingLocation" />
 
             <TextView
-                android:id="@+id/textView32"
+                android:id="@+id/ticketEndTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -154,14 +154,14 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
                 android:layout_marginRight="32dp"
-                android:text="Boarding No:"
+                android:text="Bookings No:"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/btn_return"
                 app:layout_constraintStart_toStartOf="@+id/btn_return"
                 app:layout_constraintTop_toBottomOf="@+id/btn_return" />
 
             <TextView
-                android:id="@+id/textView34"
+                android:id="@+id/ticketID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -186,13 +186,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView33" />
 
             <TextView
-                android:id="@+id/textView36"
+                android:id="@+id/ticketSeats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:text="Bus Details"
+                android:text="Number of Seats"
                 android:textColor="@color/colorText1"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
@@ -209,7 +209,7 @@
                 android:textColor="@color/colorText1"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView36" />
+                app:layout_constraintTop_toBottomOf="@+id/ticketSeats" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -232,7 +232,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
             <TextView
-                android:id="@+id/textView40"
+                android:id="@+id/ticketUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -252,7 +252,7 @@
                 android:background="@color/colorAccent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+                app:layout_constraintTop_toBottomOf="@+id/ticketStartTime" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

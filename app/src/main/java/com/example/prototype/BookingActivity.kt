@@ -134,9 +134,15 @@ class BookingActivity : AppCompatActivity() {
                                                 .collection("booking_id")
                                                 .document("bSjvfO0c2zWLG2SI0eyC")
                                                 .set(bookingId)
-                                                .addOnCompleteListener {task ->
-                                                    if(task.isSuccessful){
+                                                .addOnCompleteListener { task ->
+                                                    if (task.isSuccessful) {
                                                         progressBar.visibility = View.INVISIBLE
+                                                        val intent = Intent(
+                                                            applicationContext,
+                                                            TicketActvity::class.java
+                                                        )
+                                                        intent.putExtra("bookingDetails", booking)
+                                                        startActivity(intent)
                                                     }
                                                 }
                                         }
