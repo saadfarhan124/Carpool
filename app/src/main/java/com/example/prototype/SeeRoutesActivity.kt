@@ -18,6 +18,7 @@ class SeeRoutesActivity : AppCompatActivity() {
 
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var db: FirebaseFirestore
+    private val TAG = "SeeRoutes"
     private var mAdapter: RoutesAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,13 +38,13 @@ class SeeRoutesActivity : AppCompatActivity() {
                     val routes = mutableListOf<Routes>()
                     for (document in task.result!!) {
                         val route = document.toObject(Routes::class.java)
-                        route.startingTime = document["starting_time"].toString()
-                        route.startingPoint = document["starting_point"].toString()
-                        route.endingTime = document["ending_time"].toString()
-                        route.endingPoint = document["ending_point"].toString()
-                        route.remainingSeats = document["seats_remaining"] as Long
+                        route.startingTime = document["startingTime"].toString()
+                        route.startingPoint = document["startingPoint"].toString()
+                        route.endingTime = document["endingTime"].toString()
+                        route.endingPoint = document["endingPoint"].toString()
+                        route.remainingSeats = document["seatsRemaining"] as Long
                         route.id = document.id
-                        Log.d("Collection", route.id)
+                        Log.d(TAG, route.id)
                         routes.add(route)
                     }
                     mAdapter = RoutesAdapter(routes, applicationContext, db!!)

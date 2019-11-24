@@ -11,6 +11,8 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import com.example.prototype.dataModels.Routes
+import com.google.android.gms.tasks.OnFailureListener
+import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.AlertDialogBuilder
@@ -19,6 +21,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
+import kotlin.collections.HashMap
 
 class BookingActivity : AppCompatActivity() {
 
@@ -71,31 +74,33 @@ class BookingActivity : AppCompatActivity() {
 //            .setMessage("Message")
 //            .setPositiveButton("Ok", null)
 //            .show();
-        val confirmDialog = AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
+        val confirmDialog =
+            AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
         confirmDialog.setTitle("Sath Chaloo")
         confirmDialog.setMessage("Are you sure you want to proceed with your booking?")
         confirmDialog.setPositiveButton("Yes") { _, _ ->
-            Toast.makeText(applicationContext, "Clicked positive button", Toast.LENGTH_LONG).show()
-            val docRef = FirebaseFirestore.getInstance().collection("routes").document(routeObject.id!!)
-            docRef.get()
-                .addOnSuccessListener { document ->
-                    if (document != null) {
-                        Log.d(TAG, "DocumentSnapshot data: ${document["ending_point"]}")
-                    } else {
-                        Log.d(TAG, "No such document")
-                    }
-                }
-                .addOnFailureListener { exception ->
-                    Log.d(TAG, "get failed with ", exception)
-                }
+            var updatedRoute = routeObject.toMap().toMutableMap()
+            updatedRoute["seatsRemaining"] = routeObject.remainingSeats - seatsSpinner.selectedItem.toString().toLong()
+            FirebaseFirestore
+                .getInstance()
+                .collection("routes")
+                .document(routeObject.id!!)
+                .set(updatedRoute)
+                .addOnSuccessListener(OnSuccessListener {
+                    
+                }).addOnFailureListener(OnFailureListener { e ->
+                    Log.w(TAG, "Error writing document", e)
+                })
+
+
+//            updatedSeats.put("seats_remaining", )
 
         }
         confirmDialog.setNegativeButton("No") { _, _ ->
             Toast.makeText(applicationContext, "Clicked negative button", Toast.LENGTH_LONG).show()
         }
         confirmDialog.show()
-//        val intent = Intent(applicationContext, TicketActvity::class.java)
-//        startActivity(intent)
+
     }
 
     private fun initializeSpinner(capacity: Long) {
