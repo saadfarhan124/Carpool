@@ -1,6 +1,8 @@
 package com.example.prototype.dataModels
 
-class Routes{
+import java.io.Serializable
+
+class Routes : Serializable{
 
     var startingTime: String? = null
     var startingPoint:String? = null
@@ -19,14 +21,6 @@ class Routes{
         this.remainingSeats = remaining_seats
     }
 
-    fun toMap():Map<String, Any>{
-        val result = HashMap<String, Any>()
-        result["startingTime"] = startingTime!!
-        result["startingPoint"] = startingPoint!!
-        result["endingTime"] = endingTime!!
-        result["endingPoint"] = endingPoint!!
-        result["seatsRemaining"] = remainingSeats!!
-        return result
-    }
+
 
 }

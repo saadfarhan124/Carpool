@@ -34,7 +34,7 @@ class RoutesAdapter(private val routesList:MutableList<Routes>, private val cont
         holder.seatsRemaining.text = route!!.remainingSeats.toString()
         holder.itemView.setOnClickListener{
             val intent = Intent(context, BookingActivity::class.java)
-
+            intent.putExtra("routeDetails", route)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
