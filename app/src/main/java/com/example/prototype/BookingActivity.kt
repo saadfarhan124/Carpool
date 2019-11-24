@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
+import com.example.prototype.dataModels.Booking
 import com.example.prototype.dataModels.Routes
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -74,20 +75,68 @@ class BookingActivity : AppCompatActivity() {
 //            .setMessage("Message")
 //            .setPositiveButton("Ok", null)
 //            .show();
+        var bookingId = HashMap<String, Any>().toMutableMap()
         val confirmDialog =
             AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
         confirmDialog.setTitle("Sath Chaloo")
         confirmDialog.setMessage("Are you sure you want to proceed with your booking?")
         confirmDialog.setPositiveButton("Yes") { _, _ ->
             var updatedRoute = routeObject.toMap().toMutableMap()
-            updatedRoute["seatsRemaining"] = routeObject.remainingSeats - seatsSpinner.selectedItem.toString().toLong()
+            //Gettting new number of seats and updating it on routes calculation
+            updatedRoute["seatsRemaining"] =
+                routeObject.remainingSeats - seatsSpinner.selectedItem.toString().toLong()
             FirebaseFirestore
                 .getInstance()
                 .collection("routes")
                 .document(routeObject.id!!)
                 .set(updatedRoute)
                 .addOnSuccessListener(OnSuccessListener {
-                    
+                    //getting the booking id from the collection
+                    FirebaseFirestore
+                        .getInstance()
+                        .collection("booking_id")
+                        .get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                for (document in task.result!!) {
+                                    bookingId.put(
+                                        "booking_id",
+                                        document["booking_id"].toString().toLong()
+                                    )
+                                }
+                                val booking = Booking(
+                                    updatedRoute["startingTime"].toString(),
+                                    updatedRoute["startingPoint"].toString(),
+                                    updatedRoute["endingTime"].toString(),
+                                    updatedRoute["endingPoint"].toString(),
+                                    bookingId.getValue("booking_id").toString().toLong(),
+                                    updatedRoute["seatsRemaining"].toString().toLong(),
+                                    scheduledDate.text.toString(),
+                                    "Saad",
+                                    calculatedFare.text.toString().toLong()
+                                )
+
+                                //inserting a new booking
+                                FirebaseFirestore
+                                    .getInstance()
+                                    .collection("booking")
+                                    .add(booking)
+                                    .addOnCompleteListener { task ->
+                                        //increasing booking id
+                                        bookingId["booking_id"] = bookingId.getValue("booking_id").toString().toLong() + 1
+                                        if (task.isSuccessful) {
+                                            FirebaseFirestore
+                                                .getInstance()
+                                                .collection("booking_id")
+                                                .document("bSjvfO0c2zWLG2SI0eyC")
+                                                .set(bookingId)
+                                                .addOnCompleteListener {
+
+                                                }
+                                        }
+                                    }
+                            }
+                        }
                 }).addOnFailureListener(OnFailureListener { e ->
                     Log.w(TAG, "Error writing document", e)
                 })
