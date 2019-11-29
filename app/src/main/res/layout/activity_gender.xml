@@ -13,6 +13,9 @@
         android:layout_height="wrap_content"
         android:outlineSpotShadowColor="@color/colorPrimaryDark"
         app:cardCornerRadius="18dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
 
         app:cardElevation="6dp"
         app:layout_constraintEnd_toStartOf="@+id/materialCardViewFemale"
@@ -57,7 +60,9 @@
         style="@style/Widget.MaterialComponents.CardView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
         android:layout_marginTop="64dp"
         android:layout_marginBottom="74dp"
         android:outlineSpotShadowColor="@color/colorPrimaryDark"
@@ -105,7 +110,7 @@
     <com.google.android.material.button.MaterialButton
         style="@style/Widget.MaterialComponents.Button"
         android:id="@+id/button12"
-        android:layout_width="0d"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
