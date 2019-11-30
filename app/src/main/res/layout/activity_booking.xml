@@ -26,13 +26,8 @@
             app:popupTheme="@style/AppTheme"
             app:titleTextColor="@color/colorText"
             app:title="Booking"
-            app:navigationIcon="@drawable/ic_arrow_back_black_24dp">
-
+            app:navigationIcon="@drawable/ic_chevron_left_black_24dp">
         </androidx.appcompat.widget.Toolbar>
-
-
-
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.card.MaterialCardView

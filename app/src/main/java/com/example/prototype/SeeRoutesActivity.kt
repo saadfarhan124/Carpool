@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,12 +31,24 @@ class SeeRoutesActivity : AppCompatActivity() {
         setContentView(R.layout.activity_seeroutes)
         db = FirebaseFirestore.getInstance()
 
+        val toolbar: Toolbar = findViewById(R.id.toolbarsr)
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
         //progress bar
         progressBar = findViewById(R.id.routesProgressBar)
         progressBar.visibility = View.VISIBLE
 
         loadRoutes()
 
+    }
+
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun loadRoutes() {

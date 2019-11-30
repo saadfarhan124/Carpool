@@ -47,11 +47,11 @@ class BookingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_booking)
 
+        //Top App Bar
         val toolbar: Toolbar = findViewById(R.id.toolbarb)
         setSupportActionBar(toolbar)
-
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
 
         //progress bar
@@ -71,6 +71,7 @@ class BookingActivity : AppCompatActivity() {
         progressBar.visibility = View.INVISIBLE
     }
 
+    //Top App Bar Back Nav
     override fun onSupportNavigateUp():Boolean {
         onBackPressed()
         return true

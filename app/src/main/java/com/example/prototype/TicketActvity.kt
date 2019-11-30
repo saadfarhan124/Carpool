@@ -3,6 +3,7 @@ package com.example.prototype
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.prototype.dataModels.Booking
 import com.example.prototype.dataModels.Routes
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -26,6 +27,14 @@ class TicketActvity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ticket)
 
+
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbartck)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
         bookingObject = intent.extras!!.getSerializable("bookingDetails") as Booking
         initilizeVariables()
         startingTime.text = bookingObject.startingTime
@@ -36,6 +45,13 @@ class TicketActvity: AppCompatActivity(){
         scheduledDate.text = bookingObject.bookingDate
         bookingID.text = bookingObject.bookingId.toString()
     }
+
+    //Top App Bar Back Nav
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
+    }
+
 
     private fun initilizeVariables(){
         startingTime = findViewById(R.id.ticketStartTime)
