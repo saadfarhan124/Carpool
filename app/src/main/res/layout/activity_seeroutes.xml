@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:navigationIcon="@drawable/ic_chevron_left_black_24dp"
+            app:navigationIcon="@drawable/ic_chevron_left_white_24dp"
             app:popupTheme="@style/AppTheme"
             app:title="Routes"
             app:titleTextColor="@color/colorText">

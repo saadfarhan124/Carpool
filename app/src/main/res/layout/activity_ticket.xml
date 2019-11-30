@@ -22,7 +22,7 @@
             app:popupTheme="@style/AppTheme"
             app:titleTextColor="@color/colorText"
             app:title="Boarding Pass"
-            app:navigationIcon="@drawable/ic_chevron_left_black_24dp"/>
+            app:navigationIcon="@drawable/ic_chevron_left_white_24dp"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.card.MaterialCardView
