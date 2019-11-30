@@ -50,8 +50,8 @@ class BookingActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbarb)
         setSupportActionBar(toolbar)
 
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
 
 
         //progress bar
