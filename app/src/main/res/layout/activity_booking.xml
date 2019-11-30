@@ -9,45 +9,44 @@
 
 
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        android:id="@+id/appBarLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:theme="@style/AppTheme"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-<!--        <androidx.appcompat.widget.Toolbar-->
-<!--            android:id="@+id/toolbar"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="?attr/actionBarSize"-->
-<!--            android:background="?attr/colorPrimary"-->
-<!--            app:popupTheme="@style/AppTheme"-->
-<!--            app:titleTextColor="@color/colorText"-->
-<!--            app:title="Booking"-->
-<!--            app:navigationIcon="@drawable/ic_arrow_back_black_24dp">-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarb"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme"
+            app:titleTextColor="@color/colorText"
+            app:title="Booking"
+            app:navigationIcon="@drawable/ic_arrow_back_black_24dp">
 
-<!--        </androidx.appcompat.widget.Toolbar>-->
-
-
+        </androidx.appcompat.widget.Toolbar>
 
 
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
+
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewSC"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:outlineSpotShadowColor="@color/colorPrimaryDark"
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

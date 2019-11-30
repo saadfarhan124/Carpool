@@ -47,25 +47,12 @@ class BookingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_booking)
 
+        val toolbar: Toolbar = findViewById(R.id.toolbarb)
+        setSupportActionBar(toolbar)
 
-        setSupportActionBar(Toolbar(applicationContext))
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true);
 
-        // Now get the support action bar
-        val actionBar = supportActionBar
-
-        // Set toolbar title/app title
-        actionBar!!.title = "Hello APP"
-
-        // Set action bar/toolbar sub title
-//        actionBar.subtitle = "App subtitle"
-
-        // Set action bar elevation
-//        actionBar.elevation = 4.0F
-
-        // Display the app icon in action bar/toolbar
-//        actionBar.setDisplayShowHomeEnabled(true)
-//        actionBar.setLogo(R.mipmap.ic_launcher)
-//        actionBar.setDisplayUseLogoEnabled(true)
 
         //progress bar
         progressBar = findViewById(R.id.bookingProgressBar)
@@ -84,10 +71,11 @@ class BookingActivity : AppCompatActivity() {
         progressBar.visibility = View.INVISIBLE
     }
 
-//    override fun onSupportNavigateUp(): Boolean {
-//        onBackPressed()
-//        return true
-//    }
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
+    }
+
 
     private fun initializeVariables() {
         startingTime = findViewById(R.id.bookingStartTime)
