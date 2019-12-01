@@ -97,11 +97,8 @@
         android:onClick="continueFromEmail"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
-
         android:text="Continue"
-        android:textColor="@color/colorText"
         android:textSize="16sp"
-        app:backgroundTint="@color/colorAccent"
         app:cornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

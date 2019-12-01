@@ -75,17 +75,17 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button3"
-        android:layout_width="0dp"
         style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="32dp"
-        android:textSize="18sp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
-        app:cornerRadius="8dp"
         android:text="Button"
+        android:textSize="18sp"
+        app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="@+id/editlay4"
         app:layout_constraintStart_toStartOf="@+id/editlay4"
         app:layout_constraintTop_toBottomOf="@+id/editlay4" />
