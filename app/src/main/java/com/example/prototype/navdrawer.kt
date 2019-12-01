@@ -1,5 +1,6 @@
 package com.example.prototype
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -13,8 +14,13 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.example.prototype.companion.Companion
+import kotlinx.android.synthetic.main.activity_navdrawer.*
+import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
 
 class navdrawer : AppCompatActivity() {
 
@@ -26,6 +32,7 @@ class navdrawer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navdrawer)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
+
         setSupportActionBar(toolbar)
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)
@@ -39,6 +46,14 @@ class navdrawer : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val headerView: View = nav_view.getHeaderView(0)
+        headerView.txtUsername.text ="Saad Farhan"
+
+        headerView.usr_pic.setOnClickListener{
+            val intent = Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

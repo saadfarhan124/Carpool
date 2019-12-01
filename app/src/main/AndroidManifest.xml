@@ -38,6 +38,7 @@
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off"
             />
+        <activity android:name=".ProfileActivity"/>
         <activity android:name=".navdrawer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
