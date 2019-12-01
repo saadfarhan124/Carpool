@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -79,6 +80,12 @@ class VerifyCodeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verifycode)
 
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbarverify)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         //Shared Pref
         sharedPreferences = this.getSharedPreferences("com.example.carpool", Context.MODE_PRIVATE)
 
@@ -115,6 +122,12 @@ class VerifyCodeActivity : AppCompatActivity() {
             }
 
         })
+    }
+
+    //Top App Bar Back Nav
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
     }
 }
 

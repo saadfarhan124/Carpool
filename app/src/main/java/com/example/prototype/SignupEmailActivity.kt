@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_signup_email.*
@@ -20,6 +21,19 @@ class SignupEmailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup_email)
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser!!
+
+
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbaremail)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+    }
+
+    //Top App Bar Back Nav
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
     }
 
     fun continueFromEmail(v : View){

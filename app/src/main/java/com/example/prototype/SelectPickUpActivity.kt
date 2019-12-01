@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
@@ -72,6 +73,19 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
 
         destinationLatLng = LatLng(intent.extras!!.get("PickupLat").toString().toDouble(),intent.extras!!.get("PickupLong").toString().toDouble())
+
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbarsp)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+    }
+
+    //Top App Bar Back Nav
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun initMap(){
