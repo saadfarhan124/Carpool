@@ -20,6 +20,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.prototype.companion.Companion
 import kotlinx.android.synthetic.main.activity_navdrawer.*
+import kotlinx.android.synthetic.main.activity_signup.view.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
 
 class navdrawer : AppCompatActivity() {
@@ -47,8 +48,11 @@ class navdrawer : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        var globals = Companion.Globals
+
         val headerView: View = nav_view.getHeaderView(0)
-        headerView.txtUsername.text ="Saad Farhan"
+        headerView.txtUsername.text = globals.user!!.displayName
+        headerView.txtEmail.text = globals.user!!.email
 
         headerView.usr_pic.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
@@ -60,13 +64,6 @@ class navdrawer : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.navdrawer, menu)
-
-        //accessing user from globals and setting the email and username for side drawer
-        var globals = Companion.Globals
-//        labelUserName = findViewById(R.id.txtUsername)
-//        labelUserEmail = findViewById(R.id.textViewEmail)
-//        labelUserName.text = globals.user!!.displayName
-//        labelUserEmail.text = globals.user!!.email
         return true
     }
 
