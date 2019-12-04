@@ -62,4 +62,10 @@
         android:label="@string/menu_help"
         tools:layout="@layout/fragment_help" />
 
+    <fragment
+        android:id="@+id/txtEmail"
+        android:name="com.example.prototype.ui.help.HelpFragments"
+        android:label="@string/menu_help"
+        tools:layout="@layout/fragment_help" />
+
 </navigation>
