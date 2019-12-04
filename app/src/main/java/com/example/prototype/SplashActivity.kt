@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.prototype.companion.Companion
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -28,6 +29,8 @@ class SplashActivity : AppCompatActivity() {
         val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
         val homeScreen = Intent(applicationContext,navdrawer::class.java)
         if(user != null){
+            var global = Companion.Globals
+            global.user = user
             startActivity(homeScreen)
         }else{
             startActivity(afterSplashActivityIntent)

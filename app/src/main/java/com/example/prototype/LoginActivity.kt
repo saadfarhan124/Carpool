@@ -24,7 +24,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-//        auth.signOut()
 
         //Top App Bar
         val toolbar: Toolbar = findViewById(R.id.toolbarlogin)
@@ -43,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
     fun authenticate(v: View){
         var intent = Intent()
         loading.visibility = View.VISIBLE
-        
+
         auth.signInWithEmailAndPassword(lg_txt_email.text.toString(),lg_txt_password.text.toString()).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 var globals = Companion.Globals

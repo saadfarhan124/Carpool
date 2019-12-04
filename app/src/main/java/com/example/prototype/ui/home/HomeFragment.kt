@@ -157,7 +157,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     //Third
     //Map on Ready Callback
     override fun onMapReady(googleMap: GoogleMap) {
-        var flag = false
         mMap = googleMap
         mMap.setOnCameraIdleListener {
             mMap.clear()

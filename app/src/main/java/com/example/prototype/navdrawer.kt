@@ -19,11 +19,13 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.activity_signup.view.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
+import org.jetbrains.anko.find
 
 class navdrawer : AppCompatActivity() {
 
@@ -50,11 +52,12 @@ class navdrawer : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        var globals = Companion.Globals
 
+
+        var globals = Companion.Globals
         val headerView: View = nav_view.getHeaderView(0)
-//        headerView.txtUsername.text = globals.user!!.displayName
-//        headerView.txtEmail.text = globals.user!!.email
+        headerView.txtUsername.text = globals.user!!.displayName
+        headerView.txtEmail.text = globals.user!!.email
 
         headerView.usr_pic.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
@@ -62,27 +65,33 @@ class navdrawer : AppCompatActivity() {
         }
 
         navView.setNavigationItemSelectedListener{
-            when(it.itemId){
-                R.id.nav_logout ->{
-                    FirebaseAuth.getInstance().signOut()
-                    var intent = Intent(applicationContext, LoginActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    startActivity(intent)
-                    true
-                }
-                else -> false
+            if(it.itemId == R.id.nav_logout){
+                intent = Util.logout(applicationContext)
+                startActivity(intent)
+                true
+            }else{
+//                navView.
             }
+            true
+
         }
-
-
-
     }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         menuInflater.inflate(R.menu.navdrawer, menu)
+//        labelUserName = findViewById(R.id.txtUsername)
+//        labelUserEmail = findViewById(R.id.txtEmail)
+//        labelUserName.text = globals.user!!.displayName
+//        labelUserEmail.text = globals.user!!.email
+
         return true
     }
+
+
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

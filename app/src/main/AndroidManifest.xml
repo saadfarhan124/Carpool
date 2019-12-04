@@ -8,6 +8,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,12 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UpdatePassword"></activity>
         <activity
             android:name=".BookingActivity"
-            android:parentActivityName=".SeeRoutesActivity"
-
-
-            ></activity>
+            android:parentActivityName=".SeeRoutesActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -36,9 +35,8 @@
 
         <activity
             android:name=".SelectPickUpActivity"
-            android:label="@string/title_activity_select_drop_off"
-            />
-        <activity android:name=".ProfileActivity"/>
+            android:label="@string/title_activity_select_drop_off" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,10 +48,9 @@
         <!-- android:label="@string/title_activity_navdrawer" -->
         <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
         <activity android:name=".AfterSplashActivity" />
-
-        <activity android:name=".SeeRoutesActivity"
-            android:parentActivityName=".SelectPickUpActivity"
-            ></activity>
+        <activity
+            android:name=".SeeRoutesActivity"
+            android:parentActivityName=".SelectPickUpActivity" />
         <activity
             android:name=".MobileActivity"
             android:parentActivityName=".AfterSplashActivity" />
@@ -69,7 +66,7 @@
         <activity
             android:name=".SignupPasswordActivity"
             android:parentActivityName=".SignupEmailActivity" />
-        <activity android:name=".navdrawer"  />
+        <activity android:name=".navdrawer" />
         <activity android:name=".SignupUsernameActivity" />
         <activity android:name=".TicketActvity" />
     </application>
