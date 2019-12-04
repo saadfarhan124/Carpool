@@ -25,13 +25,15 @@ class SplashActivity : AppCompatActivity() {
     }
     private fun goToAfterSplash(){
         user = FirebaseAuth.getInstance().currentUser
-//        if(user != null){
-//            val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
-//        }else{
-//            val homeScreen = Intent(applicationContext,AfterSplashActivity::class.java)
-//        }
         val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
-        startActivity(afterSplashActivityIntent)
-        finish()
+        val homeScreen = Intent(applicationContext,navdrawer::class.java)
+        if(user != null){
+            startActivity(homeScreen)
+        }else{
+            startActivity(afterSplashActivityIntent)
+        }
+//        val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
+
+
     }
 }

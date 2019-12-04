@@ -3,9 +3,7 @@ package com.example.prototype
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.companion.Companion
@@ -14,21 +12,18 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
-
-    private var user: FirebaseUser? = null
+    private lateinit var firebaseAuth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-
         auth = FirebaseAuth.getInstance()
-
 //        auth.signOut()
 
         //Top App Bar
@@ -46,13 +41,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun authenticate(v: View){
-        var intent: Intent = Intent()
+        var intent = Intent()
         loading.visibility = View.VISIBLE
+        
         auth.signInWithEmailAndPassword(lg_txt_email.text.toString(),lg_txt_password.text.toString()).addOnCompleteListener { task ->
             if(task.isSuccessful){
                 var globals = Companion.Globals
                 globals.user = auth.currentUser
                 intent = Intent(applicationContext, navdrawer::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             }else{
                 Toast.makeText(this,task.exception!!.message, Toast.LENGTH_LONG).show()

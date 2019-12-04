@@ -69,7 +69,7 @@
         <activity
             android:name=".SignupPasswordActivity"
             android:parentActivityName=".SignupEmailActivity" />
-        <activity android:name=".navdrawer" />
+        <activity android:name=".navdrawer"  />
         <activity android:name=".SignupUsernameActivity" />
         <activity android:name=".TicketActvity" />
     </application>

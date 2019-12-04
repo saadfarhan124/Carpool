@@ -14,11 +14,13 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.example.prototype.companion.Companion
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.activity_signup.view.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
@@ -26,8 +28,8 @@ import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
 class navdrawer : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var labelUserName: TextView
-    private lateinit var labelUserEmail: TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,13 +53,28 @@ class navdrawer : AppCompatActivity() {
         var globals = Companion.Globals
 
         val headerView: View = nav_view.getHeaderView(0)
-        headerView.txtUsername.text = globals.user!!.displayName
-        headerView.txtEmail.text = globals.user!!.email
+//        headerView.txtUsername.text = globals.user!!.displayName
+//        headerView.txtEmail.text = globals.user!!.email
 
         headerView.usr_pic.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
+
+        navView.setNavigationItemSelectedListener{
+            when(it.itemId){
+                R.id.nav_logout ->{
+                    FirebaseAuth.getInstance().signOut()
+                    var intent = Intent(applicationContext, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                    true
+                }
+                else -> false
+            }
+        }
+
+
 
     }
 
@@ -75,6 +92,7 @@ class navdrawer : AppCompatActivity() {
     override fun onBackPressed() {
         this.moveTaskToBack(true);
     }
+
 
 
 }
