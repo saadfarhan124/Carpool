@@ -22,24 +22,9 @@ import com.example.prototype.ui.myrides.MyridesFragment
 import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
 
-class navdrawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
-
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-        if(item.itemId == R.id.nav_logout){
-            Toast.makeText(applicationContext, "FARRR", Toast.LENGTH_LONG).show()
-            intent = Util.logout(applicationContext)
-            startActivity(intent)
-        }else if(item.itemId == R.id.nav_freerides){
-
-        }
-        return true
-    }
+class navdrawer : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,12 +56,7 @@ class navdrawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
-
-        navView.setNavigationItemSelectedListener(this)
-
     }
-
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -84,8 +64,6 @@ class navdrawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         menuInflater.inflate(R.menu.navdrawer, menu)
         return true
     }
-
-
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
