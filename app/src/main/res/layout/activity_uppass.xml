@@ -10,7 +10,7 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
+        android:theme="@style/AppTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,10 +20,13 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            android:backgroundTint="@color/colorText"
-            app:navigationIcon="@drawable/ic_chevron_left_black_24dp">
+            app:navigationIcon="@drawable/ic_chevron_left_white_24dp"
+            app:popupTheme="@style/AppTheme"
+            app:title="Change Password"
+            app:titleTextColor="@color/colorText">
+
         </androidx.appcompat.widget.Toolbar>
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -41,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText2"
+            android:id="@+id/currentPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -63,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editlay2" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText3"
+            android:id="@+id/newPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -85,7 +88,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editlay3" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText4"
+            android:id="@+id/confirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -94,7 +97,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button3"
+        android:id="@+id/btnUpdatePassword"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -103,7 +106,7 @@
         android:layout_marginEnd="32dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
-        android:text="Button"
+        android:text="Update"
         android:textSize="18sp"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="@+id/editlay4"

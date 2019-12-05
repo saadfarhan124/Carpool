@@ -2,8 +2,7 @@ package com.example.prototype
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -16,18 +15,27 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
-import com.google.firebase.auth.FirebaseAuth
+import com.example.prototype.ui.myrides.MyridesFragment
 import kotlinx.android.synthetic.main.activity_navdrawer.*
-import kotlinx.android.synthetic.main.activity_signup.view.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
-import org.jetbrains.anko.find
 
-class navdrawer : AppCompatActivity() {
+class navdrawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+
+        if(item.itemId == R.id.nav_logout){
+            Toast.makeText(applicationContext, "FARRR", Toast.LENGTH_LONG).show()
+            intent = Util.logout(applicationContext)
+            startActivity(intent)
+        }else if(item.itemId == R.id.nav_freerides){
+
+        }
+        return true
+    }
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -64,17 +72,8 @@ class navdrawer : AppCompatActivity() {
             startActivity(intent)
         }
 
-        navView.setNavigationItemSelectedListener{
-            if(it.itemId == R.id.nav_logout){
-                intent = Util.logout(applicationContext)
-                startActivity(intent)
-                true
-            }else{
-//                navView.
-            }
-            true
+        navView.setNavigationItemSelectedListener(this)
 
-        }
     }
 
 

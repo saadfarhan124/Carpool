@@ -2,11 +2,21 @@ package com.example.prototype
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.example.prototype.Utilities.Util
+import com.google.firebase.auth.EmailAuthProvider
+import org.w3c.dom.Text
 
 class UpdatePassword : AppCompatActivity() {
 
-//    private lateinit var
+    private lateinit var oldPassword: TextView
+    private lateinit var newPassword: TextView
+    private lateinit var confirmPassword: TextView
+    private lateinit var btnUpdatePassword: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,7 +27,37 @@ class UpdatePassword : AppCompatActivity() {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+        init()
+    }
 
+    private fun init(){
+        oldPassword = findViewById(R.id.currentPassword)
+        newPassword = findViewById(R.id.newPassword)
+        confirmPassword = findViewById(R.id.confirmPassword)
+        btnUpdatePassword = findViewById(R.id.btnUpdatePassword)
+        btnUpdatePassword.setOnClickListener{
+            Log.d("SAAAD", confirmPassword.text.toString())
+            Log.d("SAAAD", oldPassword.text.toString())
+            Log.d("SAAAD", newPassword.text.toString())
+
+            if(confirmPassword.text.toString() == "" || oldPassword.text.toString() == "" || newPassword.text.toString() == ""){
+                Toast.makeText(applicationContext, "Please fill all the fields", Toast.LENGTH_LONG).show()
+            }else if(confirmPassword.text.toString() != newPassword.text.toString()){
+                Toast.makeText(applicationContext, "Passwords do not mattch", Toast.LENGTH_LONG).show()
+            }else{
+
+                var user = Util.getGlobals().user
+                val credential = EmailAuthProvider.getCredential(user!!.email.toString(), oldPassword.text.toString())
+                user.reauthenticate(credential).addOnSuccessListener{
+                    user.updatePassword(newPassword.text.toString()).addOnSuccessListener {
+                        Toast.makeText(applicationContext, "Password changed successfully", Toast.LENGTH_SHORT).show()
+                        startActivity(Util.logout(applicationContext))
+                    }
+                }.addOnFailureListener{
+                    Toast.makeText(applicationContext, "Provided details not correct", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     //Top App Bar Back Nav
