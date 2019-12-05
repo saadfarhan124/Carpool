@@ -36,14 +36,10 @@ class UpdatePassword : AppCompatActivity() {
         confirmPassword = findViewById(R.id.confirmPassword)
         btnUpdatePassword = findViewById(R.id.btnUpdatePassword)
         btnUpdatePassword.setOnClickListener{
-            Log.d("SAAAD", confirmPassword.text.toString())
-            Log.d("SAAAD", oldPassword.text.toString())
-            Log.d("SAAAD", newPassword.text.toString())
-
             if(confirmPassword.text.toString() == "" || oldPassword.text.toString() == "" || newPassword.text.toString() == ""){
                 Toast.makeText(applicationContext, "Please fill all the fields", Toast.LENGTH_LONG).show()
             }else if(confirmPassword.text.toString() != newPassword.text.toString()){
-                Toast.makeText(applicationContext, "Passwords do not mattch", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Passwords do not match", Toast.LENGTH_LONG).show()
             }else{
 
                 var user = Util.getGlobals().user

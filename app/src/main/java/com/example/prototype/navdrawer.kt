@@ -82,11 +82,6 @@ class navdrawer : AppCompatActivity(), NavigationView.OnNavigationItemSelectedLi
         // Inflate the menu; this adds items to the action bar if it is present.
 
         menuInflater.inflate(R.menu.navdrawer, menu)
-//        labelUserName = findViewById(R.id.txtUsername)
-//        labelUserEmail = findViewById(R.id.txtEmail)
-//        labelUserName.text = globals.user!!.displayName
-//        labelUserEmail.text = globals.user!!.email
-
         return true
     }
 
