@@ -52,6 +52,8 @@ class UpdatePassword : AppCompatActivity() {
                     user.updatePassword(newPassword.text.toString()).addOnSuccessListener {
                         Toast.makeText(applicationContext, "Password changed successfully", Toast.LENGTH_SHORT).show()
                         startActivity(Util.logout(applicationContext))
+                    }.addOnFailureListener{
+                        Toast.makeText(applicationContext, "Password must be greater than 6 digits", Toast.LENGTH_SHORT).show()
                     }
                 }.addOnFailureListener{
                     Toast.makeText(applicationContext, "Provided details not correct", Toast.LENGTH_SHORT).show()
