@@ -72,6 +72,7 @@ class navdrawer : AppCompatActivity() {
             }else{
 //                navView.
             }
+            it.isChecked = true
             true
 
         }
