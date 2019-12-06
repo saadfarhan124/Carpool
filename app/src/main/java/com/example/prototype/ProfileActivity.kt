@@ -41,10 +41,16 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        Util.downloadDisplayPicture()
+
+
         updatePasswordCard = findViewById(R.id.materialCardViewPas)
         logoutCard = findViewById(R.id.materialCardViewLogout)
 
         imageViewDisplayPicture = findViewById(R.id.img_user)
+        if(Util.getGlobals().userImage != null){
+            imageViewDisplayPicture.setImageBitmap(Util.getGlobals().userImage)
+        }
         imageViewDisplayPicture.setOnClickListener { launchGallery() }
 
         textViewName = findViewById(R.id.txt_name)
@@ -75,17 +81,16 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun uploadImage() {
-        imageViewDisplayPicture.setImageBitmap(Util.getGlobals().userImage)
         val baos = ByteArrayOutputStream()
         val bitmap = Util.getGlobals().userImage
         bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
         var uploadTask = Util.getStorageRef().putBytes(data)
         uploadTask.addOnFailureListener {
-           Log.d("Profileeee", it.message)
+            Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
         }.addOnSuccessListener {
-            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
-            // ...
+            Util.downloadDisplayPicture()
+            imageViewDisplayPicture.setImageBitmap(Util.getGlobals().userImage)
         }
     }
 

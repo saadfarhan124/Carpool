@@ -1,8 +1,10 @@
 package com.example.prototype
 
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
+
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
@@ -13,14 +15,15 @@ import com.google.android.material.navigation.NavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
-import com.example.prototype.ui.myrides.MyridesFragment
+import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
+
+
 
 class navdrawer : AppCompatActivity() {
 
@@ -29,6 +32,9 @@ class navdrawer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navdrawer)
+
+        Util.downloadDisplayPicture()
+
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 
         setSupportActionBar(toolbar)
@@ -53,10 +59,15 @@ class navdrawer : AppCompatActivity() {
         headerView.txtEmail.text = globals.user!!.email
 
 
+        if(Util.getGlobals().userImage != null){
+            headerView.usr_pic.setImageBitmap(Util.getGlobals().userImage)
+        }
+
         headerView.usr_pic.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
+        demo()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -72,9 +83,21 @@ class navdrawer : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        this.moveTaskToBack(true);
+        this.moveTaskToBack(true)
     }
 
+    private fun demo(){
 
+        var location = Location("")
+        location.latitude =24.9160175
+        location.longitude = 67.0308146
+
+        var locationtwo = Location("")
+        locationtwo.latitude =24.8202381
+        locationtwo.longitude = 67.0287875
+
+        Log.d("HomeScene",location.distanceTo(locationtwo).toString())
+
+    }
 
 }

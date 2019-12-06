@@ -100,7 +100,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
             getDevicesLocation()
         }
 
-        autocompleteSupportFragment.setHint("Enter Destination")
+        autocompleteSupportFragment.setHint("Enter ")
         autocompleteSupportFragment.setCountry("PK")
         autocompleteSupportFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onError(p0: Status) {
