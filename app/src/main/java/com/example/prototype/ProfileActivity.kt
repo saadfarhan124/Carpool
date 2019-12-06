@@ -25,6 +25,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var logoutCard: MaterialCardView
     private lateinit var imageViewDisplayPicture: ImageView
     private lateinit var textViewName: TextView
+    private lateinit var textViewEmail: TextView
+    private lateinit var textViewPhoneNumber: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +50,12 @@ class ProfileActivity : AppCompatActivity() {
         textViewName = findViewById(R.id.txt_name)
         textViewName.text = Util.getGlobals().user!!.displayName
 
+        textViewEmail = findViewById(R.id.txt_email)
+        textViewEmail.text = Util.getGlobals().user!!.email
+
+        textViewPhoneNumber = findViewById(R.id.txt_num)
+        textViewPhoneNumber.text = Util.getGlobals().user!!.phoneNumber
+
         updatePasswordCard.setOnClickListener {
             var intent = Intent(applicationContext, UpdatePassword::class.java)
             startActivity(intent)
@@ -61,13 +69,24 @@ class ProfileActivity : AppCompatActivity() {
     private fun launchGallery() {
         val intent = Intent(
             Intent.ACTION_PICK,
-            android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI
+            MediaStore.Images.Media.INTERNAL_CONTENT_URI
         )
         startActivityForResult(intent, Util.getImageRequest())
     }
 
-    private fun uploadImage(bitmap: Bitmap) {
-
+    private fun uploadImage() {
+        imageViewDisplayPicture.setImageBitmap(Util.getGlobals().userImage)
+        val baos = ByteArrayOutputStream()
+        val bitmap = Util.getGlobals().userImage
+        bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+        var uploadTask = Util.getStorageRef().putBytes(data)
+        uploadTask.addOnFailureListener {
+           Log.d("Profileeee", it.message)
+        }.addOnSuccessListener {
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -77,7 +96,8 @@ class ProfileActivity : AppCompatActivity() {
                 return
             } else {
                 Util.getGlobals().imageUri = data.data
-                imageViewDisplayPicture.setImageBitmap(MediaStore.Images.Media.getBitmap(contentResolver, Util.getGlobals().imageUri))
+                Util.getGlobals().userImage = MediaStore.Images.Media.getBitmap(contentResolver, Util.getGlobals().imageUri)
+                uploadImage()
             }
         }
     }

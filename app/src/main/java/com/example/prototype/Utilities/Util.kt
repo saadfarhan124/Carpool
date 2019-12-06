@@ -34,7 +34,7 @@ class Util{
             return globals
         }
 
-        fun getFirebaseStorage():FirebaseFirestore{
+        fun getFirebaseFireStore():FirebaseFirestore{
             return FirebaseFirestore.getInstance()
         }
 
