@@ -8,11 +8,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
 import com.example.prototype.dataModels.MyRides
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MyridesAdapter(
-    private val myRidesList: MutableList<MyRides>,
-    private val context: Context
+    private val myRidesList: MutableList<MyRides>
 ) : RecyclerView.Adapter<MyridesAdapter.MyridesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyridesViewHolder {
@@ -34,6 +34,14 @@ class MyridesAdapter(
         holder.endTime.text = myRide.endTime
         holder.pickUpPoint.text = myRide.pickUpPoint
         holder.dropOffPoint.text = myRide.dropOffPoint
+
+        holder.btnDelete.setOnClickListener{
+            FirebaseFirestore.getInstance().collection("rides")
+                .document(myRide.rideId!!)
+                .delete()
+            this.notifyDataSetChanged()
+        }
+
     }
 
 
@@ -45,6 +53,7 @@ class MyridesAdapter(
         internal var endTime: TextView = view.findViewById(R.id.textViewEndTime)
         internal var pickUpPoint: TextView = view.findViewById(R.id.textViewPickUpPoint)
         internal var dropOffPoint: TextView = view.findViewById(R.id.textViewDropOffPoint)
+        internal var btnDelete: TextView = view.findViewById(R.id.btnCancel)
 
     }
 }

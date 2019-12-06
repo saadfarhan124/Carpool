@@ -40,9 +40,6 @@ class MyridesFragment : Fragment() {
             ViewModelProviders.of(this).get(MyridesViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_myrides_current, container, false)
 
-//        mRecyclerView = root.findViewById(R.id.myridesRecyclerView)
-//        mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-//        mRecyclerView.adapter = MyridesAdapter()
         loadRides()
         return root
     }
@@ -61,13 +58,18 @@ class MyridesFragment : Fragment() {
                         myRide.rideId = document.id
                         myRides.add(myRide)
                     }
-                    mAdapter = MyridesAdapter(myRides, root.context)
-                    mRecyclerView = root.findViewById(R.id.myridesRecyclerView)
-                    val mLayoutManager = LinearLayoutManager(root.context)
-                    mRecyclerView.layoutManager = mLayoutManager
-                    mRecyclerView.itemAnimator = DefaultItemAnimator()
-                    mRecyclerView.adapter = mAdapter
-                    Toast.makeText(root.context, "Woohooo",Toast.LENGTH_SHORT).show()
+                    if(myRides.size == 0){
+                        Toast.makeText(root.context, "No Rides Found",Toast.LENGTH_SHORT).show()
+                    }else{
+                        mAdapter = MyridesAdapter(myRides)
+                        mRecyclerView = root.findViewById(R.id.myridesRecyclerView)
+                        val mLayoutManager = LinearLayoutManager(root.context)
+                        mRecyclerView.layoutManager = mLayoutManager
+                        mRecyclerView.itemAnimator = DefaultItemAnimator()
+                        mRecyclerView.adapter = mAdapter
+                    }
+
+
                 }else{
                     Toast.makeText(root.context, it.exception!!.message,Toast.LENGTH_SHORT).show()
                 }
