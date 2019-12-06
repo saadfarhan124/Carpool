@@ -7,7 +7,9 @@ import android.net.Uri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.prototype.LoginActivity
+import com.example.prototype.R
 import com.example.prototype.companion.Companion
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -56,6 +58,14 @@ class Util{
             }.addOnFailureListener{
 
             }
+        }
+
+         fun getURL(from : LatLng, to : LatLng, key:String) : String {
+            val origin = "origin=" + from.latitude + "," + from.longitude
+            val dest = "destination=" + to.latitude + "," + to.longitude
+            val api_key = "key=${key}"
+            val params = "$origin&$dest&$api_key"
+            return "https://maps.googleapis.com/maps/api/directions/json?$params"
         }
     }
 }

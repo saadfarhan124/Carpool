@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -27,6 +28,7 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var textViewName: TextView
     private lateinit var textViewEmail: TextView
     private lateinit var textViewPhoneNumber: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +71,8 @@ class ProfileActivity : AppCompatActivity() {
         logoutCard.setOnClickListener {
             startActivity(Util.logout(applicationContext))
         }
+
+        progressBar = findViewById(R.id.progressBarProfile)
 
     }
 

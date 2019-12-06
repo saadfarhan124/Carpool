@@ -106,7 +106,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             getDevicesLocation()
         }
 
-        autocompleteSupportFragment.setHint("Enter Pickup")
+        autocompleteSupportFragment.setHint("Enter Destination")
         autocompleteSupportFragment.setCountry("PK")
         autocompleteSupportFragment.setOnPlaceSelectedListener(object: PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {

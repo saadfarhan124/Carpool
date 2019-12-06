@@ -16,6 +16,7 @@ import com.beust.klaxon.JsonArray
 import com.beust.klaxon.JsonObject
 import com.beust.klaxon.Parser
 import com.beust.klaxon.array
+import com.example.prototype.Utilities.Util
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -100,7 +101,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
             getDevicesLocation()
         }
 
-        autocompleteSupportFragment.setHint("Enter ")
+        autocompleteSupportFragment.setHint("Enter Pickup:")
         autocompleteSupportFragment.setCountry("PK")
         autocompleteSupportFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onError(p0: Status) {
@@ -125,9 +126,10 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     polylineOptions = PolylineOptions()
                     polylineOptions.color(Color.RED)
                     polylineOptions.width(5f)
-                    val url = getURL(
+                    val url = Util.getURL(
                         destinationLatLng,
-                        LatLng(marker.position.latitude, marker.position.longitude)
+                        LatLng(marker.position.latitude, marker.position.longitude),
+                        getString(R.string.google_api_key)
                     )
                     async {
                         val result = URL(url).readText()
@@ -168,13 +170,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    private fun getURL(from : LatLng, to : LatLng) : String {
-        val origin = "origin=" + from.latitude + "," + from.longitude
-        val dest = "destination=" + to.latitude + "," + to.longitude
-        val api_key = "key=" + getString(R.string.google_maps_key)
-        val params = "$origin&$dest&$api_key"
-        return "https://maps.googleapis.com/maps/api/directions/json?$params"
-    }
+
 
     //Function to get location
     private fun getDevicesLocation(){
