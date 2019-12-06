@@ -44,27 +44,23 @@ class MyridesAdapter(
             confirmDialog.setTitle("Sath Chaloo")
             confirmDialog.setMessage("Are you sure you want to cancel this ride?")
             confirmDialog.setPositiveButton("Yes") { _, _ ->
-                confirmDialog.setNegativeButton("No") { _, _ ->
-                    db.collection("rides")
-                        .document(myRide.rideId!!)
-                        .delete().addOnCompleteListener { taskDeleteFromMyRides ->
-                            if (taskDeleteFromMyRides.isSuccessful) {
-                                db.collection("booking")
-                                    .whereEqualTo("bookingId", myRide.bookingId)
-                                    .get()
-                                    .addOnCompleteListener { taskDeleteFromMyRides ->
-                                        
-                                        myRidesList.removeAt(position)
-                                        this.notifyItemRemoved(position)
-                                        this.notifyItemRangeChanged(position, myRidesList.size)
-                                        this.notifyDataSetChanged()
-
-                                    }
-                            }
+                db.collection("rides")
+                    .document(myRide.rideId!!)
+                    .delete().addOnCompleteListener { taskDeleteFromMyRides ->
+                        if (taskDeleteFromMyRides.isSuccessful) {
+                            myRidesList.removeAt(position)
+                            db.collection("booking")
+                                .document(myRide.bookingId!!.toString())
+                                .delete()
+                                .addOnCompleteListener { taskDeleteFromMyRides ->
+                                    this.notifyItemRemoved(position)
+                                    this.notifyItemRangeChanged(position, myRidesList.size)
+                                    this.notifyDataSetChanged()
+                                }
                         }
-
-                }
+                    }
             }
+            confirmDialog.setNegativeButton("No"){_,_ ->}
             confirmDialog.show()
         }
 

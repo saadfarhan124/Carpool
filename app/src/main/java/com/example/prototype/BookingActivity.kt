@@ -131,6 +131,7 @@ class BookingActivity : AppCompatActivity() {
                                     updatedRoute["startingPoint"].toString(),
                                     updatedRoute["endingTime"].toString(),
                                     updatedRoute["endingPoint"].toString(),
+                                    bookingId.getValue("booking_id").toString().toLong(),
                                     seatsSpinner.selectedItem.toString().toLong(),
                                     scheduledDate.text.toString(),
                                     "Saad",
