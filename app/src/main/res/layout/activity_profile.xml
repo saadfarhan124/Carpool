@@ -25,18 +25,34 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <ImageView
-        android:id="@+id/img_user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id= "@+id/img_user"
+        android:layout_width="128dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:paddingTop="8dp"
+        app:civ_border_color="#EEEEEE"
+        app:civ_border_width="4dp"
+        app:civ_shadow="true"
+        app:civ_shadow_radius="10"
+        app:civ_shadow_color="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+
+        />
+<!--    <ImageView-->
+<!--        android:id="@+id/img_user"-->
+<!--        android:layout_width="88dp"-->
+<!--        android:layout_height="88dp"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:contentDescription="@string/nav_header_desc"-->
+<!--        android:paddingTop="@dimen/nav_header_vertical_spacing"-->
+
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"-->
+<!--        app:srcCompat="@mipmap/ic_launcher_round" />-->
 
 
     <com.google.android.material.card.MaterialCardView
@@ -313,7 +329,62 @@
                 app:layout_constraintStart_toStartOf="@+id/txt_lbl_dob"
                 app:layout_constraintTop_toBottomOf="@+id/txt_lbl_dob" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardViewLogout"
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:outlineSpotShadowColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardViewDOB">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_logout"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/fui_ic_check_circle_black_128dp" />
+
+            <TextView
+                android:id="@+id/txt_lbl_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="Logout"
+                android:textColor="@color/colorText1"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/img_logout"
+                app:layout_constraintTop_toTopOf="@+id/img_logout"
+                 />
+
+            <TextView
+                android:id="@+id/txt_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="4 May 2001"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txt_lbl_logout"
+                app:layout_constraintTop_toBottomOf="@+id/txt_lbl_logout"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
     <TextView

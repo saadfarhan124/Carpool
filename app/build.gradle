@@ -68,6 +68,7 @@ android {
         implementation 'com.google.firebase:firebase-auth:19.0.0'
         implementation 'com.firebaseui:firebase-ui-auth:4.3.1'
         implementation 'com.google.android.libraries.places:places:2.0.0'
+        implementation 'com.mikhaellopez:circularimageview:3.2.0'
 
         //Kalxon and Anko
         implementation 'org.jetbrains.anko:anko-sdk15:0.8.2'
@@ -83,4 +84,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:+'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-storage:16.0.4'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
 }
