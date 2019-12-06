@@ -88,15 +88,7 @@ class navdrawer : AppCompatActivity() {
 
     private fun demo(){
 
-        var location = Location("")
-        location.latitude =24.9160175
-        location.longitude = 67.0308146
 
-        var locationtwo = Location("")
-        locationtwo.latitude =24.8202381
-        locationtwo.longitude = 67.0287875
-
-        Log.d("HomeScene",location.distanceTo(locationtwo).toString())
 
     }
 

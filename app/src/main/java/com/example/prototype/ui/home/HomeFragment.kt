@@ -126,8 +126,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
                 var intent = Intent(root.context, SelectPickUpActivity::class.java)
-                intent.putExtra("PickupLat", marker.position.latitude)
-                intent.putExtra("PickupLong", marker.position.longitude)
+                intent.putExtra("DestLat", marker.position.latitude)
+                intent.putExtra("DestLong", marker.position.longitude)
                 startActivity(intent)
             }
         })

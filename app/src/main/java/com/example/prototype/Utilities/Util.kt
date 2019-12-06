@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.net.Uri
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.prototype.LoginActivity
@@ -65,6 +67,18 @@ class Util{
             val api_key = "key=${key}"
             val params = "$origin&$dest&$api_key"
             return "https://maps.googleapis.com/maps/api/directions/json?$params"
+        }
+
+        fun getDistance(pickupLatLng: LatLng, dropOffLatLng: LatLng) : Float{
+            var location = Location("")
+            location.latitude = pickupLatLng.latitude
+            location.longitude = pickupLatLng.longitude
+
+            var locationtwo = Location("")
+            locationtwo.latitude = dropOffLatLng.latitude
+            locationtwo.longitude = dropOffLatLng.longitude
+
+           return location.distanceTo(locationtwo)
         }
     }
 }

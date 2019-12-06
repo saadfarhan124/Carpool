@@ -73,7 +73,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         autocompleteSupportFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
 
-        destinationLatLng = LatLng(intent.extras!!.get("PickupLat").toString().toDouble(),intent.extras!!.get("PickupLong").toString().toDouble())
+        destinationLatLng = LatLng(intent.extras!!.get("DestLat").toString().toDouble(),intent.extras!!.get("DestLong").toString().toDouble())
 
         //Top App Bar
         val toolbar: Toolbar = findViewById(R.id.toolbarsp)
@@ -129,7 +129,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     val url = Util.getURL(
                         destinationLatLng,
                         LatLng(marker.position.latitude, marker.position.longitude),
-                        getString(R.string.google_api_key)
+                        getString(R.string.google_maps_key)
                     )
                     async {
                         val result = URL(url).readText()
@@ -160,8 +160,13 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         }
                     }
                     counter++
+                    btnSelectPickUp!!.text = "See Routes"
                 } else {
                     val intent = Intent(applicationContext, SeeRoutesActivity::class.java)
+                    intent.putExtra("DestLat", destinationLatLng.latitude)
+                    intent.putExtra("DestLong", destinationLatLng.longitude)
+                    intent.putExtra("PickupLat", marker.position.latitude)
+                    intent.putExtra("PickupLong", marker.position.longitude)
                     startActivity(intent)
                 }
 
@@ -184,7 +189,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     init()
                 }else{
                     Log.d("Maps Activity", "Location Not Found")
-                    Toast.makeText(applicationContext, "Not Found", Toast.LENGTH_LONG).show()
+
                 }
             }
         }catch (e : SecurityException){

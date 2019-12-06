@@ -50,7 +50,7 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/colorText"
-            app:title="Destination"
+            app:title=""
             app:navigationIcon="@drawable/ic_chevron_left_white_24dp">
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -91,7 +91,7 @@
         android:layout_marginBottom="64dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
-        android:text="See Routes"
+        android:text="Select Pickup"
         android:textSize="16sp"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
