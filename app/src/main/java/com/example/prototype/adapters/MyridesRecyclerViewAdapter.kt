@@ -1,5 +1,6 @@
 package com.example.prototype.adapters
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 
 class MyridesAdapter(
-    private val myRidesList: MutableList<MyRides>
+    private val myRidesList: MutableList<MyRides>,
+    private val context: Context,
+    private val db: FirebaseFirestore
 ) : RecyclerView.Adapter<MyridesAdapter.MyridesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyridesViewHolder {
@@ -35,14 +38,34 @@ class MyridesAdapter(
         holder.pickUpPoint.text = myRide.pickUpPoint
         holder.dropOffPoint.text = myRide.dropOffPoint
 
-        holder.btnDelete.setOnClickListener{
-            FirebaseFirestore.getInstance().collection("rides")
-                .document(myRide.rideId!!)
-                .delete()
-            myRidesList.removeAt(position)
-            this.notifyItemRemoved(position)
-            this.notifyItemRangeChanged(position, myRidesList.size)
-            this.notifyDataSetChanged()
+        holder.btnDelete.setOnClickListener {
+            val confirmDialog =
+                AlertDialog.Builder(context, R.style.ThemeOverlay_MaterialComponents_Dialog)
+            confirmDialog.setTitle("Sath Chaloo")
+            confirmDialog.setMessage("Are you sure you want to cancel this ride?")
+            confirmDialog.setPositiveButton("Yes") { _, _ ->
+                confirmDialog.setNegativeButton("No") { _, _ ->
+                    db.collection("rides")
+                        .document(myRide.rideId!!)
+                        .delete().addOnCompleteListener { taskDeleteFromMyRides ->
+                            if (taskDeleteFromMyRides.isSuccessful) {
+                                db.collection("booking")
+                                    .whereEqualTo("bookingId", myRide.bookingId)
+                                    .get()
+                                    .addOnCompleteListener { taskDeleteFromMyRides ->
+                                        
+                                        myRidesList.removeAt(position)
+                                        this.notifyItemRemoved(position)
+                                        this.notifyItemRangeChanged(position, myRidesList.size)
+                                        this.notifyDataSetChanged()
+
+                                    }
+                            }
+                        }
+
+                }
+            }
+            confirmDialog.show()
         }
 
     }

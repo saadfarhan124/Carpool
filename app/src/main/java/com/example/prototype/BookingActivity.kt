@@ -131,7 +131,6 @@ class BookingActivity : AppCompatActivity() {
                                     updatedRoute["startingPoint"].toString(),
                                     updatedRoute["endingTime"].toString(),
                                     updatedRoute["endingPoint"].toString(),
-                                    bookingId.getValue("booking_id").toString().toLong(),
                                     seatsSpinner.selectedItem.toString().toLong(),
                                     scheduledDate.text.toString(),
                                     "Saad",
@@ -148,7 +147,8 @@ class BookingActivity : AppCompatActivity() {
                                 FirebaseFirestore
                                     .getInstance()
                                     .collection("booking")
-                                    .add(booking)
+                                    .document( bookingId.getValue("booking_id").toString())
+                                    .set(booking)
                                     .addOnCompleteListener { task ->
                                         //inserting a new ride
                                         val rides = MyRides(

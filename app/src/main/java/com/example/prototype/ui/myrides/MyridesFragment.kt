@@ -62,7 +62,7 @@ class MyridesFragment : Fragment() {
                     if(myRides.size == 0){
                         Toast.makeText(root.context, "No Rides Found",Toast.LENGTH_SHORT).show()
                     }else{
-                        mAdapter = MyridesAdapter(myRides)
+                        mAdapter = MyridesAdapter(myRides, root.context,db)
                         mRecyclerView = root.findViewById(R.id.myridesRecyclerView)
                         val mLayoutManager = LinearLayoutManager(root.context)
                         mRecyclerView.layoutManager = mLayoutManager
