@@ -39,5 +39,16 @@ class MyRides : Serializable {
 
     }
 
-
+    fun toMap(): Map<String, Any> {
+        val result = HashMap<String, Any>()
+        result["bookingDate"] = bookingDate!!
+        result["bookingId"] = bookingId!!
+        result["totalFare"] = totalFare!!
+        result["startingTime"] = startingTime!!
+        result["endTime"] = endTime!!
+        result["pickUpPoint"] = pickUpPoint!!
+        result["dropOffPoint"] = dropOffPoint!!
+        result["customerID"] = customerID!!
+        return result
+    }
 }
