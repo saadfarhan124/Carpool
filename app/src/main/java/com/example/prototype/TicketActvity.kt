@@ -19,6 +19,7 @@ class TicketActvity: AppCompatActivity(){
     private lateinit var seatsBooked: TextView
     private lateinit var scheduledDate: TextView
     private lateinit var bookingID: TextView
+    private lateinit var findStop:Button
 
     private lateinit var bookingObject: Booking
     private lateinit var progressBar: ProgressBar
@@ -45,6 +46,8 @@ class TicketActvity: AppCompatActivity(){
         seatsBooked.text = bookingObject.numberOfSeats.toString()
         scheduledDate.text = bookingObject.bookingDate
         bookingID.text = bookingObject.bookingId.toString()
+
+
     }
 
     //Top App Bar Back Nav
@@ -68,5 +71,12 @@ class TicketActvity: AppCompatActivity(){
         seatsBooked = findViewById(R.id.ticketNumberOfSeats)
         scheduledDate = findViewById(R.id.ticketDate)
         bookingID = findViewById(R.id.ticketBookingId)
+        findStop = findViewById(R.id.findStop)
+        findStop.setOnClickListener{
+            val intent = Intent(applicationContext, FindStopActivity::class.java)
+            intent.putExtra("stopLat", bookingObject.pickupLat)
+            intent.putExtra("stopLong", bookingObject.pickupLong)
+            startActivity(intent)
+        }
     }
 }

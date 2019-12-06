@@ -74,7 +74,6 @@ android {
         implementation 'org.jetbrains.anko:anko-sdk15:0.8.2'
         implementation 'com.beust:klaxon:0.30'
 
-        
 
         //Map Utils
         implementation 'com.google.maps.android:android-maps-utils:0.5'
@@ -88,4 +87,5 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.google.firebase:firebase-storage:17.0.0'
     implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 }

@@ -179,7 +179,8 @@ class BookingActivity : AppCompatActivity() {
                 })
         }
         confirmDialog.setNegativeButton("No") { _, _ ->
-            Toast.makeText(applicationContext, "Clicked negative button", Toast.LENGTH_LONG).show()
+
+
         }
         confirmDialog.show()
 

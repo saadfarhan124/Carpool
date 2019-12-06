@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prototype">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -17,10 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdatePassword"></activity>
-        <activity
-            android:name=".BookingActivity"
-            android:parentActivityName=".SeeRoutesActivity" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,6 +31,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <activity
+            android:name=".FindStopActivity"
+            android:label="@string/title_activity_find_stop"
+            android:parentActivityName=".TicketActvity"></activity>
+        <activity android:name=".UpdatePassword" />
+        <activity
+            android:name=".BookingActivity"
+            android:parentActivityName=".SeeRoutesActivity" />
         <activity
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
