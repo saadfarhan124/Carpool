@@ -39,7 +39,8 @@ class MyridesFragment : Fragment() {
         myRidesViewModel =
             ViewModelProviders.of(this).get(MyridesViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_myrides_current, container, false)
-
+        progressBar = root.findViewById(R.id.myRidesProgressBar)
+        progressBar.visibility = View.VISIBLE
         loadRides()
         return root
     }
@@ -68,7 +69,7 @@ class MyridesFragment : Fragment() {
                         mRecyclerView.itemAnimator = DefaultItemAnimator()
                         mRecyclerView.adapter = mAdapter
                     }
-
+                    progressBar.visibility = View.INVISIBLE
 
                 }else{
                     Toast.makeText(root.context, it.exception!!.message,Toast.LENGTH_SHORT).show()
