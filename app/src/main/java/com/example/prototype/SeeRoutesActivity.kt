@@ -71,7 +71,6 @@ class SeeRoutesActivity : AppCompatActivity() {
 
 
     private fun loadRoutes() {
-
         db.collection("routes")
             .whereGreaterThan("seatsRemaining", 0)
             .get()
