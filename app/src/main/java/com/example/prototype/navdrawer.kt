@@ -52,6 +52,7 @@ class navdrawer : AppCompatActivity() {
         headerView.txtUsername.text = globals.user!!.displayName
         headerView.txtEmail.text = globals.user!!.email
 
+
         headerView.usr_pic.setOnClickListener{
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
