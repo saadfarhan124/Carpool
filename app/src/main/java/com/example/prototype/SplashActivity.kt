@@ -1,12 +1,16 @@
 package com.example.prototype
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
+import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import org.jetbrains.anko.async
 
 class SplashActivity : AppCompatActivity() {
 
@@ -31,7 +35,15 @@ class SplashActivity : AppCompatActivity() {
         if(user != null){
             var global = Companion.Globals
             global.user = user
-            startActivity(homeScreen)
+            var options = BitmapFactory.Options()
+            Util.getStorageRef().getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                Util.getGlobals().userImage = BitmapFactory.decodeByteArray(it,0, it.size, options)
+                startActivity(homeScreen)
+
+            }.addOnFailureListener{
+                startActivity(homeScreen)
+            }
+
         }else{
             startActivity(afterSplashActivityIntent)
         }

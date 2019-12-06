@@ -43,7 +43,7 @@ import java.net.URL
 class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Utility Vars
-    private var DEFAULT_ZOOM = 15f
+    private var DEFAULT_ZOOM = 17f
     private lateinit var mMap: GoogleMap
     private lateinit var placesClient: PlacesClient
     private lateinit var autocompleteSupportFragment: AutocompleteSupportFragment
@@ -219,7 +219,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Function to move Camera
     private fun moveCamera(latLng: LatLng, zoom:Float){
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
     }
 
     fun geolocate(place: Place){

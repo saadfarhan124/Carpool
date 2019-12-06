@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -43,8 +44,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        Util.downloadDisplayPicture()
-
 
         updatePasswordCard = findViewById(R.id.materialCardViewPas)
         logoutCard = findViewById(R.id.materialCardViewLogout)
@@ -73,7 +72,6 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         progressBar = findViewById(R.id.progressBarProfile)
-
     }
 
     private fun launchGallery() {
@@ -95,6 +93,7 @@ class ProfileActivity : AppCompatActivity() {
         }.addOnSuccessListener {
             Util.downloadDisplayPicture()
             imageViewDisplayPicture.setImageBitmap(Util.getGlobals().userImage)
+            progressBar.visibility = View.INVISIBLE
         }
     }
 
@@ -104,6 +103,7 @@ class ProfileActivity : AppCompatActivity() {
             if (data == null || data.data == null) {
                 return
             } else {
+                progressBar.visibility = View.VISIBLE
                 Util.getGlobals().imageUri = data.data
                 Util.getGlobals().userImage = MediaStore.Images.Media.getBitmap(contentResolver, Util.getGlobals().imageUri)
                 uploadImage()
@@ -115,5 +115,11 @@ class ProfileActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+        intent = Intent(applicationContext, navdrawer::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 }

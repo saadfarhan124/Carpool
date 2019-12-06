@@ -2,6 +2,7 @@ package com.example.prototype.Utilities
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.fragment.app.Fragment
@@ -51,12 +52,10 @@ class Util{
         }
 
         fun downloadDisplayPicture(){
-
             var options = BitmapFactory.Options()
             getStorageRef().getBytes(Long.MAX_VALUE).addOnSuccessListener {
                 getGlobals().userImage = BitmapFactory.decodeByteArray(it,0, it.size, options)
             }.addOnFailureListener{
-
             }
         }
 

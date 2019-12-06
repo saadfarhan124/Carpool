@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private val COARSE_LOCATION:String = Manifest.permission.ACCESS_COARSE_LOCATION
 
     //Utility Vars
-    private var DEFAULT_ZOOM = 20f
+    private var DEFAULT_ZOOM = 17f
     private var permissionFlag = false
     private val locationPermissionCode = 1234
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -202,7 +202,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
     //Function to move Camera
     private fun moveCamera(latLng: LatLng, zoom:Float){
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
     }
 
     //Function to add markets

@@ -82,9 +82,9 @@ class navdrawer : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onBackPressed() {
-        this.moveTaskToBack(true)
-    }
+//    override fun onBackPressed() {
+//        this.moveTaskToBack(true)
+//    }
 
     private fun demo(){
 
