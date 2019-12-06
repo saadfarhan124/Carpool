@@ -1,6 +1,5 @@
 package com.example.prototype.dataModels
 
-import com.google.android.gms.maps.model.LatLng
 import java.io.Serializable
 
 class Booking : Serializable {
