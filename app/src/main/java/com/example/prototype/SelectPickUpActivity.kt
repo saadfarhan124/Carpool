@@ -154,7 +154,9 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             mMap.addPolyline(
                                 PolylineOptions().addAll(PolyUtil.decode(encodedString)).color(
                                     Color.BLUE
-                                )
+                                ).endCap(CustomCap(
+                                    BitmapDescriptorFactory.fromResource(R.drawable.ic_arrow_back_black_24dp)
+                                ))
                             )
                         }
                     }
