@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
+import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.Booking
 import com.example.prototype.dataModels.Routes
 import com.google.android.gms.tasks.OnFailureListener
@@ -64,10 +65,10 @@ class BookingActivity : AppCompatActivity() {
         endingTime.text = routeObject.endingTime
         startingPoint.text = routeObject.startingPoint
         endingPoint.text = routeObject.endingPoint
-        seatsRemaining.text = routeObject.remainingSeats.toString()
+        seatsRemaining.text = routeObject.seatsRemaining.toString()
         scheduledDate.text = LocalDateTime.now().plusDays(1)
             .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
-        initializeSpinner(routeObject.remainingSeats)
+        initializeSpinner(routeObject.seatsRemaining)
         progressBar.visibility = View.INVISIBLE
     }
 
@@ -89,8 +90,6 @@ class BookingActivity : AppCompatActivity() {
         calculatedFare = findViewById(R.id.calculatedFare)
         btnBookNow = findViewById(R.id.btnBookNow)
         btnBookNow.setOnClickListener { bookARide() }
-
-
     }
 
     private fun bookARide() {
@@ -104,7 +103,7 @@ class BookingActivity : AppCompatActivity() {
             var updatedRoute = routeObject.toMap().toMutableMap()
             //Gettting new number of seats and updating it on routes calculation
             updatedRoute["seatsRemaining"] =
-                routeObject.remainingSeats - seatsSpinner.selectedItem.toString().toLong()
+                routeObject.seatsRemaining - seatsSpinner.selectedItem.toString().toLong()
             FirebaseFirestore
                 .getInstance()
                 .collection("routes")
@@ -125,6 +124,8 @@ class BookingActivity : AppCompatActivity() {
                                     )
                                 }
                                 val booking = Booking(
+                                    routeObject.id,
+                                    Util.getGlobals().user!!.uid,
                                     updatedRoute["startingTime"].toString(),
                                     updatedRoute["startingPoint"].toString(),
                                     updatedRoute["endingTime"].toString(),
@@ -133,9 +134,14 @@ class BookingActivity : AppCompatActivity() {
                                     seatsSpinner.selectedItem.toString().toLong(),
                                     scheduledDate.text.toString(),
                                     "Saad",
-                                    calculatedFare.text.toString().toLong()
+                                    calculatedFare.text.toString().toLong(),
+                                    Util.getGlobals().pickUpSpot!!.latitude,
+                                    Util.getGlobals().pickUpSpot!!.longitude,
+                                    Util.getGlobals().dropOffSpot!!.latitude,
+                                    Util.getGlobals().dropOffSpot!!.longitude,
+                                    "",
+                                    ""
                                 )
-                                Toast.makeText(applicationContext,updatedRoute["seatsRemaining"].toString(), Toast.LENGTH_LONG).show()
 
                                 //inserting a new booking
                                 FirebaseFirestore

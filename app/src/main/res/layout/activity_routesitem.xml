@@ -19,7 +19,7 @@
 
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/distanceFromPickUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -39,7 +39,7 @@
         android:text="outside Madina Masjid-Clifton KHI"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/distanceFromPickUp" />
 
     <TextView
         android:id="@+id/endingPoint"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toBottomOf="@+id/startingPoint" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/distanceFromDropOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -102,9 +102,9 @@
         android:layout_height="22dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView11"
-        app:layout_constraintEnd_toStartOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="@+id/textView11"
+        app:layout_constraintBottom_toBottomOf="@+id/distanceFromPickUp"
+        app:layout_constraintEnd_toStartOf="@+id/distanceFromPickUp"
+        app:layout_constraintTop_toTopOf="@+id/distanceFromPickUp"
         app:srcCompat="@drawable/ic_call_split_black_24dp"
         tools:ignore="VectorDrawableCompat" />
 
@@ -114,9 +114,9 @@
         android:layout_height="22dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="@+id/distanceFromDropOff"
+        app:layout_constraintEnd_toStartOf="@+id/distanceFromDropOff"
+        app:layout_constraintTop_toTopOf="@+id/distanceFromDropOff"
         app:srcCompat="@drawable/ic_call_split_black_24dp"
         tools:ignore="VectorDrawableCompat" />
 

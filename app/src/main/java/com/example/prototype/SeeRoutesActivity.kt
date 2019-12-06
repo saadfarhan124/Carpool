@@ -87,21 +87,24 @@ class SeeRoutesActivity : AppCompatActivity() {
                                     //flags to make sure that the route has stops both near the pick up and destination
                                     var pickUpFlag = false
                                     var destFlag = false
+
+
                                     for (doc in taskTwo.result!!) {
                                         var geoPoint = doc["stop_latlng"] as GeoPoint
                                         if(Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 800){
                                             pickUpFlag = true
+                                            Util.getGlobals().pickUpSpot = LatLng(geoPoint.latitude, geoPoint.longitude)
+                                            Util.getGlobals().distanceFromPickUp = Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))
                                         }else if(Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 800){
                                             destFlag = true
+                                            Util.getGlobals().dropOffSpot = LatLng(geoPoint.latitude, geoPoint.longitude)
+                                            Util.getGlobals().distanceFromDropOff = Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))
                                         }
                                     }
                                     if(pickUpFlag && destFlag){
                                         val route = document.toObject(Routes::class.java)
-                                        route.startingTime = document["startingTime"].toString()
-                                        route.startingPoint = document["startingPoint"].toString()
-                                        route.endingTime = document["endingTime"].toString()
-                                        route.endingPoint = document["endingPoint"].toString()
-                                        route.remainingSeats = document["seatsRemaining"] as Long
+                                        route.distanceFromPickUp = Util.getGlobals().distanceFromPickUp
+                                        route.distanceFromDropOff = Util.getGlobals().distanceFromDropOff
                                         route.id = document.id
                                         routes.add(route)
                                     }

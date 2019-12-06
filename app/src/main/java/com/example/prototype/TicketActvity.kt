@@ -1,5 +1,6 @@
 package com.example.prototype
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -50,6 +51,12 @@ class TicketActvity: AppCompatActivity(){
     override fun onSupportNavigateUp():Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onBackPressed() {
+        intent = Intent(applicationContext, navdrawer::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
 
