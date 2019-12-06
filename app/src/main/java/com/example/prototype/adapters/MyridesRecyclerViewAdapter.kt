@@ -39,6 +39,9 @@ class MyridesAdapter(
             FirebaseFirestore.getInstance().collection("rides")
                 .document(myRide.rideId!!)
                 .delete()
+            myRidesList.removeAt(position)
+            this.notifyItemRemoved(position)
+            this.notifyItemRangeChanged(position, myRidesList.size)
             this.notifyDataSetChanged()
         }
 

@@ -134,7 +134,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
     //Function to get geo location
     fun geolocate(place: Place){
-        Toast.makeText(root.context,"Geo location", Toast.LENGTH_SHORT).show()
         try {
             moveCamera(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), DEFAULT_ZOOM)
 
