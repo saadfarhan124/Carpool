@@ -12,19 +12,22 @@ class MyRides : Serializable {
     var endTime: String? = null
     var pickUpPoint: String? = null
     var dropOffPoint: String? = null
+    var rideStatus:Boolean = false
+    var customerID:String? = null
 
     constructor() {}
     constructor(
-        rideId:String?,
+
         bookingDate: String?,
         bookingId:Long,
         totalFare:Long,
         startingTime:String,
         endTime:String,
         pickUpPoint: String?,
-        dropOffPoint: String?
+        dropOffPoint: String?,
+        customerID:String?
     ) {
-        this.rideId = rideId
+
         this.bookingDate = bookingDate
         this.bookingId = bookingId
         this.totalFare = totalFare
@@ -32,6 +35,7 @@ class MyRides : Serializable {
         this.endTime = endTime
         this.pickUpPoint = pickUpPoint
         this.dropOffPoint = dropOffPoint
+        this.customerID = customerID
 
     }
 

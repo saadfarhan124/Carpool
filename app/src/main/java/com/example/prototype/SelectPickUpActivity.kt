@@ -109,7 +109,6 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
             }
 
             override fun onPlaceSelected(p0: Place) {
-                Toast.makeText(applicationContext, p0.address, Toast.LENGTH_SHORT).show()
                 Handler().postDelayed({
                     autocompleteSupportFragment.setText(p0.address)
                     geolocate(p0)

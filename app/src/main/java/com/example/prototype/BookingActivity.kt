@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.Booking
+import com.example.prototype.dataModels.MyRides
 import com.example.prototype.dataModels.Routes
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
@@ -73,7 +74,7 @@ class BookingActivity : AppCompatActivity() {
     }
 
     //Top App Bar Back Nav
-    override fun onSupportNavigateUp():Boolean {
+    override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
@@ -149,28 +150,49 @@ class BookingActivity : AppCompatActivity() {
                                     .collection("booking")
                                     .add(booking)
                                     .addOnCompleteListener { task ->
-                                        //increasing and updating booking id
-                                        bookingId["booking_id"] =
-                                            bookingId.getValue("booking_id").toString().toLong() + 1
-                                        if (task.isSuccessful) {
-                                            FirebaseFirestore
-                                                .getInstance()
-                                                .collection("booking_id")
-                                                .document("bSjvfO0c2zWLG2SI0eyC")
-                                                .set(bookingId)
-                                                .addOnCompleteListener { task ->
-                                                    if (task.isSuccessful) {
-                                                        progressBar.visibility = View.INVISIBLE
-                                                        val intent = Intent(
-                                                            applicationContext,
-                                                            TicketActvity::class.java
-                                                        )
+                                        //inserting a new ride
+                                        val rides = MyRides(
+                                            scheduledDate.text.toString(),
+                                            bookingId.getValue("booking_id").toString().toLong(),
+                                            calculatedFare.text.toString().toLong(),
+                                            updatedRoute["startingTime"].toString(),
+                                            updatedRoute["endingTime"].toString(),
+                                            "",
+                                            "",
+                                            Util.getGlobals().user!!.uid
+                                        )
+                                        FirebaseFirestore
+                                            .getInstance()
+                                            .collection("rides")
+                                            .add(rides)
+                                            .addOnCompleteListener {
+                                                if (task.isSuccessful) {
+                                                    //increasing and updating booking id
+                                                    bookingId["booking_id"] =
+                                                        bookingId.getValue("booking_id").toString().toLong() + 1
+                                                    FirebaseFirestore
+                                                        .getInstance()
+                                                        .collection("booking_id")
+                                                        .document("bSjvfO0c2zWLG2SI0eyC")
+                                                        .set(bookingId)
+                                                        .addOnCompleteListener { task ->
+                                                            if (task.isSuccessful) {
+                                                                progressBar.visibility =
+                                                                    View.INVISIBLE
+                                                                val intent = Intent(
+                                                                    applicationContext,
+                                                                    TicketActvity::class.java
+                                                                )
 
-                                                        intent.putExtra("bookingDetails", booking)
-                                                        startActivity(intent)
-                                                    }
+                                                                intent.putExtra(
+                                                                    "bookingDetails",
+                                                                    booking
+                                                                )
+                                                                startActivity(intent)
+                                                            }
+                                                        }
                                                 }
-                                        }
+                                            }
                                     }
                             }
                         }

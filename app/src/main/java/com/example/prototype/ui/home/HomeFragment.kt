@@ -110,7 +110,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         autocompleteSupportFragment.setCountry("PK")
         autocompleteSupportFragment.setOnPlaceSelectedListener(object: PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {
-                Toast.makeText(root.context,p0.address, Toast.LENGTH_SHORT).show()
                 Handler().postDelayed({
                     autocompleteSupportFragment.setText(p0.address)
                     geolocate(p0)
