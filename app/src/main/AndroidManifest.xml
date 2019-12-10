@@ -34,7 +34,7 @@
 
         <activity
             android:name=".FindStopActivity"
-            android:label="Tickey"
+            android:label="Ticket"
             android:parentActivityName=".TicketActvity"></activity>
         <activity android:name=".UpdatePassword" />
         <activity

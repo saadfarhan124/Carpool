@@ -28,7 +28,7 @@ class SettingsAdapter : RecyclerView.Adapter<SettingsViewHolder>()  {
         holder.itemView.setOnClickListener{
             Toast.makeText(it.context, position.toString(), Toast.LENGTH_LONG).show()
         }
-        
+
     }
 
     override fun getItemCount(): Int {
