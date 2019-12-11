@@ -8,7 +8,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        setContentView(R.layout.activity_dob)
 
 //        //Top App Bar
 //        val toolbar: Toolbar = findViewById(R.id.toolbarprofile)
