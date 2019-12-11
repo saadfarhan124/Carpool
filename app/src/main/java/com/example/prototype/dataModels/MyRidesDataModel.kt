@@ -14,6 +14,7 @@ class MyRides : Serializable {
     var dropOffPoint: String? = null
     var rideStatus:Boolean = false
     var customerID:String? = null
+    var rideId:String? = null
 
     constructor() {}
     constructor(
