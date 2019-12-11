@@ -4,7 +4,7 @@ import java.io.Serializable
 
 class MyRides : Serializable {
 
-    var rideId:String? = null
+    var routeId:String? = null
     var bookingDate: String? = null
     var bookingId:Long = 0
     var totalFare:Long = 0
@@ -17,7 +17,6 @@ class MyRides : Serializable {
 
     constructor() {}
     constructor(
-
         bookingDate: String?,
         bookingId:Long,
         totalFare:Long,
@@ -25,7 +24,8 @@ class MyRides : Serializable {
         endTime:String,
         pickUpPoint: String?,
         dropOffPoint: String?,
-        customerID:String?
+        customerID:String?,
+        routeId:String?
     ) {
 
         this.bookingDate = bookingDate
@@ -36,6 +36,7 @@ class MyRides : Serializable {
         this.pickUpPoint = pickUpPoint
         this.dropOffPoint = dropOffPoint
         this.customerID = customerID
+        this.routeId = routeId
 
     }
 
