@@ -148,7 +148,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             mMap.animateCamera(
                                 CameraUpdateFactory.newLatLngBounds(
                                     bounds.build(),
-                                    50
+                                    180
                                 )
                             )
                             mMap.addPolyline(
