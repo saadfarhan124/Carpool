@@ -91,13 +91,11 @@ class SeeRoutesActivity : AppCompatActivity() {
 
                                     for (doc in taskTwo.result!!) {
                                         var geoPoint = doc["stop_latlng"] as GeoPoint
-                                        Log.d(TAG, (Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))).toString())
-                                        Log.d(TAG, (Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))).toString())
-                                        if(Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 1000){
+                                        if(Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < Util.getDistanceValueBetweenStops()){
                                             pickUpFlag = true
                                             Util.getGlobals().pickUpSpot = LatLng(geoPoint.latitude, geoPoint.longitude)
                                             Util.getGlobals().distanceFromPickUp = Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))
-                                        }else if(Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 1000){
+                                        }else if(Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < Util.getDistanceValueBetweenStops()){
                                             destFlag = true
                                             Util.getGlobals().dropOffSpot = LatLng(geoPoint.latitude, geoPoint.longitude)
                                             Util.getGlobals().distanceFromDropOff = Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))

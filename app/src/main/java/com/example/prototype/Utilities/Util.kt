@@ -80,5 +80,9 @@ class Util{
 
            return location.distanceTo(locationtwo)
         }
+
+        fun getDistanceValueBetweenStops():Int{
+            return 1000
+        }
     }
 }
