@@ -12,10 +12,6 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import com.beust.klaxon.JsonArray
-import com.beust.klaxon.JsonObject
-import com.beust.klaxon.Parser
-import com.beust.klaxon.array
 import com.example.prototype.Utilities.Util
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -80,7 +76,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-
+        
     }
 
     //Top App Bar Back Nav

@@ -79,6 +79,7 @@ class SeeRoutesActivity : AppCompatActivity() {
                     val routes = mutableListOf<Routes>()
                     for (document in task.result!!) {
                         //accessing sub collection
+
                         document.reference.collection("stops").get()
                             .addOnCompleteListener { taskTwo ->
                                 if (taskTwo.isSuccessful) {
@@ -90,11 +91,13 @@ class SeeRoutesActivity : AppCompatActivity() {
 
                                     for (doc in taskTwo.result!!) {
                                         var geoPoint = doc["stop_latlng"] as GeoPoint
-                                        if(Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 800){
+                                        Log.d(TAG, (Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))).toString())
+                                        Log.d(TAG, (Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))).toString())
+                                        if(Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 1000){
                                             pickUpFlag = true
                                             Util.getGlobals().pickUpSpot = LatLng(geoPoint.latitude, geoPoint.longitude)
                                             Util.getGlobals().distanceFromPickUp = Util.getDistance(pickUpLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))
-                                        }else if(Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 800){
+                                        }else if(Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude)) < 1000){
                                             destFlag = true
                                             Util.getGlobals().dropOffSpot = LatLng(geoPoint.latitude, geoPoint.longitude)
                                             Util.getGlobals().distanceFromDropOff = Util.getDistance(destLatLng, LatLng(geoPoint.latitude, geoPoint.longitude))
@@ -116,7 +119,8 @@ class SeeRoutesActivity : AppCompatActivity() {
                                     //progress bar
                                     progressBar.visibility = View.INVISIBLE
                                 } else {
-                                    Log.d(TAG, taskTwo.exception.toString())
+                                    Toast.makeText(applicationContext, taskTwo.exception.toString(), Toast.LENGTH_LONG)
+                                        .show()
                                 }
                             }
                     }
