@@ -140,35 +140,34 @@
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
             android:text="Change"
-            app:rippleColor="@color/colorAccent"
             android:textColor="@color/colorAccent"
             app:icon="@drawable/ic_sync_black_24dp"
             app:iconTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="@+id/btnTrackRide"
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
             app:layout_constraintStart_toEndOf="@+id/btnTrackRide"
-            app:layout_constraintTop_toTopOf="@+id/btnTrackRide" />
+            app:layout_constraintTop_toTopOf="@+id/btnTrackRide"
+            app:rippleColor="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:text="Cancel"
             android:textColor="@color/colorRed"
             app:icon="@drawable/ic_delete_black_24dp"
             app:iconTint="@color/colorRed"
-            app:rippleColor="@color/colorRed"
             app:layout_constraintBottom_toBottomOf="@+id/btnChange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnChange"
-            app:layout_constraintTop_toTopOf="@+id/btnChange" />
+            app:layout_constraintTop_toTopOf="@+id/btnChange"
+            app:rippleColor="@color/colorRed" />
 
         <ImageView
             android:id="@+id/imageView18"
