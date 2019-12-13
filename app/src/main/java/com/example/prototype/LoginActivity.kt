@@ -23,13 +23,14 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        auth = FirebaseAuth.getInstance()
 
         //Top App Bar
         val toolbar: Toolbar = findViewById(R.id.toolbarlogin)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        firebaseAuth = FirebaseAuth.getInstance()
 
     }
 

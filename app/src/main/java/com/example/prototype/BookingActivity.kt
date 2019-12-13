@@ -134,12 +134,12 @@ class BookingActivity : AppCompatActivity() {
                                     bookingId.getValue("booking_id").toString().toLong(),
                                     seatsSpinner.selectedItem.toString().toLong(),
                                     scheduledDate.text.toString(),
-                                    "Saad",
+                                    Util.getGlobals().user!!.displayName,
                                     calculatedFare.text.toString().toLong(),
-                                    Util.getGlobals().pickUpSpot!!.latitude,
-                                    Util.getGlobals().pickUpSpot!!.longitude,
-                                    Util.getGlobals().dropOffSpot!!.latitude,
-                                    Util.getGlobals().dropOffSpot!!.longitude,
+                                        Util.getGlobals().pickUpSpot!!.latitude,
+                                        Util.getGlobals().pickUpSpot!!.longitude,
+                                        Util.getGlobals().dropOffSpot!!.latitude,
+                                        Util.getGlobals().dropOffSpot!!.longitude,
                                     "",
                                     ""
                                 )
@@ -160,7 +160,8 @@ class BookingActivity : AppCompatActivity() {
                                             updatedRoute["endingTime"].toString(),
                                             "",
                                             "",
-                                            Util.getGlobals().user!!.uid
+                                            Util.getGlobals().user!!.uid,
+                                            routeObject.id!!
                                         )
                                         FirebaseFirestore
                                             .getInstance()
