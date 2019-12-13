@@ -4,16 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:nestedScrollingEnabled="true">
+    >
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_name">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -316,9 +318,11 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
                 android:outlineSpotShadowColor="@color/colorPrimaryDark"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewDOB">
@@ -333,6 +337,8 @@
                         android:layout_height="46dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:layout_marginBottom="13dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/fui_ic_check_circle_black_128dp" />
@@ -346,19 +352,11 @@
                         android:textColor="@color/colorText1"
                         android:textSize="18sp"
                         android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@+id/img_logout"
                         app:layout_constraintStart_toEndOf="@id/img_logout"
                         app:layout_constraintTop_toTopOf="@+id/img_logout" />
 
-                    <TextView
-                        android:id="@+id/txt_logout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:text="4 May 2001"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/txt_lbl_logout"
-                        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_logout" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
