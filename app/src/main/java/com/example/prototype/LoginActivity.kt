@@ -30,6 +30,8 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        firebaseAuth = FirebaseAuth.getInstance()
+
     }
 
     //Top App Bar Back Nav
