@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.example.prototype"
-        minSdkVersion 26
+        minSdkVersion 24
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -77,6 +77,9 @@ android {
 
         //Map Utils
         implementation 'com.google.maps.android:android-maps-utils:0.5'
+
+        //support date time below api level 26
+        implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
     }
 }
 

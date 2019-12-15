@@ -19,6 +19,7 @@ import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jakewharton.threetenabp.AndroidThreeTen
 import kotlinx.android.synthetic.main.activity_booking.*
 import org.jetbrains.anko.AlertDialogBuilder
 import org.jetbrains.anko.find
@@ -55,6 +56,8 @@ class BookingActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
+        //datetime
+        AndroidThreeTen.init(this)
 
         //progress bar
         progressBar = findViewById(R.id.bookingProgressBar)
@@ -67,8 +70,7 @@ class BookingActivity : AppCompatActivity() {
         startingPoint.text = routeObject.startingPoint
         endingPoint.text = routeObject.endingPoint
         seatsRemaining.text = routeObject.seatsRemaining.toString()
-        scheduledDate.text = LocalDateTime.now().plusDays(1)
-            .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+        scheduledDate.text = Util.getFormattedDate(1)
         initializeSpinner(routeObject.seatsRemaining)
         progressBar.visibility = View.INVISIBLE
     }

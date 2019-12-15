@@ -2,21 +2,19 @@ package com.example.prototype.Utilities
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.location.Location
-import android.net.Uri
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.prototype.LoginActivity
-import com.example.prototype.R
-import com.example.prototype.companion.Companion
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import org.threeten.bp.LocalDateTime
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.format.FormatStyle
 
 class Util{
     companion object{
@@ -87,6 +85,16 @@ class Util{
 
         fun getBiggerZoomValue(): Float {
             return 15f
+        }
+
+        fun getFormattedDate(addDays: Long = 0): String {
+            if (addDays == 0.toLong()) {
+                return LocalDateTime.now()
+                    .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+            } else {
+                return LocalDateTime.now().plusDays(addDays)
+                    .format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+            }
         }
     }
 }
