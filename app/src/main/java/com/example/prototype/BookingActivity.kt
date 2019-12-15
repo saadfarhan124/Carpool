@@ -101,7 +101,7 @@ class BookingActivity : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
         confirmDialog.setTitle("Sath Chaloo")
         confirmDialog.setMessage("Are you sure you want to proceed with your booking?")
-        confirmDialog.setPositiveButton("Yes") { _, _ ->
+            confirmDialog.setPositiveButton("Yes") { _, _ ->
             progressBar.visibility = View.VISIBLE
             var updatedRoute = routeObject.toMap().toMutableMap()
             //Gettting new number of seats and updating it on routes calculation

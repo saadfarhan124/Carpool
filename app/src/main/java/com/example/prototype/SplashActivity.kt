@@ -1,5 +1,6 @@
 package com.example.prototype
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +26,19 @@ class SplashActivity : AppCompatActivity() {
         myHandler = Handler()
 
         myHandler.postDelayed({
-            goToAfterSplash()
+            if(Util.verifyAvailableNetwork(this)){
+                goToAfterSplash()
+            }else{
+                val confirmDialog =
+                    AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
+                confirmDialog.setTitle("Sath Chaloo")
+                confirmDialog.setMessage("Please connect to internet")
+                confirmDialog.setPositiveButton("Ok") { _, _ ->
+                    finishAffinity();
+                    System.exit(0)
+                }
+                confirmDialog.show()
+            }
         },splashTime)
     }
     private fun goToAfterSplash(){
