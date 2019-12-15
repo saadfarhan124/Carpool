@@ -84,5 +84,9 @@ class Util{
         fun getDistanceValueBetweenStops():Int{
             return 1000
         }
+
+        fun getBiggerZoomValue(): Float {
+            return 15f
+        }
     }
 }

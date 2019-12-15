@@ -39,7 +39,6 @@ import java.net.URL
 class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Utility Vars
-    private var DEFAULT_ZOOM = 17f
     private lateinit var mMap: GoogleMap
     private lateinit var placesClient: PlacesClient
     private lateinit var autocompleteSupportFragment: AutocompleteSupportFragment
@@ -180,7 +179,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
             task!!.addOnCompleteListener{
                 if(task.isComplete){
                     val location = task.result
-                    moveCamera(LatLng(location!!.latitude,location.longitude), DEFAULT_ZOOM)
+                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue())
                     init()
                 }else{
                     Log.d("Maps Activity", "Location Not Found")
@@ -224,7 +223,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     fun geolocate(place: Place){
         try {
-            moveCamera(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), DEFAULT_ZOOM)
+            moveCamera(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), Util.getBiggerZoomValue())
             addMarker(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), place.address)
         }catch (e: IOException){
             Toast.makeText(applicationContext,e.toString(),Toast.LENGTH_SHORT).show()

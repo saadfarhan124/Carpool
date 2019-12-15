@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.example.prototype.R
 import com.example.prototype.SelectPickUpActivity
+import com.example.prototype.Utilities.Util
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -52,7 +53,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private val COARSE_LOCATION:String = Manifest.permission.ACCESS_COARSE_LOCATION
 
     //Utility Vars
-    private var DEFAULT_ZOOM = 17f
     private var permissionFlag = false
     private val locationPermissionCode = 1234
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
@@ -135,7 +135,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     //Function to get geo location
     fun geolocate(place: Place){
         try {
-            moveCamera(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), DEFAULT_ZOOM)
+            moveCamera(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), Util.getBiggerZoomValue())
 
             addMarker(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), place.address)
         }catch (e: IOException){
@@ -185,7 +185,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             task!!.addOnCompleteListener{
                 if(task.isComplete){
                     var location = task.result
-                    moveCamera(LatLng(location!!.latitude,location.longitude), DEFAULT_ZOOM)
+                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue())
                     Toast.makeText(root.context, "Found", Toast.LENGTH_LONG).show()
                     init()
                 }else{
