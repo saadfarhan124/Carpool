@@ -1,17 +1,21 @@
 package com.example.prototype
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.MediaStore
+import android.util.Log
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import org.jetbrains.anko.async
+import java.io.File
 
 class SplashActivity : AppCompatActivity() {
 
@@ -48,20 +52,29 @@ class SplashActivity : AppCompatActivity() {
         if(user != null){
             var global = Companion.Globals
             global.user = user
-            var options = BitmapFactory.Options()
-            Util.getStorageRef().getBytes(Long.MAX_VALUE).addOnSuccessListener {
-                Util.getGlobals().userImage = BitmapFactory.decodeByteArray(it,0, it.size, options)
-                startActivity(homeScreen)
 
-            }.addOnFailureListener{
-                startActivity(homeScreen)
+            Log.d("SAAAAD", getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}","")!!.isNotEmpty().toString())
+            if(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}","")!!.isNotEmpty()){
+                    Util.getGlobals().userImage = BitmapFactory.decodeFile(getPreferences(0).getString("ImageUri${user!!.uid}",""))
+                    startActivity(homeScreen)
+            }else{
+                val localFile = File.createTempFile("images", "jpg")
+                Util.getStorageRef().getFile(localFile).addOnSuccessListener {
+                    with(getPreferences(Context.MODE_PRIVATE).edit()){
+                        putString("ImageUri${user!!.uid}", localFile.absolutePath)
+                        commit()
+                        Util.getGlobals().userImage = BitmapFactory.decodeFile(localFile.absolutePath)
+                        startActivity(homeScreen)
+                    }
+                }.addOnFailureListener{
+                    Log.d("SAAAAADDD", it.message)
+                }
             }
+
+
 
         }else{
             startActivity(afterSplashActivityIntent)
         }
-//        val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
-
-
     }
 }

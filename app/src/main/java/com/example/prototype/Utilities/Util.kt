@@ -2,9 +2,11 @@ package com.example.prototype.Utilities
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.location.Location
 import android.net.ConnectivityManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -50,10 +52,9 @@ class Util{
         }
 
         fun downloadDisplayPicture(){
-            val localFile = File.createTempFile("${getGlobals().user!!.uid}", "jpg")
             var options = BitmapFactory.Options()
-            getStorageRef().getFile(localFile).addOnSuccessListener {
-                getGlobals().userImage = BitmapFactory.decodeByteArray(localFile.readBytes(),0, localFile.readBytes().size, options)
+            getStorageRef().getBytes(Long.MAX_VALUE).addOnSuccessListener {
+                getGlobals().userImage = BitmapFactory.decodeByteArray(it,0, it.size, options)
             }.addOnFailureListener{
             }
         }
@@ -101,5 +102,6 @@ class Util{
             val networkInfo=connectivityManager.activeNetworkInfo
             return  networkInfo!=null && networkInfo.isConnected
         }
+
     }
 }
