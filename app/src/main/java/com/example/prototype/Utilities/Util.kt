@@ -17,16 +17,12 @@ import com.google.firebase.storage.StorageReference
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 import org.threeten.bp.format.FormatStyle
+import java.io.File
 
 class Util{
     companion object{
 
-        fun addFragmentToActivity(manager: FragmentManager, fragment: Fragment, frameId: Int) {
-            val transaction = manager.beginTransaction()
-            transaction.add(fragment, null)
-            transaction.commit()
 
-        }
 
         fun logout(context: Context) : Intent{
             FirebaseAuth.getInstance().signOut()
@@ -54,9 +50,10 @@ class Util{
         }
 
         fun downloadDisplayPicture(){
+            val localFile = File.createTempFile("${getGlobals().user!!.uid}", "jpg")
             var options = BitmapFactory.Options()
-            getStorageRef().getBytes(Long.MAX_VALUE).addOnSuccessListener {
-                getGlobals().userImage = BitmapFactory.decodeByteArray(it,0, it.size, options)
+            getStorageRef().getFile(localFile).addOnSuccessListener {
+                getGlobals().userImage = BitmapFactory.decodeByteArray(localFile.readBytes(),0, localFile.readBytes().size, options)
             }.addOnFailureListener{
             }
         }

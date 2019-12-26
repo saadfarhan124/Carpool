@@ -33,7 +33,7 @@ class navdrawer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navdrawer)
 
-        Util.downloadDisplayPicture()
+
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
 
@@ -52,6 +52,7 @@ class navdrawer : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
+        Util.downloadDisplayPicture()
 
         var globals = Companion.Globals
         val headerView: View = nav_view.getHeaderView(0)
