@@ -1,16 +1,19 @@
 package com.example.prototype
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
-
+import java.io.File
 
 
 class LoginActivity : AppCompatActivity() {
@@ -48,9 +51,26 @@ class LoginActivity : AppCompatActivity() {
             if(task.isSuccessful){
                 var globals = Companion.Globals
                 globals.user = auth.currentUser
-                intent = Intent(applicationContext, navdrawer::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent)
+                //Loading picture from database and then saving it locally
+                if(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${globals.user!!.uid}","")!!.isNotEmpty()){
+                    Util.getGlobals().userImage = BitmapFactory.decodeFile(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${globals.user!!.uid}",""))
+                }else{
+                    val localFile = File.createTempFile("images", "jpg")
+                    Util.getStorageRef().getFile(localFile).addOnSuccessListener {
+                        with(getPreferences(Context.MODE_PRIVATE).edit()){
+                            putString("ImageUri${globals.user!!.uid}", localFile.absolutePath)
+                            commit()
+                            Util.getGlobals().userImage = BitmapFactory.decodeFile(localFile.absolutePath)
+                            intent = Intent(applicationContext, navdrawer::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+
+                        }
+                    }.addOnFailureListener{
+
+                    }
+                }
+
             }else{
                 Toast.makeText(this,task.exception!!.message, Toast.LENGTH_LONG).show()
             }

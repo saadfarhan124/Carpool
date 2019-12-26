@@ -91,7 +91,7 @@ class ProfileActivity : AppCompatActivity() {
         uploadTask.addOnFailureListener {
             Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
         }.addOnSuccessListener {
-            Util.downloadDisplayPicture()
+
             imageViewDisplayPicture.setImageBitmap(Util.getGlobals().userImage)
             progressBar.visibility = View.INVISIBLE
         }

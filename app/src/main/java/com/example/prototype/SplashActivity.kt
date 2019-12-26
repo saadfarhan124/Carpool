@@ -67,7 +67,7 @@ class SplashActivity : AppCompatActivity() {
                         startActivity(homeScreen)
                     }
                 }.addOnFailureListener{
-                    Log.d("SAAAAADDD", it.message)
+
                 }
             }
 
