@@ -53,9 +53,9 @@ class SplashActivity : AppCompatActivity() {
             var global = Companion.Globals
             global.user = user
 
-            Log.d("SAAAAD", getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}","")!!.isNotEmpty().toString())
+            //Loading picture from database and then saving it locally
             if(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}","")!!.isNotEmpty()){
-                    Util.getGlobals().userImage = BitmapFactory.decodeFile(getPreferences(0).getString("ImageUri${user!!.uid}",""))
+                    Util.getGlobals().userImage = BitmapFactory.decodeFile(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}",""))
                     startActivity(homeScreen)
             }else{
                 val localFile = File.createTempFile("images", "jpg")

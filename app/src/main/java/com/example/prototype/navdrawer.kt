@@ -52,7 +52,7 @@ class navdrawer : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
-        Util.downloadDisplayPicture()
+
 
         var globals = Companion.Globals
         val headerView: View = nav_view.getHeaderView(0)
