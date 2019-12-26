@@ -262,7 +262,7 @@
     </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button6"
+        android:id="@+id/btnTrackRide"
         style="@style/Widget.MaterialComponents.Button.Icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -298,9 +298,9 @@
         android:text="Find Stop"
         app:cornerRadius="8dp"
         app:icon="@drawable/ic_marker"
-        app:layout_constraintEnd_toEndOf="@+id/button6"
-        app:layout_constraintStart_toStartOf="@+id/button6"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintEnd_toEndOf="@+id/btnTrackRide"
+        app:layout_constraintStart_toStartOf="@+id/btnTrackRide"
+        app:layout_constraintTop_toBottomOf="@+id/btnTrackRide" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
