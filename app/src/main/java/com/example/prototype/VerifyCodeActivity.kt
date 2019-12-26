@@ -35,11 +35,12 @@ class VerifyCodeActivity : AppCompatActivity() {
 
                     val user = task.result?.user
                     var intent:Intent = Intent()
-
-                    when(user!!.email){
-                        null -> intent = Intent(applicationContext, SignupEmailActivity::class.java)
+                    if(user!!.email != null){
+                        intent = Intent(applicationContext, SignupEmailActivity::class.java)
+                    }else{
+                        intent = Intent(applicationContext, navdrawer::class.java)
                     }
-//                    progressBar.visibility = View.INVISIBLE
+
                     startActivity(intent)
                     // ...
                 } else {
