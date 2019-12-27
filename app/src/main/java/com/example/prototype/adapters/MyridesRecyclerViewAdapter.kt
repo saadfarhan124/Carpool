@@ -15,7 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 class MyridesAdapter(
     private val myRidesList: MutableList<MyRides>,
     private val context: Context,
-    private val db: FirebaseFirestore
+    private val db: FirebaseFirestore,
+    private val type:String = "scheduled"
 ) : RecyclerView.Adapter<MyridesAdapter.MyridesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyridesViewHolder {
@@ -37,7 +38,12 @@ class MyridesAdapter(
         holder.endTime.text = myRide.endTime
         holder.pickUpPoint.text = myRide.pickUpPoint
         holder.dropOffPoint.text = myRide.dropOffPoint
-
+        when(type){
+            "history" -> {
+                holder.btnDelete.visibility = View.INVISIBLE
+                holder.btnTrack.visibility = View.INVISIBLE
+            }
+        }
         holder.btnDelete.setOnClickListener {
             val confirmDialog =
                 AlertDialog.Builder(context, R.style.ThemeOverlay_MaterialComponents_Dialog)
@@ -76,6 +82,7 @@ class MyridesAdapter(
         internal var pickUpPoint: TextView = view.findViewById(R.id.textViewPickUpPoint)
         internal var dropOffPoint: TextView = view.findViewById(R.id.textViewDropOffPoint)
         internal var btnDelete: TextView = view.findViewById(R.id.btnCancel)
+        internal var btnTrack:TextView = view.findViewById(R.id.btnTrackRide)
 
     }
 }
