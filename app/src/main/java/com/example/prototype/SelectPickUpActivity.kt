@@ -213,6 +213,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     //Function to add markets
     private fun addMarker(latlng: LatLng, title:String?){
         val markerOptions = MarkerOptions().position(latlng).title(title)
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yello))
         marker = mMap.addMarker(markerOptions)
     }
 

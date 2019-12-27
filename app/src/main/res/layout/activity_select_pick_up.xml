@@ -70,9 +70,9 @@
 
     <ImageView
         android:id="@+id/ic_marker"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:src="@drawable/marker_yello"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_marker"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
