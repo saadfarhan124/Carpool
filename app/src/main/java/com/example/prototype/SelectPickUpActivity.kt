@@ -100,7 +100,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         autocompleteSupportFragment.setCountry("PK")
         autocompleteSupportFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onError(p0: Status) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
             override fun onPlaceSelected(p0: Place) {
@@ -143,7 +143,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             mMap.animateCamera(
                                 CameraUpdateFactory.newLatLngBounds(
                                     bounds.build(),
-                                    180
+                                    800
                                 )
                             )
                             mMap.addPolyline(
@@ -179,7 +179,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
             task!!.addOnCompleteListener{
                 if(task.isComplete){
                     val location = task.result
-                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue())
+                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue() , 1)
                     init()
                 }else{
                     Log.d("Maps Activity", "Location Not Found")
@@ -218,8 +218,12 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     //Function to move Camera
-    private fun moveCamera(latLng: LatLng, zoom:Float){
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+    private fun moveCamera(latLng: LatLng, zoom:Float, moveType:Int = 0){
+        when(moveType){
+            0 -> mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+            1 -> mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+        }
+
     }
 
     fun geolocate(place: Place){

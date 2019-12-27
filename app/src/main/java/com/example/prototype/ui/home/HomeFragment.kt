@@ -165,12 +165,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         if(permissionFlag){
             getDevicesLocation()
-            try{
-                mMap.isMyLocationEnabled = true
-            }catch (e:SecurityException){
-
-            }
-
         }
     }
 
@@ -183,7 +177,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             task!!.addOnCompleteListener{
                 if(task.isComplete){
                     var location = task.result
-                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue())
+                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue(), 1)
                     Toast.makeText(root.context, "Found", Toast.LENGTH_LONG).show()
                     init()
                 }else{
@@ -197,8 +191,11 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     }
 
     //Function to move Camera
-    private fun moveCamera(latLng: LatLng, zoom:Float){
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+    private fun moveCamera(latLng: LatLng, zoom:Float, moveType: Int = 0){
+        when(moveType){
+            0 -> mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+            1 -> mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+        }
     }
 
     //Function to add markets
