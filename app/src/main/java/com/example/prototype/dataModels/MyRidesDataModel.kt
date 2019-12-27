@@ -12,7 +12,7 @@ class MyRides : Serializable {
     var endTime: String? = null
     var pickUpPoint: String? = null
     var dropOffPoint: String? = null
-    var rideStatus:Boolean = false
+    var rideStatus:String = ""
     var customerID:String? = null
     var rideId:String? = null
 

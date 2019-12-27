@@ -45,6 +45,7 @@ class ScheduledFragment : Fragment() {
         db = FirebaseFirestore.getInstance()
         db.collection("rides")
             .whereEqualTo("customerID", Util.getGlobals().user!!.uid)
+            .whereEqualTo("rideStatus", "booked")
             .get()
             .addOnCompleteListener{
                 if(it.isSuccessful){
