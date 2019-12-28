@@ -23,7 +23,7 @@ class TrackRideActivity : AppCompatActivity(), OnMapReadyCallback {
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
 
-        val toolbar: Toolbar = findViewById(R.id.toolbarsp)
+        val toolbar: Toolbar = findViewById(R.id.toolbarTrackRide)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -34,6 +34,8 @@ class TrackRideActivity : AppCompatActivity(), OnMapReadyCallback {
         onBackPressed()
         return true
     }
+
+
 
     /**
      * Manipulates the map once available.
