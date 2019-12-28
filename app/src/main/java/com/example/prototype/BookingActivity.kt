@@ -91,7 +91,7 @@ class BookingActivity : AppCompatActivity() {
             AlertDialog.Builder(this, R.style.ThemeOverlay_MaterialComponents_Dialog)
         confirmDialog.setTitle("Sath Chaloo")
         confirmDialog.setMessage("Are you sure you want to proceed with your booking?")
-            confirmDialog.setPositiveButton("Yes") { _, _ ->
+        confirmDialog.setPositiveButton("Yes") { _, _ ->
             progressBar.visibility = View.VISIBLE
             var updatedRoute = routeObject.toMap().toMutableMap()
             //Gettting new number of seats and updating it on routes calculation
@@ -128,74 +128,54 @@ class BookingActivity : AppCompatActivity() {
                                     scheduledDate.text.toString(),
                                     Util.getGlobals().user!!.displayName,
                                     calculatedFare.text.toString().toLong(),
-                                        Util.getGlobals().pickUpSpot!!.latitude,
-                                        Util.getGlobals().pickUpSpot!!.longitude,
-                                        Util.getGlobals().dropOffSpot!!.latitude,
-                                        Util.getGlobals().dropOffSpot!!.longitude,
+                                    Util.getGlobals().pickUpSpot!!.latitude,
+                                    Util.getGlobals().pickUpSpot!!.longitude,
+                                    Util.getGlobals().dropOffSpot!!.latitude,
+                                    Util.getGlobals().dropOffSpot!!.longitude,
                                     "",
-                                    ""
+                                    "",
+                                    "booked"
                                 )
 
                                 //inserting a new booking
                                 FirebaseFirestore
                                     .getInstance()
                                     .collection("booking")
-                                    .document( bookingId.getValue("booking_id").toString())
+                                    .document(bookingId.getValue("booking_id").toString())
                                     .set(booking)
                                     .addOnCompleteListener { task ->
                                         //inserting a new ride
-                                        val rides = MyRides(
-                                            scheduledDate.text.toString(),
-                                            bookingId.getValue("booking_id").toString().toLong(),
-                                            calculatedFare.text.toString().toLong(),
-                                            updatedRoute["startingTime"].toString(),
-                                            updatedRoute["endingTime"].toString(),
-                                            "",
-                                            "",
-                                            Util.getGlobals().user!!.uid,
-                                            routeObject.id!!
-                                        )
+                                        bookingId["booking_id"] =
+                                            bookingId.getValue("booking_id").toString().toLong() + 1
                                         FirebaseFirestore
                                             .getInstance()
-                                            .collection("rides")
-                                            .add(rides)
-                                            .addOnCompleteListener {
+                                            .collection("booking_id")
+                                            .document("bSjvfO0c2zWLG2SI0eyC")
+                                            .set(bookingId)
+                                            .addOnCompleteListener { task ->
                                                 if (task.isSuccessful) {
-                                                    //increasing and updating booking id
-                                                    bookingId["booking_id"] =
-                                                        bookingId.getValue("booking_id").toString().toLong() + 1
-                                                    FirebaseFirestore
-                                                        .getInstance()
-                                                        .collection("booking_id")
-                                                        .document("bSjvfO0c2zWLG2SI0eyC")
-                                                        .set(bookingId)
-                                                        .addOnCompleteListener { task ->
-                                                            if (task.isSuccessful) {
-                                                                progressBar.visibility =
-                                                                    View.INVISIBLE
-                                                                val intent = Intent(
-                                                                    applicationContext,
-                                                                    TicketActvity::class.java
-                                                                )
+                                                    progressBar.visibility =
+                                                        View.INVISIBLE
+                                                    val intent = Intent(
+                                                        applicationContext,
+                                                        TicketActvity::class.java
+                                                    )
 
-                                                                intent.putExtra(
-                                                                    "bookingDetails",
-                                                                    booking
-                                                                )
-                                                                startActivity(intent)
-                                                            }
-                                                        }
+                                                    intent.putExtra(
+                                                        "bookingDetails",
+                                                        booking
+                                                    )
+                                                    startActivity(intent)
                                                 }
                                             }
                                     }
                             }
                         }
-                }).addOnFailureListener(OnFailureListener { e ->
+                }).addOnFailureListener { e ->
                     Log.w(TAG, "Error writing document", e)
-                })
+                }
         }
         confirmDialog.setNegativeButton("No") { _, _ ->
-
 
         }
         confirmDialog.show()
