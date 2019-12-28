@@ -2,14 +2,17 @@ package com.example.prototype.adapters
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
+import com.example.prototype.TrackRideActivity
 import com.example.prototype.dataModels.MyRides
 import com.google.firebase.firestore.FirebaseFirestore
+import org.jetbrains.anko.onClick
 
 
 class MyridesAdapter(
@@ -44,6 +47,8 @@ class MyridesAdapter(
                 holder.btnTrack.visibility = View.INVISIBLE
             }
         }
+
+        //Delete Ride
         holder.btnDelete.setOnClickListener {
             val confirmDialog =
                 AlertDialog.Builder(context, R.style.ThemeOverlay_MaterialComponents_Dialog)
@@ -70,6 +75,12 @@ class MyridesAdapter(
             confirmDialog.show()
         }
 
+        //Track Ride
+        holder.btnTrack.onClick {
+            var intent = Intent(context, TrackRideActivity::class.java)
+            intent.putExtra("routeId", myRide.routeId)
+            context.startActivity(intent)
+        }
     }
 
 

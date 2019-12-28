@@ -30,10 +30,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-<!--        <activity-->
-<!--            android:name=".TrackRideActivity"-->
-<!--            android:label="@string/title_activity_track_ride" />-->
-<!--        <activity-->
+        <activity
+            android:name=".TrackRideActivity"
+            android:label="@string/title_activity_track_ride" />
+        <activity
             android:name=".FindStopActivity"
             android:label="Ticket"
             android:parentActivityName=".TicketActvity" />
@@ -45,7 +45,7 @@
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".TrackRideActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

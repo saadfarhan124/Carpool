@@ -1,23 +1,35 @@
 package com.example.prototype
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.widget.Toolbar
+import com.example.prototype.Utilities.Util
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.GeoPoint
 
 class TrackRideActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
+    private lateinit var docRefDriverLocation : DocumentReference
+    private lateinit var driverLatLng: LatLng
+    private lateinit var markerOptions: MarkerOptions
+
+    private var TAG = "TrackRideeee"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_track_ride)
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -36,22 +48,37 @@ class TrackRideActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
 
+        initilize()
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+
+    }
+
+
+
+    private fun initilize(){
+        Util.getFirebaseFireStore().collection("driver_routes")
+            .whereEqualTo("routeId", intent.extras!!.get("routeId"))
+            .get()
+            .addOnSuccessListener {
+                docRefDriverLocation = it.first().reference
+                docRefDriverLocation.addSnapshotListener{ snapshot, e ->
+                    if(snapshot != null && snapshot.exists()){
+                        mMap.clear()
+                        var geoPoint = snapshot["driver_location"] as GeoPoint
+                        driverLatLng = LatLng(geoPoint.latitude, geoPoint.longitude)
+                        markerOptions = MarkerOptions().position(driverLatLng).title("Driver")
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yello))
+                        mMap.addMarker(markerOptions)
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(driverLatLng, Util.getBiggerZoomValue()))
+                    }
+
+                }
+            }
+            .addOnFailureListener{
+
+            }
     }
 }
