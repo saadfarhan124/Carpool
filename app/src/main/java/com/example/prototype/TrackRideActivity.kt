@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 
@@ -63,18 +64,22 @@ class TrackRideActivity : AppCompatActivity(), OnMapReadyCallback {
             .whereEqualTo("routeId", intent.extras!!.get("routeId"))
             .get()
             .addOnSuccessListener {
-                docRefDriverLocation = it.first().reference
-                docRefDriverLocation.addSnapshotListener{ snapshot, e ->
-                    if(snapshot != null && snapshot.exists()){
-                        mMap.clear()
-                        var geoPoint = snapshot["driver_location"] as GeoPoint
-                        driverLatLng = LatLng(geoPoint.latitude, geoPoint.longitude)
-                        markerOptions = MarkerOptions().position(driverLatLng).title("Driver")
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yello))
-                        mMap.addMarker(markerOptions)
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(driverLatLng, Util.getBiggerZoomValue()))
-                    }
+                if(it.first()["rideStatus"] == "unbegun"){
+                    Toast.makeText(applicationContext, "Ride hasn't commenced yet", Toast.LENGTH_LONG).show()
+                }else{
+                    docRefDriverLocation = it.first().reference
+                    docRefDriverLocation.addSnapshotListener{ snapshot, e ->
+                        if(snapshot != null && snapshot.exists()){
+                            mMap.clear()
+                            var geoPoint = snapshot["driver_location"] as GeoPoint
+                            driverLatLng = LatLng(geoPoint.latitude, geoPoint.longitude)
+                            markerOptions = MarkerOptions().position(driverLatLng).title("Driver")
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yello))
+                            mMap.addMarker(markerOptions)
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(driverLatLng, Util.getBiggerZoomValue()))
+                        }
 
+                    }
                 }
             }
             .addOnFailureListener{
