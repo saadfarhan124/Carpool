@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.example.prototype.Utilities.Util
 import org.jetbrains.anko.onClick
 
 class ForgotPasswordActivity : AppCompatActivity() {
@@ -28,7 +29,15 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
         btn_frg = findViewById(R.id.btn_frg)
         btn_frg.onClick {
-            Toast.makeText(applicationContext, edit_em.text.toString(), Toast.LENGTH_LONG).show()
+            if (edit_em.text.isNotEmpty()){
+                if(Util.isEmailValid(edit_em.text.toString())){
+
+                }else{
+                    Toast.makeText(applicationContext, "Please enter a valid email address", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                Toast.makeText(applicationContext, "Please enter your email address", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
