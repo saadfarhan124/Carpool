@@ -21,8 +21,7 @@ import java.io.File
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var forgotPass_btn:Button
-
+    private lateinit var forgotPass_btn: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,44 +50,55 @@ class LoginActivity : AppCompatActivity() {
     }
 
     //Top App Bar Back Nav
-    override fun onSupportNavigateUp():Boolean {
+    override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
-    fun authenticate(v: View){
+    fun authenticate(v: View) {
         var intent = Intent()
         loading.visibility = View.VISIBLE
 
-        auth.signInWithEmailAndPassword(lg_txt_email.text.toString(),lg_txt_password.text.toString()).addOnCompleteListener { task ->
-            if(task.isSuccessful){
-                var globals = Companion.Globals
-                globals.user = auth.currentUser
-                //Loading picture from database and then saving it locally
-                if(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${globals.user!!.uid}","")!!.isNotEmpty()){
-                    Util.getGlobals().userImage = BitmapFactory.decodeFile(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${globals.user!!.uid}",""))
-                }else{
-                    val localFile = File.createTempFile("images", "jpg")
-                    Util.getStorageRef().getFile(localFile).addOnSuccessListener {
-                        with(getPreferences(Context.MODE_PRIVATE).edit()){
-                            putString("ImageUri${globals.user!!.uid}", localFile.absolutePath)
-                            commit()
-                            Util.getGlobals().userImage = BitmapFactory.decodeFile(localFile.absolutePath)
-                            intent = Intent(applicationContext, navdrawer::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                            loading.visibility = View.INVISIBLE
-                            startActivity(intent)
+        auth.signInWithEmailAndPassword(
+            lg_txt_email.text.toString(),
+            lg_txt_password.text.toString()
+        ).addOnSuccessListener { task ->
+            var globals = Companion.Globals
+            globals.user = auth.currentUser
+            //Loading picture from database and then saving it locally
+            if (getPreferences(Context.MODE_PRIVATE).getString(
+                    "ImageUri${globals.user!!.uid}",
+                    ""
+                )!!.isNotEmpty()
+            ) {
+                Util.getGlobals().userImage = BitmapFactory.decodeFile(
+                    getPreferences(Context.MODE_PRIVATE).getString(
+                        "ImageUri${globals.user!!.uid}",
+                        ""
+                    )
+                )
+                intent = Intent(applicationContext, navdrawer::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                loading.visibility = View.INVISIBLE
+                startActivity(intent)
+            } else {
+                val localFile = File.createTempFile("images", "jpg")
+                Util.getStorageRef().getFile(localFile).addOnSuccessListener {
+                    with(getPreferences(Context.MODE_PRIVATE).edit()) {
+                        putString("ImageUri${globals.user!!.uid}", localFile.absolutePath)
+                        commit()
+                        Util.getGlobals().userImage =
+                            BitmapFactory.decodeFile(localFile.absolutePath)
+                        intent = Intent(applicationContext, navdrawer::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        loading.visibility = View.INVISIBLE
+                        startActivity(intent)
 
-                        }
-                    }.addOnFailureListener{
-                        Toast.makeText(applicationContext, it.message, Toast.LENGTH_LONG)
                     }
+                }.addOnFailureListener {
+                    Toast.makeText(applicationContext, it.message, Toast.LENGTH_LONG)
                 }
-
-            }else{
-                Toast.makeText(this,task.exception!!.message, Toast.LENGTH_LONG).show()
             }
-
         }
     }
 }

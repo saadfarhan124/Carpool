@@ -24,10 +24,7 @@ import com.example.prototype.Utilities.Util
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
 import com.google.android.libraries.places.api.Places
@@ -47,8 +44,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var mMap: GoogleMap
 
     //Permission Vars
-    private val FINE_LOCATION:String = Manifest.permission.ACCESS_FINE_LOCATION
-    private val COARSE_LOCATION:String = Manifest.permission.ACCESS_COARSE_LOCATION
+    private val FINE_LOCATION: String = Manifest.permission.ACCESS_FINE_LOCATION
+    private val COARSE_LOCATION: String = Manifest.permission.ACCESS_COARSE_LOCATION
 
     //Utility Vars
     private var permissionFlag = false
@@ -57,12 +54,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var placesClient: PlacesClient
     private lateinit var autocompleteSupportFragment: AutocompleteSupportFragment
     private lateinit var marker: Marker
-    private lateinit var root:View
+    private lateinit var root: View
 
     //Widgets
     private var mGPS: ImageView? = null
     private var customMarker: ImageView? = null
-    private var btnSelectPickUp:Button? = null
+    private var btnSelectPickUp: Button? = null
 
 
     override fun onCreateView(
@@ -81,19 +78,26 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         //Places API
         Places.initialize(root.context, getString(R.string.google_maps_key))
         placesClient = Places.createClient(root.context)
-        autocompleteSupportFragment = childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
-        autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
+        autocompleteSupportFragment =
+            childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+        autocompleteSupportFragment.setPlaceFields(
+            arrayListOf(
+                Place.Field.ADDRESS,
+                Place.Field.LAT_LNG
+            )
+        )
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         getLocationPermission()
+        initMap()
 
         return root
     }
 
     //Fifth
     //Setting Editor On Action Listener for the Enter Key
-    private fun init(){
+    private fun init() {
         btn_service.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
             val dialog = BottomSheetDialog(root.context)
@@ -106,7 +110,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         autocompleteSupportFragment.setHint("Enter Destination")
         autocompleteSupportFragment.setCountry("PK")
-        autocompleteSupportFragment.setOnPlaceSelectedListener(object: PlaceSelectionListener {
+        autocompleteSupportFragment.setOnPlaceSelectedListener(object : PlaceSelectionListener {
             override fun onPlaceSelected(p0: Place) {
                 Handler().postDelayed({
                     autocompleteSupportFragment.setText(p0.address)
@@ -120,7 +124,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             }
         })
 
-        btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener{
+        btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 var intent = Intent(root.context, SelectPickUpActivity::class.java)
                 intent.putExtra("DestLat", marker.position.latitude)
@@ -131,19 +135,22 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     }
 
     //Function to get geo location
-    fun geolocate(place: Place){
+    fun geolocate(place: Place) {
         try {
-            moveCamera(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), Util.getBiggerZoomValue())
+            moveCamera(
+                LatLng(place.latLng!!.latitude, place.latLng!!.longitude),
+                Util.getBiggerZoomValue()
+            )
 
             addMarker(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), place.address)
-        }catch (e: IOException){
-            Toast.makeText(root.context,e.toString(), Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            Toast.makeText(root.context, e.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
     //Second
     //Initilizing MAp
-    private fun initMap(){
+    private fun initMap() {
         val mapFragment = childFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -153,6 +160,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     //Third
     //Map on Ready Callback
     override fun onMapReady(googleMap: GoogleMap) {
+        MapsInitializer.initialize(root.context)
         mMap = googleMap
         mMap.setOnCameraIdleListener {
             mMap.clear()
@@ -163,43 +171,47 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             customMarker!!.visibility = View.VISIBLE
         }
 
-        if(permissionFlag){
+        if (permissionFlag) {
             getDevicesLocation()
         }
     }
 
     //Fourth
     //Function to get location
-    private fun getDevicesLocation(){
+    private fun getDevicesLocation() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
-        try{
+        try {
             var task: Task<Location>? = fusedLocationProviderClient.lastLocation
-            task!!.addOnCompleteListener{
-                if(task.isComplete){
+            task!!.addOnCompleteListener {
+                if (task.isComplete) {
                     var location = task.result
-                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue(), 1)
+                    moveCamera(
+                        LatLng(location!!.latitude, location.longitude),
+                        Util.getBiggerZoomValue(),
+                        1
+                    )
                     Toast.makeText(root.context, "Found", Toast.LENGTH_LONG).show()
                     init()
-                }else{
+                } else {
                     Log.d("Maps Activity", "Location Not Found")
                     Toast.makeText(root.context, "Not Found", Toast.LENGTH_LONG).show()
                 }
             }
-        }catch (e : SecurityException){
-            Log.e("MapActivity",e.message.toString())
+        } catch (e: SecurityException) {
+            Log.e("MapActivity", e.message.toString())
         }
     }
 
     //Function to move Camera
-    private fun moveCamera(latLng: LatLng, zoom:Float, moveType: Int = 0){
-        when(moveType){
+    private fun moveCamera(latLng: LatLng, zoom: Float, moveType: Int = 0) {
+        when (moveType) {
             0 -> mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
             1 -> mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
         }
     }
 
     //Function to add markets
-    private fun addMarker(latlng:LatLng, title:String?){
+    private fun addMarker(latlng: LatLng, title: String?) {
         var markerOptions = MarkerOptions().position(latlng).title(title)
             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yello))
         marker = mMap.addMarker(markerOptions)
@@ -207,32 +219,45 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
     //First
     //Function to get permission
-    private fun getLocationPermission(){
-        val permissions = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
-        if(ContextCompat.checkSelfPermission(root.context,FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            if(ContextCompat.checkSelfPermission(root.context,COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+    private fun getLocationPermission() {
+        val permissions = arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        )
+        if (ContextCompat.checkSelfPermission(
+                root.context,
+                FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ContextCompat.checkSelfPermission(
+                    root.context,
+                    COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 permissionFlag = true
-                initMap()
-            }else{
+            } else {
                 ActivityCompat.requestPermissions(activity!!, permissions, locationPermissionCode)
             }
-        }else{
+        } else {
             ActivityCompat.requestPermissions(activity!!, permissions, locationPermissionCode)
         }
     }
 
     //Permission result callback
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        when(requestCode){
-            locationPermissionCode -> if(grantResults.isNotEmpty()){
-                for(i in 0 until grantResults.size - 1 ){
-                    if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            locationPermissionCode -> if (grantResults.isNotEmpty()) {
+                for (i in 0 until grantResults.size - 1) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                         permissionFlag = false
                         return
                     }
                 }
                 permissionFlag = true
-                initMap()
             }
         }
     }
