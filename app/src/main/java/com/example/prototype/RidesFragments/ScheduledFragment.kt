@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
 import com.example.prototype.Utilities.Util
 import com.example.prototype.adapters.MyridesAdapter
-import com.example.prototype.dataModels.MyRides
+import com.example.prototype.dataModels.Booking
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ScheduledFragment : Fragment() {
@@ -43,22 +43,22 @@ class ScheduledFragment : Fragment() {
 
     private fun loadRides() {
         db = FirebaseFirestore.getInstance()
-        db.collection("rides")
+        db.collection("booking")
             .whereEqualTo("customerID", Util.getGlobals().user!!.uid)
             .whereEqualTo("rideStatus", "booked")
             .get()
             .addOnCompleteListener{
                 if(it.isSuccessful){
-                    val myRides = mutableListOf<MyRides>()
+                    val bookings = mutableListOf<Booking>()
                     for (document in it.result!!) {
-                        val myRide = document.toObject(MyRides::class.java)
-                        myRide.rideId = document.id
-                        myRides.add(myRide)
+                        val booking = document.toObject(Booking::class.java)
+                        booking.id = document.id
+                        bookings.add(booking)
                     }
-                    if(myRides.size == 0){
+                    if(bookings.size == 0){
                         Toast.makeText(root.context, "No Rides Found", Toast.LENGTH_SHORT).show()
                     }else{
-                        mAdapter = MyridesAdapter(myRides, root.context,db)
+                        mAdapter = MyridesAdapter(bookings, root.context,db)
                         mRecyclerView = root.findViewById(R.id.myridesRecyclerView)
                         val mLayoutManager = LinearLayoutManager(root.context)
                         mRecyclerView.layoutManager = mLayoutManager

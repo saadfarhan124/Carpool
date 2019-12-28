@@ -10,16 +10,17 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
 import com.example.prototype.TrackRideActivity
+import com.example.prototype.dataModels.Booking
 import com.example.prototype.dataModels.MyRides
 import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.onClick
 
 
 class MyridesAdapter(
-    private val myRidesList: MutableList<MyRides>,
+    private val bookingList: MutableList<Booking>,
     private val context: Context,
     private val db: FirebaseFirestore,
-    private val type:String = "scheduled"
+    private val type: String = "scheduled"
 ) : RecyclerView.Adapter<MyridesAdapter.MyridesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyridesViewHolder {
@@ -29,19 +30,19 @@ class MyridesAdapter(
     }
 
     override fun getItemCount(): Int {
-        return myRidesList.size
+        return bookingList.size
     }
 
     override fun onBindViewHolder(holder: MyridesViewHolder, position: Int) {
-        val myRide = myRidesList[position]
-        holder.bookingDate.text = myRide.bookingDate
-        holder.bookingId.text = myRide.bookingId.toString()
-        holder.totalFare.text = myRide.totalFare.toString()
-        holder.startingTime.text = myRide.startingTime
-        holder.endTime.text = myRide.endTime
-        holder.pickUpPoint.text = myRide.pickUpPoint
-        holder.dropOffPoint.text = myRide.dropOffPoint
-        when(type){
+        val booking = bookingList[position]
+        holder.bookingDate.text = booking.bookingDate
+        holder.bookingId.text = booking.bookingId.toString()
+        holder.totalFare.text = booking.totalFare.toString()
+        holder.startingTime.text = booking.startingTime
+        holder.endTime.text = booking.endingTime
+        holder.pickUpPoint.text = booking.pickUpSpotName
+        holder.dropOffPoint.text = booking.dropOffSpotName
+        when (type) {
             "history" -> {
                 holder.btnDelete.visibility = View.INVISIBLE
                 holder.btnTrack.visibility = View.INVISIBLE
@@ -55,30 +56,25 @@ class MyridesAdapter(
             confirmDialog.setTitle("Sath Chaloo")
             confirmDialog.setMessage("Are you sure you want to cancel this ride?")
             confirmDialog.setPositiveButton("Yes") { _, _ ->
-                db.collection("rides")
-                    .document(myRide.rideId!!)
-                    .delete().addOnCompleteListener { taskDeleteFromMyRides ->
-                        if (taskDeleteFromMyRides.isSuccessful) {
-                            myRidesList.removeAt(position)
-                            db.collection("booking")
-                                .document(myRide.bookingId!!.toString())
-                                .delete()
-                                .addOnCompleteListener { taskDeleteFromMyRides ->
-                                    this.notifyItemRemoved(position)
-                                    this.notifyItemRangeChanged(position, myRidesList.size)
-                                    this.notifyDataSetChanged()
-                                }
-                        }
+
+                bookingList.removeAt(position)
+                db.collection("booking")
+                    .document(booking.bookingId!!.toString())
+                    .delete()
+                    .addOnCompleteListener { taskDeleteFromMyRides ->
+                        this.notifyItemRemoved(position)
+                        this.notifyItemRangeChanged(position, bookingList.size)
+                        this.notifyDataSetChanged()
                     }
             }
-            confirmDialog.setNegativeButton("No"){_,_ ->}
+            confirmDialog.setNegativeButton("No") { _, _ -> }
             confirmDialog.show()
         }
 
         //Track Ride
         holder.btnTrack.onClick {
             var intent = Intent(context, TrackRideActivity::class.java)
-            intent.putExtra("routeId", myRide.routeId)
+            intent.putExtra("routeId", booking.routeId)
             context.startActivity(intent)
         }
     }
@@ -93,7 +89,7 @@ class MyridesAdapter(
         internal var pickUpPoint: TextView = view.findViewById(R.id.textViewPickUpPoint)
         internal var dropOffPoint: TextView = view.findViewById(R.id.textViewDropOffPoint)
         internal var btnDelete: TextView = view.findViewById(R.id.btnCancel)
-        internal var btnTrack:TextView = view.findViewById(R.id.btnTrackRide)
+        internal var btnTrack: TextView = view.findViewById(R.id.btnTrackRide)
 
     }
 }

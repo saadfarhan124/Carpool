@@ -1,15 +1,12 @@
 package com.example.prototype
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.Booking
@@ -17,16 +14,9 @@ import com.example.prototype.dataModels.MyRides
 import com.example.prototype.dataModels.Routes
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.firestore.FirebaseFirestore
 import com.jakewharton.threetenabp.AndroidThreeTen
-import kotlinx.android.synthetic.main.activity_booking.*
-import org.jetbrains.anko.AlertDialogBuilder
-import org.jetbrains.anko.find
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
+
 import kotlin.collections.HashMap
 
 class BookingActivity : AppCompatActivity() {
