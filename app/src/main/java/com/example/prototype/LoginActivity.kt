@@ -63,18 +63,19 @@ class LoginActivity : AppCompatActivity() {
                             Util.getGlobals().userImage = BitmapFactory.decodeFile(localFile.absolutePath)
                             intent = Intent(applicationContext, navdrawer::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            loading.visibility = View.INVISIBLE
                             startActivity(intent)
 
                         }
                     }.addOnFailureListener{
-
+                        Toast.makeText(applicationContext, it.message, Toast.LENGTH_LONG)
                     }
                 }
 
             }else{
                 Toast.makeText(this,task.exception!!.message, Toast.LENGTH_LONG).show()
             }
-            loading.visibility = View.INVISIBLE
+
         }
     }
 }

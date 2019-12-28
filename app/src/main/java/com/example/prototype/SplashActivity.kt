@@ -70,9 +70,6 @@ class SplashActivity : AppCompatActivity() {
 
                 }
             }
-
-
-
         }else{
             startActivity(afterSplashActivityIntent)
         }
