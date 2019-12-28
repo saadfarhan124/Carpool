@@ -30,6 +30,13 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var textViewEmail: TextView
     private lateinit var textViewPhoneNumber: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var imageViewNumberIcon: ImageView
+    private lateinit var imageViewEmailIcon: ImageView
+    private lateinit var imageViewPasswordIcon: ImageView
+    private lateinit var imageViewGenderIcon: ImageView
+    private lateinit var imageViewDobIcon: ImageView
+    private lateinit var imageViewLogoutIcon: ImageView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +79,24 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         progressBar = findViewById(R.id.progressBarProfile)
+
+        imageViewNumberIcon = findViewById(R.id.img_num)
+        imageViewNumberIcon.setImageResource(R.drawable.ic_phone)
+
+        imageViewEmailIcon = findViewById(R.id.img_email)
+        imageViewEmailIcon.setImageResource(R.drawable.ic_email)
+
+        imageViewPasswordIcon = findViewById(R.id.img_pas)
+        imageViewPasswordIcon.setImageResource(R.drawable.ic_changepass)
+
+        imageViewGenderIcon = findViewById(R.id.img_gen)
+        imageViewGenderIcon.setImageResource(R.drawable.ic_gender)
+
+        imageViewDobIcon = findViewById(R.id.img_dob)
+        imageViewDobIcon.setImageResource(R.drawable.ic_dob)
+
+        imageViewLogoutIcon = findViewById(R.id.img_logout)
+        imageViewLogoutIcon.setImageResource(R.drawable.ic_logout)
     }
 
     private fun launchGallery() {
