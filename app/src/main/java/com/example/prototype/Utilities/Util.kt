@@ -23,9 +23,6 @@ import java.io.File
 
 class Util{
     companion object{
-
-
-
         fun logout(context: Context) : Intent{
             FirebaseAuth.getInstance().signOut()
             var intent = Intent(context, LoginActivity::class.java)
@@ -49,6 +46,10 @@ class Util{
         fun getStorageRef():StorageReference{
             return FirebaseStorage.getInstance()
                 .reference.child("images/${getGlobals().user!!.uid}")
+        }
+
+        fun getFirebaseAuth():FirebaseAuth{
+            return FirebaseAuth.getInstance()
         }
 
         fun downloadDisplayPicture(){
