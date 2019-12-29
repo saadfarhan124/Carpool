@@ -1,5 +1,6 @@
 package com.example.prototype
 
+import android.animation.ValueAnimator
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,9 @@ import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
+import android.widget.ImageView
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.google.android.gms.tasks.Tasks.await
@@ -19,17 +23,19 @@ import java.io.File
 
 class SplashActivity : AppCompatActivity() {
 
-    private val splashTime = 3000L
-    private lateinit var  myHandler: Handler
+    private val splashTime = 4000L
+
+
+    private lateinit var splashLogo: ImageView
     private var user: FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        myHandler = Handler()
-
-        myHandler.postDelayed({
+        //Function to initiate animation
+        animation()
+        Handler().postDelayed({
             if(Util.verifyAvailableNetwork(this)){
                 goToAfterSplash()
             }else{
@@ -45,6 +51,19 @@ class SplashActivity : AppCompatActivity() {
             }
         },splashTime)
     }
+
+    private fun animation(){
+        //animation
+        splashLogo = findViewById(R.id.splash_logo)
+        var anim = ScaleAnimation(0.5f, 1f, .5f, 1f,
+            Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
+        anim.setRepeatCount(ValueAnimator.INFINITE);
+        anim.setRepeatMode(ValueAnimator.REVERSE);
+        anim.duration = 2000
+        anim.fillAfter = true
+        splashLogo.startAnimation(anim)
+    }
+
     private fun goToAfterSplash(){
         user = FirebaseAuth.getInstance().currentUser
         val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
