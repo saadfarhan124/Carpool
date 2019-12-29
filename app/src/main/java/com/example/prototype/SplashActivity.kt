@@ -67,7 +67,7 @@ class SplashActivity : AppCompatActivity() {
                         startActivity(homeScreen)
                     }
                 }.addOnFailureListener{
-
+                    startActivity(homeScreen)
                 }
             }
         }else{
