@@ -35,7 +35,7 @@ class VerifyCodeActivity : AppCompatActivity() {
 
                     val user = task.result?.user
                     var intent:Intent = Intent()
-                    if(user!!.email != null){
+                    if(user!!.email == null){
                         intent = Intent(applicationContext, SignupEmailActivity::class.java)
                     }else{
                         intent = Intent(applicationContext, navdrawer::class.java)
