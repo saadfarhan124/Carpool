@@ -96,7 +96,10 @@ class LoginActivity : AppCompatActivity() {
 
                     }
                 }.addOnFailureListener {
-                    Toast.makeText(applicationContext, it.message, Toast.LENGTH_LONG)
+                    intent = Intent(applicationContext, navdrawer::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    loading.visibility = View.INVISIBLE
+                    startActivity(intent)
                 }
             }
         }
