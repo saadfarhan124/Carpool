@@ -34,6 +34,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.find
 import java.io.IOException
 
 
@@ -57,10 +58,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var root: View
 
     //Widgets
+    private lateinit var btn_service: Button
     private var mGPS: ImageView? = null
     private var customMarker: ImageView? = null
     private var btnSelectPickUp: Button? = null
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -90,7 +91,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         getLocationPermission()
+        init()
         initMap()
+
 
         return root
     }
@@ -98,6 +101,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     //Fifth
     //Setting Editor On Action Listener for the Enter Key
     private fun init() {
+        btn_service = root.findViewById(R.id.btn_service)
         btn_service.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
             val dialog = BottomSheetDialog(root.context)
@@ -191,7 +195,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                         1
                     )
                     Toast.makeText(root.context, "Found", Toast.LENGTH_LONG).show()
-                    init()
+
                 } else {
                     Log.d("Maps Activity", "Location Not Found")
                     Toast.makeText(root.context, "Not Found", Toast.LENGTH_LONG).show()
@@ -257,7 +261,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                         return
                     }
                 }
+                getDevicesLocation()
                 permissionFlag = true
+
             }
         }
     }
