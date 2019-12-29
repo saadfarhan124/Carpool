@@ -5,8 +5,9 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    >
+    android:background="#FFFFFF"
+    tools:context=".LoginActivity">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -21,10 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
             android:backgroundTint="@color/colorText"
-            app:navigationIcon="@drawable/ic_chevron_left_black_24dp">
-        </androidx.appcompat.widget.Toolbar>
+            app:navigationIcon="@drawable/ic_chevron_left_black_24dp"
+            app:popupTheme="@style/AppTheme.PopupOverlay"></androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -44,30 +44,30 @@
             android:id="@+id/lg_txt_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/lg_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/colorPrimary"
-
+        android:hint="Password"
         app:layout_constraintTop_toBottomOf="@+id/lg_email"
-        android:hint="Password">
+
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorPrimary">
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/lg_txt_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -84,10 +84,10 @@
         android:editable="false"
         android:enabled="true"
         android:onClick="authenticate"
-        android:paddingTop="14dp"
-        android:paddingBottom="14dp"
         android:paddingLeft="92dp"
+        android:paddingTop="14dp"
         android:paddingRight="92dp"
+        android:paddingBottom="14dp"
         android:text="Log in "
         android:textSize="16sp"
         app:cornerRadius="12dp"
@@ -113,14 +113,13 @@
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="155dp"
-        android:layout_height="125dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="200dp"
+        android:layout_height="155dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/logo_big"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/logo_big"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/forgotPass_btn"
@@ -131,7 +130,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:text="Forget Password?"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
