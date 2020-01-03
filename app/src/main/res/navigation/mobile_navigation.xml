@@ -37,6 +37,11 @@
         android:label="@string/menu_notification"
         tools:layout="@layout/fragment_notificaiton" />
     <fragment
+        android:id="@+id/nav_package"
+        android:name="com.example.prototype.ui.notification.NotificationFragment"
+        android:label="@string/menu_package"
+        tools:layout="@layout/fragment_package" />
+    <fragment
         android:id="@+id/nav_newroutes"
         android:name="com.example.prototype.ui.newroutes.NewroutesFragment"
         android:label="@string/menu_newroutes"
