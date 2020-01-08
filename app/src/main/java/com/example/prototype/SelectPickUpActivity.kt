@@ -63,8 +63,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         customMarker = findViewById(R.id.ic_marker)
         btnSelectPickUp = findViewById(R.id.btnSelectPickUp)
         //Places API
-        Places.initialize(applicationContext, getString(R.string.google_maps_key))
-        placesClient = Places.createClient(this)
+
         autocompleteSupportFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
 
