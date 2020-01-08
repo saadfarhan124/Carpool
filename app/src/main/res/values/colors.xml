@@ -8,4 +8,5 @@
     <color name="colorRed">#FF0000</color>
     <color name="colorGreen">#1faa00</color>
     <color name="transparent">#0000ffff</color>
+    <color name="chipBackgroundDisable">#4A838282</color>
 </resources>

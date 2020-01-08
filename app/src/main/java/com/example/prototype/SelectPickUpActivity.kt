@@ -155,12 +155,14 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     counter++
                     btnSelectPickUp!!.text = "See Routes"
                 } else {
-                    val intent = Intent(applicationContext, SeeRoutesActivity::class.java)
-                    intent.putExtra("DestLat", destinationLatLng.latitude)
-                    intent.putExtra("DestLong", destinationLatLng.longitude)
-                    intent.putExtra("PickupLat", marker.position.latitude)
-                    intent.putExtra("PickupLong", marker.position.longitude)
-                    startActivity(intent)
+//                    val intent = Intent(applicationContext, )
+                     //Bus Part
+//                    val intent = Intent(applicationContext, SeeRoutesActivity::class.java)
+//                    intent.putExtra("DestLat", destinationLatLng.latitude)
+//                    intent.putExtra("DestLong", destinationLatLng.longitude)
+//                    intent.putExtra("PickupLat", marker.position.latitude)
+//                    intent.putExtra("PickupLong", marker.position.longitude)
+//                    startActivity(intent)
                 }
 
             }

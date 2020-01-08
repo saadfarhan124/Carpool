@@ -8,7 +8,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView43"
+        android:id="@+id/textViewCarpoolService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="@+id/imageView15" />
 
     <TextView
-        android:id="@+id/textView44"
+        android:id="@+id/textViewBusService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -68,5 +68,5 @@
         android:background="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView43" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewCarpoolService" />
 </androidx.constraintlayout.widget.ConstraintLayout>

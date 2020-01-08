@@ -22,6 +22,7 @@
             android:nestedScrollingEnabled="true">
 
             <com.google.android.material.chip.Chip
+
                 android:id="@+id/chip_mon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +30,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_mon"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_mon"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_mon"
-                tools:text="Monday" />
+                android:text="Monday" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewMon"
@@ -41,11 +42,14 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_mon"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="8dp">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            >
 
             <View
                 android:id="@+id/dividermon"
@@ -78,6 +82,28 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dividermon" />
+
+            <TextView
+                android:id="@+id/textViewPickUpTimeMon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/dividermon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewDropOffTimeMon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dividermon" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -89,7 +115,9 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_date_tue"
         app:layout_constraintStart_toEndOf="@+id/txt_date_tue"
         app:layout_constraintTop_toTopOf="@+id/txt_date_tue"
-        tools:text="Tuesday" />
+        android:text="Tuesday"
+
+        />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewTue"
@@ -101,6 +129,7 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_tue"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -138,6 +167,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider_tue" />
+
+            <TextView
+                android:id="@+id/textViewPickUpTimeTue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/textViewDropOffTimeTue"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewDropOffTimeTue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_tue" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -150,7 +203,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_date_wed"
         app:layout_constraintStart_toEndOf="@+id/txt_date_wed"
         app:layout_constraintTop_toTopOf="@+id/txt_date_wed"
-        tools:text="Wednesday" />
+        android:text="Wednesday" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewWed"
@@ -162,6 +215,7 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_wed"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -199,6 +253,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider_wed" />
+
+            <TextView
+                android:id="@+id/textViewDropOffTimeWed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_wed" />
+
+            <TextView
+                android:id="@+id/textViewPickUpTimeWed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/divider_wed"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -211,7 +289,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_date_thur"
         app:layout_constraintStart_toEndOf="@+id/txt_date_thur"
         app:layout_constraintTop_toTopOf="@+id/txt_date_thur"
-        tools:text="Thursday" />
+        android:text="Thursday" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewThur"
@@ -222,6 +300,7 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_thur"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -259,6 +338,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider_thur" />
+
+            <TextView
+                android:id="@+id/textViewDropOffTimeThur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_thur" />
+
+            <TextView
+                android:id="@+id/textViewPickUpTimeThur"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/divider_thur"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -271,7 +374,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_date_fri"
         app:layout_constraintStart_toEndOf="@+id/txt_date_fri"
         app:layout_constraintTop_toTopOf="@+id/txt_date_fri"
-        tools:text="Friday" />
+        android:text="Friday" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewFri"
@@ -283,6 +386,7 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_fri"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -320,6 +424,30 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider_fri" />
+
+            <TextView
+                android:id="@+id/textViewPickUpTimeFri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/divider_fri"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewDropOffTimeFri"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_fri" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -332,7 +460,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_date_sat"
         app:layout_constraintStart_toEndOf="@+id/txt_date_sat"
         app:layout_constraintTop_toTopOf="@+id/txt_date_sat"
-        tools:text="Saturday" />
+        android:text="Saturday" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewSat"
@@ -344,6 +472,7 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_sat"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -381,6 +510,29 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/divider_sat" />
+
+            <TextView
+                android:id="@+id/textViewPickUpTimeSat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/divider_sat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/textViewDropOffTimeSat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_sat" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
@@ -393,7 +545,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/txt_date_sun"
         app:layout_constraintStart_toEndOf="@+id/txt_date_sun"
         app:layout_constraintTop_toTopOf="@+id/txt_date_sun"
-        tools:text="Sunday" />
+        android:text="Sunday" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewSun"
@@ -405,11 +557,36 @@
         app:cardCornerRadius="18dp"
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_sun"
+        android:visibility="gone"
         tools:layout_editor_absoluteX="8dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/textViewPickUpTimeSun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toTopOf="@+id/divider_sun"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewDropOffTimeSun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text=""
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider_sun" />
 
             <View
                 android:id="@+id/divider_sun"
@@ -547,6 +724,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardViewSun"
         app:layout_constraintVertical_bias="0.120000005" />
+
+            <TextView
+                android:id="@+id/textView82"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/materialCardViewSun"
+                app:layout_constraintEnd_toStartOf="@+id/materialCardViewSat" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
@@ -556,9 +744,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
-        android:text="Heading"
+        android:layout_marginEnd="32dp"
+        android:text="Select Days and Timings"
         android:textColor="@color/colorText1"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
