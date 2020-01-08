@@ -251,8 +251,8 @@ Karachi City, Sindh, Pakistan"
         android:text="Time to reach destination"
         android:textColor="@color/colorText1"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/chip17"
-        app:layout_constraintTop_toBottomOf="@+id/chip17" />
+        app:layout_constraintStart_toStartOf="@+id/txt_chip_M"
+        app:layout_constraintTop_toBottomOf="@+id/txt_chip_M" />
 
     <TextView
         android:id="@+id/txt_destinationTime"
@@ -309,7 +309,7 @@ Karachi City, Sindh, Pakistan"
 
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip17"
+        android:id="@+id/txt_chip_M"
         android:layout_width="40dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
@@ -320,70 +320,70 @@ Karachi City, Sindh, Pakistan"
         app:layout_constraintTop_toBottomOf="@+id/txt_number" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip20"
+        android:id="@+id/txt_chip_S"
         android:layout_width="42dp"
         android:layout_height="45dp"
         android:text="S"
         android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/chip21"
-        app:layout_constraintStart_toEndOf="@+id/chip21"
-        app:layout_constraintTop_toTopOf="@+id/chip21" />
+        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_F"
+        app:layout_constraintStart_toEndOf="@+id/txt_chip_F"
+        app:layout_constraintTop_toTopOf="@+id/txt_chip_F" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip21"
+        android:id="@+id/txt_chip_F"
         android:layout_width="42dp"
         android:layout_height="45dp"
         android:text="F"
         android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/chip22"
-        app:layout_constraintStart_toEndOf="@+id/chip22"
-        app:layout_constraintTop_toTopOf="@+id/chip22" />
+        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Th"
+        app:layout_constraintStart_toEndOf="@+id/txt_chip_Th"
+        app:layout_constraintTop_toTopOf="@+id/txt_chip_Th" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip22"
+        android:id="@+id/txt_chip_Th"
         android:layout_width="42dp"
         android:layout_height="45dp"
         android:text="T"
         android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/chip23"
-        app:layout_constraintStart_toEndOf="@+id/chip23"
-        app:layout_constraintTop_toTopOf="@+id/chip23" />
+        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_W"
+        app:layout_constraintStart_toEndOf="@+id/txt_chip_W"
+        app:layout_constraintTop_toTopOf="@+id/txt_chip_W" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip23"
+        android:id="@+id/txt_chip_W"
         android:layout_width="40dp"
         android:layout_height="45dp"
         android:text="W"
         android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/chip24"
-        app:layout_constraintStart_toEndOf="@+id/chip24"
-        app:layout_constraintTop_toTopOf="@+id/chip24" />
+        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_T"
+        app:layout_constraintStart_toEndOf="@+id/txt_chip_T"
+        app:layout_constraintTop_toTopOf="@+id/txt_chip_T" />
 
     <com.google.android.material.chip.Chip
-        android:id="@+id/chip24"
+        android:id="@+id/txt_chip_T"
         android:layout_width="42dp"
         android:layout_height="45dp"
         android:text="T"
         android:textAlignment="center"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/chip17"
-        app:layout_constraintStart_toEndOf="@+id/chip17"
-        app:layout_constraintTop_toTopOf="@+id/chip17" />
+        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_M"
+        app:layout_constraintStart_toEndOf="@+id/txt_chip_M"
+        app:layout_constraintTop_toTopOf="@+id/txt_chip_M" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/chip25"
+                android:id="@+id/txt_chip_Sun"
                 android:layout_width="42dp"
                 android:layout_height="45dp"
                 android:text="S"
                 android:textAlignment="center"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/chip20"
-                app:layout_constraintStart_toEndOf="@+id/chip20"
-                app:layout_constraintTop_toTopOf="@+id/chip20" />
+                app:layout_constraintBottom_toBottomOf="@+id/txt_chip_S"
+                app:layout_constraintStart_toEndOf="@+id/txt_chip_S"
+                app:layout_constraintTop_toTopOf="@+id/txt_chip_S" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
