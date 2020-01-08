@@ -7,8 +7,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.prototype.Utilities.Util
+import com.example.prototype.dataModels.CarSharingDataModel
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
+import com.google.firebase.firestore.DocumentReference
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.textColor
 import java.sql.Time
@@ -76,6 +79,8 @@ class SelectDaysAndTime : AppCompatActivity() {
 
 
 
+
+
     //time dropoffs
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,6 +94,121 @@ class SelectDaysAndTime : AppCompatActivity() {
 
     //Insert
     private fun insertRequest(){
+        var listOfDays = mutableListOf<CarSharingDataModel>()
+
+        //Monday
+        if(Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(mondayTimePickUp.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Monday", Toast.LENGTH_LONG).show()
+                return
+            }else if(mondayTimeDropOff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Monday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Monday",
+                    mondayTimePickUp.text.toString(),
+                    mondayTimeDropOff.text.toString())
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+        //Tuesday
+        if(Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(tuesdayTimePickUp.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else if(tuesdayTimeDropOff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Tuesday",
+                    tuesdayTimePickUp.text.toString(),
+                    tuesdayTimeDropOff.text.toString())
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+        //Wednesday
+        if(Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(wednesdayTimePickUp.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else if(wednesdayTimeDropOff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Wednesday",
+                    wednesdayTimePickUp.text.toString(),
+                    wednesdayTimeDropOff.text.toString())
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Thursday
+        if(Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(thursdayTimePickUp.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else if(thursdayTimeDropOff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Thursday",
+                    thursdayTimePickUp.text.toString(),
+                    thursdayTimeDropOff.text.toString())
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Friday
+        if(Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(fridayTimePickUp.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Friday", Toast.LENGTH_LONG).show()
+                return
+            }else if(fridayTimeDropOff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Friday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Friday",
+                    fridayTimePickUp.text.toString(),
+                    fridayTimeDropOff.text.toString())
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Saturday
+        if(Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(saturdayTimePickUp.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Saturday", Toast.LENGTH_LONG).show()
+                return
+            }else if(saturdayTimeDropOff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Saturday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Saturday",
+                    saturdayTimePickUp.text.toString(),
+                    saturdayTimeDropOff.text.toString())
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Sunday
+        if(Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(sundayTimePickUp.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Sunday", Toast.LENGTH_LONG).show()
+                return
+            }else if(sundayTimeDropOff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Sunday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Sunday",
+                    sundayTimePickUp.text.toString(),
+                    sundayTimeDropOff.text.toString())
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document("Saad")
+        for(item in listOfDays){
+            ref.collection("Days").document(item.day!!).set(item)
+        }
 
     }
 
