@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
+
     <TextView
         android:id="@+id/txt_reviewInfo"
         android:layout_width="match_parent"
@@ -20,6 +23,77 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/img_ac"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/txt_reviewInfo"
+        app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo"
+        app:srcCompat="@mipmap/ic_logo_round" />
+
+    <ImageView
+        android:id="@+id/img_nonAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        app:layout_constraintBottom_toBottomOf="@+id/img_ac"
+        app:layout_constraintStart_toEndOf="@+id/img_ac"
+        app:layout_constraintTop_toTopOf="@+id/img_ac"
+        app:srcCompat="@mipmap/ic_logo_round" />
+
+    <TextView
+        android:id="@+id/txt_monthAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/mo"
+        android:textColor="@color/colorText1"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txt_priceAC"
+        app:layout_constraintStart_toEndOf="@+id/txt_priceAC"
+        app:layout_constraintTop_toTopOf="@+id/txt_priceAC" />
+
+    <TextView
+        android:id="@+id/txt_monthNonAC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="/mo"
+        android:textColor="@color/colorText1"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/txt_nonAC"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nonAC" />
+
+    <ImageView
+        android:id="@+id/img_pickupAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="@+id/divider9"
+        app:layout_constraintTop_toBottomOf="@+id/divider9"
+        app:srcCompat="@drawable/ic_panorama_fish_eye_black_24dp" />
+
+    <ImageView
+        android:id="@+id/img_dropoffAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/img_pickupAddress"
+        app:layout_constraintStart_toStartOf="@+id/img_pickupAddress"
+        app:layout_constraintTop_toBottomOf="@+id/divider10"
+        app:srcCompat="@drawable/ic_panorama_fish_eye_black_24dp" />
+
+    <View
+        android:id="@+id/divider10"
+        android:layout_width="1dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        app:layout_constraintEnd_toEndOf="@+id/img_pickupAddress"
+        app:layout_constraintStart_toStartOf="@+id/img_pickupAddress"
+        app:layout_constraintTop_toBottomOf="@+id/img_pickupAddress" />
 
     <TextView
         android:id="@+id/txt_ac"
@@ -106,17 +180,33 @@ Karachi City, Sindh, Pakistan"
         app:layout_constraintStart_toEndOf="@+id/img_dropoffAddress"
         app:layout_constraintTop_toTopOf="@+id/img_dropoffAddress" />
 
-    <TextView
-        android:id="@+id/txt_lbl_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Name"
-        android:textColor="@color/colorText1"
-        android:textSize="16sp"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_dropoffAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_dropoffAddress">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true">
+
+            <TextView
+                android:id="@+id/txt_lbl_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Name"
+                android:textColor="@color/colorText1"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_name"
@@ -161,8 +251,8 @@ Karachi City, Sindh, Pakistan"
         android:text="Time to reach destination"
         android:textColor="@color/colorText1"
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_number"
-        app:layout_constraintTop_toBottomOf="@+id/txt_number" />
+        app:layout_constraintStart_toStartOf="@+id/chip17"
+        app:layout_constraintTop_toBottomOf="@+id/chip17" />
 
     <TextView
         android:id="@+id/txt_destinationTime"
@@ -217,75 +307,83 @@ Karachi City, Sindh, Pakistan"
         app:layout_constraintStart_toStartOf="@+id/txt_lbl_returnTime"
         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_returnTime" />
 
-    <ImageView
-        android:id="@+id/img_ac"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="@+id/txt_reviewInfo"
-        app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo"
-        app:srcCompat="@mipmap/ic_logo_round" />
 
-    <ImageView
-        android:id="@+id/img_nonAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_ac"
-        app:layout_constraintStart_toEndOf="@+id/img_ac"
-        app:layout_constraintTop_toTopOf="@+id/img_ac"
-        app:srcCompat="@mipmap/ic_logo_round" />
-
-    <TextView
-        android:id="@+id/txt_monthAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="/mo"
-        android:textColor="@color/colorText1"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_priceAC"
-        app:layout_constraintStart_toEndOf="@+id/txt_priceAC"
-        app:layout_constraintTop_toTopOf="@+id/txt_priceAC" />
-
-    <TextView
-        android:id="@+id/txt_monthNonAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip17"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
-        android:text="/mo"
-        android:textColor="@color/colorText1"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/txt_nonAC"
-        app:layout_constraintTop_toBottomOf="@+id/txt_nonAC" />
+        android:text="M"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/txt_number"
+        app:layout_constraintTop_toBottomOf="@+id/txt_number" />
 
-    <ImageView
-        android:id="@+id/img_pickupAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="@+id/divider9"
-        app:layout_constraintTop_toBottomOf="@+id/divider9"
-        app:srcCompat="@drawable/ic_panorama_fish_eye_black_24dp" />
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip20"
+        android:layout_width="42dp"
+        android:layout_height="45dp"
+        android:text="S"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip21"
+        app:layout_constraintStart_toEndOf="@+id/chip21"
+        app:layout_constraintTop_toTopOf="@+id/chip21" />
 
-    <ImageView
-        android:id="@+id/img_dropoffAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/img_pickupAddress"
-        app:layout_constraintStart_toStartOf="@+id/img_pickupAddress"
-        app:layout_constraintTop_toBottomOf="@+id/divider10"
-        app:srcCompat="@drawable/ic_panorama_fish_eye_black_24dp" />
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip21"
+        android:layout_width="42dp"
+        android:layout_height="45dp"
+        android:text="F"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip22"
+        app:layout_constraintStart_toEndOf="@+id/chip22"
+        app:layout_constraintTop_toTopOf="@+id/chip22" />
 
-    <View
-        android:id="@+id/divider10"
-        android:layout_width="1dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="@+id/img_pickupAddress"
-        app:layout_constraintStart_toStartOf="@+id/img_pickupAddress"
-        app:layout_constraintTop_toBottomOf="@+id/img_pickupAddress" />
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip22"
+        android:layout_width="42dp"
+        android:layout_height="45dp"
+        android:text="T"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip23"
+        app:layout_constraintStart_toEndOf="@+id/chip23"
+        app:layout_constraintTop_toTopOf="@+id/chip23" />
 
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip23"
+        android:layout_width="40dp"
+        android:layout_height="45dp"
+        android:text="W"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip24"
+        app:layout_constraintStart_toEndOf="@+id/chip24"
+        app:layout_constraintTop_toTopOf="@+id/chip24" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip24"
+        android:layout_width="42dp"
+        android:layout_height="45dp"
+        android:text="T"
+        android:textAlignment="center"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip17"
+        app:layout_constraintStart_toEndOf="@+id/chip17"
+        app:layout_constraintTop_toTopOf="@+id/chip17" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip25"
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                android:text="S"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/chip20"
+                app:layout_constraintStart_toEndOf="@+id/chip20"
+                app:layout_constraintTop_toTopOf="@+id/chip20" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
