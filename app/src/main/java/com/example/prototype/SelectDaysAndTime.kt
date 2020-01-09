@@ -1,14 +1,18 @@
 package com.example.prototype
 
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
+import com.example.prototype.dataModels.DaysDataModel
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.DocumentReference
@@ -77,17 +81,34 @@ class SelectDaysAndTime : AppCompatActivity() {
     //Button
     private lateinit var btnContinue:Button
 
+    //Utilities
+    private lateinit var destLatLng: LatLng
+    private lateinit var pickUpLatLng: LatLng
+    private lateinit var destAddress: String
+    private lateinit var pickUpAddress:String
 
+    //Days datamodel
+    private lateinit var daysDataModel: DaysDataModel
 
-
-
-    //time dropoffs
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        android:textColor="@color/colorText"
-//        app:chipBackgroundColor="@color/colorPrimary"
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selectdays)
+
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbarsp)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        //Getting values from intent
+        destLatLng = LatLng(intent.extras!!.getDouble("DestLat"), intent.extras!!.getDouble("DestLong"))
+        destAddress = intent.extras!!.getString("DestAddress")!!
+
+        pickUpLatLng = LatLng(intent.extras!!.getDouble("PickupLat"), intent.extras!!.getDouble("PickupLong"))
+        pickUpAddress = intent.extras!!.getString("PickUpAddress")!!
+
+        daysDataModel = DaysDataModel()
 
         init()
     }
@@ -108,6 +129,7 @@ class SelectDaysAndTime : AppCompatActivity() {
                 var carSharingDataModel = CarSharingDataModel("Monday",
                     mondayTimePickUp.text.toString(),
                     mondayTimeDropOff.text.toString())
+                daysDataModel.Monday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
@@ -123,6 +145,7 @@ class SelectDaysAndTime : AppCompatActivity() {
                 var carSharingDataModel = CarSharingDataModel("Tuesday",
                     tuesdayTimePickUp.text.toString(),
                     tuesdayTimeDropOff.text.toString())
+                daysDataModel.Tuesday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
@@ -138,6 +161,7 @@ class SelectDaysAndTime : AppCompatActivity() {
                 var carSharingDataModel = CarSharingDataModel("Wednesday",
                     wednesdayTimePickUp.text.toString(),
                     wednesdayTimeDropOff.text.toString())
+                daysDataModel.Wednesday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
@@ -154,6 +178,7 @@ class SelectDaysAndTime : AppCompatActivity() {
                 var carSharingDataModel = CarSharingDataModel("Thursday",
                     thursdayTimePickUp.text.toString(),
                     thursdayTimeDropOff.text.toString())
+                daysDataModel.Thursday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
@@ -170,6 +195,7 @@ class SelectDaysAndTime : AppCompatActivity() {
                 var carSharingDataModel = CarSharingDataModel("Friday",
                     fridayTimePickUp.text.toString(),
                     fridayTimeDropOff.text.toString())
+                daysDataModel.Friday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
@@ -186,6 +212,7 @@ class SelectDaysAndTime : AppCompatActivity() {
                 var carSharingDataModel = CarSharingDataModel("Saturday",
                     saturdayTimePickUp.text.toString(),
                     saturdayTimeDropOff.text.toString())
+                daysDataModel.Saturday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
@@ -202,6 +229,7 @@ class SelectDaysAndTime : AppCompatActivity() {
                 var carSharingDataModel = CarSharingDataModel("Sunday",
                     sundayTimePickUp.text.toString(),
                     sundayTimeDropOff.text.toString())
+                daysDataModel.Sunday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
@@ -209,6 +237,7 @@ class SelectDaysAndTime : AppCompatActivity() {
         for(item in listOfDays){
             ref.collection("Days").document(item.day!!).set(item)
         }
+//        var intent = Intent(applicationContext, )
 
     }
 

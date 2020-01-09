@@ -19,9 +19,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-
-
-
 class UpdateDaysAndTime : AppCompatActivity() {
 
     //Chips
@@ -97,6 +94,205 @@ class UpdateDaysAndTime : AppCompatActivity() {
         getDatabaseEntries()
     }
 
+    private fun updateData() {
+        var listOfDays = mutableListOf<CarSharingDataModel>()
+        //Monday
+        if (Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (mondayTimePickUp.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Monday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else if (mondayTimeDropOff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Monday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Monday",
+                    mondayTimePickUp.text.toString(),
+                    mondayTimeDropOff.text.toString()
+                )
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+        //Tuesday
+        if (Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (tuesdayTimePickUp.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else if (tuesdayTimeDropOff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Tuesday",
+                    tuesdayTimePickUp.text.toString(),
+                    tuesdayTimeDropOff.text.toString()
+                )
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+        //Wednesday
+        if (Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (wednesdayTimePickUp.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else if (wednesdayTimeDropOff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Wednesday",
+                    wednesdayTimePickUp.text.toString(),
+                    wednesdayTimeDropOff.text.toString()
+                )
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Thursday
+        if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (thursdayTimePickUp.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else if (thursdayTimeDropOff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Thursday",
+                    thursdayTimePickUp.text.toString(),
+                    thursdayTimeDropOff.text.toString()
+                )
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Friday
+        if (Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (fridayTimePickUp.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Friday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else if (fridayTimeDropOff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Friday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Friday",
+                    fridayTimePickUp.text.toString(),
+                    fridayTimeDropOff.text.toString()
+                )
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Saturday
+        if (Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (saturdayTimePickUp.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Saturday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else if (saturdayTimeDropOff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Saturday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Saturday",
+                    saturdayTimePickUp.text.toString(),
+                    saturdayTimeDropOff.text.toString()
+                )
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Sunday
+        if (Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (sundayTimePickUp.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Sunday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else if (sundayTimeDropOff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Sunday",
+                    Toast.LENGTH_LONG
+                ).show()
+                return
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Sunday",
+                    sundayTimePickUp.text.toString(),
+                    sundayTimeDropOff.text.toString()
+                )
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+        var ref: DocumentReference =
+            Util.getFirebaseFireStore().collection("carRideRequests").document("Saad")
+        ref.collection("Days")
+            .get()
+            .addOnSuccessListener {
+                for(document in it.documents){
+                    ref.collection("Days").document(document.id).delete()
+                }
+            }.addOnSuccessListener {
+                for (item in listOfDays) {
+                    ref.collection("Days").document(item.day!!).set(item)
+                }
+            }
+
+
+    }
+
+    //retrieve records from database
     private fun getDatabaseEntries() {
         listOfDaysBooked = arrayListOf()
         var ref: DocumentReference =
@@ -116,14 +312,24 @@ class UpdateDaysAndTime : AppCompatActivity() {
             }
     }
 
+    //set the record values from the database
     private fun previewDataFromDatabase() {
         if (listOfDaysBooked.find { e -> e.day.equals("Monday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Monday") }
             //condition to verify that 24 hours haven't passed
-            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Sunday"){
-                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
-                    Monday.setOnClickListener{
-                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+            if (calendar.getDisplayName(
+                    Calendar.DAY_OF_WEEK,
+                    Calendar.LONG,
+                    Locale.getDefault()
+                ) == "Sunday"
+            ) {
+                if (model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0) {
+                    Monday.setOnClickListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Can only update before 24 hours",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Monday.chipBackgroundColor = getColorStateList(R.color.colorText)
                         Monday.setTextColor(resources.getColor(R.color.colorPrimary, null))
                     }
@@ -138,10 +344,19 @@ class UpdateDaysAndTime : AppCompatActivity() {
         if (listOfDaysBooked.find { e -> e.day.equals("Tuesday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Tuesday") }
             //condition to verify that 24 hours haven't passed
-            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Monday"){
-                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
-                    Tuesday.setOnClickListener{
-                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+            if (calendar.getDisplayName(
+                    Calendar.DAY_OF_WEEK,
+                    Calendar.LONG,
+                    Locale.getDefault()
+                ) == "Monday"
+            ) {
+                if (model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0) {
+                    Tuesday.setOnClickListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Can only update before 24 hours",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Tuesday.chipBackgroundColor = getColorStateList(R.color.colorText)
                         Tuesday.setTextColor(resources.getColor(R.color.colorPrimary, null))
                     }
@@ -156,10 +371,19 @@ class UpdateDaysAndTime : AppCompatActivity() {
         if (listOfDaysBooked.find { e -> e.day.equals("Wednesday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Wednesday") }
             //condition to verify that 24 hours haven't passed
-            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Tuesday"){
-                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
-                    Wednesday.setOnClickListener{
-                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+            if (calendar.getDisplayName(
+                    Calendar.DAY_OF_WEEK,
+                    Calendar.LONG,
+                    Locale.getDefault()
+                ) == "Tuesday"
+            ) {
+                if (model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0) {
+                    Wednesday.setOnClickListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Can only update before 24 hours",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Wednesday.chipBackgroundColor = getColorStateList(R.color.colorText)
                         Wednesday.setTextColor(resources.getColor(R.color.colorPrimary, null))
                     }
@@ -174,10 +398,19 @@ class UpdateDaysAndTime : AppCompatActivity() {
         if (listOfDaysBooked.find { e -> e.day.equals("Thursday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Thursday") }
             //condition to verify that 24 hours haven't passed
-            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Wednesday"){
-                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
-                    Thursday.setOnClickListener{
-                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+            if (calendar.getDisplayName(
+                    Calendar.DAY_OF_WEEK,
+                    Calendar.LONG,
+                    Locale.getDefault()
+                ) == "Wednesday"
+            ) {
+                if (model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0) {
+                    Thursday.setOnClickListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Can only update before 24 hours",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Thursday.chipBackgroundColor = getColorStateList(R.color.colorText)
                         Thursday.setTextColor(resources.getColor(R.color.colorPrimary, null))
                     }
@@ -191,10 +424,19 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Friday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Friday") }
-            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Thursday"){
-                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
-                    Friday.setOnClickListener{
-                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+            if (calendar.getDisplayName(
+                    Calendar.DAY_OF_WEEK,
+                    Calendar.LONG,
+                    Locale.getDefault()
+                ) == "Thursday"
+            ) {
+                if (model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0) {
+                    Friday.setOnClickListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Can only update before 24 hours",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Friday.chipBackgroundColor = getColorStateList(R.color.colorText)
                         Friday.setTextColor(resources.getColor(R.color.colorPrimary, null))
                     }
@@ -208,10 +450,19 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Saturday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Saturday") }
-            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Friday"){
-                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
-                    Saturday.setOnClickListener{
-                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+            if (calendar.getDisplayName(
+                    Calendar.DAY_OF_WEEK,
+                    Calendar.LONG,
+                    Locale.getDefault()
+                ) == "Friday"
+            ) {
+                if (model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0) {
+                    Saturday.setOnClickListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Can only update before 24 hours",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Saturday.chipBackgroundColor = getColorStateList(R.color.colorText)
                         Saturday.setTextColor(resources.getColor(R.color.colorPrimary, null))
                     }
@@ -225,10 +476,19 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Sunday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Sunday") }
-            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Saturday"){
-                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
-                    Sunday.setOnClickListener{
-                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+            if (calendar.getDisplayName(
+                    Calendar.DAY_OF_WEEK,
+                    Calendar.LONG,
+                    Locale.getDefault()
+                ) == "Saturday"
+            ) {
+                if (model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0) {
+                    Sunday.setOnClickListener {
+                        Toast.makeText(
+                            applicationContext,
+                            "Can only update before 24 hours",
+                            Toast.LENGTH_LONG
+                        ).show()
                         Sunday.chipBackgroundColor = getColorStateList(R.color.colorText)
                         Sunday.setTextColor(resources.getColor(R.color.colorPrimary, null))
                     }
@@ -242,10 +502,11 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
     }
 
+    //Initilization
     private fun init() {
         btnContinue = findViewById(R.id.btn_Continue)
         btnContinue.onClick {
-
+            updateData()
         }
         //Monday
         //textTime pickup

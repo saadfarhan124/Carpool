@@ -9,6 +9,7 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -45,6 +46,8 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var marker: Marker
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var destinationLatLng: LatLng
+    private lateinit var destinationAddress: String
+    private lateinit var pickUpAddress: String
     private lateinit var polylineOptions: PolylineOptions
     private var polyFlag = false
 
@@ -68,7 +71,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
 
         destinationLatLng = LatLng(intent.extras!!.get("DestLat").toString().toDouble(),intent.extras!!.get("DestLong").toString().toDouble())
-
+        destinationAddress = intent.extras!!.getString("DestAddress").toString()
         //Top App Bar
         val toolbar: Toolbar = findViewById(R.id.toolbarsp)
         setSupportActionBar(toolbar)
@@ -104,6 +107,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
             override fun onPlaceSelected(p0: Place) {
                 Handler().postDelayed({
+                    pickUpAddress = p0.address!!
                     autocompleteSupportFragment.setText(p0.address)
                     geolocate(p0)
                 }, 500)
@@ -153,9 +157,18 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         }
                     }
                     counter++
-                    btnSelectPickUp!!.text = "See Routes"
+                    btnSelectPickUp!!.text = "Proceed"
                 } else {
-//                    val intent = Intent(applicationContext, )
+                    val intent = Intent(applicationContext, SelectDaysAndTime::class.java)
+                    intent.putExtra("DestLat", destinationLatLng.latitude)
+                    intent.putExtra("DestLong", destinationLatLng.longitude)
+                    intent.putExtra("DestAddress", destinationAddress)
+                    intent.putExtra("PickupLat", marker.position.latitude)
+                    intent.putExtra("PickupLong", marker.position.longitude)
+                    intent.putExtra("PickUpAddress", pickUpAddress)
+                    startActivity(intent)
+
+
                      //Bus Part
 //                    val intent = Intent(applicationContext, SeeRoutesActivity::class.java)
 //                    intent.putExtra("DestLat", destinationLatLng.latitude)
