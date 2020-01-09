@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <activity android:name=".SelectDaysAndTime"></activity>-->
+<!--        <activity android:name=".UpdateDaysAndTime"></activity>-->
+        <activity android:name=".SelectDaysAndTime"></activity>
         <activity android:name=".ForgotPasswordActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -46,7 +47,7 @@
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SelectDaysAndTime">
+        <activity android:name=".UpdateDaysAndTime">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
