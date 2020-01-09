@@ -26,11 +26,11 @@
                 android:id="@+id/chip_mon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/txt_date_mon"
-                app:layout_constraintStart_toEndOf="@+id/txt_date_mon"
-                app:layout_constraintTop_toTopOf="@+id/txt_date_mon"
-                android:text="Monday" />
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:text="Monday"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewMon"
@@ -43,7 +43,7 @@
         app:cardElevation="6dp"
         app:layout_constraintTop_toBottomOf="@+id/chip_mon"
         android:visibility="gone"
-        tools:layout_editor_absoluteX="8dp">
+        >
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -107,17 +107,16 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_tue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_date_tue"
-        app:layout_constraintStart_toEndOf="@+id/txt_date_tue"
-        app:layout_constraintTop_toTopOf="@+id/txt_date_tue"
-        android:text="Tuesday"
-
-        />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_tue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:visibility="gone"
+                android:layout_marginTop="8dp"
+                android:text="Tuesday"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewMon" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewTue"
@@ -195,15 +194,15 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_wed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_date_wed"
-        app:layout_constraintStart_toEndOf="@+id/txt_date_wed"
-        app:layout_constraintTop_toTopOf="@+id/txt_date_wed"
-        android:text="Wednesday" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_wed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Wednesday"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewTue" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewWed"
@@ -281,100 +280,101 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_thur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_date_thur"
-        app:layout_constraintStart_toEndOf="@+id/txt_date_thur"
-        app:layout_constraintTop_toTopOf="@+id/txt_date_thur"
-        android:text="Thursday" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardViewThur"
-        style="@style/Widget.MaterialComponents.CardView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:outlineSpotShadowColor="@color/colorPrimaryDark"
-        app:cardCornerRadius="18dp"
-        app:cardElevation="6dp"
-        app:layout_constraintTop_toBottomOf="@+id/chip_thur"
-        android:visibility="gone"
-        tools:layout_editor_absoluteX="8dp">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <View
-                android:id="@+id/divider_thur"
-                android:layout_width="393dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorAccent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt_pick_thur" />
-
-            <TextView
-                android:id="@+id/txt_pick_thur"
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_thur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:text="Pick up Time"
+                android:text="Thursday"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewWed" />
 
-            <TextView
-                android:id="@+id/txt_drop_thur"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardViewThur"
+                style="@style/Widget.MaterialComponents.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/chip_thur"
+                tools:layout_editor_absoluteX="8dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/divider_thur"
+                        android:layout_width="393dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/colorAccent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_pick_thur" />
+
+                    <TextView
+                        android:id="@+id/txt_pick_thur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Pick up Time"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_drop_thur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="Drop off Time"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider_thur" />
+
+                    <TextView
+                        android:id="@+id/textViewDropOffTimeThur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:text=""
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider_thur" />
+
+                    <TextView
+                        android:id="@+id/textViewPickUpTimeThur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="8dp"
+                        android:text=""
+                        app:layout_constraintBottom_toTopOf="@+id/divider_thur"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fri"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:text="Drop off Time"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:text="Friday"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_thur" />
-
-            <TextView
-                android:id="@+id/textViewDropOffTimeThur"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:text=""
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/divider_thur" />
-
-            <TextView
-                android:id="@+id/textViewPickUpTimeThur"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:text=""
-                app:layout_constraintBottom_toTopOf="@+id/divider_thur"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_fri"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_date_fri"
-        app:layout_constraintStart_toEndOf="@+id/txt_date_fri"
-        app:layout_constraintTop_toTopOf="@+id/txt_date_fri"
-        android:text="Friday" />
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewThur" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewFri"
@@ -452,15 +452,15 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_sat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_date_sat"
-        app:layout_constraintStart_toEndOf="@+id/txt_date_sat"
-        app:layout_constraintTop_toTopOf="@+id/txt_date_sat"
-        android:text="Saturday" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Saturday"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewFri" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewSat"
@@ -537,15 +537,15 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_sun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_date_sun"
-        app:layout_constraintStart_toEndOf="@+id/txt_date_sun"
-        app:layout_constraintTop_toTopOf="@+id/txt_date_sun"
-        android:text="Sunday" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:text="Sunday"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewSat" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/materialCardViewSun"
@@ -623,86 +623,7 @@
     </com.google.android.material.card.MaterialCardView>
 
 
-
-
-    <TextView
-        android:id="@+id/txt_date_mon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="1 Jan 2020"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_date_tue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="2 Jan 2020"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewMon" />
-
-    <TextView
-        android:id="@+id/txt_date_wed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="3 Jan 2020"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewTue" />
-
-    <TextView
-        android:id="@+id/txt_date_thur"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="4 Jan 2020"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewWed" />
-
-    <TextView
-        android:id="@+id/txt_date_fri"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="5 Jan 2020"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewThur" />
-
-    <TextView
-        android:id="@+id/txt_date_sat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="6 Jan 2020"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewFri" />
-
-    <TextView
-        android:id="@+id/txt_date_sun"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="7 Jan 2020"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardViewSat" />
-
-    <com.google.android.material.button.MaterialButton
+            <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_Continue"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
@@ -724,16 +645,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialCardViewSun"
         app:layout_constraintVertical_bias="0.120000005" />
-
-            <TextView
-                android:id="@+id/textView82"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="8dp"
-                android:text="TextView"
-                app:layout_constraintBottom_toTopOf="@+id/materialCardViewSun"
-                app:layout_constraintEnd_toStartOf="@+id/materialCardViewSat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
