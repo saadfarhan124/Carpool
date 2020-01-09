@@ -1,10 +1,8 @@
 package com.example.prototype
 
 import android.app.TimePickerDialog
-import android.icu.util.TimeUnit
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -15,12 +13,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.DocumentReference
 import com.jakewharton.threetenabp.AndroidThreeTen
-import org.jetbrains.anko.enabled
 import org.jetbrains.anko.onClick
-import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.LocalDate
-import org.threeten.bp.format.DateTimeFormatter
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -88,12 +81,18 @@ class UpdateDaysAndTime : AppCompatActivity() {
     //Button
     private lateinit var btnContinue: Button
 
+    //Calendar variable
+    private lateinit var calendar: Calendar
+
     private lateinit var listOfDaysBooked: ArrayList<CarSharingDataModel>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_update_days_and_time)
-        AndroidThreeTen.init(this);
+        setContentView(R.layout.activity_selectdays)
+        AndroidThreeTen.init(this)
+
+        calendar = Util.getCalendarInstance()
+
         init()
         getDatabaseEntries()
     }
@@ -120,7 +119,16 @@ class UpdateDaysAndTime : AppCompatActivity() {
     private fun previewDataFromDatabase() {
         if (listOfDaysBooked.find { e -> e.day.equals("Monday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Monday") }
-
+            //condition to verify that 24 hours haven't passed
+            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Sunday"){
+                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
+                    Monday.setOnClickListener{
+                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+                        Monday.chipBackgroundColor = getColorStateList(R.color.colorText)
+                        Monday.setTextColor(resources.getColor(R.color.colorPrimary, null))
+                    }
+                }
+            }
             Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Monday.setTextColor(resources.getColor(R.color.colorText, null))
             MondayCard.visibility = View.VISIBLE
@@ -129,6 +137,16 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Tuesday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Tuesday") }
+            //condition to verify that 24 hours haven't passed
+            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Monday"){
+                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
+                    Tuesday.setOnClickListener{
+                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+                        Tuesday.chipBackgroundColor = getColorStateList(R.color.colorText)
+                        Tuesday.setTextColor(resources.getColor(R.color.colorPrimary, null))
+                    }
+                }
+            }
             Tuesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Tuesday.setTextColor(resources.getColor(R.color.colorText, null))
             TuesdayCard.visibility = View.VISIBLE
@@ -137,6 +155,16 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Wednesday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Wednesday") }
+            //condition to verify that 24 hours haven't passed
+            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Tuesday"){
+                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
+                    Wednesday.setOnClickListener{
+                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+                        Wednesday.chipBackgroundColor = getColorStateList(R.color.colorText)
+                        Wednesday.setTextColor(resources.getColor(R.color.colorPrimary, null))
+                    }
+                }
+            }
             Wednesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Wednesday.setTextColor(resources.getColor(R.color.colorText, null))
             WednesdayCard.visibility = View.VISIBLE
@@ -145,6 +173,16 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Thursday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Thursday") }
+            //condition to verify that 24 hours haven't passed
+            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Wednesday"){
+                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
+                    Thursday.setOnClickListener{
+                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+                        Thursday.chipBackgroundColor = getColorStateList(R.color.colorText)
+                        Thursday.setTextColor(resources.getColor(R.color.colorPrimary, null))
+                    }
+                }
+            }
             Thursday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Thursday.setTextColor(resources.getColor(R.color.colorText, null))
             ThursdayCard.visibility = View.VISIBLE
@@ -153,7 +191,6 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Friday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Friday") }
-            var calendar = Calendar.getInstance()
             if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Thursday"){
                 if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
                     Friday.setOnClickListener{
@@ -171,6 +208,15 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Saturday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Saturday") }
+            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Friday"){
+                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
+                    Saturday.setOnClickListener{
+                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+                        Saturday.chipBackgroundColor = getColorStateList(R.color.colorText)
+                        Saturday.setTextColor(resources.getColor(R.color.colorPrimary, null))
+                    }
+                }
+            }
             Saturday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Saturday.setTextColor(resources.getColor(R.color.colorText, null))
             SaturdayCard.visibility = View.VISIBLE
@@ -179,6 +225,15 @@ class UpdateDaysAndTime : AppCompatActivity() {
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Sunday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Sunday") }
+            if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Saturday"){
+                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
+                    Sunday.setOnClickListener{
+                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+                        Sunday.chipBackgroundColor = getColorStateList(R.color.colorText)
+                        Sunday.setTextColor(resources.getColor(R.color.colorPrimary, null))
+                    }
+                }
+            }
             Sunday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Sunday.setTextColor(resources.getColor(R.color.colorText, null))
             SundayCard.visibility = View.VISIBLE
