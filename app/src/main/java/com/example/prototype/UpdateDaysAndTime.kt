@@ -24,9 +24,9 @@ import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
+
 
 
 class UpdateDaysAndTime : AppCompatActivity() {
@@ -120,27 +120,12 @@ class UpdateDaysAndTime : AppCompatActivity() {
     private fun previewDataFromDatabase() {
         if (listOfDaysBooked.find { e -> e.day.equals("Monday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Monday") }
+
             Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Monday.setTextColor(resources.getColor(R.color.colorText, null))
             MondayCard.visibility = View.VISIBLE
             mondayTimePickUp.text = model!!.pickUpTime.toString()
             mondayTimeDropOff.text = model!!.dropOffTime.toString()
-//            var pickUpTime = model!!.pickUpTime!!.split(":")
-//            var currentTime = LocalDateTime.now().toLocalTime().toString().split(":")
-//            Log.d("SAAAAD", pickUpTime[0]+ " " + currentTime[0])
-//            Log.d("SAAAAD", (pickUpTime[0].toInt() - currentTime[0].toInt()).toString())
-//            Log.d("SAAAAD", pickUpTime[1]+ " " + currentTime[1])
-//            Log.d("SAAAAD", (pickUpTime[1].toInt() - currentTime[1].toInt()).toString())
-
-            //            LocalDate.parse(model!!.pickUpTime, DateTimeFormatter.ISO_TIME)
-//            TimeUnit.MILLISECONDS.toHours(Time(model!!.pickUpTime.toString()).time
-//                .minus(Time(Calendar.getInstance().timeInMillis).time)
-//            ).toString()
-//            if(TimeUnit.MILLISECONDS.toHours(Time(9,35,0).time.minus(Time(9, 35, 0).time)) == 0L){
-//                Monday.enabled = false
-//            }else{
-
-//            }
         }
         if (listOfDaysBooked.find { e -> e.day.equals("Tuesday") } != null) {
             val model = listOfDaysBooked.find { e -> e.day.equals("Tuesday") }
@@ -170,7 +155,13 @@ class UpdateDaysAndTime : AppCompatActivity() {
             val model = listOfDaysBooked.find { e -> e.day.equals("Friday") }
             var calendar = Calendar.getInstance()
             if(calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()) == "Thursday"){
-
+                if(model!!.pickUpTime!!.split(":")[0].toInt() - calendar.get(Calendar.HOUR_OF_DAY) <= 0){
+                    Friday.setOnClickListener{
+                        Toast.makeText(applicationContext, "Can only update before 24 hours", Toast.LENGTH_LONG).show()
+                        Friday.chipBackgroundColor = getColorStateList(R.color.colorText)
+                        Friday.setTextColor(resources.getColor(R.color.colorPrimary, null))
+                    }
+                }
             }
             Friday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
             Friday.setTextColor(resources.getColor(R.color.colorText, null))
