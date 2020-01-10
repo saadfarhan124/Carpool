@@ -5,9 +5,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
@@ -16,7 +13,6 @@ import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.DocumentReference
-import kotlinx.android.synthetic.main.activity_reviewinfo.*
 import org.jetbrains.anko.enabled
 import org.jetbrains.anko.onClick
 
@@ -107,7 +103,7 @@ class ReviewInformationActivity : AppCompatActivity() {
 
         ImageAc.onClick {
             if (MIC_STATUS == 0) {
-                ImageNonAc.setColorFilter(Color.rgb(255, 42, 72))
+                ImageAc.setColorFilter(Color.argb(50,128, 128, 128))
                 MIC_STATUS = 1
                 Toast.makeText(
                     applicationContext,
@@ -116,7 +112,7 @@ class ReviewInformationActivity : AppCompatActivity() {
                 ).show()
 
             } else if (MIC_STATUS == 1) {
-                ImageNonAc.setColorFilter(Color.WHITE)
+                ImageAc.setColorFilter(Color.TRANSPARENT)
                 MIC_STATUS = 0
                 Toast.makeText(
                     applicationContext,
@@ -126,27 +122,26 @@ class ReviewInformationActivity : AppCompatActivity() {
             }
         }
 
-        ImageNonAc!!.setOnClickListener(object:View.OnClickListener {
-            override fun onClick(v: View?) {
-                if(MIC_STATUS == 0){
-                    ImageNonAc.setColorFilter(Color.argb(25,255,42,72))
-                    MIC_STATUS = 1
-                    Toast.makeText(
-                        applicationContext,
-                        "if",
-                        Toast.LENGTH_LONG
-                    ).show()
+        ImageNonAc.onClick {
+            if(MIC_STATUS == 0){
+                ImageNonAc.setColorFilter(Color.argb(50,128,128,128))
+                MIC_STATUS = 1
+                Toast.makeText(
+                    applicationContext,
+                    "if",
+                    Toast.LENGTH_LONG
+                ).show()
 
-                }else if(MIC_STATUS == 1){
-                    ImageNonAc.setColorFilter(Color.TRANSPARENT)
-                    MIC_STATUS = 0
-                    Toast.makeText(
-                        applicationContext,
-                        "else",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }})
+            }else if(MIC_STATUS == 1){
+                ImageNonAc.setColorFilter(Color.TRANSPARENT)
+                MIC_STATUS = 0
+                Toast.makeText(
+                    applicationContext,
+                    "else",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
 
 

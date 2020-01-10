@@ -2,7 +2,9 @@ package com.example.prototype
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.dataModels.Booking
@@ -77,7 +79,7 @@ class TicketActvity: AppCompatActivity(){
             intent.putExtra("stopLong", bookingObject.pickupLong)
             startActivity(intent)
         }
-        btnTrackRide = findViewById(R.id.btnTrackRide)
+        btnTrackRide = findViewById(R.id.btnTrack)
         btnTrackRide.onClick {
             val intent = Intent(applicationContext, TrackRideActivity::class.java)
             intent.putExtra("routeId", bookingObject.routeId)

@@ -183,6 +183,22 @@ Karachi City, Sindh, Pakistan"
             app:rippleColor="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPay"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Pay"
+            android:textColor="@color/colorGreen"
+            app:icon="@drawable/ic_attach_money_black_24dp"
+            app:iconTint="@color/colorGreen"
+
+            app:layout_constraintEnd_toStartOf="@+id/btnCancel"
+            app:layout_constraintStart_toEndOf="@+id/btnChange"
+            app:layout_constraintTop_toBottomOf="@+id/divider8"
+            app:rippleColor="@color/colorGreen" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
@@ -199,6 +215,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider8"
             app:rippleColor="@color/colorRed" />
+
 
         <TextView
             android:id="@+id/textView40"

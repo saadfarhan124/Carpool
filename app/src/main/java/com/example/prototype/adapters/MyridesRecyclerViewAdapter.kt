@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
 import com.example.prototype.TrackRideActivity
 import com.example.prototype.dataModels.Booking
-import com.example.prototype.dataModels.MyRides
 import com.google.firebase.firestore.FirebaseFirestore
 import org.jetbrains.anko.onClick
 
@@ -89,7 +88,7 @@ class MyridesAdapter(
         internal var pickUpPoint: TextView = view.findViewById(R.id.textViewPickUpPoint)
         internal var dropOffPoint: TextView = view.findViewById(R.id.textViewDropOffPoint)
         internal var btnDelete: TextView = view.findViewById(R.id.btnCancel)
-        internal var btnTrack: TextView = view.findViewById(R.id.btnTrackRide)
+        internal var btnTrack: TextView = view.findViewById(R.id.btnTrack)
 
     }
 }

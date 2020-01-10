@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     style="@style/Widget.MaterialComponents.CardView"
@@ -118,7 +117,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView18" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnTrackRide"
+            android:id="@+id/btnTrack"
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -147,10 +146,10 @@
             android:textColor="@color/colorAccent"
             app:icon="@drawable/ic_sync_black_24dp"
             app:iconTint="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="@+id/btnTrackRide"
+            app:layout_constraintBottom_toBottomOf="@+id/btnTrack"
             app:layout_constraintEnd_toStartOf="@+id/btnCancel"
-            app:layout_constraintStart_toEndOf="@+id/btnTrackRide"
-            app:layout_constraintTop_toTopOf="@+id/btnTrackRide"
+            app:layout_constraintStart_toEndOf="@+id/btnTrack"
+            app:layout_constraintTop_toTopOf="@+id/btnTrack"
             app:rippleColor="@color/colorAccent" />
 
         <com.google.android.material.button.MaterialButton
