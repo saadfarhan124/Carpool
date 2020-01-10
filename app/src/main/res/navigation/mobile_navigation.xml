@@ -47,7 +47,7 @@
         tools:layout="@layout/fragment_notificaiton" />
     <fragment
         android:id="@+id/nav_package"
-        android:name="com.example.prototype.ui.notification.NotificationFragment"
+        android:name="com.example.prototype.ui.packages.PackageFragment"
         android:label="@string/menu_package"
         tools:layout="@layout/fragment_package" />
     <fragment
