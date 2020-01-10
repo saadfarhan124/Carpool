@@ -16,11 +16,20 @@
         android:name="com.example.prototype.ui.routesearch.RoutesearchFragment"
         android:label="@string/menu_routes"
         tools:layout="@layout/fragment_routesearch" />
+
+<!--    Bus my ride-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/nav_myrides"-->
+<!--        android:name="com.example.prototype.ui.myrides.MyridesFragment"-->
+<!--        android:label="@string/menu_myrides"-->
+<!--        tools:layout="@layout/fragment_myrides_current" />-->
+
     <fragment
         android:id="@+id/nav_myrides"
-        android:name="com.example.prototype.ui.myrides.MyridesFragment"
+        android:name="com.example.prototype.ui.mysharerides.MyshareRidesFragment"
         android:label="@string/menu_myrides"
-        tools:layout="@layout/fragment_myrides_current" />
+        tools:layout="@layout/fragment_myshare_rides" />
     <fragment
         android:id="@+id/nav_transaction"
         android:name="com.example.prototype.ui.transaction.TransactionFragment"
