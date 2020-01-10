@@ -17,7 +17,7 @@ class ReviewInformationDataModel : Serializable {
 
     constructor(pickUpLat:Double, pickUpLong:Double, pickUpAddress:String,
                 dropOffLat:Double, dropOffLong:Double, dropOffAddress:String,
-                requestStatus: String, userID: String){
+                requestStatus: String){
         this.pickUpLat = pickUpLat
         this.pickUpLong = pickUpLong
         this.pickUpAddress = pickUpAddress
