@@ -54,7 +54,7 @@
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".DespositSlipUploadActivity">
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

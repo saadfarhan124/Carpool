@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
+import com.example.prototype.Utilities.Util
 import com.example.prototype.adapters.PackageAdapter
 
 class PackageFragment: Fragment() {
@@ -21,17 +22,15 @@ private lateinit var mRecyclerView: RecyclerView
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-//        packageViewModel =
-//            ViewModelProviders.of(this).get(PackageViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_package, container, false)
-//        val textView: TextView = root.findViewById(R.id._text)
-//        packageViewModel.text.observe(this, Observer {
-//            textView.text = it
-//        })
         mRecyclerView = root.findViewById(R.id.packageRecyclerView)
         mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-        mRecyclerView.adapter = PackageAdapter()
+//        mRecyclerView.adapter = PackageAdapter()
 
         return root
+    }
+
+    fun loadRequests(){
+        Util.getFirebaseFireStore().collection("carRideRequests")
     }
 }

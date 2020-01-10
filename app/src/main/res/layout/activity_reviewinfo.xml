@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -19,11 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:navigationIcon="@drawable/ic_chevron_left_white_24dp"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:titleTextColor="@color/colorText"
             app:title="Back"
-            app:navigationIcon="@drawable/ic_chevron_left_white_24dp">
-        </androidx.appcompat.widget.Toolbar>
+            app:titleTextColor="@color/colorText"></androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
 
@@ -177,6 +177,7 @@ Karachi City, Sindh, Pakistan"
         app:layout_constraintTop_toTopOf="@+id/img_dropoffAddress" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
@@ -204,171 +205,171 @@ Karachi City, Sindh, Pakistan"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txt_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Saad "
-        android:textColor="@color/colorText1"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txt_lbl_name"
-        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_name" />
+            <TextView
+                android:id="@+id/txt_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Saad "
+                android:textColor="@color/colorText1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/txt_lbl_name"
+                app:layout_constraintTop_toBottomOf="@+id/txt_lbl_name" />
 
-    <TextView
-        android:id="@+id/txt_lbl_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Number"
-        android:textColor="@color/colorText1"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_name"
-        app:layout_constraintTop_toBottomOf="@+id/txt_name" />
+            <TextView
+                android:id="@+id/txt_lbl_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Number"
+                android:textColor="@color/colorText1"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/txt_name"
+                app:layout_constraintTop_toBottomOf="@+id/txt_name" />
 
-    <TextView
-        android:id="@+id/txt_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="+9233312131"
-        android:textColor="@color/colorText1"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txt_lbl_number"
-        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_number" />
+            <TextView
+                android:id="@+id/txt_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="+9233312131"
+                android:textColor="@color/colorText1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/txt_lbl_number"
+                app:layout_constraintTop_toBottomOf="@+id/txt_lbl_number" />
 
-    <TextView
-        android:id="@+id/txt_lbl_destinationTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Time to reach destination"
-        android:textColor="@color/colorText1"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_chip_Mon"
-        app:layout_constraintTop_toBottomOf="@+id/txt_chip_Mon" />
+            <TextView
+                android:id="@+id/txt_lbl_destinationTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Time to reach destination"
+                android:textColor="@color/colorText1"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/txt_chip_Mon"
+                app:layout_constraintTop_toBottomOf="@+id/txt_chip_Mon" />
 
-    <TextView
-        android:id="@+id/txt_startTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="9:00 - 9:30"
-        android:textColor="@color/colorText1"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txt_lbl_destinationTime"
-        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_destinationTime" />
+            <TextView
+                android:id="@+id/txt_startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="9:00 - 9:30"
+                android:textColor="@color/colorText1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/txt_lbl_destinationTime"
+                app:layout_constraintTop_toBottomOf="@+id/txt_lbl_destinationTime" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_submitReq"
-        style="@style/Widget.MaterialComponents.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:paddingLeft="92dp"
-        android:paddingTop="14dp"
-        android:paddingRight="92dp"
-        android:paddingBottom="14dp"
-        android:text="Submit Request"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_returnTime" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_submitReq"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:paddingLeft="92dp"
+                android:paddingTop="14dp"
+                android:paddingRight="92dp"
+                android:paddingBottom="14dp"
+                android:text="Submit Request"
+                app:cornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_returnTime" />
 
-    <TextView
-        android:id="@+id/txt_lbl_returnTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Return time"
-        android:textColor="@color/colorText1"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_startTime"
-        app:layout_constraintTop_toBottomOf="@+id/txt_startTime" />
+            <TextView
+                android:id="@+id/txt_lbl_returnTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Return time"
+                android:textColor="@color/colorText1"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/txt_startTime"
+                app:layout_constraintTop_toBottomOf="@+id/txt_startTime" />
 
-    <TextView
-        android:id="@+id/txt_returnTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="18:00 - 18:30"
-        android:textColor="@color/colorText1"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/txt_lbl_returnTime"
-        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_returnTime" />
+            <TextView
+                android:id="@+id/txt_returnTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="18:00 - 18:30"
+                android:textColor="@color/colorText1"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/txt_lbl_returnTime"
+                app:layout_constraintTop_toBottomOf="@+id/txt_lbl_returnTime" />
 
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/txt_chip_Mon"
-        android:layout_width="40dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:text="M"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_number"
-        app:layout_constraintTop_toBottomOf="@+id/txt_number" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/txt_chip_Mon"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="8dp"
+                android:text="M"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@+id/txt_number"
+                app:layout_constraintTop_toBottomOf="@+id/txt_number" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/txt_chip_Sat"
-        android:layout_width="42dp"
-        android:layout_height="45dp"
-        android:text="S"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Fri"
-        app:layout_constraintStart_toEndOf="@+id/txt_chip_Fri"
-        app:layout_constraintTop_toTopOf="@+id/txt_chip_Fri" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/txt_chip_Sat"
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                android:text="S"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Fri"
+                app:layout_constraintStart_toEndOf="@+id/txt_chip_Fri"
+                app:layout_constraintTop_toTopOf="@+id/txt_chip_Fri" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/txt_chip_Fri"
-        android:layout_width="42dp"
-        android:layout_height="45dp"
-        android:text="F"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Thu"
-        app:layout_constraintStart_toEndOf="@+id/txt_chip_Thu"
-        app:layout_constraintTop_toTopOf="@+id/txt_chip_Thu" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/txt_chip_Fri"
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                android:text="F"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Thu"
+                app:layout_constraintStart_toEndOf="@+id/txt_chip_Thu"
+                app:layout_constraintTop_toTopOf="@+id/txt_chip_Thu" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/txt_chip_Thu"
-        android:layout_width="42dp"
-        android:layout_height="45dp"
-        android:text="T"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Wed"
-        app:layout_constraintStart_toEndOf="@+id/txt_chip_Wed"
-        app:layout_constraintTop_toTopOf="@+id/txt_chip_Wed" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/txt_chip_Thu"
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                android:text="T"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Wed"
+                app:layout_constraintStart_toEndOf="@+id/txt_chip_Wed"
+                app:layout_constraintTop_toTopOf="@+id/txt_chip_Wed" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/txt_chip_Wed"
-        android:layout_width="40dp"
-        android:layout_height="45dp"
-        android:text="W"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Tue"
-        app:layout_constraintStart_toEndOf="@+id/txt_chip_Tue"
-        app:layout_constraintTop_toTopOf="@+id/txt_chip_Tue" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/txt_chip_Wed"
+                android:layout_width="40dp"
+                android:layout_height="45dp"
+                android:text="W"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Tue"
+                app:layout_constraintStart_toEndOf="@+id/txt_chip_Tue"
+                app:layout_constraintTop_toTopOf="@+id/txt_chip_Tue" />
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/txt_chip_Tue"
-        android:layout_width="42dp"
-        android:layout_height="45dp"
-        android:text="T"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Mon"
-        app:layout_constraintStart_toEndOf="@+id/txt_chip_Mon"
-        app:layout_constraintTop_toTopOf="@+id/txt_chip_Mon" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/txt_chip_Tue"
+                android:layout_width="42dp"
+                android:layout_height="45dp"
+                android:text="T"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Mon"
+                app:layout_constraintStart_toEndOf="@+id/txt_chip_Mon"
+                app:layout_constraintTop_toTopOf="@+id/txt_chip_Mon" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/txt_chip_Sun"
@@ -380,6 +381,18 @@ Karachi City, Sindh, Pakistan"
                 app:layout_constraintBottom_toBottomOf="@+id/txt_chip_Sat"
                 app:layout_constraintStart_toEndOf="@+id/txt_chip_Sat"
                 app:layout_constraintTop_toTopOf="@+id/txt_chip_Sat" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/reviewInfoProgressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

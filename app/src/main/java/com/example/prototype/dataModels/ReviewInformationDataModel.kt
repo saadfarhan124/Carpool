@@ -1,5 +1,6 @@
 package com.example.prototype.dataModels
 
+import com.example.prototype.Utilities.Util
 import java.io.Serializable
 
 class ReviewInformationDataModel : Serializable {
@@ -12,10 +13,11 @@ class ReviewInformationDataModel : Serializable {
     var dropOffAddress: String = ""
 
     var requestStatus:String = ""
+    var userID:String = ""
 
     constructor(pickUpLat:Double, pickUpLong:Double, pickUpAddress:String,
                 dropOffLat:Double, dropOffLong:Double, dropOffAddress:String,
-                requestStatus: String){
+                requestStatus: String, userID: String){
         this.pickUpLat = pickUpLat
         this.pickUpLong = pickUpLong
         this.pickUpAddress = pickUpAddress
@@ -25,6 +27,7 @@ class ReviewInformationDataModel : Serializable {
         this.dropOffAddress = dropOffAddress
 
         this.requestStatus = requestStatus
+        this.userID = Util.getGlobals().user!!.uid
 
     }
 }
