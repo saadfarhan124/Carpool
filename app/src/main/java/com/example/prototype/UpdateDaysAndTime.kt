@@ -276,7 +276,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
             }
         }
         var ref: DocumentReference =
-            Util.getFirebaseFireStore().collection("carRideRequests").document("Saad")
+            Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
         ref.collection("Days")
             .get()
             .addOnSuccessListener {

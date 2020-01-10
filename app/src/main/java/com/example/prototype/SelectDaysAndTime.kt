@@ -12,12 +12,14 @@ import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
 import com.example.prototype.dataModels.DaysDataModel
+import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.DocumentReference
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.textColor
+import java.io.Serializable
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
@@ -89,6 +91,9 @@ class SelectDaysAndTime : AppCompatActivity() {
 
     //Days datamodel
     private lateinit var daysDataModel: DaysDataModel
+
+    //Review data model
+    private lateinit var reviewInfo: ReviewInformationDataModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -233,11 +238,18 @@ class SelectDaysAndTime : AppCompatActivity() {
                 listOfDays.add(carSharingDataModel)
             }
         }
-        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document("Saad")
+        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
         for(item in listOfDays){
             ref.collection("Days").document(item.day!!).set(item)
         }
-//        var intent = Intent(applicationContext, )
+        var intent = Intent(applicationContext, ReviewInformationActivity::class.java)
+        intent.putExtra("DaysData", daysDataModel)
+        reviewInfo = ReviewInformationDataModel(pickUpLatLng.latitude, pickUpLatLng.longitude, pickUpAddress,
+            destLatLng.latitude, destLatLng.longitude, destAddress)
+        intent.putExtra("ReviewData", reviewInfo)
+        intent.putExtra("TimeDetails", listOfDays as Serializable)
+        startActivity(intent)
+
 
     }
 
@@ -483,14 +495,20 @@ class SelectDaysAndTime : AppCompatActivity() {
         val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
             cal.set(Calendar.HOUR_OF_DAY, hour)
             cal.set(Calendar.MINUTE, minute)
-            textView.text = SimpleDateFormat("HH:mm").format(cal.time)
+            textView.text = SimpleDateFormat("HH:mm a").format(cal.time)
         }
         return TimePickerDialog(
             this,
             timeSetListener,
             cal.get(Calendar.HOUR_OF_DAY),
             cal.get(Calendar.MINUTE),
-            true
+            false
         )
+    }
+
+        //Top App Bar Back Nav
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
     }
 }
