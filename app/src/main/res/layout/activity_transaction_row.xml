@@ -15,69 +15,91 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content">
 
 
         <TextView
-            android:id="@+id/textView45"
+            android:id="@+id/txt_lbl_invoiceNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="NEW BOOKING CREATED"
+            android:text="Invoice No."
             android:textColor="@color/colorText1"
-            android:textStyle="bold"
+            android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView46"
+            android:id="@+id/txt_invoiceNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Sat, 16 Nov, 1:48 PM"
+            android:layout_marginTop="8dp"
+            android:text="102034"
             android:textColor="@color/colorText1"
-            app:layout_constraintStart_toStartOf="@+id/textView45"
-            app:layout_constraintTop_toBottomOf="@+id/textView45" />
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/txt_lbl_invoiceNo"
+            app:layout_constraintTop_toBottomOf="@+id/txt_lbl_invoiceNo" />
 
         <TextView
-            android:id="@+id/textView47"
+            android:id="@+id/txt_lbl_invoiceAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:text="RS:"
+            android:layout_marginTop="38dp"
+            android:layout_marginEnd="16dp"
+            android:text="Invoice Amount:"
             android:textColor="@color/colorText1"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView48"
-            app:layout_constraintEnd_toStartOf="@+id/textView48"
-            app:layout_constraintTop_toTopOf="@+id/textView48" />
-
-        <TextView
-            android:id="@+id/textView48"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:text="50"
-            android:textColor="@color/colorText1"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView17"
-            app:layout_constraintEnd_toStartOf="@+id/imageView17"
-            app:layout_constraintTop_toTopOf="@+id/imageView17" />
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/imageView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/ic_swap_calls_black_24dp" />
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_swap_calls_black_24dp"
+            app:layout_constraintEnd_toEndOf="@+id/txt_lbl_invoiceAmount"
+            app:layout_constraintTop_toBottomOf="@+id/txt_lbl_invoiceAmount" />
+
+        <TextView
+            android:id="@+id/txt_invoiceAmount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="5000"
+            android:textColor="@color/colorText1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView17"
+            app:layout_constraintEnd_toStartOf="@+id/imageView17"
+            app:layout_constraintTop_toTopOf="@+id/imageView17" />
+
+        <TextView
+            android:id="@+id/txt_lbl_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Date"
+            android:textColor="@color/colorText1"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/txt_invoiceNo"
+            app:layout_constraintTop_toBottomOf="@+id/txt_invoiceNo" />
+
+        <TextView
+            android:id="@+id/txt_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="10 Jan, 2020"
+            android:textColor="@color/colorText1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/txt_lbl_date"
+            app:layout_constraintTop_toBottomOf="@+id/txt_lbl_date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
