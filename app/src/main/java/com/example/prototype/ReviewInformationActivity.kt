@@ -3,13 +3,17 @@ package com.example.prototype
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
 import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.material.chip.Chip
+import com.google.firebase.firestore.DocumentReference
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.enabled
 import org.jetbrains.anko.onClick
 
@@ -36,6 +40,9 @@ class ReviewInformationActivity : AppCompatActivity() {
     private lateinit var DaysData:DaysDataModel
     private lateinit var ReviewData:ReviewInformationDataModel
     private lateinit var TimeDetails: List<CarSharingDataModel>
+
+    //Submit Button
+    private lateinit var btn_submitReq: Button
 
 
 
@@ -153,6 +160,29 @@ class ReviewInformationActivity : AppCompatActivity() {
             txt_startTime.text = TimeDetails.find { e -> e.day == "Sunday" }!!.pickUpTime
             txt_returnTime.text = TimeDetails.find{ e -> e.day == "Sunday"}!!.dropOffTime
         }
+
+        btn_submitReq = findViewById(R.id.btn_submitReq)
+        btn_submitReq.onClick {
+            submitRequest()
+        }
+    }
+
+    private fun submitRequest(){
+        var alertDialog = Util.getAlertDialog(this)
+        alertDialog.setMessage("Do you want to submit this request?")
+        alertDialog.setPositiveButton("Yes"){ _, _  ->
+            var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
+            for(item in TimeDetails){
+                ref.collection("Days").document(item.day!!).set(item)
+            }
+            ref.set(ReviewData).addOnCompleteListener{
+                Toast.makeText(applicationContext, "Lund LElo", Toast.LENGTH_LONG).show()
+            }
+        }
+        alertDialog.setNegativeButton("No"){_, _ ->
+
+        }
+        alertDialog.show()
     }
 
     //Top App Bar Back Nav

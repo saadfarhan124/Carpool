@@ -245,7 +245,8 @@ class SelectDaysAndTime : AppCompatActivity() {
         var intent = Intent(applicationContext, ReviewInformationActivity::class.java)
         intent.putExtra("DaysData", daysDataModel)
         reviewInfo = ReviewInformationDataModel(pickUpLatLng.latitude, pickUpLatLng.longitude, pickUpAddress,
-            destLatLng.latitude, destLatLng.longitude, destAddress)
+            destLatLng.latitude, destLatLng.longitude, destAddress,
+            "Pending")
         intent.putExtra("ReviewData", reviewInfo)
         intent.putExtra("TimeDetails", listOfDays as Serializable)
         startActivity(intent)

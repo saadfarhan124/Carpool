@@ -11,8 +11,11 @@ class ReviewInformationDataModel : Serializable {
     var dropOffLong: Double? = null
     var dropOffAddress: String = ""
 
+    var requestStatus:String = ""
+
     constructor(pickUpLat:Double, pickUpLong:Double, pickUpAddress:String,
-                dropOffLat:Double, dropOffLong:Double, dropOffAddress:String){
+                dropOffLat:Double, dropOffLong:Double, dropOffAddress:String,
+                requestStatus: String){
         this.pickUpLat = pickUpLat
         this.pickUpLong = pickUpLong
         this.pickUpAddress = pickUpAddress
@@ -20,5 +23,8 @@ class ReviewInformationDataModel : Serializable {
         this.dropOffLat = dropOffLat
         this.dropOffLong = dropOffLong
         this.dropOffAddress = dropOffAddress
+
+        this.requestStatus = requestStatus
+
     }
 }

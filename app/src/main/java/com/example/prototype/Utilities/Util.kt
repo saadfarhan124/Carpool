@@ -9,10 +9,12 @@ import android.location.Location
 import android.net.ConnectivityManager
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.prototype.LoginActivity
+import com.example.prototype.R
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -114,6 +116,13 @@ class Util{
 
         fun getCalendarInstance():Calendar{
             return Calendar.getInstance()
+        }
+
+        //Function to return alert dialog
+        fun getAlertDialog(context: Context): AlertDialog.Builder{
+            val alertDialog = AlertDialog.Builder(context, R.style.ThemeOverlay_MaterialComponents_Dialog)
+            alertDialog.setTitle("Sath Chaloo")
+            return alertDialog
         }
     }
 }
