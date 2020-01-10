@@ -7,6 +7,7 @@ import android.provider.Settings
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
@@ -92,9 +93,20 @@ class ReviewInformationActivity : AppCompatActivity() {
                 if(MIC_STATUS == 0){
                     img_ac.setColorFilter(Color.rgb(255,42,72))
                     MIC_STATUS = 1
+                    Toast.makeText(
+                        applicationContext,
+                        "if",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }else if(MIC_STATUS == 1){
                     img_ac.setColorFilter(Color.WHITE)
                     MIC_STATUS = 0
+
+                    Toast.makeText(
+                        applicationContext,
+                        "else",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }})
 
@@ -103,9 +115,20 @@ class ReviewInformationActivity : AppCompatActivity() {
                 if(MIC_STATUS == 0){
                     ImageNonAc.setColorFilter(Color.rgb(255,42,72))
                     MIC_STATUS = 1
+                    Toast.makeText(
+                        applicationContext,
+                        "if",
+                        Toast.LENGTH_LONG
+                    ).show()
+
                 }else if(MIC_STATUS == 1){
                     ImageNonAc.setColorFilter(Color.WHITE)
                     MIC_STATUS = 0
+                    Toast.makeText(
+                        applicationContext,
+                        "else",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
             }})
 
