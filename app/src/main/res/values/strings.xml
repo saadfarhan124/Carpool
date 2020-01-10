@@ -12,7 +12,7 @@
 
     <string name="menu_routes">Routes search</string>
     <string name="menu_myrides">My rides</string>
-    <string name="menu_transaction">Transaction</string>
+    <string name="menu_transaction">Invoice</string>
     <string name="menu_wallet">Wallet</string>
     <string name="menu_notification">Notification</string>
     <string name="menu_package">Package</string>
