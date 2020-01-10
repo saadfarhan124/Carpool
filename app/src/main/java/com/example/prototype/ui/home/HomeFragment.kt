@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -62,6 +63,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private var mGPS: ImageView? = null
     private var customMarker: ImageView? = null
     private var btnSelectPickUp: Button? = null
+
+    //Destinatiion Address
+    private var destAddress = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -119,8 +123,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 Handler().postDelayed({
                     autocompleteSupportFragment.setText(p0.address)
                     geolocate(p0)
+                    destAddress = p0.address!!
                 }, 500)
-                autocompleteSupportFragment.setText(p0.address)
             }
 
             override fun onError(p0: Status) {
@@ -131,6 +135,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
                 var intent = Intent(root.context, SelectPickUpActivity::class.java)
+                intent.putExtra("DestAddress", destAddress)
                 intent.putExtra("DestLat", marker.position.latitude)
                 intent.putExtra("DestLong", marker.position.longitude)
                 startActivity(intent)
