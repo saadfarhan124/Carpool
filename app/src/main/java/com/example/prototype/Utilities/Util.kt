@@ -54,6 +54,18 @@ class Util{
                 .reference.child("images/${getGlobals().user!!.uid}")
         }
 
+        fun getStorageRefDepositSlip(): StorageReference{
+            return FirebaseStorage.getInstance()
+                .reference.child("depositSlips/${getGlobals().user!!.uid}")
+        }
+
+        fun getPermissionCode():Int{
+            return 1000
+        }
+        fun getImageCaptureCode(): Int{
+            return 1001
+        }
+
         fun getFirebaseAuth():FirebaseAuth{
             return FirebaseAuth.getInstance()
         }
