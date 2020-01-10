@@ -2,11 +2,13 @@ package com.example.prototype
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
@@ -101,28 +103,7 @@ class ReviewInformationActivity : AppCompatActivity() {
         ImageAc = findViewById(R.id.img_ac)
         ImageNonAc = findViewById(R.id.img_nonAC)
 
-        ImageAc!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View?) {
-                if (MIC_STATUS == 0) {
-                    img_ac.setColorFilter(Color.rgb(255, 42, 72))
-                    MIC_STATUS = 1
-                    Toast.makeText(
-                        applicationContext,
-                        "if",
-                        Toast.LENGTH_LONG
-                    ).show()
-                } else if (MIC_STATUS == 1) {
-                    img_ac.setColorFilter(Color.WHITE)
-                    MIC_STATUS = 0
 
-                    Toast.makeText(
-                        applicationContext,
-                        "else",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-            }
-        })
 
         ImageAc.onClick {
             if (MIC_STATUS == 0) {
@@ -144,6 +125,29 @@ class ReviewInformationActivity : AppCompatActivity() {
                 ).show()
             }
         }
+
+        ImageNonAc!!.setOnClickListener(object:View.OnClickListener {
+            override fun onClick(v: View?) {
+                if(MIC_STATUS == 0){
+                    ImageNonAc.setColorFilter(Color.argb(25,255,42,72))
+                    MIC_STATUS = 1
+                    Toast.makeText(
+                        applicationContext,
+                        "if",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }else if(MIC_STATUS == 1){
+                    ImageNonAc.setColorFilter(Color.TRANSPARENT)
+                    MIC_STATUS = 0
+                    Toast.makeText(
+                        applicationContext,
+                        "else",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }})
+
 
 
         //Chips
@@ -233,16 +237,16 @@ class ReviewInformationActivity : AppCompatActivity() {
             Util.getFirebaseFireStore().collection("request_id")
                 .get()
                 .addOnSuccessListener {
-                    var requestID = it.documents[0]["requestID"].toString().toInt()
+                    var requestID = it.documents[0]["requestId"].toString().toInt()
                     Util.getFirebaseFireStore().collection("request_id")
                         .document(it.documents[0].id)
-                        .update("requestID", requestID+1)
+                        .update("requestId", requestID+1)
                         .addOnSuccessListener {
                             var ref: DocumentReference =
                                 Util.getFirebaseFireStore().collection("carRideRequests")
-                                    .document(Util.getGlobals().user!!.uid)
+                                    .document(requestID.toString())
                             for (item in TimeDetails) {
-                                ref.collection("Days").document(requestID.toString()).set(item)
+                                ref.collection("Days").document(item.day!!).set(item)
                             }
                             ref.set(ReviewData).addOnCompleteListener {
                                 reviewInfoProgressBar.visibility = View.INVISIBLE
