@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
 import com.example.prototype.dataModels.CarSharingDataModel
@@ -30,5 +31,11 @@ class PackageAdapter(private val requestsDataModel: List<RequestsDataModel>,
     }
 }
 class PackageViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-
+    internal var startingPoint: TextView = v.findViewById(R.id.startingPoint)
+    internal var startingTime: TextView = v.findViewById(R.id.startingTime)
+    internal var endingPoint: TextView = v.findViewById(R.id.endingPoint)
+    internal var endingTime: TextView = v.findViewById(R.id.endingTime)
+    internal var seatsRemaining: TextView = v.findViewById(R.id.seatsRemaining)
+    internal var distanceFromPickup: TextView = v.findViewById(R.id.distanceFromPickUp)
+    internal var distanceFromDest: TextView = v.findViewById(R.id.distanceFromDropOff)
 }
