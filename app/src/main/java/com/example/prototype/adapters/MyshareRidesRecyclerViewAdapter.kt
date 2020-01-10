@@ -11,7 +11,7 @@ class MyshareRidesAdapter: RecyclerView.Adapter<MyshareRidesViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyshareRidesViewHolder {
         val LayoutInflater = LayoutInflater.from(parent.context)
-        val cellForRow = LayoutInflater.inflate(R.layout.activity_package_row, parent, false)
+        val cellForRow = LayoutInflater.inflate(R.layout.activity_myrides_share_row, parent, false)
         return MyshareRidesViewHolder(cellForRow)
     }
 
