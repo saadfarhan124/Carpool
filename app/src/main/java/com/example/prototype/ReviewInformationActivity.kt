@@ -1,9 +1,11 @@
 package com.example.prototype
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
-import android.widget.Button
+import android.view.View
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
@@ -12,12 +14,13 @@ import com.example.prototype.dataModels.CarSharingDataModel
 import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.material.chip.Chip
-import com.google.firebase.firestore.DocumentReference
-import org.jetbrains.anko.alert
+import kotlinx.android.synthetic.main.activity_reviewinfo.*
 import org.jetbrains.anko.enabled
 import org.jetbrains.anko.onClick
 
 class ReviewInformationActivity : AppCompatActivity() {
+
+    private var MIC_STATUS = 0
 
     //Text Views
     private lateinit var txt_pickupAddress:TextView
@@ -41,11 +44,9 @@ class ReviewInformationActivity : AppCompatActivity() {
     private lateinit var ReviewData:ReviewInformationDataModel
     private lateinit var TimeDetails: List<CarSharingDataModel>
 
-    //Submit Button
-    private lateinit var btn_submitReq: Button
-
-
-
+    //Image View
+    private lateinit var ImageAc: ImageView
+    private lateinit var ImageNonAc: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +83,55 @@ class ReviewInformationActivity : AppCompatActivity() {
 
         txt_startTime = findViewById(R.id.txt_startTime)
         txt_returnTime = findViewById(R.id.txt_returnTime)
+
+        //Image
+        ImageAc = findViewById(R.id.img_ac)
+        ImageNonAc = findViewById(R.id.img_nonAC)
+
+        ImageAc!!.setOnClickListener(object:View.OnClickListener {
+            override fun onClick(v: View?) {
+                if(MIC_STATUS == 0){
+                    img_ac.setColorFilter(Color.rgb(255,42,72))
+                    MIC_STATUS = 1
+                    Toast.makeText(
+                        applicationContext,
+                        "if",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }else if(MIC_STATUS == 1){
+                    img_ac.setColorFilter(Color.WHITE)
+                    MIC_STATUS = 0
+
+                    Toast.makeText(
+                        applicationContext,
+                        "else",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }})
+
+        ImageNonAc!!.setOnClickListener(object:View.OnClickListener {
+            override fun onClick(v: View?) {
+                if(MIC_STATUS == 0){
+                    ImageNonAc.setColorFilter(Color.rgb(255,42,72))
+                    MIC_STATUS = 1
+                    Toast.makeText(
+                        applicationContext,
+                        "if",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }else if(MIC_STATUS == 1){
+                    ImageNonAc.setColorFilter(Color.WHITE)
+                    MIC_STATUS = 0
+                    Toast.makeText(
+                        applicationContext,
+                        "else",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }})
+
 
         //Chips
         txt_chip_Mon = findViewById(R.id.txt_chip_Mon)
@@ -160,29 +210,6 @@ class ReviewInformationActivity : AppCompatActivity() {
             txt_startTime.text = TimeDetails.find { e -> e.day == "Sunday" }!!.pickUpTime
             txt_returnTime.text = TimeDetails.find{ e -> e.day == "Sunday"}!!.dropOffTime
         }
-
-        btn_submitReq = findViewById(R.id.btn_submitReq)
-        btn_submitReq.onClick {
-            submitRequest()
-        }
-    }
-
-    private fun submitRequest(){
-        var alertDialog = Util.getAlertDialog(this)
-        alertDialog.setMessage("Do you want to submit this request?")
-        alertDialog.setPositiveButton("Yes"){ _, _  ->
-            var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
-            for(item in TimeDetails){
-                ref.collection("Days").document(item.day!!).set(item)
-            }
-            ref.set(ReviewData).addOnCompleteListener{
-                Toast.makeText(applicationContext, "Lund LElo", Toast.LENGTH_LONG).show()
-            }
-        }
-        alertDialog.setNegativeButton("No"){_, _ ->
-
-        }
-        alertDialog.show()
     }
 
     //Top App Bar Back Nav
