@@ -161,7 +161,7 @@ Karachi City, Sindh, Pakistan"
             android:background="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewAmount" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnChange"
@@ -224,7 +224,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintTop_toBottomOf="@+id/txt_dropoffAddress" />
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/textViewAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -236,7 +236,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
         <TextView
-            android:id="@+id/textView27"
+            android:id="@+id/textViewStatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

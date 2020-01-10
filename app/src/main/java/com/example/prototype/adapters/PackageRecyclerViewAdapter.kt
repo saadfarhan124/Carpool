@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
@@ -11,6 +12,7 @@ import com.example.prototype.dataModels.CarSharingDataModel
 import com.example.prototype.dataModels.RequestsDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.example.prototype.dataModels.Routes
+import com.google.android.material.chip.Chip
 
 
 class PackageAdapter(private val requestsDataModel: List<RequestsDataModel>,
@@ -27,15 +29,25 @@ class PackageAdapter(private val requestsDataModel: List<RequestsDataModel>,
     }
 
     override fun onBindViewHolder(holder: PackageViewHolder, position: Int) {
+        val request = requestsDataModel[position]
+
+        holder.txt_pickupAddress.text = request.reviewInformationDataModel!!.pickUpAddress
 
     }
 }
 class PackageViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-    internal var startingPoint: TextView = v.findViewById(R.id.startingPoint)
-    internal var startingTime: TextView = v.findViewById(R.id.startingTime)
-    internal var endingPoint: TextView = v.findViewById(R.id.endingPoint)
-    internal var endingTime: TextView = v.findViewById(R.id.endingTime)
-    internal var seatsRemaining: TextView = v.findViewById(R.id.seatsRemaining)
-    internal var distanceFromPickup: TextView = v.findViewById(R.id.distanceFromPickUp)
-    internal var distanceFromDest: TextView = v.findViewById(R.id.distanceFromDropOff)
+    internal var chipMon: Chip = v.findViewById(R.id.chipMon)
+    internal var chipTue: Chip = v.findViewById(R.id.chipTue)
+    internal var chipWed: Chip = v.findViewById(R.id.chipWed)
+    internal var chipThu: Chip = v.findViewById(R.id.chipThu)
+    internal var chipFri: Chip = v.findViewById(R.id.chipFri)
+    internal var chipSat: Chip = v.findViewById(R.id.chipSat)
+    internal var chipSun: Chip = v.findViewById(R.id.chipSun)
+    internal var txt_pickupAddress: TextView = v.findViewById(R.id.txt_pickupAddress)
+    internal var txt_dropoffAddress: TextView = v.findViewById(R.id.txt_dropoffAddress)
+    internal var textViewStatus: TextView = v.findViewById(R.id.textViewStatus)
+    internal var textViewAmount: TextView = v.findViewById(R.id.txt_dropoffAddress)
+    internal var btnChange: Button = v.findViewById(R.id.btnChange)
+    internal var btnCancel: Button = v.findViewById(R.id.btnCancel)
+
 }
