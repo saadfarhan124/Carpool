@@ -1,6 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:nestedScrollingEnabled="true">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardViewMon"
+                style="@style/Widget.MaterialComponents.CardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                app:cardCornerRadius="18dp"
+                app:cardElevation="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/txt_lbl_transpayment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="24dp"
+                        android:text="You can transfer your payment to our"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/txt_lbl_bankAcc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="bank account:"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/txt_lbl_transpayment"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_transpayment" />
+
+                    <TextView
+                        android:id="@+id/txt_lbl_accTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Account Title"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/txt_lbl_bankAcc"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_bankAcc" />
+
+                    <TextView
+                        android:id="@+id/txt_accountTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Sath Chalo Pvt LTD"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/txt_lbl_accTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_accTitle" />
+
+                    <TextView
+                        android:id="@+id/txt_lbl_accountNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Account Number"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/txt_accountTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_accountTitle" />
+
+                    <TextView
+                        android:id="@+id/txt_accountNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="107-35333701-895"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/txt_lbl_accountNumber"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_accountNumber" />
+
+                    <TextView
+                        android:id="@+id/txt_lbl_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Bank"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/txt_accountNumber"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_accountNumber" />
+
+                    <TextView
+                        android:id="@+id/txt_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="MCB Bank Limited"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/txt_lbl_bank"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_bank" />
+
+                    <TextView
+                        android:id="@+id/txt_note"
+                        android:layout_width="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="PLease submit the completed transaction slip using the form below. We'll review and update your wallet balance accordingly"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/txt_bank"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_bank" />
+
+                    <View
+                        android:id="@+id/divider11"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@color/colorAccent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_note" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txt_la_trans"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="Transaction ID/Deposit slip number* "
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divider11">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_txt_trans"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txt_la_amount"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:hint="Amount*"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_la_trans">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/ed_txt_amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:id="@+id/txt_lbl_upload"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="Upload deposit slip*"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/txt_la_amount"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_la_amount" />
+
+                    <ImageView
+                        android:id="@+id/img_upload"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="#03FFFFFF"
+                        android:elevation="8dp"
+                        android:scaleType="fitXY"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/txt_lbl_upload"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_lbl_upload"
+                        app:srcCompat="@drawable/mob"
+                        tools:srcCompat="@drawable/mob" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_bankTransfer"
+                        style="@style/Widget.MaterialComponents.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:paddingLeft="92dp"
+                        android:paddingTop="14dp"
+                        android:paddingRight="92dp"
+                        android:paddingBottom="14dp"
+                        android:text="Submit"
+                        android:textSize="18sp"
+                        app:backgroundTint="@color/colorPrimary"
+                        app:cornerRadius="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/img_upload"
+                        app:layout_constraintVertical_bias="0.120000005" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

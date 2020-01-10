@@ -16,15 +16,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_suggestion)
-        val actv: AutoCompleteTextView = findViewById(R.id.outline_exposed_dropdown)
-        val COUNTRIES = arrayOf("Item 1", "Item 2", "Item 3", "Item 4")
-
-
-        val adapter = ArrayAdapter<String>(this, R.layout.activity_customspiner_item, COUNTRIES)
-
-        val editTextFilledExposedDropdown = actv
-        editTextFilledExposedDropdown.setAdapter(adapter)
+        setContentView(R.layout.activity_bank_transfer)
+//        val actv: AutoCompleteTextView = findViewById(R.id.outline_exposed_dropdown)
+//        val COUNTRIES = arrayOf("Item 1", "Item 2", "Item 3", "Item 4")
+//
+//
+//        val adapter = ArrayAdapter<String>(this, R.layout.activity_customspiner_item, COUNTRIES)
+//
+//        val editTextFilledExposedDropdown = actv
+//        editTextFilledExposedDropdown.setAdapter(adapter)
 
 
 

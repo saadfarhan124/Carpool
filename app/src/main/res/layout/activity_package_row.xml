@@ -17,100 +17,75 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="Days"
-            app:layout_constraintStart_toStartOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            android:textColor="@color/colorText1"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textView18"
+        <ImageView
+            android:id="@+id/img_pickupAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="pickup"
             app:layout_constraintStart_toStartOf="@+id/chip5"
-            app:layout_constraintTop_toBottomOf="@+id/chip5" />
+            app:layout_constraintTop_toBottomOf="@+id/chip5"
+            app:srcCompat="@drawable/ic_panorama_fish_eye_black_24dp" />
 
-        <TextView
-            android:id="@+id/textView27"
+        <ImageView
+            android:id="@+id/img_dropoffAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="drop off "
-            app:layout_constraintStart_toStartOf="@+id/textView18"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/img_pickupAddress"
+            app:layout_constraintStart_toStartOf="@+id/img_pickupAddress"
+            app:layout_constraintTop_toBottomOf="@+id/divider10"
+            app:srcCompat="@drawable/ic_panorama_fish_eye_black_24dp" />
+
+        <View
+            android:id="@+id/divider10"
+            android:layout_width="1dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="@+id/img_pickupAddress"
+            app:layout_constraintStart_toStartOf="@+id/img_pickupAddress"
+            app:layout_constraintTop_toBottomOf="@+id/img_pickupAddress" />
 
         <TextView
-            android:id="@+id/textView29"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/chip11"
-            app:layout_constraintTop_toBottomOf="@+id/chip11" />
-
-        <TextView
-            android:id="@+id/textView30"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/textView29"
-            app:layout_constraintTop_toBottomOf="@+id/textView29" />
-
-        <TextView
-            android:id="@+id/textView32"
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_pickupAddress"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/textView18"
-            app:layout_constraintStart_toEndOf="@+id/textView18"
-            app:layout_constraintTop_toTopOf="@+id/textView18" />
+            android:layout_marginEnd="55dp"
+            android:text="Plot A 5/8, Block 5 A Block 5
+Nazimabad, Karach, Karachi City, Sindh"
+            android:textColor="@color/colorText1"
+            app:layout_constraintBottom_toBottomOf="@+id/img_pickupAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_pickupAddress"
+            app:layout_constraintTop_toTopOf="@+id/img_pickupAddress" />
 
         <TextView
-            android:id="@+id/textView34"
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_dropoffAddress"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/textView27"
-            app:layout_constraintStart_toEndOf="@+id/textView27"
-            app:layout_constraintTop_toTopOf="@+id/textView27" />
+            android:layout_marginEnd="55dp"
+            android:text="Plot 177 S, Pakistan Employees Co-Operative
+Housing Society Block 2 PECHS, Karachi,
+Karachi City, Sindh, Pakistan"
+            android:textColor="@color/colorText1"
+            app:layout_constraintBottom_toBottomOf="@+id/img_dropoffAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_dropoffAddress"
+            app:layout_constraintTop_toTopOf="@+id/img_dropoffAddress" />
 
-        <TextView
-            android:id="@+id/textView36"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/textView29"
-            app:layout_constraintEnd_toStartOf="@+id/textView29"
-            app:layout_constraintTop_toTopOf="@+id/textView29" />
-
-        <TextView
-            android:id="@+id/textView38"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="@+id/textView30"
-            app:layout_constraintEnd_toStartOf="@+id/textView30"
-            app:layout_constraintTop_toTopOf="@+id/textView30" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chip5"
@@ -199,7 +174,7 @@
             android:background="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView40" />
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnChange"
@@ -244,17 +219,46 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Total Amount"
-            app:layout_constraintStart_toStartOf="@+id/textView27"
-            app:layout_constraintTop_toBottomOf="@+id/textView27" />
+            android:textColor="@color/colorText1"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/img_dropoffAddress"
+            app:layout_constraintTop_toBottomOf="@+id/txt_dropoffAddress" />
 
         <TextView
-            android:id="@+id/textView49"
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:text="Status"
+            android:textColor="@color/colorText1"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="@+id/txt_dropoffAddress"
+            app:layout_constraintTop_toBottomOf="@+id/txt_dropoffAddress" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="5000"
-            app:layout_constraintEnd_toEndOf="@+id/textView30"
-            app:layout_constraintTop_toBottomOf="@+id/textView30" />
+            android:textColor="@color/colorText1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView40"
+            app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Pending"
+            android:textColor="@color/colorText1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
