@@ -11,10 +11,11 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
+import com.example.prototype.adapters.PackageAdapter
 
 class PackageFragment: Fragment() {
 //    private lateinit var packageViewModel:PackageViewModel
-
+private lateinit var mRecyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,6 +28,9 @@ class PackageFragment: Fragment() {
 //        packageViewModel.text.observe(this, Observer {
 //            textView.text = it
 //        })
+        mRecyclerView = root.findViewById(R.id.packageRecyclerView)
+        mRecyclerView.layoutManager = LinearLayoutManager(root.context)
+        mRecyclerView.adapter = PackageAdapter()
 
         return root
     }
