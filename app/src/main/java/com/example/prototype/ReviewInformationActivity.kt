@@ -1,13 +1,12 @@
 package com.example.prototype
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
@@ -113,7 +112,7 @@ class ReviewInformationActivity : AppCompatActivity() {
         ImageNonAc!!.setOnClickListener(object:View.OnClickListener {
             override fun onClick(v: View?) {
                 if(MIC_STATUS == 0){
-                    ImageNonAc.setColorFilter(Color.rgb(255,42,72))
+                    ImageNonAc.setColorFilter(Color.argb(25,255,42,72))
                     MIC_STATUS = 1
                     Toast.makeText(
                         applicationContext,
@@ -122,7 +121,7 @@ class ReviewInformationActivity : AppCompatActivity() {
                     ).show()
 
                 }else if(MIC_STATUS == 1){
-                    ImageNonAc.setColorFilter(Color.WHITE)
+                    ImageNonAc.setColorFilter(Color.TRANSPARENT)
                     MIC_STATUS = 0
                     Toast.makeText(
                         applicationContext,
