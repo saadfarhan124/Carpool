@@ -1,11 +1,16 @@
 package com.example.prototype.ui.home
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.provider.Settings
 import android.util.Log
 
 import android.view.LayoutInflater
@@ -15,6 +20,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -39,7 +45,31 @@ import org.jetbrains.anko.find
 import java.io.IOException
 
 
-class HomeFragment : Fragment(), OnMapReadyCallback {
+class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
+
+    //Location callbacks
+    override fun onLocationChanged(location: Location?) {
+
+    }
+
+    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+    }
+
+    override fun onProviderEnabled(provider: String?) {
+    }
+
+    override fun onProviderDisabled(provider: String?) {
+        val alertDialog = Util.getAlertDialog(root.context)
+        alertDialog.setMessage("Location need to be opened to use this application. Would you like to proceed?")
+        alertDialog.setPositiveButton("Ok") { _, _ ->
+            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+            startActivity(intent)
+        }
+        alertDialog.setNegativeButton("No") { _, _ ->
+            activity!!.finishAffinity();
+            System.exit(0)
+        }
+    }
 
 
     private lateinit var homeViewModel: HomeViewModel
@@ -57,6 +87,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     private lateinit var autocompleteSupportFragment: AutocompleteSupportFragment
     private lateinit var marker: Marker
     private lateinit var root: View
+    private lateinit var locationManager: LocationManager
+
 
     //Widgets
     private lateinit var btn_service: Button
@@ -77,26 +109,70 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        mGPS = root.findViewById(R.id.ic_gps)
-        customMarker = root.findViewById(R.id.ic_marker)
-        btnSelectPickUp = root.findViewById(R.id.btnSelectPickUp)
-        //Places API
-        Places.initialize(root.context, getString(R.string.google_maps_key))
-        placesClient = Places.createClient(root.context)
-        autocompleteSupportFragment =
-            childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
-        autocompleteSupportFragment.setPlaceFields(
-            arrayListOf(
-                Place.Field.ADDRESS,
-                Place.Field.LAT_LNG
-            )
-        )
+        //Location Manager
+        locationManager = root.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        getLocationPermission()
-        init()
-        initMap()
+        if (Util.verifyAvailableNetwork(activity!! as AppCompatActivity)) {
+            if (Util.isGPSEnable(locationManager)) {
+                try {
+                    locationManager.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        15000,
+                        10f,
+                        this
+                    )
+                    mGPS = root.findViewById(R.id.ic_gps)
+                    customMarker = root.findViewById(R.id.ic_marker)
+                    btnSelectPickUp = root.findViewById(R.id.btnSelectPickUp)
+                    //Places API
+                    Places.initialize(root.context, getString(R.string.google_maps_key))
+                    placesClient = Places.createClient(root.context)
+                    autocompleteSupportFragment =
+                        childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+                    autocompleteSupportFragment.setPlaceFields(
+                        arrayListOf(
+                            Place.Field.ADDRESS,
+                            Place.Field.LAT_LNG
+                        )
+                    )
+                    // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+                    getLocationPermission()
+                    init()
+                    initMap()
+                } catch (e: SecurityException) {
+
+                }
+            } else {
+                val alertDialog = Util.getAlertDialog(root.context)
+                alertDialog.setMessage("Location need to be opened to use this application. Would you like to proceed?")
+                alertDialog.setPositiveButton("Ok") { _, _ ->
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    startActivity(intent)
+                }
+                alertDialog.setNegativeButton("No") { _, _ ->
+                    activity!!.finishAndRemoveTask()
+                    System.exit(0)
+                }
+                alertDialog.show()
+
+            }
+
+        }else{
+            val confirmDialog =
+                AlertDialog.Builder(root.context, R.style.ThemeOverlay_MaterialComponents_Dialog)
+            confirmDialog.setTitle("Sath Chaloo")
+            confirmDialog.setMessage("Please connect to internet")
+            confirmDialog.setPositiveButton("Ok") { _, _ ->
+                activity!!.finishAffinity();
+                System.exit(0)
+            }
+            confirmDialog.show()
+        }
+
+
+
+
 
 
         return root
@@ -105,6 +181,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
     //Fifth
     //Setting Editor On Action Listener for the Enter Key
     private fun init() {
+
         btn_service = root.findViewById(R.id.btn_service)
         btn_service.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)

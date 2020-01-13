@@ -21,7 +21,7 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        <activity android:name=".DespositSlipUploadActivity"></activity>-->
+        <activity android:name=".DespositSlipUploadActivity"></activity>
         <activity android:name=".UpdateDaysAndTime" />
         <activity android:name=".SelectDaysAndTime" />
         <activity android:name=".ReviewInformationActivity" />

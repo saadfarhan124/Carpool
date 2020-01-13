@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:388821765809:android:14f9e86f4434c006d41c90",
         "android_client_info": {
-          "package_name": "com.example.prototype"
+          "package_name": "sathchaloo.com.prototype"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "388821765809-p4hsgd8ftqhf1fk7b752arift1o0pv9u.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.prototype",
+            "package_name": "sathchaloo.com.prototype",
             "certificate_hash": "f20395ed64c394ce10a1435c2a19d7186416c408"
           }
         },

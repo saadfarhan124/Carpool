@@ -295,8 +295,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
     //retrieve records from database
     private fun getDatabaseEntries() {
         listOfDaysBooked = arrayListOf()
-        var ref: DocumentReference =
-            Util.getFirebaseFireStore().collection("carRideRequests").document("Saad")
+        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
         ref.collection("Days")
             .get()
             .addOnSuccessListener {

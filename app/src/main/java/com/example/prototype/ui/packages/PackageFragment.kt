@@ -4,33 +4,49 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
 import com.example.prototype.Utilities.Util
 import com.example.prototype.adapters.PackageAdapter
+import com.example.prototype.dataModels.ReviewInformationDataModel
 
-class PackageFragment: Fragment() {
-//    private lateinit var packageViewModel:PackageViewModel
-private lateinit var mRecyclerView: RecyclerView
+class PackageFragment : Fragment() {
+    //    private lateinit var packageViewModel:PackageViewModel
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var packageProgressBar: ProgressBar
+
+    private lateinit var root: View
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_package, container, false)
-        mRecyclerView = root.findViewById(R.id.packageRecyclerView)
-        mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-//        mRecyclerView.adapter = PackageAdapter()
+        root = inflater.inflate(R.layout.fragment_package, container, false)
+        loadRequests()
 
         return root
     }
 
-    fun loadRequests(){
+    fun loadRequests() {
+        packageProgressBar = root.findViewById(R.id.packageProgressBar)
+        packageProgressBar.visibility = View.VISIBLE
         Util.getFirebaseFireStore().collection("carRideRequests")
+            .whereEqualTo("userID", Util.getGlobals().user!!.uid)
+            .get()
+            .addOnSuccessListener {
+                val requests = mutableListOf<ReviewInformationDataModel>()
+                for (documents in it.documents) {
+                    val info = documents.toObject(ReviewInformationDataModel::class.java)
+                    info!!.requestID = documents.id
+                    requests.add(info!!)
+                }
+                mRecyclerView = root.findViewById(R.id.packageRecyclerView)
+                mRecyclerView.layoutManager = LinearLayoutManager(root.context)
+                mRecyclerView.adapter = PackageAdapter(requests, root.context, packageProgressBar)
+                packageProgressBar.visibility = View.INVISIBLE
+            }
     }
 }

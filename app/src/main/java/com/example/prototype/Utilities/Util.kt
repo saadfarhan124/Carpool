@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.location.Location
+import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.util.Log
 import android.widget.Toast
@@ -57,6 +58,11 @@ class Util{
         fun getStorageRefDepositSlip(): StorageReference{
             return FirebaseStorage.getInstance()
                 .reference.child("depositSlips/${getGlobals().user!!.uid}")
+        }
+
+        //Function to check if location is on
+        fun isGPSEnable(locationManager: LocationManager): Boolean{
+            return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         }
 
         fun getPermissionCode():Int{

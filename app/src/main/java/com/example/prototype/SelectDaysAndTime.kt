@@ -238,10 +238,10 @@ class SelectDaysAndTime : AppCompatActivity() {
                 listOfDays.add(carSharingDataModel)
             }
         }
-        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
-        for(item in listOfDays){
-            ref.collection("Days").document(item.day!!).set(item)
-        }
+//        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
+//        for(item in listOfDays){
+//            ref.collection("Days").document(item.day!!).set(item)
+//        }
         var intent = Intent(applicationContext, ReviewInformationActivity::class.java)
         intent.putExtra("DaysData", daysDataModel)
         reviewInfo = ReviewInformationDataModel(pickUpLatLng.latitude, pickUpLatLng.longitude, pickUpAddress,

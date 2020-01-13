@@ -15,6 +15,8 @@ class ReviewInformationDataModel : Serializable {
     var requestStatus:String = ""
     var userID:String = ""
 
+    var requestID:String? = null
+
     constructor(pickUpLat:Double, pickUpLong:Double, pickUpAddress:String,
                 dropOffLat:Double, dropOffLong:Double, dropOffAddress:String,
                 requestStatus: String){
@@ -30,4 +32,6 @@ class ReviewInformationDataModel : Serializable {
         this.userID = Util.getGlobals().user!!.uid
 
     }
+
+    constructor()
 }
