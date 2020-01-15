@@ -3,8 +3,10 @@ package com.example.prototype
 import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import com.example.prototype.Utilities.Util
@@ -78,6 +80,9 @@ class UpdateDaysAndTime : AppCompatActivity() {
     //Button
     private lateinit var btnContinue: Button
 
+    //Progress Bar
+    private lateinit var updateDaysTimeProgressBar: ProgressBar
+
     //Calendar variable
     private lateinit var calendar: Calendar
 
@@ -85,7 +90,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
     private lateinit var listOfDaysBooked: ArrayList<CarSharingDataModel>
 
     //Request ID
-    private  var requestID: Int = 0
+    private  var requestID: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,6 +104,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
     }
 
     private fun updateData() {
+        updateDaysTimeProgressBar.visibility = View.VISIBLE
         var listOfDays = mutableListOf<CarSharingDataModel>()
         //Monday
         if (Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
@@ -280,7 +286,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
             }
         }
         var ref: DocumentReference =
-            Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
+            Util.getFirebaseFireStore().collection("carRideRequests").document(requestID)
         ref.collection("Days")
             .get()
             .addOnSuccessListener {
@@ -291,15 +297,17 @@ class UpdateDaysAndTime : AppCompatActivity() {
                 for (item in listOfDays) {
                     ref.collection("Days").document(item.day!!).set(item)
                 }
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
+                Toast.makeText(applicationContext, "Updated Successfully", Toast.LENGTH_SHORT).show()
+                onBackPressed()
             }
-
-
     }
 
     //retrieve records from database
     private fun getDatabaseEntries() {
         listOfDaysBooked = arrayListOf()
-        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(Util.getGlobals().user!!.uid)
+        Log.d("dasdasdasda", requestID)
+        var ref: DocumentReference = Util.getFirebaseFireStore().collection("carRideRequests").document(requestID.toString())
         ref.collection("Days")
             .get()
             .addOnSuccessListener {
@@ -309,9 +317,13 @@ class UpdateDaysAndTime : AppCompatActivity() {
                         document.data!!["pickUpTime"].toString(),
                         document.data!!["dropOffTime"].toString()
                     )
+                    Log.d("dasdasdasda", document.data.toString())
                     listOfDaysBooked.add(daysBooked)
                 }
                 previewDataFromDatabase()
+            }
+            .addOnFailureListener{
+                Toast.makeText(applicationContext, it.message, Toast.LENGTH_LONG).show()
             }
     }
 
@@ -508,7 +520,10 @@ class UpdateDaysAndTime : AppCompatActivity() {
     //Initilization
     private fun init() {
 
-        requestID = intent.extras!!.getInt("requestID")
+        //Progress Bar
+        updateDaysTimeProgressBar = findViewById(R.id.updateDaysTimeProgressBar)
+
+        requestID = intent.extras!!.get("requestID").toString()
 
         btnContinue = findViewById(R.id.btn_Continue)
         btnContinue.onClick {

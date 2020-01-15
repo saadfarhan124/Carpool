@@ -109,6 +109,16 @@ class PackageAdapter(
                                         Toast.LENGTH_LONG
                                     ).show()
                                 }
+                            } else if (document.get("day").toString() == "Saturday") {
+                                holder.chipSat.enabled = document.get("day").toString() == "Saturday"
+                                holder.chipSat.onClick {
+                                    Toast.makeText(
+                                        context,
+                                        "Pick up time ${document.get("pickUpTime")} \n " +
+                                                "Drop off time ${document.get("dropOffTime")}",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
                             } else if (document.get("day").toString() == "Sunday") {
                                 holder.chipSun.enabled = document.get("day").toString() == "Sunday"
                                 holder.chipSun.onClick {

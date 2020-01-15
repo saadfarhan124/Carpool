@@ -32,6 +32,11 @@ class PackageFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        loadRequests()
+        super.onResume()
+    }
+
     fun loadRequests() {
         packageProgressBar = root.findViewById(R.id.packageProgressBar)
         packageProgressBar.visibility = View.VISIBLE
