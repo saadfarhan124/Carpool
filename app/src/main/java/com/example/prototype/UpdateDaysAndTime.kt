@@ -81,7 +81,11 @@ class UpdateDaysAndTime : AppCompatActivity() {
     //Calendar variable
     private lateinit var calendar: Calendar
 
+    //List of days
     private lateinit var listOfDaysBooked: ArrayList<CarSharingDataModel>
+
+    //Request ID
+    private  var requestID: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -503,6 +507,9 @@ class UpdateDaysAndTime : AppCompatActivity() {
 
     //Initilization
     private fun init() {
+
+        requestID = intent.extras!!.getInt("requestID")
+
         btnContinue = findViewById(R.id.btn_Continue)
         btnContinue.onClick {
             updateData()

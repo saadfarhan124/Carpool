@@ -1,6 +1,7 @@
 package com.example.prototype.ui.packages
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
 import com.example.prototype.Utilities.Util
 import com.example.prototype.adapters.PackageAdapter
+import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 
 class PackageFragment : Fragment() {
@@ -39,6 +41,9 @@ class PackageFragment : Fragment() {
             .addOnSuccessListener {
                 val requests = mutableListOf<ReviewInformationDataModel>()
                 for (documents in it.documents) {
+
+
+
                     val info = documents.toObject(ReviewInformationDataModel::class.java)
                     info!!.requestID = documents.id
                     requests.add(info!!)

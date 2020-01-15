@@ -64,6 +64,7 @@ class MyridesAdapter(
                         this.notifyItemRemoved(position)
                         this.notifyItemRangeChanged(position, bookingList.size)
                         this.notifyDataSetChanged()
+
                     }
             }
             confirmDialog.setNegativeButton("No") { _, _ -> }

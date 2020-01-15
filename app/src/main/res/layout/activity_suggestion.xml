@@ -68,7 +68,6 @@
         android:hint="Suggestion Type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSubHeading"
         app:layout_constraintTop_toTopOf="parent">
 
         <AutoCompleteTextView
