@@ -34,7 +34,10 @@ class DespositSlipUploadActivity : AppCompatActivity() {
     private lateinit var depositSlipProgressBar: ProgressBar
 
     //Request ID
-    private  var requestID: String = ""
+    private var requestID: String = ""
+
+    //Image flag
+    private var imageUploaded: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +53,6 @@ class DespositSlipUploadActivity : AppCompatActivity() {
 
         init()
     }
-
 
 
     fun init() {
@@ -70,35 +72,44 @@ class DespositSlipUploadActivity : AppCompatActivity() {
 
         btnUploadSlip = findViewById(R.id.btnUploadSlip)
         btnUploadSlip.onClick {
-            depositSlipProgressBar.visibility = View.VISIBLE
-            Util.getFirebaseFireStore().collection("invoiceNumber")
-                .get()
-                .addOnSuccessListener {
-                    var invoiceID = it.documents[0]["invoiceNumber"].toString().toInt()
-                    Util.getFirebaseFireStore().collection("invoiceNumber")
-                        .document(it.documents[0].id).update("invoiceNumber", invoiceID+1)
-                        .addOnSuccessListener {
-                            var invoive = InvoiceDataModel(
-                                invoiceID,
-                                amountTextView.text.toString().toInt(),
-                                Util.getFormattedDate(),
-                                Util.getGlobals().user!!.uid,
-                                requestID
-                            )
-                            Util.getFirebaseFireStore().collection("invoices")
-                                .add(invoive)
-                                .addOnSuccessListener {
-                                    Util.getFirebaseFireStore().collection("carRideRequests")
-                                        .document(requestID)
-                                        .update("requestStatus", "Payment Processing")
-                                        .addOnSuccessListener {
-                                            uploadImage(depositImage)
-                                        }
-                                }
-                        }
+            if (!imageUploaded) {
+                Toast.makeText(
+                    applicationContext,
+                    "Please upload an image first",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                depositSlipProgressBar.visibility = View.VISIBLE
+                Util.getFirebaseFireStore().collection("invoiceNumber")
+                    .get()
+                    .addOnSuccessListener {
+                        var invoiceID = it.documents[0]["invoiceNumber"].toString().toInt()
+                        Util.getFirebaseFireStore().collection("invoiceNumber")
+                            .document(it.documents[0].id).update("invoiceNumber", invoiceID + 1)
+                            .addOnSuccessListener {
+                                var invoive = InvoiceDataModel(
+                                    invoiceID,
+                                    amountTextView.text.toString().toInt(),
+                                    Util.getFormattedDate(),
+                                    Util.getGlobals().user!!.uid,
+                                    requestID
+                                )
+                                Util.getFirebaseFireStore().collection("invoices")
+                                    .add(invoive)
+                                    .addOnSuccessListener {
+                                        Util.getFirebaseFireStore().collection("carRideRequests")
+                                            .document(requestID)
+                                            .update("requestStatus", "Payment Processing")
+                                            .addOnSuccessListener {
+                                                uploadImage(depositImage)
+                                            }
+                                    }
+                            }
 
 
-                }
+                    }
+            }
+
         }
     }
 
@@ -144,7 +155,7 @@ class DespositSlipUploadActivity : AppCompatActivity() {
                     data.data
                 )
                 slipUploadImageView.setImageBitmap(depositImage)
-
+                imageUploaded = true
             }
         }
     }
