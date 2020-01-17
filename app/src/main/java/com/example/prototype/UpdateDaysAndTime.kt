@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
 import com.google.android.material.card.MaterialCardView
@@ -96,6 +97,13 @@ class UpdateDaysAndTime : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_selectdays)
         AndroidThreeTen.init(this)
+
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbarsp)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
 
         calendar = Util.getCalendarInstance()
 
@@ -775,6 +783,12 @@ class UpdateDaysAndTime : AppCompatActivity() {
             cal.get(Calendar.MINUTE),
             false
         )
+    }
+
+    //Top App Bar Back Nav
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
     }
 }
 

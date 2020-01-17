@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
 import android.widget.*
+import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.InvoiceDataModel
 import com.jakewharton.threetenabp.AndroidThreeTen
@@ -32,15 +33,31 @@ class DespositSlipUploadActivity : AppCompatActivity() {
     //Progress Bar
     private lateinit var depositSlipProgressBar: ProgressBar
 
+    //Request ID
+    private  var requestID: String = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bank_transfer)
         AndroidThreeTen.init(this)
 
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbarsp)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+
         init()
     }
 
+
+
     fun init() {
+
+        requestID = intent.extras!!.get("requestID").toString()
+
+
         depositSlipTextView = findViewById(R.id.depositSlipTextView)
         amountTextView = findViewById(R.id.amountTextView)
 
@@ -65,17 +82,18 @@ class DespositSlipUploadActivity : AppCompatActivity() {
                                 invoiceID,
                                 amountTextView.text.toString().toInt(),
                                 Util.getFormattedDate(),
-                                "saad"
+                                Util.getGlobals().user!!.uid,
+                                requestID
                             )
                             Util.getFirebaseFireStore().collection("invoices")
                                 .add(invoive)
                                 .addOnSuccessListener {
-                                    Toast.makeText(
-                                        applicationContext,
-                                        "Invoice verification pending",
-                                        Toast.LENGTH_LONG
-                                    ).show()
-                                    uploadImage(depositImage)
+                                    Util.getFirebaseFireStore().collection("carRideRequests")
+                                        .document(requestID)
+                                        .update("requestStatus", "Payment Processing")
+                                        .addOnSuccessListener {
+                                            uploadImage(depositImage)
+                                        }
                                 }
                         }
 
@@ -105,7 +123,13 @@ class DespositSlipUploadActivity : AppCompatActivity() {
             Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT)
                 .show()
         }.addOnSuccessListener {
+            Toast.makeText(
+                applicationContext,
+                "Invoice verification pending",
+                Toast.LENGTH_LONG
+            ).show()
             depositSlipProgressBar.visibility = View.INVISIBLE
+            startActivity(Intent(applicationContext, navdrawer::class.java))
         }
     }
 

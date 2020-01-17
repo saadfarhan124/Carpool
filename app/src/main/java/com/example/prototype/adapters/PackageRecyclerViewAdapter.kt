@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prototype.DespositSlipUploadActivity
 import com.example.prototype.R
 import com.example.prototype.ReviewInformationActivity
 import com.example.prototype.UpdateDaysAndTime
@@ -143,17 +144,29 @@ class PackageAdapter(
             holder.btnPay.onClick {
                 Toast.makeText(context, "Payment not enabled yet", Toast.LENGTH_LONG).show()
             }
-        } else {
+            holder.btnChange.onClick {
+                var intent = Intent(context, UpdateDaysAndTime::class.java)
+                intent.putExtra("requestID", request.requestID)
+                context.startActivity(intent)
+            }
+        } else if(request!!.requestStatus == ("Payment Pending")) {
             holder.btnPay.onClick {
-
+                var intent = Intent(context, DespositSlipUploadActivity::class.java)
+                intent.putExtra("requestID", request.requestID)
+                context.startActivity(intent)
+            }
+            holder.btnChange.onClick {
+                var intent = Intent(context, UpdateDaysAndTime::class.java)
+                intent.putExtra("requestID", request.requestID)
+                context.startActivity(intent)
+            }
+        } else if(request!!.requestStatus == ("Payment Processing")){
+            holder.btnPay.onClick {
+                Toast.makeText(context, "Payment already being processed", Toast.LENGTH_SHORT).show()
             }
         }
 
-        holder.btnChange.onClick {
-            var intent = Intent(context, UpdateDaysAndTime::class.java)
-            intent.putExtra("requestID", request.requestID)
-            context.startActivity(intent)
-        }
+
 
         holder.btnCancel.onClick {
             packageProgressBar.visibility = View.VISIBLE
