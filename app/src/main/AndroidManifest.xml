@@ -21,7 +21,7 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SelectGenderAndDob"></activity>
+<!--        <activity android:name=".SelectGenderAndDob"></activity>-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -55,7 +55,7 @@
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SelectGenderAndDob">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
