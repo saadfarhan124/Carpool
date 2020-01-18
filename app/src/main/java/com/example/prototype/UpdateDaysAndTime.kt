@@ -522,7 +522,9 @@ class UpdateDaysAndTime : AppCompatActivity() {
             SundayCard.visibility = View.VISIBLE
             sundayTimePickUp.text = model?.pickUpTime.toString()
             sundayTimeDropOff.text = model?.dropOffTime.toString()
+
         }
+        updateDaysTimeProgressBar.visibility = View.INVISIBLE
     }
 
     //Initilization
@@ -530,6 +532,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
 
         //Progress Bar
         updateDaysTimeProgressBar = findViewById(R.id.updateDaysTimeProgressBar)
+        updateDaysTimeProgressBar.visibility = View.VISIBLE
 
         requestID = intent.extras!!.get("requestID").toString()
 

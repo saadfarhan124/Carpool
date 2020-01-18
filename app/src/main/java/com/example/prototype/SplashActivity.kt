@@ -69,26 +69,31 @@ class SplashActivity : AppCompatActivity() {
         val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
         val homeScreen = Intent(applicationContext,navdrawer::class.java)
         if(user != null){
-            var global = Companion.Globals
-            global.user = user
+            if (user!!.email.isNullOrEmpty()){
+                startActivity(Intent(applicationContext, SignupEmailActivity::class.java))
+            }else{
+                var global = Companion.Globals
+                global.user = user
 
-            //Loading picture from database and then saving it locally
-            if(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}","")!!.isNotEmpty()){
+                //Loading picture from database and then saving it locally
+                if(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}","")!!.isNotEmpty()){
                     Util.getGlobals().userImage = BitmapFactory.decodeFile(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}",""))
                     startActivity(homeScreen)
-            }else{
-                val localFile = File.createTempFile("images", "jpg")
-                Util.getStorageRef().getFile(localFile).addOnSuccessListener {
-                    with(getPreferences(Context.MODE_PRIVATE).edit()){
-                        putString("ImageUri${user!!.uid}", localFile.absolutePath)
-                        commit()
-                        Util.getGlobals().userImage = BitmapFactory.decodeFile(localFile.absolutePath)
+                }else{
+                    val localFile = File.createTempFile("images", "jpg")
+                    Util.getStorageRef().getFile(localFile).addOnSuccessListener {
+                        with(getPreferences(Context.MODE_PRIVATE).edit()){
+                            putString("ImageUri${user!!.uid}", localFile.absolutePath)
+                            commit()
+                            Util.getGlobals().userImage = BitmapFactory.decodeFile(localFile.absolutePath)
+                            startActivity(homeScreen)
+                        }
+                    }.addOnFailureListener{
                         startActivity(homeScreen)
                     }
-                }.addOnFailureListener{
-                    startActivity(homeScreen)
                 }
             }
+
         }else{
             startActivity(afterSplashActivityIntent)
         }

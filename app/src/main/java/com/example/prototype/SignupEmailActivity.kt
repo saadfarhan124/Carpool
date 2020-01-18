@@ -49,6 +49,8 @@ class SignupEmailActivity : AppCompatActivity() {
                 }
                 loading.visibility = View.INVISIBLE
             }
+        }else{
+            Toast.makeText(applicationContext, "Email not valid", Toast.LENGTH_SHORT).show()
         }
 
     }
