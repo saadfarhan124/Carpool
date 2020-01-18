@@ -29,6 +29,8 @@ class ProfileActivity : AppCompatActivity() {
     private lateinit var textViewName: TextView
     private lateinit var textViewEmail: TextView
     private lateinit var textViewPhoneNumber: TextView
+    private lateinit var textViewGender: TextView
+    private lateinit var textViewPhoneDob: TextView
     private lateinit var progressBar: ProgressBar
     private lateinit var imageViewNumberIcon: ImageView
     private lateinit var imageViewEmailIcon: ImageView
@@ -69,6 +71,12 @@ class ProfileActivity : AppCompatActivity() {
 
         textViewPhoneNumber = findViewById(R.id.txt_num)
         textViewPhoneNumber.text = Util.getGlobals().user!!.phoneNumber
+
+        textViewGender = findViewById(R.id.txt_gender)
+        textViewGender.text = Util.getGlobals().userDataModel!!.gender
+
+        textViewPhoneDob = findViewById(R.id.txt_dob)
+        textViewPhoneDob.text = Util.getGlobals().userDataModel!!.dateOfBirth
 
         updatePasswordCard.setOnClickListener {
             var intent = Intent(applicationContext, UpdatePassword::class.java)

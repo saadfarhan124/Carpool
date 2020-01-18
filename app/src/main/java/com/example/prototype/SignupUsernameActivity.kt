@@ -40,7 +40,7 @@ class SignupUsernameActivity : AppCompatActivity() {
         val profileUpdates = UserProfileChangeRequest.Builder().setDisplayName(sg_txt_username.text.toString()).build()
         user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
             if(task.isSuccessful){
-                var intent = Intent(applicationContext, LoginActivity::class.java)
+                var intent = Intent(applicationContext, SelectGenderAndDob::class.java)
                 startActivity(intent)
             }else{
                 Toast.makeText(this,task.exception!!.message, Toast.LENGTH_LONG).show()

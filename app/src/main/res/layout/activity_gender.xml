@@ -53,7 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="mm/dd/yy"
+            android:focusable="false"
             android:inputType="date"/>
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -62,12 +62,10 @@
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toTopOf="@+id/btnContinue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView27"
         app:rb_color="@color/colorAccent"
         app:rb_duration="3000"
@@ -130,12 +128,79 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.skyfishjy.library.RippleBackground>
 
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/contentMale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/content"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="3000"
+        app:rb_radius="16dp"
+        app:rb_rippleAmount="1"
+        app:rb_scale="6">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardViewMale"
+            style="@style/Widget.MaterialComponents.CardView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="74dp"
+            android:checkable="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:outlineSpotShadowColor="@color/colorPrimaryDark"
+            app:cardCornerRadius="18dp"
+
+            app:cardElevation="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnContinue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView27">
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_male"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/fui_ic_googleg_color_24dp" />
+
+            <TextView
+                android:id="@+id/txt_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="MALE"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/img_male"
+                app:layout_constraintStart_toStartOf="@+id/img_male"
+                app:layout_constraintTop_toBottomOf="@+id/img_male" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.skyfishjy.library.RippleBackground>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnContinue"
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
@@ -145,8 +210,7 @@
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/content"
-        app:layout_constraintStart_toStartOf="@+id/content"
-        app:layout_constraintTop_toBottomOf="@+id/content" />
+        app:layout_constraintStart_toStartOf="@+id/contentMale" />
 
     <TextView
         android:textColor="@color/colorText1"

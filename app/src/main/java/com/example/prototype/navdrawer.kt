@@ -19,6 +19,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
+import com.example.prototype.dataModels.UserDataModel
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
@@ -68,7 +69,16 @@ class navdrawer : AppCompatActivity() {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
-        demo()
+        //Loading user properties gender and dob
+        if(Util.getGlobals().userDataModel == null){
+            Util.getFirebaseFireStore().collection("users")
+                .document(globals.user!!.uid)
+                .get()
+                .addOnSuccessListener {
+                    globals.userDataModel = UserDataModel(it["dateOfBirth"].toString(),
+                        it["gender"].toString())
+                }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
+import com.example.prototype.dataModels.UserDataModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -62,46 +63,53 @@ class LoginActivity : AppCompatActivity() {
         auth.signInWithEmailAndPassword(
             lg_txt_email.text.toString(),
             lg_txt_password.text.toString()
-        ).addOnSuccessListener { task ->
-            var globals = Companion.Globals
-            globals.user = auth.currentUser
-            //Loading picture from database and then saving it locally
-            if (getPreferences(Context.MODE_PRIVATE).getString(
-                    "ImageUri${globals.user!!.uid}",
-                    ""
-                )!!.isNotEmpty()
-            ) {
-                Util.getGlobals().userImage = BitmapFactory.decodeFile(
-                    getPreferences(Context.MODE_PRIVATE).getString(
+        ).addOnFailureListener {
+            Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+            loading.visibility = View.INVISIBLE
+        }
+            .addOnSuccessListener { task ->
+                var globals = Companion.Globals
+                globals.user = auth.currentUser
+
+
+
+                //Loading picture from database and then saving it locally
+                if (getPreferences(Context.MODE_PRIVATE).getString(
                         "ImageUri${globals.user!!.uid}",
                         ""
+                    )!!.isNotEmpty()
+                ) {
+                    Util.getGlobals().userImage = BitmapFactory.decodeFile(
+                        getPreferences(Context.MODE_PRIVATE).getString(
+                            "ImageUri${globals.user!!.uid}",
+                            ""
+                        )
                     )
-                )
-                intent = Intent(applicationContext, navdrawer::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                loading.visibility = View.INVISIBLE
-                startActivity(intent)
-            } else {
-                val localFile = File.createTempFile("images", "jpg")
-                Util.getStorageRef().getFile(localFile).addOnSuccessListener {
-                    with(getPreferences(Context.MODE_PRIVATE).edit()) {
-                        putString("ImageUri${globals.user!!.uid}", localFile.absolutePath)
-                        commit()
-                        Util.getGlobals().userImage =
-                            BitmapFactory.decodeFile(localFile.absolutePath)
-                        intent = Intent(applicationContext, navdrawer::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                        loading.visibility = View.INVISIBLE
-                        startActivity(intent)
-
-                    }
-                }.addOnFailureListener {
                     intent = Intent(applicationContext, navdrawer::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     loading.visibility = View.INVISIBLE
                     startActivity(intent)
+                } else {
+                    val localFile = File.createTempFile("images", "jpg")
+                    Util.getStorageRef().getFile(localFile).addOnSuccessListener {
+                        with(getPreferences(Context.MODE_PRIVATE).edit()) {
+                            putString("ImageUri${globals.user!!.uid}", localFile.absolutePath)
+                            commit()
+                            Util.getGlobals().userImage =
+                                BitmapFactory.decodeFile(localFile.absolutePath)
+                            intent = Intent(applicationContext, navdrawer::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            loading.visibility = View.INVISIBLE
+                            startActivity(intent)
+
+                        }
+                    }.addOnFailureListener {
+                        intent = Intent(applicationContext, navdrawer::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        loading.visibility = View.INVISIBLE
+                        startActivity(intent)
+                    }
                 }
             }
-        }
     }
 }
