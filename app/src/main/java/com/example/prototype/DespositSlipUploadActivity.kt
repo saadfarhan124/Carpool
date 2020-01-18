@@ -13,6 +13,7 @@ import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.InvoiceDataModel
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.jetbrains.anko.onClick
+import org.jetbrains.anko.startActivityForResult
 import java.io.ByteArrayOutputStream
 
 class DespositSlipUploadActivity : AppCompatActivity() {
@@ -65,7 +66,20 @@ class DespositSlipUploadActivity : AppCompatActivity() {
 
         slipUploadImageView = findViewById(R.id.slipUploadImageView)
         slipUploadImageView.onClick {
-            launchGallery()
+            var alert = Util.getAlertDialog(this)
+            alert.setMessage("Do you want to open camera or launch gallery")
+            alert.setPositiveButton("Gallery"){_, _ ->
+                launchGallery()
+            }
+            alert.setNegativeButton("Camera"){_,_ ->
+                Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+                    takePictureIntent.resolveActivity(packageManager)?.also {
+                        startActivityForResult(takePictureIntent, Util.getCameraCode())
+                    }
+                }
+            }
+
+            alert.show()
         }
 
         depositSlipProgressBar = findViewById(R.id.depositSlipProgressBar)
@@ -157,6 +171,13 @@ class DespositSlipUploadActivity : AppCompatActivity() {
                 slipUploadImageView.setImageBitmap(depositImage)
                 imageUploaded = true
             }
+        }
+        //Check for camera
+        else if(requestCode == Util.getCameraCode() && resultCode == Activity.RESULT_OK){
+            depositImage = data!!.extras!!.get("data") as Bitmap
+            slipUploadImageView.setImageBitmap(depositImage)
+            imageUploaded = true
+
         }
     }
 

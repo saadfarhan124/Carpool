@@ -50,6 +50,10 @@ class Util{
             return 71
         }
 
+        fun getCameraCode():Int{
+            return 3
+        }
+
         fun getStorageRef():StorageReference{
             return FirebaseStorage.getInstance()
                 .reference.child("images/${getGlobals().user!!.uid}")
@@ -65,12 +69,7 @@ class Util{
             return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         }
 
-        fun getPermissionCode():Int{
-            return 1000
-        }
-        fun getImageCaptureCode(): Int{
-            return 1001
-        }
+
 
         fun getFirebaseAuth():FirebaseAuth{
             return FirebaseAuth.getInstance()
@@ -138,7 +137,7 @@ class Util{
 
         //Function to return alert dialog
         fun getAlertDialog(context: Context): AlertDialog.Builder{
-            val alertDialog = AlertDialog.Builder(context, R.style.ThemeOverlay_MaterialComponents_Dialog)
+            var alertDialog = AlertDialog.Builder(context, R.style.ThemeOverlay_MaterialComponents_Dialog)
             alertDialog.setTitle("Sath Chaloo")
             return alertDialog
         }
