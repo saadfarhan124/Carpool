@@ -12,6 +12,11 @@ class SelectGenderAndDob : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gender)
 
+        val rippleBackground = findViewById<RippleBackground>(R.id.content)
 
+        var btnContinue = findViewById<Button>(R.id.btnContinue)
+        btnContinue.onClick {
+            rippleBackground.startRippleAnimation()
+        }
     }
 }
