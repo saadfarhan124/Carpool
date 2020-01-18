@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.FirebaseException
@@ -24,6 +26,9 @@ class VerifyCodeActivity : AppCompatActivity() {
     lateinit var mCallBacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
     var verificationId : String? = null
     var sharedPreferences:SharedPreferences? = null
+
+    //Progress Bar
+    private lateinit var verifyCodeProgressBar: ProgressBar
 
     //Function to verify code
     fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
@@ -72,7 +77,8 @@ class VerifyCodeActivity : AppCompatActivity() {
             override fun onCodeSent(p0: String, p1: PhoneAuthProvider.ForceResendingToken) {
                 super.onCodeSent(p0, p1)
                 verificationId = p0
-//                progressBar.visibility = View.INVISIBLE
+                verifyCodeProgressBar.visibility = View.INVISIBLE
+
             }
 
         }
@@ -80,6 +86,9 @@ class VerifyCodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_verifycode)
+
+        //Progress Bar
+        verifyCodeProgressBar = findViewById(R.id.verifyCodeProgressBar)
 
         //Top App Bar
         val toolbar: Toolbar = findViewById(R.id.toolbarverify)
@@ -100,7 +109,7 @@ class VerifyCodeActivity : AppCompatActivity() {
             this,
             mCallBacks
         )
-//        progressBar.visibility = View.VISIBLE
+        verifyCodeProgressBar.visibility = View.VISIBLE
 
         //Firebase auth
         auth = FirebaseAuth.getInstance()
