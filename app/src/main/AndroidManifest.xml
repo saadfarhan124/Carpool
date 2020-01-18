@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.prototype">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -22,7 +21,7 @@
         android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+<!--        <activity android:name=".SelectGenderAndDob"></activity>-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,11 +32,9 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-<!--        <activity-->
-<!--            android:name="sathchaloo.com.prototype.TestActivity"-->
-<!--            android:label="@string/title_activity_test"></activity>-->
+            android:value="@string/google_maps_key" /> <!-- <activity -->
+        <!-- android:name="sathchaloo.com.prototype.TestActivity" -->
+        <!-- android:label="@string/title_activity_test"></activity> -->
         <activity android:name=".DespositSlipUploadActivity" />
         <activity android:name=".UpdateDaysAndTime" />
         <activity android:name=".SelectDaysAndTime" />
@@ -58,7 +55,7 @@
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".SelectGenderAndDob">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

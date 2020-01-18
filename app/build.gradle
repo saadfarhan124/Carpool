@@ -80,6 +80,9 @@ android {
 
         //support date time below api level 26
         implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
+        //Ripple Animation
+        implementation 'com.skyfishjy.ripplebackground:library:1.0.1'
     }
 }
 

@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editlay2" >
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText3"
+            android:id="@+id/editTextDob"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
