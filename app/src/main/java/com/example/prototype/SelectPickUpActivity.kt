@@ -2,6 +2,7 @@ package com.example.prototype
 
 import android.content.Intent
 import android.graphics.Color
+import android.location.Geocoder
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -36,6 +37,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
 import java.net.URL
+import java.util.*
 
 class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -51,6 +53,8 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var polylineOptions: PolylineOptions
     private var polyFlag = false
 
+    //GeoCoder
+    private lateinit var geocoder: Geocoder
 
     //Widgets
     private var mGPS: ImageView? = null
@@ -65,9 +69,10 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         mGPS = findViewById(R.id.ic_gps)
         customMarker = findViewById(R.id.ic_marker)
         btnSelectPickUp = findViewById(R.id.btnSelectPickUp)
-        //Places API
 
+        //Places API
         autocompleteSupportFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+        findViewById<EditText>(R.id.places_autocomplete_search_input).textSize = 15f
         autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
 
         destinationLatLng = LatLng(intent.extras!!.get("DestLat").toString().toDouble(),intent.extras!!.get("DestLong").toString().toDouble())
@@ -93,6 +98,9 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun init() {
+
+        geocoder = Geocoder(applicationContext, Locale.getDefault())
+
 
         mGPS!!.setOnClickListener {
             getDevicesLocation()
@@ -210,6 +218,9 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.setOnCameraIdleListener {
             if(!polyFlag){
                 mMap.clear()
+                var address = geocoder.getFromLocation(mMap.cameraPosition.target.latitude,mMap.cameraPosition.target.longitude, 1)
+                pickUpAddress = address.first().getAddressLine(0).toString()
+                autocompleteSupportFragment.setText(address.first().getAddressLine(0).toString())
                 addMarker(destinationLatLng,"Destination")
                 addMarker(mMap.cameraPosition.target, "Pickup")
                 customMarker!!.visibility = View.INVISIBLE

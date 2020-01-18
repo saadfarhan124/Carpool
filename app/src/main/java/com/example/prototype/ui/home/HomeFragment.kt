@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -43,6 +44,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.find
 import java.io.IOException
+import java.lang.StringBuilder
+import java.util.*
 
 
 class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
@@ -99,6 +102,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     //Destinatiion Address
     private var destAddress = ""
 
+    //GeoCoder
+    private lateinit var geocoder: Geocoder
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -130,6 +136,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                     placesClient = Places.createClient(root.context)
                     autocompleteSupportFragment =
                         childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+                    root.findViewById<EditText>(R.id.places_autocomplete_search_input).textSize = 15f
                     autocompleteSupportFragment.setPlaceFields(
                         arrayListOf(
                             Place.Field.ADDRESS,
@@ -182,6 +189,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     //Setting Editor On Action Listener for the Enter Key
     private fun init() {
 
+        geocoder = Geocoder(root.context, Locale.getDefault())
+
+
         btn_service = root.findViewById(R.id.btn_service)
         btn_service.setOnClickListener {
             val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
@@ -192,6 +202,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         mGPS!!.setOnClickListener {
             getDevicesLocation()
         }
+
 
         autocompleteSupportFragment.setHint("Enter Destination")
         autocompleteSupportFragment.setCountry("PK")
@@ -250,6 +261,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         mMap = googleMap
         mMap.setOnCameraIdleListener {
             mMap.clear()
+            var address = geocoder.getFromLocation(mMap.cameraPosition.target.latitude,mMap.cameraPosition.target.longitude, 1)
+            destAddress = address.first().getAddressLine(0).toString()
+            autocompleteSupportFragment.setText(address.first().getAddressLine(0).toString())
             addMarker(mMap.cameraPosition.target, "Custom")
             customMarker!!.visibility = View.INVISIBLE
         }
