@@ -46,6 +46,7 @@ class NewroutesFragment:Fragment() {
         toAutoCompleteTextView.setAdapter(adapter)
 
         //Places API
+        token = AutocompleteSessionToken.newInstance()
         Places.initialize(root.context, getString(R.string.google_maps_key))
         placesClient = Places.createClient(root.context)
         request = FindAutocompletePredictionsRequest.builder()
