@@ -103,7 +103,7 @@ class SelectGenderAndDob : AppCompatActivity() {
         editTextDob = findViewById(R.id.editTextDob)
         editTextDob.onClick {
             val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{view, year, month, dayOfMonth ->
-                editTextDob.setText("$dayOfMonth/$month/$year")
+                editTextDob.setText("$dayOfMonth/${month+1}/$year")
             }, year, month, day)
             //2001 in milliseconds
             datePickerDialog.datePicker.maxDate = 1009738800000

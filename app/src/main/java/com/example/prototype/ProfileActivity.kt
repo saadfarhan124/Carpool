@@ -1,6 +1,7 @@
 package com.example.prototype
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -19,12 +20,15 @@ import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.example.prototype.Utilities.Util
 import com.google.android.material.card.MaterialCardView
+import org.jetbrains.anko.onClick
 import java.io.ByteArrayOutputStream
+import java.util.*
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var updatePasswordCard: MaterialCardView
     private lateinit var logoutCard: MaterialCardView
+    private lateinit var dobCard:MaterialCardView
     private lateinit var imageViewDisplayPicture: ImageView
     private lateinit var textViewName: TextView
     private lateinit var textViewEmail: TextView
@@ -56,6 +60,7 @@ class ProfileActivity : AppCompatActivity() {
 
         updatePasswordCard = findViewById(R.id.materialCardViewPas)
         logoutCard = findViewById(R.id.materialCardViewLogout)
+        dobCard = findViewById(R.id.materialCardViewDOB)
 
         imageViewDisplayPicture = findViewById(R.id.img_user)
         if(Util.getGlobals().userImage != null){
@@ -84,6 +89,21 @@ class ProfileActivity : AppCompatActivity() {
         }
         logoutCard.setOnClickListener {
             startActivity(Util.logout(applicationContext))
+        }
+        dobCard.onClick {
+            var calender = Util.getCalendarInstance()
+            val datePickerDialog = DatePickerDialog(this, DatePickerDialog.OnDateSetListener{ view, year, month, dayOfMonth ->
+                textViewPhoneDob.text = ("$dayOfMonth/${month+1}/$year")
+                Util.getFirebaseFireStore().collection("users")
+                    .document(Util.getGlobals().user!!.uid)
+                    .update("dateOfBirth", textViewPhoneDob.text)
+                    .addOnSuccessListener {
+                        Toast.makeText(applicationContext, "Updated", Toast.LENGTH_SHORT).show()
+                    }
+            }, calender.get(Calendar.YEAR), calender.get(Calendar.MONTH), calender.get(Calendar.DAY_OF_MONTH))
+            //2001 in milliseconds
+            datePickerDialog.datePicker.maxDate = 1009738800000
+            datePickerDialog.show()
         }
 
         progressBar = findViewById(R.id.progressBarProfile)
