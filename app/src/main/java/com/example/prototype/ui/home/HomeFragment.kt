@@ -95,7 +95,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
     //Widgets
     private lateinit var btn_service: Button
-    private var mGPS: ImageView? = null
+    private lateinit var mGPS: ImageView
     private var customMarker: ImageView? = null
     private var btnSelectPickUp: Button? = null
 
@@ -122,33 +122,17 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         if (Util.verifyAvailableNetwork(activity!! as AppCompatActivity)) {
             if (Util.isGPSEnable(locationManager)) {
                 try {
+                    getLocationPermission()
+
                     locationManager.requestLocationUpdates(
                         LocationManager.GPS_PROVIDER,
                         15000,
                         10f,
                         this
                     )
-                    mGPS = root.findViewById(R.id.ic_gps)
-                    customMarker = root.findViewById(R.id.ic_marker)
-                    btnSelectPickUp = root.findViewById(R.id.btnSelectPickUp)
-                    //Places API
-                    Places.initialize(root.context, getString(R.string.google_maps_key))
-                    placesClient = Places.createClient(root.context)
-                    autocompleteSupportFragment =
-                        childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
-                    root.findViewById<EditText>(R.id.places_autocomplete_search_input).textSize = 15f
-                    autocompleteSupportFragment.setPlaceFields(
-                        arrayListOf(
-                            Place.Field.ADDRESS,
-                            Place.Field.LAT_LNG
-                        )
-                    )
-                    // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-                    getLocationPermission()
-                    init()
-                    initMap()
-                } catch (e: SecurityException) {
 
+                } catch (e: SecurityException) {
+                    Toast.makeText(root.context, e.message, Toast.LENGTH_SHORT).show()
                 }
             } else {
                 val alertDialog = Util.getAlertDialog(root.context)
@@ -176,12 +160,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             }
             confirmDialog.show()
         }
-
-
-
-
-
-
         return root
     }
 
@@ -189,6 +167,21 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     //Setting Editor On Action Listener for the Enter Key
     private fun init() {
 
+        mGPS = root.findViewById(R.id.ic_gps)
+        customMarker = root.findViewById(R.id.ic_marker)
+        btnSelectPickUp = root.findViewById(R.id.btnSelectPickUp)
+        //Places API
+        Places.initialize(root.context, getString(R.string.google_maps_key))
+        placesClient = Places.createClient(root.context)
+        autocompleteSupportFragment =
+            childFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+        root.findViewById<EditText>(R.id.places_autocomplete_search_input).textSize = 15f
+        autocompleteSupportFragment.setPlaceFields(
+            arrayListOf(
+                Place.Field.ADDRESS,
+                Place.Field.LAT_LNG
+            )
+        )
         geocoder = Geocoder(root.context, Locale.getDefault())
 
 
@@ -283,7 +276,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         try {
             var task: Task<Location>? = fusedLocationProviderClient.lastLocation
             task!!.addOnCompleteListener {
-                if (task.isComplete) {
+                if (task.isSuccessful) {
                     var location = task.result
                     moveCamera(
                         LatLng(location!!.latitude, location.longitude),
@@ -293,7 +286,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                     Toast.makeText(root.context, "Found", Toast.LENGTH_LONG).show()
 
                 } else {
-                    Log.d("Maps Activity", "Location Not Found")
                     Toast.makeText(root.context, "Not Found", Toast.LENGTH_LONG).show()
                 }
             }
@@ -334,12 +326,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                     COARSE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
+                init()
+                initMap()
                 permissionFlag = true
             } else {
-                ActivityCompat.requestPermissions(activity!!, permissions, locationPermissionCode)
+                requestPermissions(permissions, locationPermissionCode)
             }
         } else {
-            ActivityCompat.requestPermissions(activity!!, permissions, locationPermissionCode)
+            requestPermissions(permissions, locationPermissionCode)
         }
     }
 
@@ -357,9 +351,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                         return
                     }
                 }
-                getDevicesLocation()
                 permissionFlag = true
-
+                init()
+                initMap()
+                getDevicesLocation()
             }
         }
     }

@@ -30,7 +30,6 @@
     <string name="title_activity_find_stop">Find Stop</string>
     <string name="title_activity_track_ride">Track Activity</string>
     <string name="title_activity_test">Map</string>
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBET5QvxRjunZwu2qoiM9eAnjA-ll365o8</string>
 
 
 </resources>
