@@ -347,8 +347,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             locationPermissionCode -> if (grantResults.isNotEmpty()) {
                 for (i in 0 until grantResults.size - 1) {
                     if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        var alertDialog = Util.getAlertDialog(root.context)
+                        alertDialog.setMessage("You need to enable location in order to get the most out of Sath Chaloo")
+                        alertDialog.setPositiveButton("Enable Location"){_,_ ->
+                            getLocationPermission()
+                        }
+                        alertDialog.setNegativeButton("Don't allow"){_,_ ->
+                            System.exit(0)
+                        }
+                        alertDialog.show()
                         permissionFlag = false
-                        return
                     }
                 }
                 permissionFlag = true
