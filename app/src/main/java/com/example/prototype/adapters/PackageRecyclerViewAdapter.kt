@@ -13,10 +13,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.DespositSlipUploadActivity
 import com.example.prototype.R
-import com.example.prototype.ReviewInformationActivity
 import com.example.prototype.UpdateDaysAndTime
 import com.example.prototype.Utilities.Util
-import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.material.chip.Chip
 import org.jetbrains.anko.enabled
@@ -199,10 +197,10 @@ class PackageViewHolder(v: View) : RecyclerView.ViewHolder(v) {
     internal var chipFri: Chip = v.findViewById(R.id.chipFri)
     internal var chipSat: Chip = v.findViewById(R.id.chipSat)
     internal var chipSun: Chip = v.findViewById(R.id.chipSun)
-    internal var txt_pickupAddress: TextView = v.findViewById(R.id.txt_pickupAddress)
-    internal var txt_dropoffAddress: TextView = v.findViewById(R.id.txt_dropoffAddress)
+    internal var txt_pickupAddress: TextView = v.findViewById(R.id.textViewPickUpAddress)
+    internal var txt_dropoffAddress: TextView = v.findViewById(R.id.textViewDropOffAddress)
     internal var textViewStatus: TextView = v.findViewById(R.id.textViewStatus)
-    internal var textViewAmount: TextView = v.findViewById(R.id.txt_dropoffAddress)
+    internal var textViewAmount: TextView = v.findViewById(R.id.textViewDropOffAddress)
     internal var btnChange: Button = v.findViewById(R.id.btnChange)
     internal var btnCancel: Button = v.findViewById(R.id.btnCancel)
     internal var btnPay: Button = v.findViewById(R.id.btnPay)

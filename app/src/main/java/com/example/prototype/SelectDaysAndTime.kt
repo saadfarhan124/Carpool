@@ -157,10 +157,10 @@ class SelectDaysAndTime : AppCompatActivity() {
         //Wednesday
         if(Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
             if(wednesdayTimePickUp.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Tuesday", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Please select pick up time for Wednesday", Toast.LENGTH_LONG).show()
                 return
             }else if(wednesdayTimeDropOff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Please select drop off time for Wednesday", Toast.LENGTH_LONG).show()
                 return
             }else{
                 var carSharingDataModel = CarSharingDataModel("Wednesday",
@@ -174,10 +174,10 @@ class SelectDaysAndTime : AppCompatActivity() {
         //Thursday
         if(Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
             if(thursdayTimePickUp.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Tuesday", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Please select pick up time for Thursday", Toast.LENGTH_LONG).show()
                 return
             }else if(thursdayTimeDropOff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext,"Please select drop off time for Thursday", Toast.LENGTH_LONG).show()
                 return
             }else{
                 var carSharingDataModel = CarSharingDataModel("Thursday",

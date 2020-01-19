@@ -74,10 +74,10 @@ class ReviewInformationActivity : AppCompatActivity() {
 
 
         //Text Views
-        txt_pickupAddress = findViewById(R.id.txt_pickupAddress)
+        txt_pickupAddress = findViewById(R.id.textViewPickUpAddress)
         txt_pickupAddress.text = ReviewData.pickUpAddress
 
-        txt_dropoffAddress = findViewById(R.id.txt_dropoffAddress)
+        txt_dropoffAddress = findViewById(R.id.textViewDropOffAddress)
         txt_dropoffAddress.text = ReviewData.dropOffAddress
 
         txt_name = findViewById(R.id.txt_name)
