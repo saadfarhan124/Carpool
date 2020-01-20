@@ -42,20 +42,20 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textViewCarpool"
+                        android:id="@+id/txt_lbl_carpool"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/roboto_medium"
                         android:text="TextView"
                         android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/img_carpool"
-                        app:layout_constraintStart_toEndOf="@+id/img_carpool"
-                        app:layout_constraintTop_toTopOf="@+id/img_carpool"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView15"
+                        app:layout_constraintStart_toEndOf="@+id/imageView15"
+                        app:layout_constraintTop_toTopOf="@+id/imageView15"
                         tools:text="Carpool" />
 
                     <ImageView
-                        android:id="@+id/img_carpool"
+                        android:id="@+id/imageView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -89,19 +89,19 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textViewCar"
+                        android:id="@+id/txt_lbl_car"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/roboto_medium"
                         android:text="Car"
                         android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/img_car"
-                        app:layout_constraintStart_toEndOf="@+id/img_car"
-                        app:layout_constraintTop_toTopOf="@+id/img_car" />
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+                        app:layout_constraintStart_toEndOf="@+id/imageView16"
+                        app:layout_constraintTop_toTopOf="@+id/imageView16" />
 
                     <ImageView
-                        android:id="@+id/img_car"
+                        android:id="@+id/imageView16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
@@ -137,19 +137,19 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textViewBus"
+                        android:id="@+id/txt_lbl_bus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/roboto_medium"
                         android:text="Shuttle Bus"
                         android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/img_bus"
-                        app:layout_constraintStart_toEndOf="@+id/img_bus"
-                        app:layout_constraintTop_toTopOf="@+id/img_bus" />
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+                        app:layout_constraintStart_toEndOf="@+id/imageView7"
+                        app:layout_constraintTop_toTopOf="@+id/imageView7" />
 
                     <ImageView
-                        android:id="@+id/img_bus"
+                        android:id="@+id/imageView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
