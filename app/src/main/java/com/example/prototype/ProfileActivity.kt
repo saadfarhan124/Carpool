@@ -4,12 +4,8 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.ImageDecoder
-import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -17,7 +13,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import com.example.prototype.Utilities.Util
 import com.google.android.material.card.MaterialCardView
 import org.jetbrains.anko.onClick
@@ -108,23 +103,23 @@ class ProfileActivity : AppCompatActivity() {
 
         progressBar = findViewById(R.id.progressBarProfile)
 
-        imageViewNumberIcon = findViewById(R.id.img_num)
-        imageViewNumberIcon.setImageResource(R.drawable.ic_phone)
-
-        imageViewEmailIcon = findViewById(R.id.img_email)
-        imageViewEmailIcon.setImageResource(R.drawable.ic_email)
-
-        imageViewPasswordIcon = findViewById(R.id.img_pas)
-        imageViewPasswordIcon.setImageResource(R.drawable.ic_changepass)
-
-        imageViewGenderIcon = findViewById(R.id.img_gen)
-        imageViewGenderIcon.setImageResource(R.drawable.ic_gender)
-
-        imageViewDobIcon = findViewById(R.id.img_dob)
-        imageViewDobIcon.setImageResource(R.drawable.ic_dob)
-
-        imageViewLogoutIcon = findViewById(R.id.img_logout)
-        imageViewLogoutIcon.setImageResource(R.drawable.ic_logout)
+//        imageViewNumberIcon = findViewById(R.id.img_num)
+//        imageViewNumberIcon.setImageResource(R.drawable.ic_phone)
+//
+//        imageViewEmailIcon = findViewById(R.id.img_email)
+//        imageViewEmailIcon.setImageResource(R.drawable.ic_email)
+//
+//        imageViewPasswordIcon = findViewById(R.id.img_pas)
+//        imageViewPasswordIcon.setImageResource(R.drawable.ic_changepass)
+//
+//        imageViewGenderIcon = findViewById(R.id.img_gen)
+//        imageViewGenderIcon.setImageResource(R.drawable.ic_gender)
+//
+//        imageViewDobIcon = findViewById(R.id.img_dob)
+//        imageViewDobIcon.setImageResource(R.drawable.ic_dob)
+//
+//        imageViewLogoutIcon = findViewById(R.id.img_logout)
+//        imageViewLogoutIcon.setImageResource(R.drawable.ic_logout)
     }
 
     private fun launchGallery() {
