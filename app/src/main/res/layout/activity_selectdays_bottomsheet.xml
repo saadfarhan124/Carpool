@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.lany.picker.TimePicker
+    <com.lany.picker.HourMinutePicker
         android:id="@+id/date_picker_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
