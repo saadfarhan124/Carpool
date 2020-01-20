@@ -4,6 +4,19 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/textViewFridayDropoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:visibility="gone"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewThursdayDropoff"
+        app:layout_constraintStart_toEndOf="@+id/textViewThursdayDropoff"
+        app:layout_constraintTop_toTopOf="@+id/textViewThursdayDropoff" />
+
     <com.google.android.material.chip.Chip
         android:id="@+id/chip_mon"
         android:layout_width="46dp"
@@ -109,9 +122,10 @@
         android:id="@+id/txtViewMondayPickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="7dp"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
+        android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,17 +137,19 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:fontFamily="@font/roboto"
+        android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="@+id/txtViewMondayPickup"
         app:layout_constraintTop_toBottomOf="@+id/txtViewMondayPickup" />
 
     <TextView
-        android:id="@+id/textView34"
+        android:id="@+id/textViewTuesdayPickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto"
+        android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/txtViewMondayPickup"
@@ -141,14 +157,154 @@
         app:layout_constraintTop_toTopOf="@+id/txtViewMondayPickup" />
 
     <TextView
-        android:id="@+id/textView38"
+        android:id="@+id/textViewTuesdayDropoff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewMondayDropoff"
         app:layout_constraintStart_toEndOf="@+id/textViewMondayDropoff"
         app:layout_constraintTop_toTopOf="@+id/textViewMondayDropoff" />
+
+    <TextView
+        android:id="@+id/textViewWednesdayPickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:visibility="gone"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTuesdayPickup"
+        app:layout_constraintStart_toEndOf="@+id/textViewTuesdayPickup"
+        app:layout_constraintTop_toTopOf="@+id/textViewTuesdayPickup" />
+
+    <TextView
+        android:id="@+id/textViewWednedayDropoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:visibility="gone"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTuesdayDropoff"
+        app:layout_constraintStart_toEndOf="@+id/textViewTuesdayDropoff"
+        app:layout_constraintTop_toTopOf="@+id/textViewTuesdayDropoff" />
+
+    <TextView
+        android:id="@+id/textViewThursdayPickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWednesdayPickup"
+        app:layout_constraintStart_toEndOf="@+id/textViewWednesdayPickup"
+        app:layout_constraintTop_toTopOf="@+id/textViewWednesdayPickup" />
+
+    <TextView
+        android:id="@+id/textViewThursdayDropoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWednedayDropoff"
+        app:layout_constraintStart_toEndOf="@+id/textViewWednedayDropoff"
+        app:layout_constraintTop_toTopOf="@+id/textViewWednedayDropoff" />
+
+    <TextView
+        android:id="@+id/textViewFridayPickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewThursdayPickup"
+        app:layout_constraintStart_toEndOf="@+id/textViewThursdayPickup"
+        app:layout_constraintTop_toTopOf="@+id/textViewThursdayPickup" />
+
+    <TextView
+        android:id="@+id/textViewSaturdayPickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewFridayPickup"
+        app:layout_constraintStart_toEndOf="@+id/textViewFridayPickup"
+        app:layout_constraintTop_toTopOf="@+id/textViewFridayPickup" />
+
+    <TextView
+        android:id="@+id/textViewSaturdayDropoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewFridayDropoff"
+        app:layout_constraintStart_toEndOf="@+id/textViewFridayDropoff"
+        app:layout_constraintTop_toTopOf="@+id/textViewFridayDropoff" />
+
+    <TextView
+        android:id="@+id/textViewSundayPickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="7dp"
+        android:visibility="gone"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSaturdayPickup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewSaturdayPickup"
+        app:layout_constraintTop_toTopOf="@+id/textViewSaturdayPickup" />
+
+    <TextView
+        android:id="@+id/textViewSundayDropoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:fontFamily="@font/roboto"
+        android:visibility="gone"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSaturdayDropoff"
+        app:layout_constraintStart_toEndOf="@+id/textViewSaturdayDropoff"
+        app:layout_constraintTop_toTopOf="@+id/textViewSaturdayDropoff" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_Continue"
+        style="@style/Widget.MaterialComponents.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="54dp"
+        android:paddingLeft="92dp"
+        android:paddingTop="14dp"
+        android:paddingRight="92dp"
+        android:paddingBottom="14dp"
+
+        android:text="Continue"
+        android:textSize="18sp"
+        app:backgroundTint="@color/colorPrimary"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/chip_sun"
+        app:layout_constraintStart_toStartOf="@+id/chip_mon"
+        app:layout_constraintTop_toBottomOf="@+id/chip_mon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,8 @@
 package com.example.prototype
 
-import android.content.Intent
 import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -13,23 +11,23 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
-import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.maps.android.PolyUtil
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
@@ -167,14 +165,20 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     counter++
                     btnSelectPickUp!!.text = "Proceed"
                 } else {
-                    val intent = Intent(applicationContext, SelectDaysAndTime::class.java)
-                    intent.putExtra("DestLat", destinationLatLng.latitude)
-                    intent.putExtra("DestLong", destinationLatLng.longitude)
-                    intent.putExtra("DestAddress", destinationAddress)
-                    intent.putExtra("PickupLat", marker.position.latitude)
-                    intent.putExtra("PickupLong", marker.position.longitude)
-                    intent.putExtra("PickUpAddress", pickUpAddress)
-                    startActivity(intent)
+//                    val intent = Intent(applicationContext, SelectDaysAndTime::class.java)
+//                    intent.putExtra("DestLat", destinationLatLng.latitude)
+//                    intent.putExtra("DestLong", destinationLatLng.longitude)
+//                    intent.putExtra("DestAddress", destinationAddress)
+//                    intent.putExtra("PickupLat", marker.position.latitude)
+//                    intent.putExtra("PickupLong", marker.position.longitude)
+//                    intent.putExtra("PickUpAddress", pickUpAddress)
+//                    startActivity(intent)
+
+
+                        val view = layoutInflater.inflate(R.layout.activity_selectdays_bottomsheet, null)
+                        val dialog = BottomSheetDialog(applicationContext)
+                        dialog.setContentView(view)
+                        dialog.show()
 
 
                      //Bus Part
