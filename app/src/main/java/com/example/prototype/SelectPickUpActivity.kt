@@ -89,6 +89,8 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var textViewSatdayDropoff:TextView
     private lateinit var textViewSundayDropoff:TextView
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_pick_up)
@@ -206,6 +208,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 //                    startActivity(intent)
                     val view =
                         layoutInflater.inflate(R.layout.activity_selectdays_bottomsheet, null)
+
                     //Chips
                     Monday = view.findViewById(R.id.chip_mon)
                     //Pick Ups Text View
@@ -217,10 +220,10 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             Monday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
                             Monday.setTextColor(resources.getColor(R.color.colorText1))
                         }else{
-
-                            Toast.makeText(applicationContext, txtViewMondayPickup.text, Toast.LENGTH_LONG).show()
+                            getTimerDialog(txtViewMondayPickup).show()
                             Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                             Monday.setTextColor(resources.getColor(R.color.colorText))
+
                         }
                     }
 
@@ -253,7 +256,22 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-
+    //Get Timer Dialog
+    private fun getTimerDialog(textView: TextView) : TimePickerDialog {
+        val cal = Calendar.getInstance()
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            cal.set(Calendar.HOUR_OF_DAY, hour)
+            cal.set(Calendar.MINUTE, minute)
+            textView.text = SimpleDateFormat("HH:mm a").format(cal.time)
+        }
+        return TimePickerDialog(
+            this,
+            timeSetListener,
+            cal.get(Calendar.HOUR_OF_DAY),
+            cal.get(Calendar.MINUTE),
+            false
+        )
+    }
 
     //Function to get location
     private fun getDevicesLocation(){
