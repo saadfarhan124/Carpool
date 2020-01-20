@@ -9,7 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype.R
-import com.example.prototype.adapters.MyshareridesSectionPageAdapter
+import com.example.prototype.adapters.RequestSectionPageAdapter
+
 import com.google.android.material.tabs.TabLayout
 
 class PackageFragment : Fragment() {
@@ -25,9 +26,9 @@ class PackageFragment : Fragment() {
     ): View? {
         root = inflater.inflate(R.layout.fragment_package, container, false)
 
-        val myridesSectionPageAdapter = MyshareridesSectionPageAdapter(root.context,childFragmentManager)
+        val requestSectionPageAdapter = RequestSectionPageAdapter(root.context,childFragmentManager)
         val viewPager: ViewPager = root.findViewById(R.id.view_pagerrequest)
-        viewPager.adapter = myridesSectionPageAdapter
+        viewPager.adapter = requestSectionPageAdapter
         val tabs: TabLayout = root.findViewById(R.id.tabLayout)
         tabs.setupWithViewPager(viewPager)
 
