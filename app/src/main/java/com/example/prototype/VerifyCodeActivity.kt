@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.example.prototype.Utilities.Util
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
@@ -40,6 +41,7 @@ class VerifyCodeActivity : AppCompatActivity() {
 
                     val user = task.result?.user
                     var intent:Intent = Intent()
+                    Util.getGlobals().user = user
                     if(user!!.email == null){
                         intent = Intent(applicationContext, SignupEmailActivity::class.java)
                     }else{

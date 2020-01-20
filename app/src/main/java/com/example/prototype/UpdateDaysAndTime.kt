@@ -122,6 +122,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select pick up time for Monday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else if (mondayTimeDropOff.text == "") {
                 Toast.makeText(
@@ -129,6 +130,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select drop off time for Monday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else {
                 var carSharingDataModel = CarSharingDataModel(
@@ -147,6 +149,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select pick up time for Tuesday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else if (tuesdayTimeDropOff.text == "") {
                 Toast.makeText(
@@ -154,6 +157,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select drop off time for Tuesday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else {
                 var carSharingDataModel = CarSharingDataModel(
@@ -169,16 +173,18 @@ class UpdateDaysAndTime : AppCompatActivity() {
             if (wednesdayTimePickUp.text == "") {
                 Toast.makeText(
                     applicationContext,
-                    "Please select pick up time for Tuesday",
+                    "Please select pick up time for Wednesday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else if (wednesdayTimeDropOff.text == "") {
                 Toast.makeText(
                     applicationContext,
-                    "Please select drop off time for Tuesday",
+                    "Please select drop off time for Wednesday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else {
                 var carSharingDataModel = CarSharingDataModel(
@@ -195,16 +201,18 @@ class UpdateDaysAndTime : AppCompatActivity() {
             if (thursdayTimePickUp.text == "") {
                 Toast.makeText(
                     applicationContext,
-                    "Please select pick up time for Tuesday",
+                    "Please select pick up time for Thursday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else if (thursdayTimeDropOff.text == "") {
                 Toast.makeText(
                     applicationContext,
-                    "Please select drop off time for Tuesday",
+                    "Please select drop off time for Thursday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else {
                 var carSharingDataModel = CarSharingDataModel(
@@ -224,6 +232,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select pick up time for Friday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else if (fridayTimeDropOff.text == "") {
                 Toast.makeText(
@@ -231,6 +240,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select drop off time for Friday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else {
                 var carSharingDataModel = CarSharingDataModel(
@@ -250,6 +260,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select pick up time for Saturday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else if (saturdayTimeDropOff.text == "") {
                 Toast.makeText(
@@ -257,6 +268,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select drop off time for Saturday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else {
                 var carSharingDataModel = CarSharingDataModel(
@@ -276,6 +288,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select pick up time for Sunday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else if (sundayTimeDropOff.text == "") {
                 Toast.makeText(
@@ -283,6 +296,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
                     "Please select drop off time for Sunday",
                     Toast.LENGTH_LONG
                 ).show()
+                updateDaysTimeProgressBar.visibility = View.INVISIBLE
                 return
             } else {
                 var carSharingDataModel = CarSharingDataModel(
@@ -325,7 +339,6 @@ class UpdateDaysAndTime : AppCompatActivity() {
                         document.data!!["pickUpTime"].toString(),
                         document.data!!["dropOffTime"].toString()
                     )
-                    Log.d("dasdasdasda", document.data.toString())
                     listOfDaysBooked.add(daysBooked)
                 }
                 previewDataFromDatabase()

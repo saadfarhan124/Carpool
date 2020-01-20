@@ -25,7 +25,6 @@ import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
 
 
-
 class navdrawer : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -33,7 +32,6 @@ class navdrawer : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navdrawer)
-
 
 
         val toolbar: Toolbar = findViewById(R.id.toolbar)
@@ -53,32 +51,32 @@ class navdrawer : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
-
-
         var globals = Companion.Globals
         val headerView: View = nav_view.getHeaderView(0)
         headerView.txtUsername.text = globals.user!!.displayName
         headerView.txtEmail.text = globals.user!!.email
 
 
-        if(Util.getGlobals().userImage != null){
+        if (Util.getGlobals().userImage != null) {
             headerView.usr_pic.setImageBitmap(Util.getGlobals().userImage)
         }
 
-        headerView.usr_pic.setOnClickListener{
+        headerView.usr_pic.setOnClickListener {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         //Loading user properties gender and dob
-        if(Util.getGlobals().userDataModel == null){
-            Util.getFirebaseFireStore().collection("users")
-                .document(globals.user!!.uid)
-                .get()
-                .addOnSuccessListener {
-                    globals.userDataModel = UserDataModel(it["dateOfBirth"].toString(),
-                        it["gender"].toString())
-                }
-        }
+
+        Util.getFirebaseFireStore().collection("users")
+            .document(globals.user!!.uid)
+            .get()
+            .addOnSuccessListener {
+                globals.userDataModel = UserDataModel(
+                    it["dateOfBirth"].toString(),
+                    it["gender"].toString()
+                )
+            }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -97,8 +95,7 @@ class navdrawer : AppCompatActivity() {
 //        this.moveTaskToBack(true)
 //    }
 
-    private fun demo(){
-
+    private fun demo() {
 
 
     }
