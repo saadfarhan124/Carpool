@@ -1,7 +1,6 @@
 package com.example.prototype
 
 import android.app.TimePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +8,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
@@ -19,7 +19,6 @@ import com.jakewharton.threetenabp.AndroidThreeTen
 import org.jetbrains.anko.onClick
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class UpdateDaysAndTime : AppCompatActivity() {
@@ -656,7 +655,7 @@ class UpdateDaysAndTime : AppCompatActivity() {
         ThursdayCard = findViewById(R.id.materialCardViewThur)
 
         //chip
-        Thursday = findViewById(R.id.chip_thur)
+        Thursday = findViewById(R.id.chip_sat)
         Thursday.setOnClickListener {
             if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
                 Thursday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)

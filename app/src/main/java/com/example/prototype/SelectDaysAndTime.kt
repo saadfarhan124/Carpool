@@ -2,25 +2,21 @@ package com.example.prototype
 
 import android.app.TimePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.CarSharingDataModel
 import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.chip.Chip
-import com.google.firebase.firestore.DocumentReference
 import org.jetbrains.anko.onClick
-import org.jetbrains.anko.textColor
 import java.io.Serializable
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -375,7 +371,7 @@ class SelectDaysAndTime : AppCompatActivity() {
         ThursdayCard = findViewById(R.id.materialCardViewThur)
 
         //chip
-        Thursday = findViewById(R.id.chip_thur)
+        Thursday = findViewById(R.id.chip_sat)
         Thursday.setOnClickListener {
             if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
                 Thursday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)

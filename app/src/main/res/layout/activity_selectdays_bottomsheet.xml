@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_mon"
+        android:layout_width="46dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="41dp"
+
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="M"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/chip_tue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_tue"
+        android:layout_width="47dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="T"
+
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip_mon"
+        app:layout_constraintEnd_toStartOf="@+id/chip_wed"
+        app:layout_constraintStart_toEndOf="@+id/chip_mon"
+        app:layout_constraintTop_toTopOf="@+id/chip_mon" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_wed"
+        android:layout_width="46dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="W"
+
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip_tue"
+        app:layout_constraintEnd_toStartOf="@+id/chip_thu"
+        app:layout_constraintStart_toEndOf="@+id/chip_tue"
+        app:layout_constraintTop_toTopOf="@+id/chip_tue" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_thu"
+        android:layout_width="47dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="T"
+
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip_wed"
+        app:layout_constraintEnd_toStartOf="@+id/chip_fri"
+        app:layout_constraintStart_toEndOf="@+id/chip_wed"
+        app:layout_constraintTop_toTopOf="@+id/chip_wed" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_fri"
+        android:layout_width="47dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="F"
+
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip_thu"
+        app:layout_constraintEnd_toStartOf="@+id/chip_sat"
+        app:layout_constraintStart_toEndOf="@+id/chip_thu"
+        app:layout_constraintTop_toTopOf="@+id/chip_thu" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_sat"
+        android:layout_width="47dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="1dp"
+        android:fontFamily="@font/roboto_medium"
+
+        android:text="S"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip_fri"
+        app:layout_constraintEnd_toStartOf="@+id/chip_sun"
+        app:layout_constraintStart_toEndOf="@+id/chip_fri"
+        app:layout_constraintTop_toTopOf="@+id/chip_fri" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_sun"
+        android:layout_width="47dp"
+        android:layout_height="50dp"
+
+        android:layout_marginEnd="42dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="S"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/chip_sat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/chip_sat"
+        app:layout_constraintTop_toTopOf="@+id/chip_sat" />
+
+    <TextView
+        android:id="@+id/txtViewMondayPickup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chip_mon" />
+
+    <TextView
+        android:id="@+id/textViewMondayDropoff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/txtViewMondayPickup"
+        app:layout_constraintTop_toBottomOf="@+id/txtViewMondayPickup" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtViewMondayPickup"
+        app:layout_constraintStart_toEndOf="@+id/txtViewMondayPickup"
+        app:layout_constraintTop_toTopOf="@+id/txtViewMondayPickup" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="TextView"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewMondayDropoff"
+        app:layout_constraintStart_toEndOf="@+id/textViewMondayDropoff"
+        app:layout_constraintTop_toTopOf="@+id/textViewMondayDropoff" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
