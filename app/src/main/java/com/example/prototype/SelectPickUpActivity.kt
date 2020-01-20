@@ -217,8 +217,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             Monday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
                             Monday.setTextColor(resources.getColor(R.color.colorText1))
                         }else{
-                            getTimerDialog(txtViewMondayPickup).show()
-                            getTimerDialog(textViewMondayDropoff).show()
+
                             Toast.makeText(applicationContext, txtViewMondayPickup.text, Toast.LENGTH_LONG).show()
                             Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                             Monday.setTextColor(resources.getColor(R.color.colorText))
@@ -254,22 +253,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    //Function to get Timer Dialog
-    private fun getTimerDialog(textView: TextView) : TimePickerDialog {
-        val cal = Calendar.getInstance()
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-            cal.set(Calendar.HOUR_OF_DAY, hour)
-            cal.set(Calendar.MINUTE, minute)
-            textView.text = SimpleDateFormat("HH:mm a").format(cal.time)
-        }
-        return TimePickerDialog(
-            this,
-            timeSetListener,
-            cal.get(Calendar.HOUR_OF_DAY),
-            cal.get(Calendar.MINUTE),
-            false
-        )
-    }
+
 
     //Function to get location
     private fun getDevicesLocation(){
