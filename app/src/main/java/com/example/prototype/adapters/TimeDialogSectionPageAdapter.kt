@@ -31,7 +31,7 @@ class TimeDialogSectionPageAdapter  (private val context: Context, fm: FragmentM
             else ->{
                 return "Drop off"
             }
-
         }
     }
+
 }

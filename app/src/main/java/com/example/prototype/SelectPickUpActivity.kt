@@ -1,5 +1,6 @@
 package com.example.prototype
 
+import android.app.Dialog
 import android.app.TimePickerDialog
 import android.graphics.Color
 import android.location.Geocoder
@@ -11,7 +12,10 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.viewpager.widget.ViewPager
+import com.example.prototype.Utilities.CustomTimeDialog
 import com.example.prototype.Utilities.Util
+import com.example.prototype.adapters.RequestSectionPageAdapter
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -27,6 +31,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
+import com.google.android.material.tabs.TabLayout
 import com.google.maps.android.PolyUtil
 import org.jetbrains.anko.async
 import org.jetbrains.anko.onClick
@@ -88,6 +93,8 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var textViewFridayDropoff:TextView
     private lateinit var textViewSatdayDropoff:TextView
     private lateinit var textViewSundayDropoff:TextView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -204,8 +211,13 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 //                    intent.putExtra("PickupLong", marker.position.longitude)
 //                    intent.putExtra("PickUpAddress", pickUpAddress)
 //                    startActivity(intent)
+                    //Bottom Sheet
                     val view =
                         layoutInflater.inflate(R.layout.activity_selectdays_bottomsheet, null)
+                    val dialog = BottomSheetDialog(this@SelectPickUpActivity)
+                    dialog.setContentView(view)
+                    dialog.show()
+
                     //Chips
                     Monday = view.findViewById(R.id.chip_mon)
                     //Pick Ups Text View
@@ -217,8 +229,6 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             Monday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
                             Monday.setTextColor(resources.getColor(R.color.colorText1))
                         }else{
-
-                            Toast.makeText(applicationContext, txtViewMondayPickup.text, Toast.LENGTH_LONG).show()
                             Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                             Monday.setTextColor(resources.getColor(R.color.colorText))
                         }
@@ -230,13 +240,16 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     Friday = view.findViewById(R.id.chip_fri)
                     Saturday = view.findViewById(R.id.chip_sat)
                     Sunday = view.findViewById(R.id.chip_sun)
-                    val dialog = BottomSheetDialog(v!!.context)
+
                     val btnContinue = view.findViewById<Button>(R.id.btn_Continue)
                     btnContinue.onClick {
-
+                        Toast.makeText(applicationContext, "SAad", Toast.LENGTH_LONG).show()
+                        val dialogFragment = CustomTimeDialog()
+                        val sf = supportFragmentManager.beginTransaction()
+                        sf.addToBackStack(null)
+                        dialogFragment.show(sf, "dialog")
                     }
-                    dialog.setContentView(view)
-                    dialog.show()
+
 
 
                      //Bus Part
@@ -253,7 +266,22 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-
+    //Get Timer Dialog
+    private fun getTimerDialog(textView: TextView) : TimePickerDialog {
+        val cal = Calendar.getInstance()
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            cal.set(Calendar.HOUR_OF_DAY, hour)
+            cal.set(Calendar.MINUTE, minute)
+            textView.text = SimpleDateFormat("HH:mm a").format(cal.time)
+        }
+        return TimePickerDialog(
+            this,
+            timeSetListener,
+            cal.get(Calendar.HOUR_OF_DAY),
+            cal.get(Calendar.MINUTE),
+            false
+        )
+    }
 
     //Function to get location
     private fun getDevicesLocation(){
