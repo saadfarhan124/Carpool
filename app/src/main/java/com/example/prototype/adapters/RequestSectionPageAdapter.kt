@@ -26,7 +26,7 @@ class RequestSectionPageAdapter (private val context: Context, fm: FragmentManag
     }
 
     override fun getCount(): Int {
-        return 2
+        return 3
     }
 
     override fun getPageTitle(position: Int): CharSequence {
