@@ -13,9 +13,13 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype.R
+import com.example.prototype.TimeDialogFragments.PickupTimerFragment
 import com.example.prototype.adapters.RequestSectionPageAdapter
 import com.example.prototype.adapters.TimeDialogSectionPageAdapter
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.tabs.TabLayout
+import org.jetbrains.anko.onClick
+import org.w3c.dom.Text
 
 
 class CustomTimeDialog : DialogFragment(){
@@ -35,6 +39,13 @@ class CustomTimeDialog : DialogFragment(){
         viewPager.adapter = requestSectionPageAdapter
         val tabs: TabLayout = view.findViewById(R.id.tabLayout)
         tabs.setupWithViewPager(viewPager)
-//        childFragmentManager.findFragmentById(R.id.)
+
+
+        var btnOkay: MaterialButton = view.findViewById(R.id.btnOk)
+        btnOkay.onClick {
+            val pickupTimerFragment = requestSectionPageAdapter.getInstantiatedFragment(0) as PickupTimerFragment
+//            Toast.makeText(context, pickupTimerFragment.getTextView(), Toast.LENGTH_LONG).show()
+        }
+
     }
 }

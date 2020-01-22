@@ -59,9 +59,9 @@ class Util{
                 .reference.child("images/${getGlobals().user!!.uid}")
         }
 
-        fun getStorageRefDepositSlip(): StorageReference{
+        fun getStorageRefDepositSlip(requestID: Int): StorageReference{
             return FirebaseStorage.getInstance()
-                .reference.child("depositSlips/${getGlobals().user!!.uid}")
+                .reference.child("depositSlips/${getGlobals().user!!.uid}/$requestID")
         }
 
         //Function to check if location is on

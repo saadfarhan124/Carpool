@@ -243,7 +243,6 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
                     val btnContinue = view.findViewById<Button>(R.id.btn_Continue)
                     btnContinue.onClick {
-                        Toast.makeText(applicationContext, "SAad", Toast.LENGTH_LONG).show()
                         val dialogFragment = CustomTimeDialog()
                         val sf = supportFragmentManager.beginTransaction()
                         sf.addToBackStack(null)
