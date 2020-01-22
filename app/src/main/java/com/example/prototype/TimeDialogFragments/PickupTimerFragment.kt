@@ -11,10 +11,15 @@ import androidx.fragment.app.Fragment
 import com.example.prototype.R
 import org.jetbrains.anko.find
 import java.sql.Time
+import java.text.SimpleDateFormat
+import java.util.*
 
 class PickupTimerFragment : Fragment() {
     private lateinit var root: View
     private lateinit var timePickerPickUpTime: TimePicker
+    private lateinit var calendar:Calendar
+    private lateinit var pickupTime:String
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,12 +28,22 @@ class PickupTimerFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.activity_pickup_timer, container, false)
+        calendar = Calendar.getInstance()
         timePickerPickUpTime = root.findViewById(R.id.timePickerPickUpTime)
-        timePickerPickUpTime.setOnTimeChangedListener{ timePicker, hour, minute ->
+        calendar.set(Calendar.HOUR_OF_DAY, timePickerPickUpTime.hour)
+        calendar.set(Calendar.MINUTE, timePickerPickUpTime.minute)
+        pickupTime = SimpleDateFormat("HH:mm a").format(calendar.time)
 
-            Toast.makeText(root.context, "$hour $minute" , Toast.LENGTH_LONG).show()
+        timePickerPickUpTime.setOnTimeChangedListener{ _, hour, minute ->
+            calendar.set(Calendar.HOUR_OF_DAY, hour)
+            calendar.set(Calendar.MINUTE, minute)
+            pickupTime = SimpleDateFormat("HH:mm a").format(calendar.time)
         }
         return root
+    }
+
+    fun returnPickUpTime():String{
+        return pickupTime
     }
 
 

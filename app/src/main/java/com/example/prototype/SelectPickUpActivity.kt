@@ -1,7 +1,7 @@
 package com.example.prototype
 
-import android.app.Dialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import android.graphics.Color
 import android.location.Geocoder
 import android.location.Location
@@ -12,10 +12,10 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.viewpager.widget.ViewPager
-import com.example.prototype.Utilities.CustomTimeDialog
 import com.example.prototype.Utilities.Util
-import com.example.prototype.adapters.RequestSectionPageAdapter
+import com.example.prototype.dataModels.CarSharingDataModel
+import com.example.prototype.dataModels.DaysDataModel
+import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.gms.common.api.Status
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -31,7 +31,6 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
-import com.google.android.material.tabs.TabLayout
 import com.google.maps.android.PolyUtil
 import org.jetbrains.anko.async
 import org.jetbrains.anko.onClick
@@ -39,6 +38,7 @@ import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
+import java.io.Serializable
 import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.*
@@ -77,22 +77,29 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var Sunday: Chip
 
     //time pickup
-    private lateinit var txtViewMondayPickup:TextView
-    private lateinit var txtViewTuesdayPickup:TextView
-    private lateinit var txtViewWednesdayPickup:TextView
-    private lateinit var txtViewThursdayPickup:TextView
-    private lateinit var txtViewFridayPickup:TextView
-    private lateinit var txtViewSatdayPickup:TextView
-    private lateinit var txtViewSundayPickup:TextView
+    private lateinit var textViewMondayPickup:TextView
+    private lateinit var textViewTuesdayPickup:TextView
+    private lateinit var textViewWednesdayPickup:TextView
+    private lateinit var textViewThursdayPickup:TextView
+    private lateinit var textViewFridayPickup:TextView
+    private lateinit var textViewSaturdayPickup:TextView
+    private lateinit var textViewSundayPickup:TextView
 
     //time dropoffs
     private lateinit var textViewMondayDropoff:TextView
-    private lateinit var textViewTuedayDropoff:TextView
-    private lateinit var textViewWeddayDropoff:TextView
-    private lateinit var textViewThurdayDropoff:TextView
+    private lateinit var textViewTuesdayDropoff:TextView
+    private lateinit var textViewWednesdayDropoff:TextView
+    private lateinit var textViewThursdayDropoff:TextView
     private lateinit var textViewFridayDropoff:TextView
-    private lateinit var textViewSatdayDropoff:TextView
+    private lateinit var textViewSaturdayDropoff:TextView
     private lateinit var textViewSundayDropoff:TextView
+
+
+    //Days datamodel
+    private lateinit var daysDataModel: DaysDataModel
+
+    //Review data model
+    private lateinit var reviewInfo: ReviewInformationDataModel
 
 
 
@@ -133,6 +140,8 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun init() {
 
+        daysDataModel = DaysDataModel()
+
         geocoder = Geocoder(applicationContext, Locale.getDefault())
 
 
@@ -166,8 +175,8 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     polylineOptions.color(Color.RED)
                     polylineOptions.width(5f)
                     val url = Util.getURL(
-                        destinationLatLng,
                         LatLng(marker.position.latitude, marker.position.longitude),
+                        destinationLatLng,
                         getString(R.string.google_maps_key)
                     )
                     async {
@@ -218,10 +227,11 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                     dialog.setContentView(view)
                     dialog.show()
 
+                    //Monday
                     //Chips
                     Monday = view.findViewById(R.id.chip_mon)
                     //Pick Ups Text View
-                    txtViewMondayPickup = view.findViewById(R.id.txtViewMondayPickup)
+                    textViewMondayPickup = view.findViewById(R.id.textViewMondayPickup)
                     textViewMondayDropoff = view.findViewById(R.id.textViewMondayDropoff)
                     //OnClick Chips
                     Monday.onClick {
@@ -231,22 +241,145 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         }else{
                             Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                             Monday.setTextColor(resources.getColor(R.color.colorText))
+                            val dialogFragment = Util.getCustomTimeDialog(textViewMondayPickup, textViewMondayDropoff)
+                            val sf = supportFragmentManager.beginTransaction()
+                            sf.addToBackStack(null)
+                            dialogFragment.show(sf, "dialog")
                         }
                     }
 
-                    Tuesday = view.findViewById(R.id.chip_tue)
-                    Wednesday = view.findViewById(R.id.chip_wed)
-                    Thursday = view.findViewById(R.id.chip_thu)
-                    Friday = view.findViewById(R.id.chip_fri)
-                    Saturday = view.findViewById(R.id.chip_sat)
-                    Sunday = view.findViewById(R.id.chip_sun)
 
+                    //Tuesday
+                    //Chip
+                    Tuesday = view.findViewById(R.id.chip_tue)
+                    //Pick Ups Text View
+                    textViewTuesdayPickup = view.findViewById(R.id.textViewTuesdayPickup)
+                    textViewTuesdayDropoff = view.findViewById(R.id.textViewTuesdayDropoff)
+                    //OnClick Chips
+                    Tuesday.onClick {
+                        if (Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                            Tuesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                            Tuesday.setTextColor(resources.getColor(R.color.colorText1))
+                        }else{
+                            Tuesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            Tuesday.setTextColor(resources.getColor(R.color.colorText))
+                            val dialogFragment = Util.getCustomTimeDialog(textViewTuesdayPickup, textViewTuesdayDropoff)
+                            val sf = supportFragmentManager.beginTransaction()
+                            sf.addToBackStack(null)
+                            dialogFragment.show(sf, "dialog")
+                        }
+                    }
+
+                    //Wednesday
+                    //Chip
+                    Wednesday = view.findViewById(R.id.chip_wed)
+                    //Pick Ups Text View
+                    textViewWednesdayPickup = view.findViewById(R.id.textViewWednesdayPickup)
+                    textViewWednesdayDropoff = view.findViewById(R.id.textViewWednesdayDropoff)
+                    //OnClick Chips
+                    Wednesday.onClick {
+                        if (Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                            Wednesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                            Wednesday.setTextColor(resources.getColor(R.color.colorText1))
+                        }else{
+                            Wednesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            Wednesday.setTextColor(resources.getColor(R.color.colorText))
+                            val dialogFragment = Util.getCustomTimeDialog(textViewWednesdayPickup, textViewWednesdayDropoff)
+                            val sf = supportFragmentManager.beginTransaction()
+                            sf.addToBackStack(null)
+                            dialogFragment.show(sf, "dialog")
+                        }
+                    }
+
+                    //Thursday
+                    //Chip
+                    Thursday = view.findViewById(R.id.chip_thu)
+                    //Pick Ups Text View
+                    textViewThursdayPickup = view.findViewById(R.id.textViewThursdayPickup)
+                    textViewThursdayDropoff = view.findViewById(R.id.textViewThursdayDropoff)
+                    //OnClick Chips
+                    Thursday.onClick {
+                        if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                            Thursday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                            Thursday.setTextColor(resources.getColor(R.color.colorText1))
+                        }else{
+                            Thursday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            Thursday.setTextColor(resources.getColor(R.color.colorText))
+                            val dialogFragment = Util.getCustomTimeDialog(textViewThursdayPickup, textViewThursdayDropoff)
+                            val sf = supportFragmentManager.beginTransaction()
+                            sf.addToBackStack(null)
+                            dialogFragment.show(sf, "dialog")
+                        }
+                    }
+
+                    //Friday
+                    //Chip
+                    Friday = view.findViewById(R.id.chip_fri)
+                    //Pick Ups Text View
+                    textViewFridayPickup = view.findViewById(R.id.textViewFridayPickup)
+                    textViewFridayDropoff = view.findViewById(R.id.textViewFridayDropoff)
+                    //OnClick Chips
+                    Friday.onClick {
+                        if (Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                            Friday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                            Friday.setTextColor(resources.getColor(R.color.colorText1))
+                        }else{
+                            Friday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            Friday.setTextColor(resources.getColor(R.color.colorText))
+                            val dialogFragment = Util.getCustomTimeDialog(textViewFridayPickup, textViewFridayDropoff)
+                            val sf = supportFragmentManager.beginTransaction()
+                            sf.addToBackStack(null)
+                            dialogFragment.show(sf, "dialog")
+                        }
+                    }
+
+                    //Saturday
+                    //Chip
+                    Saturday = view.findViewById(R.id.chip_sat)
+                    //Pick Ups Text View
+                    textViewSaturdayPickup = view.findViewById(R.id.textViewSaturdayPickup)
+                    textViewSaturdayDropoff = view.findViewById(R.id.textViewSaturdayDropoff)
+                    //OnClick Chips
+                    Saturday.onClick {
+                        if (Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                            Saturday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                            Saturday.setTextColor(resources.getColor(R.color.colorText1))
+                        }else{
+                            Saturday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            Saturday.setTextColor(resources.getColor(R.color.colorText))
+                            val dialogFragment = Util.getCustomTimeDialog(textViewSaturdayPickup, textViewSaturdayDropoff)
+                            val sf = supportFragmentManager.beginTransaction()
+                            sf.addToBackStack(null)
+                            dialogFragment.show(sf, "dialog")
+                        }
+                    }
+
+                    //Sunday
+                    //Chip
+                    Sunday = view.findViewById(R.id.chip_sun)
+                    //Pick Ups Text View
+                    textViewSundayPickup = view.findViewById(R.id.textViewSundayPickup)
+                    textViewSundayDropoff = view.findViewById(R.id.textViewSundayDropoff)
+                    //OnClick Chips
+                    Sunday.onClick {
+                        if (Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                            Sunday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                            Sunday.setTextColor(resources.getColor(R.color.colorText1))
+                        }else{
+                            Sunday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            Sunday.setTextColor(resources.getColor(R.color.colorText))
+                            val dialogFragment = Util.getCustomTimeDialog(textViewSundayPickup, textViewSundayDropoff)
+                            val sf = supportFragmentManager.beginTransaction()
+                            sf.addToBackStack(null)
+                            dialogFragment.show(sf, "dialog")
+                        }
+                    }
+
+
+                    //Bottom Sheet Continue Button
                     val btnContinue = view.findViewById<Button>(R.id.btn_Continue)
                     btnContinue.onClick {
-                        val dialogFragment = CustomTimeDialog()
-                        val sf = supportFragmentManager.beginTransaction()
-                        sf.addToBackStack(null)
-                        dialogFragment.show(sf, "dialog")
+                        insertRequest()
                     }
 
 
@@ -265,21 +398,136 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    //Get Timer Dialog
-    private fun getTimerDialog(textView: TextView) : TimePickerDialog {
-        val cal = Calendar.getInstance()
-        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-            cal.set(Calendar.HOUR_OF_DAY, hour)
-            cal.set(Calendar.MINUTE, minute)
-            textView.text = SimpleDateFormat("HH:mm a").format(cal.time)
+    //Function to insert request
+    private fun insertRequest(){
+        var listOfDays = mutableListOf<CarSharingDataModel>()
+
+        //Monday
+        if(Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(textViewMondayPickup.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Monday", Toast.LENGTH_LONG).show()
+                return
+            }else if(textViewMondayDropoff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Monday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Monday",
+                    textViewMondayPickup.text.toString(),
+                    textViewMondayDropoff.text.toString())
+                daysDataModel.Monday = true
+                listOfDays.add(carSharingDataModel)
+            }
         }
-        return TimePickerDialog(
-            this,
-            timeSetListener,
-            cal.get(Calendar.HOUR_OF_DAY),
-            cal.get(Calendar.MINUTE),
-            false
-        )
+        //Tuesday
+        if(Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(textViewTuesdayPickup.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else if(textViewTuesdayDropoff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Tuesday",
+                    textViewTuesdayPickup.text.toString(),
+                    textViewTuesdayDropoff.text.toString())
+                daysDataModel.Tuesday = true
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+        //Wednesday
+        if(Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(textViewWednesdayPickup.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Wednesday", Toast.LENGTH_LONG).show()
+                return
+            }else if(textViewWednesdayDropoff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Wednesday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Wednesday",
+                    textViewWednesdayPickup.text.toString(),
+                    textViewWednesdayDropoff.text.toString())
+                daysDataModel.Wednesday = true
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Thursday
+        if(Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(textViewThursdayPickup.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Thursday", Toast.LENGTH_LONG).show()
+                return
+            }else if(textViewThursdayDropoff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Thursday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Thursday",
+                    textViewThursdayPickup.text.toString(),
+                    textViewThursdayDropoff.text.toString())
+                daysDataModel.Thursday = true
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Friday
+        if(Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(textViewFridayPickup.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Friday", Toast.LENGTH_LONG).show()
+                return
+            }else if(textViewFridayDropoff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Friday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Friday",
+                    textViewFridayPickup.text.toString(),
+                    textViewFridayDropoff.text.toString())
+                daysDataModel.Friday = true
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Saturday
+        if(Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(textViewSaturdayPickup.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Saturday", Toast.LENGTH_LONG).show()
+                return
+            }else if(textViewSaturdayDropoff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Saturday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Saturday",
+                    textViewSaturdayPickup.text.toString(),
+                    textViewSaturdayDropoff.text.toString())
+                daysDataModel.Saturday = true
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        //Sunday
+        if(Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
+            if(textViewSundayPickup.text == ""){
+                Toast.makeText(applicationContext,"Please select pick up time for Sunday", Toast.LENGTH_LONG).show()
+                return
+            }else if(textViewSundayDropoff.text == ""){
+                Toast.makeText(applicationContext,"Please select drop off time for Sunday", Toast.LENGTH_LONG).show()
+                return
+            }else{
+                var carSharingDataModel = CarSharingDataModel("Sunday",
+                    textViewSundayPickup.text.toString(),
+                    textViewSundayDropoff.text.toString())
+                daysDataModel.Sunday = true
+                listOfDays.add(carSharingDataModel)
+            }
+        }
+
+        var intent = Intent(applicationContext, ReviewInformationActivity::class.java)
+        intent.putExtra("DaysData", daysDataModel)
+
+        reviewInfo = ReviewInformationDataModel(marker.position.latitude, marker.position.longitude, pickUpAddress,
+            destinationLatLng.latitude, destinationLatLng.longitude, destinationAddress,
+            "Pending")
+        intent.putExtra("ReviewData", reviewInfo)
+        intent.putExtra("TimeDetails", listOfDays as Serializable)
+        startActivity(intent)
     }
 
     //Function to get location
