@@ -9,4 +9,5 @@
     <color name="colorGreen">#1faa00</color>
     <color name="transparent">#0000ffff</color>
     <color name="chipBackgroundDisable">#4A838282</color>
+    <color name="disabled">#808080</color>
 </resources>

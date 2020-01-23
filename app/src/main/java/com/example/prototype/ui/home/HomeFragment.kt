@@ -41,8 +41,10 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.card.MaterialCardView
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.find
+import org.jetbrains.anko.onClick
 import java.io.IOException
 import java.lang.StringBuilder
 import java.util.*
@@ -187,8 +189,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
         btn_service = root.findViewById(R.id.btn_service)
         btn_service.setOnClickListener {
-            val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
             val dialog = BottomSheetDialog(root.context)
+            val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
+            //Services On Click
+            view.findViewById<MaterialCardView>(R.id.materialCardViewbus).onClick {
+                Toast.makeText(root.context, "Coming Soon", Toast.LENGTH_SHORT).show()
+            }
+            view.findViewById<MaterialCardView>(R.id.materialCardViewcar).onClick {
+                Toast.makeText(root.context, "Coming Soon", Toast.LENGTH_SHORT).show()
+            }
+            view.findViewById<MaterialCardView>(R.id.materialCardViewcarpool).onClick {
+                dialog.dismiss()
+            }
             dialog.setContentView(view)
             dialog.show()
         }

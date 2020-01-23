@@ -74,7 +74,6 @@ class navdrawer : AppCompatActivity() {
                     it["dateOfBirth"].toString(),
                     it["gender"].toString()
                 )
-                Log.d("SAAAAD", "Disco")
             }.addOnFailureListener{
                 Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
             }
@@ -97,9 +96,5 @@ class navdrawer : AppCompatActivity() {
 //        this.moveTaskToBack(true)
 //    }
 
-    private fun demo() {
-
-
-    }
 
 }
