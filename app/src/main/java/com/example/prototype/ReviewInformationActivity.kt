@@ -101,17 +101,17 @@ class ReviewInformationActivity : AppCompatActivity() {
 
 
         //ImageViews
-        ImageAc = findViewById(R.id.img_ac)
-        ImageNonAc = findViewById(R.id.img_nonAC)
-        ImageAc.onClick {
-            standardServiceFlag = false
-            premiumServiceFlag = true
-        }
-
-        ImageNonAc.onClick {
-            standardServiceFlag = true
-            premiumServiceFlag = false
-        }
+//        ImageAc = findViewById(R.id.img_ac)
+//        ImageNonAc = findViewById(R.id.img_nonAC)
+//        ImageAc.onClick {
+//            standardServiceFlag = false
+//            premiumServiceFlag = true
+//        }
+//
+//        ImageNonAc.onClick {
+//            standardServiceFlag = true
+//            premiumServiceFlag = false
+//        }
 
         //Chips
         txt_chip_Mon = findViewById(R.id.txt_chip_Mon)

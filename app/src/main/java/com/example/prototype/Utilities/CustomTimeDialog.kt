@@ -27,6 +27,8 @@ import org.w3c.dom.Text
 class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextView) :
     DialogFragment() {
 
+    private var pickUpTimeSelected = false
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,14 +48,19 @@ class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextVi
 
         var btnOkay: MaterialButton = view.findViewById(R.id.btnOk)
         btnOkay.onClick {
-            val pickupTimerFragment =
-                requestSectionPageAdapter.getInstantiatedFragment(0) as PickupTimerFragment
-            val dropOffFragment =
-                requestSectionPageAdapter.getInstantiatedFragment(1) as DropoffTimerFragment
-            textViewPickUp.text = pickupTimerFragment.returnPickUpTime()
-            textViewDropOff.text = dropOffFragment.returnDropOffTime()
-            dismiss()
+            if(pickUpTimeSelected){
+                val pickupTimerFragment =
+                    requestSectionPageAdapter.getInstantiatedFragment(0) as PickupTimerFragment
+                val dropOffFragment =
+                    requestSectionPageAdapter.getInstantiatedFragment(1) as DropoffTimerFragment
+                textViewPickUp.text = pickupTimerFragment.returnPickUpTime()
+                textViewDropOff.text = dropOffFragment.returnDropOffTime()
+                dismiss()
+            }else{
 
+                pickUpTimeSelected = true
+                tabs.getTabAt(1)!!.select()
+            }
         }
 
     }
