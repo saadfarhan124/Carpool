@@ -32,6 +32,7 @@ class CancelFragment : Fragment() {
 
         return root
     }
+
     override fun onResume() {
         loadRequests()
         super.onResume()
@@ -42,13 +43,11 @@ class CancelFragment : Fragment() {
         packageProgressBar.visibility = View.VISIBLE
         Util.getFirebaseFireStore().collection("carRideRequests")
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
+            .whereEqualTo("requestStatus", "Cancelled")
             .get()
             .addOnSuccessListener {
                 val requests = mutableListOf<ReviewInformationDataModel>()
                 for (documents in it.documents) {
-
-
-
                     val info = documents.toObject(ReviewInformationDataModel::class.java)
                     info!!.requestID = documents.id
                     requests.add(info!!)
