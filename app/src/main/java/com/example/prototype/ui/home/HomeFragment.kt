@@ -149,7 +149,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
             }
 
-        }else{
+        } else {
             val confirmDialog =
                 AlertDialog.Builder(root.context, R.style.ThemeOverlay_MaterialComponents_Dialog)
             confirmDialog.setTitle("Sath Chaloo")
@@ -254,7 +254,11 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         mMap = googleMap
         mMap.setOnCameraIdleListener {
             mMap.clear()
-            var address = geocoder.getFromLocation(mMap.cameraPosition.target.latitude,mMap.cameraPosition.target.longitude, 1)
+            var address = geocoder.getFromLocation(
+                mMap.cameraPosition.target.latitude,
+                mMap.cameraPosition.target.longitude,
+                1
+            )
             destAddress = address.first().getAddressLine(0).toString()
             autocompleteSupportFragment.setText(address.first().getAddressLine(0).toString())
             addMarker(mMap.cameraPosition.target, "Custom")
@@ -283,10 +287,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                         Util.getBiggerZoomValue(),
                         1
                     )
-                    Toast.makeText(root.context, "Found", Toast.LENGTH_LONG).show()
 
                 } else {
-                    Toast.makeText(root.context, "Not Found", Toast.LENGTH_LONG).show()
                 }
             }
         } catch (e: SecurityException) {
@@ -349,10 +351,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                     if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                         var alertDialog = Util.getAlertDialog(root.context)
                         alertDialog.setMessage("You need to enable location in order to get the most out of Sath Chaloo")
-                        alertDialog.setPositiveButton("Enable Location"){_,_ ->
+                        alertDialog.setPositiveButton("Enable Location") { _, _ ->
                             getLocationPermission()
                         }
-                        alertDialog.setNegativeButton("Don't allow"){_,_ ->
+                        alertDialog.setNegativeButton("Don't allow") { _, _ ->
                             System.exit(0)
                         }
                         alertDialog.show()

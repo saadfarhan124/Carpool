@@ -14,7 +14,9 @@ import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.DocumentReference
+import com.skyfishjy.library.RippleBackground
 import org.jetbrains.anko.enabled
+import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
 
 class ReviewInformationActivity : AppCompatActivity() {
@@ -46,6 +48,10 @@ class ReviewInformationActivity : AppCompatActivity() {
     //Image View
     private lateinit var ImageAc: ImageView
     private lateinit var ImageNonAc: ImageView
+
+    //Ripples
+    private lateinit var standardRippleBackground: RippleBackground
+    private lateinit var premiumRippleBackground: RippleBackground
 
     //Submit Button
     private lateinit var btn_submitReq: Button
@@ -99,19 +105,27 @@ class ReviewInformationActivity : AppCompatActivity() {
             submitRequest()
         }
 
+        //Ripples
+        standardRippleBackground = findViewById(R.id.rippleStandard)
+        premiumRippleBackground = findViewById(R.id.ripplePremium)
+
 
         //ImageViews
-//        ImageAc = findViewById(R.id.img_ac)
-//        ImageNonAc = findViewById(R.id.img_nonAC)
-//        ImageAc.onClick {
-//            standardServiceFlag = false
-//            premiumServiceFlag = true
-//        }
-//
-//        ImageNonAc.onClick {
-//            standardServiceFlag = true
-//            premiumServiceFlag = false
-//        }
+        ImageAc = findViewById(R.id.img_ac)
+        ImageNonAc = findViewById(R.id.img_nonAC)
+        ImageAc.onClick {
+            standardServiceFlag = false
+            premiumServiceFlag = true
+            premiumRippleBackground.startRippleAnimation()
+            standardRippleBackground.stopRippleAnimation()
+        }
+
+        ImageNonAc.onClick {
+            standardServiceFlag = true
+            premiumServiceFlag = false
+            premiumRippleBackground.stopRippleAnimation()
+            standardRippleBackground.startRippleAnimation()
+        }
 
         //Chips
         txt_chip_Mon = findViewById(R.id.txt_chip_Mon)

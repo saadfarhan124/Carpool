@@ -43,44 +43,54 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <com.skyfishjy.library.RippleBackground
-    android:id="@+id/ripplePremium"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    android:layout_marginStart="64dp"
-    android:layout_marginTop="16dp"
-    app:layout_constraintStart_toStartOf="@+id/txt_reviewInfo"
-    app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo">
+        android:id="@+id/ripplePremium"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="3000"
+        app:rb_radius="16dp"
+        app:rb_rippleAmount="1"
+        app:rb_scale="6"
+        app:layout_constraintStart_toStartOf="@+id/txt_reviewInfo"
+        app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo">
 
-</com.skyfishjy.library.RippleBackground>
+        <ImageView
+            android:id="@+id/img_ac"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@mipmap/ic_logo_round" />
+    </com.skyfishjy.library.RippleBackground>
+
     <com.skyfishjy.library.RippleBackground
         android:id="@+id/rippleStandard"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="64dp"
         app:layout_constraintEnd_toEndOf="@+id/txt_reviewInfo"
+        app:layout_constraintStart_toEndOf="@+id/ripplePremium"
         app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo"
-        app:layout_constraintTop_toTopOf="@+id/ripplePremium">
+        app:layout_constraintTop_toTopOf="@+id/ripplePremium"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="3000"
+        app:rb_radius="16dp"
+        app:rb_rippleAmount="1"
+        app:rb_scale="6">
 
+        <ImageView
+            android:id="@+id/img_nonAC"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@mipmap/ic_logo_round" />
     </com.skyfishjy.library.RippleBackground>
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/img_ac"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginStart="64dp"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        app:layout_constraintStart_toStartOf="@+id/txt_reviewInfo"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo"-->
-    <!--        app:srcCompat="@mipmap/ic_logo_round" />-->
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/img_nonAC"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_marginEnd="64dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="@+id/txt_reviewInfo"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/img_ac"-->
-    <!--        app:srcCompat="@mipmap/ic_logo_round" />-->
+
+
 
     <ImageView
         android:id="@+id/img_pickupAddress"
