@@ -18,4 +18,5 @@ class InvoiceDataModel : Serializable{
         this.userID = userID
         this.requestID = requestID
     }
+    constructor()
 }

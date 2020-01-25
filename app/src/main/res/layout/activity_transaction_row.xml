@@ -31,7 +31,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txt_invoiceNo"
+            android:id="@+id/textViewtInvoiceNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -64,7 +64,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_lbl_invoiceAmount" />
 
         <TextView
-            android:id="@+id/txt_invoiceAmount"
+            android:id="@+id/textViewAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -84,11 +84,11 @@
             android:text="Date"
             android:textColor="@color/colorText1"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/txt_invoiceNo"
-            app:layout_constraintTop_toBottomOf="@+id/txt_invoiceNo" />
+            app:layout_constraintStart_toStartOf="@+id/textViewtInvoiceNumber"
+            app:layout_constraintTop_toBottomOf="@+id/textViewtInvoiceNumber" />
 
         <TextView
-            android:id="@+id/txt_date"
+            android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
