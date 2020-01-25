@@ -10,13 +10,20 @@ import com.example.prototype.TimeDialogFragments.PickupTimerFragment
 class TimeDialogSectionPageAdapter  (private val context: Context, fm: FragmentManager) :
     FragmentPagerAdapter(fm) {
 
+    private var fragments = mutableListOf<Fragment>()
+
     override fun getItem(position: Int): Fragment {
         return when (position) {
             0 -> {
-                PickupTimerFragment()
+                var pickupTimerFragment = PickupTimerFragment()
+                fragments.add(pickupTimerFragment)
+                return pickupTimerFragment
+
             }
             else -> {
-                return DropoffTimerFragment()
+                var dropoffTimerFragment= DropoffTimerFragment()
+                fragments.add(dropoffTimerFragment)
+                return dropoffTimerFragment
             }
         }
     }
@@ -34,4 +41,7 @@ class TimeDialogSectionPageAdapter  (private val context: Context, fm: FragmentM
         }
     }
 
+    fun getInstantiatedFragment(position: Int): Fragment{
+        return fragments[position]
+    }
 }

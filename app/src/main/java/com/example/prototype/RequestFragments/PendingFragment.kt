@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,7 @@ class PendingFragment : Fragment() {
 
         return root
     }
+
     override fun onResume() {
         loadRequests()
         super.onResume()
@@ -41,20 +43,22 @@ class PendingFragment : Fragment() {
         packageProgressBar.visibility = View.VISIBLE
         Util.getFirebaseFireStore().collection("carRideRequests")
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
+            .whereIn(
+                "requestStatus",
+                arrayListOf("Pending", "Payment Pending", "Payment Verification")
+            )
             .get()
             .addOnSuccessListener {
                 val requests = mutableListOf<ReviewInformationDataModel>()
                 for (documents in it.documents) {
-
-
-
                     val info = documents.toObject(ReviewInformationDataModel::class.java)
                     info!!.requestID = documents.id
                     requests.add(info!!)
                 }
                 mRecyclerView = root.findViewById(R.id.requestRecyclerView)
                 mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-                mRecyclerView.adapter = PackageAdapter(requests, root.context, packageProgressBar)
+                mRecyclerView.adapter =
+                    PackageAdapter(requests, root.context, packageProgressBar)
                 packageProgressBar.visibility = View.INVISIBLE
             }
     }

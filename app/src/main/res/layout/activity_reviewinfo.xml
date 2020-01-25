@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -43,24 +42,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <ImageView
-        android:id="@+id/img_ac"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/ripplePremium"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="3000"
+        app:rb_radius="16dp"
+        app:rb_rippleAmount="1"
+        app:rb_scale="6"
         app:layout_constraintStart_toStartOf="@+id/txt_reviewInfo"
-        app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo"
-        app:srcCompat="@mipmap/ic_logo_round" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo">
 
-    <ImageView
-        android:id="@+id/img_nonAC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/img_ac"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@mipmap/ic_logo_round" />
+    </com.skyfishjy.library.RippleBackground>
+
+    <com.skyfishjy.library.RippleBackground
+        android:id="@+id/rippleStandard"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="64dp"
         app:layout_constraintEnd_toEndOf="@+id/txt_reviewInfo"
-        app:layout_constraintTop_toTopOf="@+id/img_ac"
-        app:srcCompat="@mipmap/ic_logo_round" />
+        app:layout_constraintStart_toEndOf="@+id/ripplePremium"
+        app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo"
+        app:layout_constraintTop_toTopOf="@+id/ripplePremium"
+        app:rb_color="@color/colorAccent"
+        app:rb_duration="3000"
+        app:rb_radius="16dp"
+        app:rb_rippleAmount="1"
+        app:rb_scale="6">
+
+        <ImageView
+            android:id="@+id/img_nonAC"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerInside"
+            app:srcCompat="@mipmap/ic_logo_round" />
+    </com.skyfishjy.library.RippleBackground>
+
+
+
+
 
     <ImageView
         android:id="@+id/img_pickupAddress"
@@ -99,9 +129,9 @@
         android:text="AC"
         android:textColor="@color/colorText1"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/img_ac"
-        app:layout_constraintStart_toStartOf="@+id/img_ac"
-        app:layout_constraintTop_toBottomOf="@+id/img_ac" />
+        app:layout_constraintEnd_toEndOf="@+id/ripplePremium"
+        app:layout_constraintStart_toStartOf="@+id/ripplePremium"
+        app:layout_constraintTop_toBottomOf="@+id/ripplePremium" />
 
     <TextView
         android:id="@+id/txt_nonAC"
@@ -111,9 +141,9 @@
         android:text="Non AC"
         android:textColor="@color/colorText1"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/img_nonAC"
-        app:layout_constraintStart_toStartOf="@+id/img_nonAC"
-        app:layout_constraintTop_toBottomOf="@+id/img_nonAC" />
+        app:layout_constraintEnd_toEndOf="@+id/rippleStandard"
+        app:layout_constraintStart_toStartOf="@+id/rippleStandard"
+        app:layout_constraintTop_toBottomOf="@+id/rippleStandard" />
 
     <TextView
         android:id="@+id/txt_priceAC"

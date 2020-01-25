@@ -12,7 +12,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
         android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
@@ -27,7 +26,6 @@
 
         android:layout_marginStart="42dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/roboto_medium"
         android:text="M"
         android:textAlignment="center"
         android:textSize="16sp"
@@ -39,7 +37,6 @@
         android:id="@+id/chip_tue"
         android:layout_width="47dp"
         android:layout_height="50dp"
-        android:fontFamily="@font/roboto_medium"
         android:text="T"
 
         android:textAlignment="center"
@@ -53,7 +50,6 @@
         android:id="@+id/chip_wed"
         android:layout_width="46dp"
         android:layout_height="50dp"
-        android:fontFamily="@font/roboto_medium"
         android:text="W"
 
         android:textAlignment="center"
@@ -67,7 +63,6 @@
         android:id="@+id/chip_thu"
         android:layout_width="47dp"
         android:layout_height="50dp"
-        android:fontFamily="@font/roboto_medium"
         android:text="T"
 
         android:textAlignment="center"
@@ -81,7 +76,6 @@
         android:id="@+id/chip_fri"
         android:layout_width="47dp"
         android:layout_height="50dp"
-        android:fontFamily="@font/roboto_medium"
         android:text="F"
 
         android:textAlignment="center"
@@ -96,7 +90,6 @@
         android:layout_width="47dp"
         android:layout_height="50dp"
         android:layout_marginEnd="1dp"
-        android:fontFamily="@font/roboto_medium"
 
         android:text="S"
         android:textAlignment="center"
@@ -112,7 +105,6 @@
         android:layout_height="50dp"
 
         android:layout_marginEnd="42dp"
-        android:fontFamily="@font/roboto_medium"
         android:text="S"
         android:textAlignment="center"
         android:textSize="16sp"
@@ -122,12 +114,11 @@
         app:layout_constraintTop_toTopOf="@+id/chip_sat" />
 
     <TextView
-        android:id="@+id/txtViewMondayPickup"
+        android:id="@+id/textViewMondayPickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto"
         android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
@@ -139,25 +130,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/roboto"
         android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
-        app:layout_constraintStart_toStartOf="@+id/txtViewMondayPickup"
-        app:layout_constraintTop_toBottomOf="@+id/txtViewMondayPickup" />
+        app:layout_constraintStart_toStartOf="@+id/textViewMondayPickup"
+        app:layout_constraintTop_toBottomOf="@+id/textViewMondayPickup" />
 
     <TextView
         android:id="@+id/textViewTuesdayPickup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
         android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtViewMondayPickup"
-        app:layout_constraintStart_toEndOf="@+id/txtViewMondayPickup"
-        app:layout_constraintTop_toTopOf="@+id/txtViewMondayPickup" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewMondayPickup"
+        app:layout_constraintStart_toEndOf="@+id/textViewMondayPickup"
+        app:layout_constraintTop_toTopOf="@+id/textViewMondayPickup" />
 
     <TextView
         android:id="@+id/textViewTuesdayDropoff"
@@ -176,7 +165,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
         android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
@@ -185,11 +173,10 @@
         app:layout_constraintTop_toTopOf="@+id/textViewTuesdayPickup" />
 
     <TextView
-        android:id="@+id/textViewWednedayDropoff"
+        android:id="@+id/textViewWednesdayDropoff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
         android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"
@@ -203,7 +190,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:visibility="gone"
-        android:fontFamily="@font/roboto"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewWednesdayPickup"
@@ -216,12 +202,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:visibility="gone"
-        android:fontFamily="@font/roboto"
         android:text="TextView"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewWednedayDropoff"
-        app:layout_constraintStart_toEndOf="@+id/textViewWednedayDropoff"
-        app:layout_constraintTop_toTopOf="@+id/textViewWednedayDropoff" />
+        app:layout_constraintBottom_toBottomOf="@+id/textViewWednesdayDropoff"
+        app:layout_constraintStart_toEndOf="@+id/textViewWednesdayDropoff"
+        app:layout_constraintTop_toTopOf="@+id/textViewWednesdayDropoff" />
 
     <TextView
         android:id="@+id/textViewFridayPickup"
@@ -229,7 +214,6 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewThursdayPickup"
@@ -242,7 +226,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:visibility="gone"
-        android:fontFamily="@font/roboto"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewFridayPickup"
@@ -255,7 +238,6 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewFridayDropoff"
@@ -269,7 +251,6 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="7dp"
         android:visibility="gone"
-        android:fontFamily="@font/roboto"
         android:text="TextView"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textViewSaturdayPickup"
@@ -282,7 +263,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:fontFamily="@font/roboto"
         android:visibility="gone"
         android:text="TextView"
         android:textSize="12sp"

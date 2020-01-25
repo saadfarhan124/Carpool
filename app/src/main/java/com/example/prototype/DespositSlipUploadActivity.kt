@@ -13,13 +13,12 @@ import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.InvoiceDataModel
 import com.jakewharton.threetenabp.AndroidThreeTen
 import org.jetbrains.anko.onClick
-import org.jetbrains.anko.startActivityForResult
 import java.io.ByteArrayOutputStream
 
 class DespositSlipUploadActivity : AppCompatActivity() {
 
     //TextViews
-    private lateinit var depositSlipTextView: TextView
+    private lateinit var editTextDepositSlipNumber: TextView
     private lateinit var amountTextView: TextView
 
     //Button
@@ -61,7 +60,7 @@ class DespositSlipUploadActivity : AppCompatActivity() {
         requestID = intent.extras!!.get("requestID").toString()
 
 
-        depositSlipTextView = findViewById(R.id.depositSlipTextView)
+        editTextDepositSlipNumber = findViewById(R.id.editTextDepositSlipNumber)
         amountTextView = findViewById(R.id.amountTextView)
 
         slipUploadImageView = findViewById(R.id.slipUploadImageView)
@@ -92,6 +91,12 @@ class DespositSlipUploadActivity : AppCompatActivity() {
                     "Please upload an image first",
                     Toast.LENGTH_SHORT
                 ).show()
+            }else if(amountTextView.text.isNullOrEmpty() || editTextDepositSlipNumber.text.isNullOrEmpty()){
+                Toast.makeText(
+                    applicationContext,
+                    "Please fill the required fields first",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 depositSlipProgressBar.visibility = View.VISIBLE
                 Util.getFirebaseFireStore().collection("invoiceNumber")
@@ -103,6 +108,7 @@ class DespositSlipUploadActivity : AppCompatActivity() {
                             .addOnSuccessListener {
                                 var invoive = InvoiceDataModel(
                                     invoiceID,
+                                    editTextDepositSlipNumber.text.toString(),
                                     amountTextView.text.toString().toInt(),
                                     Util.getFormattedDate(),
                                     Util.getGlobals().user!!.uid,
@@ -115,7 +121,7 @@ class DespositSlipUploadActivity : AppCompatActivity() {
                                             .document(requestID)
                                             .update("requestStatus", "Payment Processing")
                                             .addOnSuccessListener {
-                                                uploadImage(depositImage)
+                                                uploadImage(depositImage, requestID.toInt())
                                             }
                                     }
                             }
@@ -135,14 +141,14 @@ class DespositSlipUploadActivity : AppCompatActivity() {
         startActivityForResult(intent, Util.getImageRequest())
     }
 
-    private fun uploadImage(depositImage: Bitmap) {
+    private fun uploadImage(depositImage: Bitmap, requestID: Int) {
         val baos = ByteArrayOutputStream()
         val bitmap = depositImage
         bitmap!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
 
         var uploadTask =
-            Util.getStorageRefDepositSlip()
+            Util.getStorageRefDepositSlip(requestID)
                 .putBytes(data)
         uploadTask.addOnFailureListener {
             Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT)

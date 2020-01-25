@@ -109,7 +109,8 @@ class PackageAdapter(
                                     ).show()
                                 }
                             } else if (document.get("day").toString() == "Saturday") {
-                                holder.chipSat.enabled = document.get("day").toString() == "Saturday"
+                                holder.chipSat.enabled =
+                                    document.get("day").toString() == "Saturday"
                                 holder.chipSat.onClick {
                                     Toast.makeText(
                                         context,
@@ -147,7 +148,7 @@ class PackageAdapter(
                 intent.putExtra("requestID", request.requestID)
                 context.startActivity(intent)
             }
-        } else if(request!!.requestStatus == ("Payment Pending")) {
+        } else if (request!!.requestStatus == ("Payment Pending")) {
             holder.btnPay.onClick {
                 var intent = Intent(context, DespositSlipUploadActivity::class.java)
                 intent.putExtra("requestID", request.requestID)
@@ -158,34 +159,41 @@ class PackageAdapter(
                 intent.putExtra("requestID", request.requestID)
                 context.startActivity(intent)
             }
-        } else if(request!!.requestStatus == ("Payment Processing")){
+        } else if (request!!.requestStatus == ("Payment Processing")) {
             holder.btnPay.onClick {
-                Toast.makeText(context, "Payment already being processed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Payment already being processed", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
 
-
-        holder.btnCancel.onClick {
-            packageProgressBar.visibility = View.VISIBLE
-            val alertDialog = Util.getAlertDialog(context)
-            alertDialog.setMessage("Do you really want to cancel this request?")
-            alertDialog.setPositiveButton("Yes") { _, _ ->
-                Util.getFirebaseFireStore().collection("carRideRequests")
-                    .document(request.requestID.toString())
-                    .update("requestStatus", "Cancelled")
-                    .addOnSuccessListener {
-                        holder.textViewStatus.text = "Cancelled"
-                        Toast.makeText(context, "Request successfully cancelled", Toast.LENGTH_LONG)
-                            .show()
-                        packageProgressBar.visibility = View.INVISIBLE
-                    }
+        if (request.requestStatus != "Cancelled") {
+            holder.btnCancel.onClick {
+                packageProgressBar.visibility = View.VISIBLE
+                val alertDialog = Util.getAlertDialog(context)
+                alertDialog.setMessage("Do you really want to cancel this request?")
+                alertDialog.setPositiveButton("Yes") { _, _ ->
+                    Util.getFirebaseFireStore().collection("carRideRequests")
+                        .document(request.requestID.toString())
+                        .update("requestStatus", "Cancelled")
+                        .addOnSuccessListener {
+                            holder.textViewStatus.text = "Cancelled"
+                            Toast.makeText(
+                                context,
+                                "Request successfully cancelled",
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+                            packageProgressBar.visibility = View.INVISIBLE
+                        }
+                }
+                alertDialog.setNegativeButton("No") { _, _ ->
+                    packageProgressBar.visibility = View.INVISIBLE
+                }
+                alertDialog.show()
             }
-            alertDialog.setNegativeButton("No") { _, _ -> }
-            alertDialog.show()
+
         }
-
-
     }
 }
 

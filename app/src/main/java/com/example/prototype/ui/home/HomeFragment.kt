@@ -41,8 +41,10 @@ import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.card.MaterialCardView
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.find
+import org.jetbrains.anko.onClick
 import java.io.IOException
 import java.lang.StringBuilder
 import java.util.*
@@ -149,7 +151,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
             }
 
-        }else{
+        } else {
             val confirmDialog =
                 AlertDialog.Builder(root.context, R.style.ThemeOverlay_MaterialComponents_Dialog)
             confirmDialog.setTitle("Sath Chaloo")
@@ -187,8 +189,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
         btn_service = root.findViewById(R.id.btn_service)
         btn_service.setOnClickListener {
-            val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
             val dialog = BottomSheetDialog(root.context)
+            val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
+            //Services On Click
+            view.findViewById<MaterialCardView>(R.id.materialCardViewbus).onClick {
+                Toast.makeText(root.context, "Coming Soon", Toast.LENGTH_SHORT).show()
+            }
+            view.findViewById<MaterialCardView>(R.id.materialCardViewcar).onClick {
+                Toast.makeText(root.context, "Coming Soon", Toast.LENGTH_SHORT).show()
+            }
+            view.findViewById<MaterialCardView>(R.id.materialCardViewcarpool).onClick {
+                dialog.dismiss()
+            }
             dialog.setContentView(view)
             dialog.show()
         }
@@ -254,7 +266,11 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         mMap = googleMap
         mMap.setOnCameraIdleListener {
             mMap.clear()
-            var address = geocoder.getFromLocation(mMap.cameraPosition.target.latitude,mMap.cameraPosition.target.longitude, 1)
+            var address = geocoder.getFromLocation(
+                mMap.cameraPosition.target.latitude,
+                mMap.cameraPosition.target.longitude,
+                1
+            )
             destAddress = address.first().getAddressLine(0).toString()
             autocompleteSupportFragment.setText(address.first().getAddressLine(0).toString())
             addMarker(mMap.cameraPosition.target, "Custom")
@@ -283,10 +299,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                         Util.getBiggerZoomValue(),
                         1
                     )
-                    Toast.makeText(root.context, "Found", Toast.LENGTH_LONG).show()
 
                 } else {
-                    Toast.makeText(root.context, "Not Found", Toast.LENGTH_LONG).show()
                 }
             }
         } catch (e: SecurityException) {
@@ -349,10 +363,10 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                     if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                         var alertDialog = Util.getAlertDialog(root.context)
                         alertDialog.setMessage("You need to enable location in order to get the most out of Sath Chaloo")
-                        alertDialog.setPositiveButton("Enable Location"){_,_ ->
+                        alertDialog.setPositiveButton("Enable Location") { _, _ ->
                             getLocationPermission()
                         }
-                        alertDialog.setNegativeButton("Don't allow"){_,_ ->
+                        alertDialog.setNegativeButton("Don't allow") { _, _ ->
                             System.exit(0)
                         }
                         alertDialog.show()

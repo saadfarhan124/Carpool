@@ -31,6 +31,7 @@ class ActiveFragment : Fragment() {
 
         return root
     }
+
     override fun onResume() {
         loadRequests()
         super.onResume()
@@ -41,13 +42,11 @@ class ActiveFragment : Fragment() {
         packageProgressBar.visibility = View.VISIBLE
         Util.getFirebaseFireStore().collection("carRideRequests")
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
+            .whereEqualTo("requestStatus", "Active")
             .get()
             .addOnSuccessListener {
                 val requests = mutableListOf<ReviewInformationDataModel>()
                 for (documents in it.documents) {
-
-
-
                     val info = documents.toObject(ReviewInformationDataModel::class.java)
                     info!!.requestID = documents.id
                     requests.add(info!!)

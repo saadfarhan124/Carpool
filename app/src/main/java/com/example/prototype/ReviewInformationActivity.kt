@@ -2,6 +2,7 @@ package com.example.prototype
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.Image
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -13,7 +14,9 @@ import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.DocumentReference
+import com.skyfishjy.library.RippleBackground
 import org.jetbrains.anko.enabled
+import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
 
 class ReviewInformationActivity : AppCompatActivity() {
@@ -46,11 +49,19 @@ class ReviewInformationActivity : AppCompatActivity() {
     private lateinit var ImageAc: ImageView
     private lateinit var ImageNonAc: ImageView
 
+    //Ripples
+    private lateinit var standardRippleBackground: RippleBackground
+    private lateinit var premiumRippleBackground: RippleBackground
+
     //Submit Button
     private lateinit var btn_submitReq: Button
 
     //Progress Bar
     private lateinit var reviewInfoProgressBar: ProgressBar
+
+    //Boolean Flag for service type
+    private var standardServiceFlag: Boolean = false
+    private var premiumServiceFlag: Boolean = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,56 +105,27 @@ class ReviewInformationActivity : AppCompatActivity() {
             submitRequest()
         }
 
+        //Ripples
+        standardRippleBackground = findViewById(R.id.rippleStandard)
+        premiumRippleBackground = findViewById(R.id.ripplePremium)
 
-        //Image
+
+        //ImageViews
         ImageAc = findViewById(R.id.img_ac)
         ImageNonAc = findViewById(R.id.img_nonAC)
-
-
-
         ImageAc.onClick {
-            if (MIC_STATUS == 0) {
-                ImageAc.setColorFilter(Color.argb(50,128, 128, 128))
-                MIC_STATUS = 1
-                Toast.makeText(
-                    applicationContext,
-                    "if",
-                    Toast.LENGTH_LONG
-                ).show()
-
-            } else if (MIC_STATUS == 1) {
-                ImageAc.setColorFilter(Color.TRANSPARENT)
-                MIC_STATUS = 0
-                Toast.makeText(
-                    applicationContext,
-                    "else",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            standardServiceFlag = false
+            premiumServiceFlag = true
+            premiumRippleBackground.startRippleAnimation()
+            standardRippleBackground.stopRippleAnimation()
         }
 
         ImageNonAc.onClick {
-            if(MIC_STATUS == 0){
-                ImageNonAc.setColorFilter(Color.argb(50,128,128,128))
-                MIC_STATUS = 1
-                Toast.makeText(
-                    applicationContext,
-                    "if",
-                    Toast.LENGTH_LONG
-                ).show()
-
-            }else if(MIC_STATUS == 1){
-                ImageNonAc.setColorFilter(Color.TRANSPARENT)
-                MIC_STATUS = 0
-                Toast.makeText(
-                    applicationContext,
-                    "else",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
+            standardServiceFlag = true
+            premiumServiceFlag = false
+            premiumRippleBackground.stopRippleAnimation()
+            standardRippleBackground.startRippleAnimation()
         }
-
-
 
         //Chips
         txt_chip_Mon = findViewById(R.id.txt_chip_Mon)
@@ -225,38 +207,47 @@ class ReviewInformationActivity : AppCompatActivity() {
     }
 
     private fun submitRequest() {
-        var alertDialog = Util.getAlertDialog(this)
-        alertDialog.setMessage("Do you want to submit this request?")
-        alertDialog.setPositiveButton("Yes") { _, _ ->
-            reviewInfoProgressBar.visibility = View.VISIBLE
-            Util.getFirebaseFireStore().collection("request_id")
-                .get()
-                .addOnSuccessListener {
-                    var requestID = it.documents[0]["requestId"].toString().toInt()
-                    Util.getFirebaseFireStore().collection("request_id")
-                        .document(it.documents[0].id)
-                        .update("requestId", requestID+1)
-                        .addOnSuccessListener {
-                            var ref: DocumentReference =
-                                Util.getFirebaseFireStore().collection("carRideRequests")
-                                    .document(requestID.toString())
-                            for (item in TimeDetails) {
-                                ref.collection("Days").document(item.day!!).set(item)
+        if (!premiumServiceFlag && !standardServiceFlag) {
+            Toast.makeText(applicationContext, "Please select a service type",
+                Toast.LENGTH_SHORT).show()
+        } else {
+            var alertDialog = Util.getAlertDialog(this)
+            alertDialog.setMessage("Do you want to submit this request?")
+            alertDialog.setPositiveButton("Yes") { _, _ ->
+                reviewInfoProgressBar.visibility = View.VISIBLE
+                Util.getFirebaseFireStore().collection("request_id")
+                    .get()
+                    .addOnSuccessListener {
+                        var requestID = it.documents[0]["requestId"].toString().toInt()
+                        Util.getFirebaseFireStore().collection("request_id")
+                            .document(it.documents[0].id)
+                            .update("requestId", requestID + 1)
+                            .addOnSuccessListener {
+                                var ref: DocumentReference =
+                                    Util.getFirebaseFireStore().collection("carRideRequests")
+                                        .document(requestID.toString())
+                                for (item in TimeDetails) {
+                                    ref.collection("Days").document(item.day!!).set(item)
+                                }
+                                ref.set(ReviewData).addOnCompleteListener {
+                                    reviewInfoProgressBar.visibility = View.INVISIBLE
+                                    Toast.makeText(
+                                        applicationContext,
+                                        "Requests sent",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                    var intent = Intent(applicationContext, navdrawer::class.java)
+                                    startActivity(intent)
+                                }
                             }
-                            ref.set(ReviewData).addOnCompleteListener {
-                                reviewInfoProgressBar.visibility = View.INVISIBLE
-                                Toast.makeText(applicationContext, "Requests sent", Toast.LENGTH_LONG).show()
-                                var intent = Intent(applicationContext, navdrawer::class.java)
-                                startActivity(intent)
-                            }
-                        }
-                }
+                    }
 
-        }
-        alertDialog.setNegativeButton("No") { _, _ ->
+            }
+            alertDialog.setNegativeButton("No") { _, _ ->
 
+            }
+            alertDialog.show()
         }
-        alertDialog.show()
     }
 
     //Top App Bar Back Nav
