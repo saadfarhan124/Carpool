@@ -427,7 +427,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                 Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
                 return
             }else{
-                var carSharingDataModel = CarSharingDataModel("Tuesday",
+                var carSharingDataModel     = CarSharingDataModel("Tuesday",
                     textViewTuesdayPickup.text.toString(),
                     textViewTuesdayDropoff.text.toString())
                 daysDataModel.Tuesday = true
