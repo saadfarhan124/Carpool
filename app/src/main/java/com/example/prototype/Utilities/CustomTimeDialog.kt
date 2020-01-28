@@ -1,30 +1,29 @@
 package com.example.prototype.Utilities
 
 
-import android.app.Dialog
-import android.app.TimePickerDialog
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.TimePicker
-import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources.getColorStateList
 import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype.R
 import com.example.prototype.TimeDialogFragments.DropoffTimerFragment
 import com.example.prototype.TimeDialogFragments.PickupTimerFragment
-import com.example.prototype.adapters.RequestSectionPageAdapter
 import com.example.prototype.adapters.TimeDialogSectionPageAdapter
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.chip.Chip
 import com.google.android.material.tabs.TabLayout
+import org.jetbrains.anko.enabled
 import org.jetbrains.anko.onClick
-import org.w3c.dom.Text
 
 
-class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextView) :
+class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextView,
+                       var clickedChip: Chip
+) :
     DialogFragment() {
 
     private var pickUpTimeSelected = false
@@ -61,6 +60,13 @@ class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextVi
                 pickUpTimeSelected = true
                 tabs.getTabAt(1)!!.select()
             }
+        }
+
+        var btnCancel: MaterialButton = view.findViewById(R.id.btnCancel)
+        btnCancel.onClick {
+            clickedChip.chipBackgroundColor = getColorStateList(view.context,R.color.chipBackgroundDisable)
+            clickedChip.setTextColor(resources.getColor(R.color.colorText1))
+            dismiss()
         }
 
     }

@@ -1,6 +1,5 @@
 package com.example.prototype
 
-import android.app.TimePickerDialog
 import android.content.Intent
 import android.graphics.Color
 import android.location.Geocoder
@@ -40,7 +39,6 @@ import org.json.JSONObject
 import java.io.IOException
 import java.io.Serializable
 import java.net.URL
-import java.text.SimpleDateFormat
 import java.util.*
 
 class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -242,7 +240,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             }else{
                                 Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Monday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewMondayPickup, textViewMondayDropoff)
+                                val dialogFragment = Util.getCustomTimeDialog(textViewMondayPickup, textViewMondayDropoff, Monday)
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -264,7 +262,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             }else{
                                 Tuesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Tuesday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewTuesdayPickup, textViewTuesdayDropoff)
+                                val dialogFragment = Util.getCustomTimeDialog(textViewTuesdayPickup, textViewTuesdayDropoff, Tuesday)
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -285,7 +283,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             }else{
                                 Wednesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Wednesday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewWednesdayPickup, textViewWednesdayDropoff)
+                                val dialogFragment = Util.getCustomTimeDialog(textViewWednesdayPickup, textViewWednesdayDropoff, Wednesday)
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -306,7 +304,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             }else{
                                 Thursday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Thursday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewThursdayPickup, textViewThursdayDropoff)
+                                val dialogFragment = Util.getCustomTimeDialog(textViewThursdayPickup, textViewThursdayDropoff, Thursday)
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -327,7 +325,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             }else{
                                 Friday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Friday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewFridayPickup, textViewFridayDropoff)
+                                val dialogFragment = Util.getCustomTimeDialog(textViewFridayPickup, textViewFridayDropoff, Friday)
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -348,7 +346,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                             }else{
                                 Saturday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Saturday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewSaturdayPickup, textViewSaturdayDropoff)
+                                val dialogFragment = Util.getCustomTimeDialog(textViewSaturdayPickup, textViewSaturdayDropoff, Saturday)
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -367,9 +365,10 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                                 Sunday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
                                 Sunday.setTextColor(resources.getColor(R.color.colorText1))
                             }else{
+
                                 Sunday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Sunday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewSundayPickup, textViewSundayDropoff)
+                                val dialogFragment = Util.getCustomTimeDialog(textViewSundayPickup, textViewSundayDropoff, Sunday)
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")

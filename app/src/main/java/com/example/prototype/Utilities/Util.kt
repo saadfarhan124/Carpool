@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager
 import com.example.prototype.LoginActivity
 import com.example.prototype.R
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.chip.Chip
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -137,8 +138,8 @@ class Util {
         }
 
         //Function to get Custom Time Dialog
-        fun getCustomTimeDialog(textViewPickUp: TextView, textViewDropOff: TextView): CustomTimeDialog{
-            return CustomTimeDialog(textViewPickUp, textViewDropOff)
+        fun getCustomTimeDialog(textViewPickUp: TextView, textViewDropOff: TextView, selectedChip: Chip): CustomTimeDialog{
+            return CustomTimeDialog(textViewPickUp, textViewDropOff, selectedChip)
         }
     }
 }
