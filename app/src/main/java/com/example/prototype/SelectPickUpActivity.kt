@@ -170,48 +170,49 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
         btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                if (counter == 0) {
-                    polylineOptions = PolylineOptions()
-                    polylineOptions.color(Color.RED)
-                    polylineOptions.width(5f)
-                    val url = Util.getURL(
-                        LatLng(marker.position.latitude, marker.position.longitude),
-                        destinationLatLng,
-                        getString(R.string.google_maps_key)
-                    )
-                    async {
-                        val result = URL(url).readText()
-                        uiThread {
-                            val response = JSONObject(result)
-                            val routes: JSONArray = response.getJSONArray("routes")
-                            val routesObject = routes.getJSONObject(0)
-                            val polylines = routesObject.getJSONObject("overview_polyline")
-                            val encodedString = polylines.getString("points")
-                            val bounds = LatLngBounds.Builder().include(
-                                LatLng(
-                                    marker.position.latitude,
-                                    marker.position.longitude
+                if(::marker.isInitialized){
+                    if (counter == 0) {
+                        polylineOptions = PolylineOptions()
+                        polylineOptions.color(Color.RED)
+                        polylineOptions.width(5f)
+                        val url = Util.getURL(
+                            LatLng(marker.position.latitude, marker.position.longitude),
+                            destinationLatLng,
+                            getString(R.string.google_maps_key)
+                        )
+                        async {
+                            val result = URL(url).readText()
+                            uiThread {
+                                val response = JSONObject(result)
+                                val routes: JSONArray = response.getJSONArray("routes")
+                                val routesObject = routes.getJSONObject(0)
+                                val polylines = routesObject.getJSONObject("overview_polyline")
+                                val encodedString = polylines.getString("points")
+                                val bounds = LatLngBounds.Builder().include(
+                                    LatLng(
+                                        marker.position.latitude,
+                                        marker.position.longitude
+                                    )
+                                ).include(destinationLatLng)
+                                polyFlag = true
+                                mMap.animateCamera(
+                                    CameraUpdateFactory.newLatLngBounds(
+                                        bounds.build(),
+                                        100
+                                    )
                                 )
-                            ).include(destinationLatLng)
-                            polyFlag = true
-                            mMap.animateCamera(
-                                CameraUpdateFactory.newLatLngBounds(
-                                    bounds.build(),
-                                    100
-                                )
-                            )
-                            mMap.addPolyline(
-                                PolylineOptions().addAll(PolyUtil.decode(encodedString)).color(
-                                    Color.BLUE
-                                ))
+                                mMap.addPolyline(
+                                    PolylineOptions().addAll(PolyUtil.decode(encodedString)).color(
+                                        Color.BLUE
+                                    ))
 
+                            }
                         }
-                    }
-                    counter++
-                    btnSelectPickUp!!.text = "Proceed"
-                } else {
+                        counter++
+                        btnSelectPickUp!!.text = "Proceed"
+                    } else {
 
-                    //Old Select Days and time
+                        //Old Select Days and time
 //                    val intent = Intent(applicationContext, SelectDaysAndTime::class.java)
 //                    intent.putExtra("DestLat", destinationLatLng.latitude)
 //                    intent.putExtra("DestLong", destinationLatLng.longitude)
@@ -220,179 +221,180 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 //                    intent.putExtra("PickupLong", marker.position.longitude)
 //                    intent.putExtra("PickUpAddress", pickUpAddress)
 //                    startActivity(intent)
-                    //Bottom Sheet
-                    val view =
-                        layoutInflater.inflate(R.layout.activity_selectdays_bottomsheet, null)
-                    val dialog = BottomSheetDialog(this@SelectPickUpActivity)
-                    dialog.setContentView(view)
-                    dialog.show()
+                        //Bottom Sheet
+                        val view =
+                            layoutInflater.inflate(R.layout.activity_selectdays_bottomsheet, null)
+                        val dialog = BottomSheetDialog(this@SelectPickUpActivity)
+                        dialog.setContentView(view)
+                        dialog.show()
 
-                    //Monday
-                    //Chips
-                    Monday = view.findViewById(R.id.chip_mon)
-                    //Pick Ups Text View
-                    textViewMondayPickup = view.findViewById(R.id.textViewMondayPickup)
-                    textViewMondayDropoff = view.findViewById(R.id.textViewMondayDropoff)
-                    //OnClick Chips
-                    Monday.onClick {
-                        if (Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                            Monday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
-                            Monday.setTextColor(resources.getColor(R.color.colorText1))
-                        }else{
-                            Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
-                            Monday.setTextColor(resources.getColor(R.color.colorText))
-                            val dialogFragment = Util.getCustomTimeDialog(textViewMondayPickup, textViewMondayDropoff)
-                            val sf = supportFragmentManager.beginTransaction()
-                            sf.addToBackStack(null)
-                            dialogFragment.show(sf, "dialog")
+                        //Monday
+                        //Chips
+                        Monday = view.findViewById(R.id.chip_mon)
+                        //Pick Ups Text View
+                        textViewMondayPickup = view.findViewById(R.id.textViewMondayPickup)
+                        textViewMondayDropoff = view.findViewById(R.id.textViewMondayDropoff)
+                        //OnClick Chips
+                        Monday.onClick {
+                            if (Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                                Monday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Monday.setTextColor(resources.getColor(R.color.colorText1))
+                            }else{
+                                Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                                Monday.setTextColor(resources.getColor(R.color.colorText))
+                                val dialogFragment = Util.getCustomTimeDialog(textViewMondayPickup, textViewMondayDropoff)
+                                val sf = supportFragmentManager.beginTransaction()
+                                sf.addToBackStack(null)
+                                dialogFragment.show(sf, "dialog")
+                            }
                         }
-                    }
 
 
-                    //Tuesday
-                    //Chip
-                    Tuesday = view.findViewById(R.id.chip_tue)
-                    //Pick Ups Text View
-                    textViewTuesdayPickup = view.findViewById(R.id.textViewTuesdayPickup)
-                    textViewTuesdayDropoff = view.findViewById(R.id.textViewTuesdayDropoff)
-                    //OnClick Chips
-                    Tuesday.onClick {
-                        if (Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                            Tuesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
-                            Tuesday.setTextColor(resources.getColor(R.color.colorText1))
-                        }else{
-                            Tuesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
-                            Tuesday.setTextColor(resources.getColor(R.color.colorText))
-                            val dialogFragment = Util.getCustomTimeDialog(textViewTuesdayPickup, textViewTuesdayDropoff)
-                            val sf = supportFragmentManager.beginTransaction()
-                            sf.addToBackStack(null)
-                            dialogFragment.show(sf, "dialog")
+                        //Tuesday
+                        //Chip
+                        Tuesday = view.findViewById(R.id.chip_tue)
+                        //Pick Ups Text View
+                        textViewTuesdayPickup = view.findViewById(R.id.textViewTuesdayPickup)
+                        textViewTuesdayDropoff = view.findViewById(R.id.textViewTuesdayDropoff)
+                        //OnClick Chips
+                        Tuesday.onClick {
+                            if (Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                                Tuesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Tuesday.setTextColor(resources.getColor(R.color.colorText1))
+                            }else{
+                                Tuesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                                Tuesday.setTextColor(resources.getColor(R.color.colorText))
+                                val dialogFragment = Util.getCustomTimeDialog(textViewTuesdayPickup, textViewTuesdayDropoff)
+                                val sf = supportFragmentManager.beginTransaction()
+                                sf.addToBackStack(null)
+                                dialogFragment.show(sf, "dialog")
+                            }
                         }
-                    }
 
-                    //Wednesday
-                    //Chip
-                    Wednesday = view.findViewById(R.id.chip_wed)
-                    //Pick Ups Text View
-                    textViewWednesdayPickup = view.findViewById(R.id.textViewWednesdayPickup)
-                    textViewWednesdayDropoff = view.findViewById(R.id.textViewWednesdayDropoff)
-                    //OnClick Chips
-                    Wednesday.onClick {
-                        if (Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                            Wednesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
-                            Wednesday.setTextColor(resources.getColor(R.color.colorText1))
-                        }else{
-                            Wednesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
-                            Wednesday.setTextColor(resources.getColor(R.color.colorText))
-                            val dialogFragment = Util.getCustomTimeDialog(textViewWednesdayPickup, textViewWednesdayDropoff)
-                            val sf = supportFragmentManager.beginTransaction()
-                            sf.addToBackStack(null)
-                            dialogFragment.show(sf, "dialog")
+                        //Wednesday
+                        //Chip
+                        Wednesday = view.findViewById(R.id.chip_wed)
+                        //Pick Ups Text View
+                        textViewWednesdayPickup = view.findViewById(R.id.textViewWednesdayPickup)
+                        textViewWednesdayDropoff = view.findViewById(R.id.textViewWednesdayDropoff)
+                        //OnClick Chips
+                        Wednesday.onClick {
+                            if (Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                                Wednesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Wednesday.setTextColor(resources.getColor(R.color.colorText1))
+                            }else{
+                                Wednesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                                Wednesday.setTextColor(resources.getColor(R.color.colorText))
+                                val dialogFragment = Util.getCustomTimeDialog(textViewWednesdayPickup, textViewWednesdayDropoff)
+                                val sf = supportFragmentManager.beginTransaction()
+                                sf.addToBackStack(null)
+                                dialogFragment.show(sf, "dialog")
+                            }
                         }
-                    }
 
-                    //Thursday
-                    //Chip
-                    Thursday = view.findViewById(R.id.chip_thu)
-                    //Pick Ups Text View
-                    textViewThursdayPickup = view.findViewById(R.id.textViewThursdayPickup)
-                    textViewThursdayDropoff = view.findViewById(R.id.textViewThursdayDropoff)
-                    //OnClick Chips
-                    Thursday.onClick {
-                        if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                            Thursday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
-                            Thursday.setTextColor(resources.getColor(R.color.colorText1))
-                        }else{
-                            Thursday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
-                            Thursday.setTextColor(resources.getColor(R.color.colorText))
-                            val dialogFragment = Util.getCustomTimeDialog(textViewThursdayPickup, textViewThursdayDropoff)
-                            val sf = supportFragmentManager.beginTransaction()
-                            sf.addToBackStack(null)
-                            dialogFragment.show(sf, "dialog")
+                        //Thursday
+                        //Chip
+                        Thursday = view.findViewById(R.id.chip_thu)
+                        //Pick Ups Text View
+                        textViewThursdayPickup = view.findViewById(R.id.textViewThursdayPickup)
+                        textViewThursdayDropoff = view.findViewById(R.id.textViewThursdayDropoff)
+                        //OnClick Chips
+                        Thursday.onClick {
+                            if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                                Thursday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Thursday.setTextColor(resources.getColor(R.color.colorText1))
+                            }else{
+                                Thursday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                                Thursday.setTextColor(resources.getColor(R.color.colorText))
+                                val dialogFragment = Util.getCustomTimeDialog(textViewThursdayPickup, textViewThursdayDropoff)
+                                val sf = supportFragmentManager.beginTransaction()
+                                sf.addToBackStack(null)
+                                dialogFragment.show(sf, "dialog")
+                            }
                         }
-                    }
 
-                    //Friday
-                    //Chip
-                    Friday = view.findViewById(R.id.chip_fri)
-                    //Pick Ups Text View
-                    textViewFridayPickup = view.findViewById(R.id.textViewFridayPickup)
-                    textViewFridayDropoff = view.findViewById(R.id.textViewFridayDropoff)
-                    //OnClick Chips
-                    Friday.onClick {
-                        if (Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                            Friday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
-                            Friday.setTextColor(resources.getColor(R.color.colorText1))
-                        }else{
-                            Friday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
-                            Friday.setTextColor(resources.getColor(R.color.colorText))
-                            val dialogFragment = Util.getCustomTimeDialog(textViewFridayPickup, textViewFridayDropoff)
-                            val sf = supportFragmentManager.beginTransaction()
-                            sf.addToBackStack(null)
-                            dialogFragment.show(sf, "dialog")
+                        //Friday
+                        //Chip
+                        Friday = view.findViewById(R.id.chip_fri)
+                        //Pick Ups Text View
+                        textViewFridayPickup = view.findViewById(R.id.textViewFridayPickup)
+                        textViewFridayDropoff = view.findViewById(R.id.textViewFridayDropoff)
+                        //OnClick Chips
+                        Friday.onClick {
+                            if (Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                                Friday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Friday.setTextColor(resources.getColor(R.color.colorText1))
+                            }else{
+                                Friday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                                Friday.setTextColor(resources.getColor(R.color.colorText))
+                                val dialogFragment = Util.getCustomTimeDialog(textViewFridayPickup, textViewFridayDropoff)
+                                val sf = supportFragmentManager.beginTransaction()
+                                sf.addToBackStack(null)
+                                dialogFragment.show(sf, "dialog")
+                            }
                         }
-                    }
 
-                    //Saturday
-                    //Chip
-                    Saturday = view.findViewById(R.id.chip_sat)
-                    //Pick Ups Text View
-                    textViewSaturdayPickup = view.findViewById(R.id.textViewSaturdayPickup)
-                    textViewSaturdayDropoff = view.findViewById(R.id.textViewSaturdayDropoff)
-                    //OnClick Chips
-                    Saturday.onClick {
-                        if (Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                            Saturday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
-                            Saturday.setTextColor(resources.getColor(R.color.colorText1))
-                        }else{
-                            Saturday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
-                            Saturday.setTextColor(resources.getColor(R.color.colorText))
-                            val dialogFragment = Util.getCustomTimeDialog(textViewSaturdayPickup, textViewSaturdayDropoff)
-                            val sf = supportFragmentManager.beginTransaction()
-                            sf.addToBackStack(null)
-                            dialogFragment.show(sf, "dialog")
+                        //Saturday
+                        //Chip
+                        Saturday = view.findViewById(R.id.chip_sat)
+                        //Pick Ups Text View
+                        textViewSaturdayPickup = view.findViewById(R.id.textViewSaturdayPickup)
+                        textViewSaturdayDropoff = view.findViewById(R.id.textViewSaturdayDropoff)
+                        //OnClick Chips
+                        Saturday.onClick {
+                            if (Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                                Saturday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Saturday.setTextColor(resources.getColor(R.color.colorText1))
+                            }else{
+                                Saturday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                                Saturday.setTextColor(resources.getColor(R.color.colorText))
+                                val dialogFragment = Util.getCustomTimeDialog(textViewSaturdayPickup, textViewSaturdayDropoff)
+                                val sf = supportFragmentManager.beginTransaction()
+                                sf.addToBackStack(null)
+                                dialogFragment.show(sf, "dialog")
+                            }
                         }
-                    }
 
-                    //Sunday
-                    //Chip
-                    Sunday = view.findViewById(R.id.chip_sun)
-                    //Pick Ups Text View
-                    textViewSundayPickup = view.findViewById(R.id.textViewSundayPickup)
-                    textViewSundayDropoff = view.findViewById(R.id.textViewSundayDropoff)
-                    //OnClick Chips
-                    Sunday.onClick {
-                        if (Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                            Sunday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
-                            Sunday.setTextColor(resources.getColor(R.color.colorText1))
-                        }else{
-                            Sunday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
-                            Sunday.setTextColor(resources.getColor(R.color.colorText))
-                            val dialogFragment = Util.getCustomTimeDialog(textViewSundayPickup, textViewSundayDropoff)
-                            val sf = supportFragmentManager.beginTransaction()
-                            sf.addToBackStack(null)
-                            dialogFragment.show(sf, "dialog")
+                        //Sunday
+                        //Chip
+                        Sunday = view.findViewById(R.id.chip_sun)
+                        //Pick Ups Text View
+                        textViewSundayPickup = view.findViewById(R.id.textViewSundayPickup)
+                        textViewSundayDropoff = view.findViewById(R.id.textViewSundayDropoff)
+                        //OnClick Chips
+                        Sunday.onClick {
+                            if (Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+                                Sunday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Sunday.setTextColor(resources.getColor(R.color.colorText1))
+                            }else{
+                                Sunday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                                Sunday.setTextColor(resources.getColor(R.color.colorText))
+                                val dialogFragment = Util.getCustomTimeDialog(textViewSundayPickup, textViewSundayDropoff)
+                                val sf = supportFragmentManager.beginTransaction()
+                                sf.addToBackStack(null)
+                                dialogFragment.show(sf, "dialog")
+                            }
                         }
-                    }
 
 
-                    //Bottom Sheet Continue Button
-                    val btnContinue = view.findViewById<Button>(R.id.btn_Continue)
-                    btnContinue.onClick {
-                        insertRequest()
-                    }
+                        //Bottom Sheet Continue Button
+                        val btnContinue = view.findViewById<Button>(R.id.btn_Continue)
+                        btnContinue.onClick {
+                            insertRequest()
+                        }
 
 
 
-                     //Bus Part
+                        //Bus Part
 //                    val intent = Intent(applicationContext, SeeRoutesActivity::class.java)
 //                    intent.putExtra("DestLat", destinationLatLng.latitude)
 //                    intent.putExtra("DestLong", destinationLatLng.longitude)
 //                    intent.putExtra("PickupLat", marker.position.latitude)
 //                    intent.putExtra("PickupLong", marker.position.longitude)
 //                    startActivity(intent)
-                }
+                    }
 
+                }
             }
         })
 

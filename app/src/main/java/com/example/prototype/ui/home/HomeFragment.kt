@@ -99,7 +99,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     private lateinit var btn_service: Button
     private lateinit var mGPS: ImageView
     private var customMarker: ImageView? = null
-    private var btnSelectPickUp: Button? = null
+    private lateinit var btnSelectPickUp: Button
 
     //Destinatiion Address
     private var destAddress = ""
@@ -116,6 +116,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_home, container, false)
+
 
         //Location Manager
         locationManager = root.context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
@@ -171,7 +172,9 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
         mGPS = root.findViewById(R.id.ic_gps)
         customMarker = root.findViewById(R.id.ic_marker)
+
         btnSelectPickUp = root.findViewById(R.id.btnSelectPickUp)
+
         //Places API
         Places.initialize(root.context, getString(R.string.google_maps_key))
         placesClient = Places.createClient(root.context)
@@ -227,11 +230,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
         btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(p0: View?) {
-                var intent = Intent(root.context, SelectPickUpActivity::class.java)
-                intent.putExtra("DestAddress", destAddress)
-                intent.putExtra("DestLat", marker.position.latitude)
-                intent.putExtra("DestLong", marker.position.longitude)
-                startActivity(intent)
+                if (::marker.isInitialized) {
+                    var intent = Intent(root.context, SelectPickUpActivity::class.java)
+                    intent.putExtra("DestAddress", destAddress)
+                    intent.putExtra("DestLat", marker.position.latitude)
+                    intent.putExtra("DestLong", marker.position.longitude)
+                    startActivity(intent)
+                }
+
             }
         })
     }
@@ -279,6 +285,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         mMap.setOnCameraMoveListener {
             customMarker!!.visibility = View.VISIBLE
         }
+
+        btnSelectPickUp!!.visibility = View.VISIBLE
 
         if (permissionFlag) {
             getDevicesLocation()
