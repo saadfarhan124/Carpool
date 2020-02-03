@@ -11,6 +11,7 @@ import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.provider.Settings
 import android.util.Log
 
@@ -30,8 +31,7 @@ import com.example.prototype.R
 import com.example.prototype.SelectPickUpActivity
 import com.example.prototype.Utilities.Util
 import com.google.android.gms.common.api.Status
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
 import com.google.android.gms.tasks.Task
@@ -43,10 +43,15 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.jetbrains.anko.async
 import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
+import org.jetbrains.anko.uiThread
+import org.json.JSONArray
+import org.json.JSONObject
 import java.io.IOException
 import java.lang.StringBuilder
+import java.net.URL
 import java.util.*
 
 
@@ -104,8 +109,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     //Destinatiion Address
     private var destAddress = ""
 
-    //GeoCoder
-    private lateinit var geocoder: Geocoder
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -187,7 +192,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                 Place.Field.LAT_LNG
             )
         )
-        geocoder = Geocoder(root.context, Locale.getDefault())
+
 
 
         btn_service = root.findViewById(R.id.btn_service)
@@ -272,15 +277,18 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         mMap = googleMap
         mMap.setOnCameraIdleListener {
             mMap.clear()
-            var address = geocoder.getFromLocation(
-                mMap.cameraPosition.target.latitude,
-                mMap.cameraPosition.target.longitude,
-                1
-            )
-            destAddress = address.first().getAddressLine(0).toString()
-            autocompleteSupportFragment.setText(address.first().getAddressLine(0).toString())
-            addMarker(mMap.cameraPosition.target, "Custom")
-            customMarker!!.visibility = View.INVISIBLE
+            val url = Util.getGeoCodeUrl(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude, getString(R.string.google_maps_key))
+            async {
+                val result = URL(url).readText()
+                uiThread {
+                    val response = JSONObject(result)
+                    val routes: JSONArray = response.getJSONArray("results")
+                    destAddress = routes.getJSONObject(0).getString("formatted_address")
+                    autocompleteSupportFragment.setText(destAddress)
+                    customMarker!!.visibility = View.INVISIBLE
+                    addMarker(mMap.cameraPosition.target, "Custom")
+                }
+            }
         }
         mMap.setOnCameraMoveListener {
             customMarker!!.visibility = View.VISIBLE
@@ -296,19 +304,36 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     //Fourth
     //Function to get location
     private fun getDevicesLocation() {
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity!!)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(root.context)
         try {
             var task: Task<Location>? = fusedLocationProviderClient.lastLocation
             task!!.addOnCompleteListener {
                 if (task.isSuccessful) {
                     var location = task.result
-                    moveCamera(
-                        LatLng(location!!.latitude, location.longitude),
-                        Util.getBiggerZoomValue(),
-                        1
-                    )
-
+                    if(location != null){
+                        moveCamera(
+                            LatLng(location.latitude, location.longitude),
+                            Util.getBiggerZoomValue()
+                        )
+                    }else{
+                        var locationCallback = object : LocationCallback(){
+                            override fun onLocationResult(p0: LocationResult) {
+                                moveCamera(LatLng(p0.lastLocation.latitude, p0.lastLocation.longitude),
+                                        Util.getBiggerZoomValue())
+                            }
+                        }
+                        var locationRequest = LocationRequest()
+                        locationRequest.priority = (LocationRequest.PRIORITY_HIGH_ACCURACY)
+                        locationRequest.interval = (0)
+                        locationRequest.fastestInterval = (0)
+                        locationRequest.numUpdates = (1)
+                        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(root.context)
+                        fusedLocationProviderClient.requestLocationUpdates(
+                            locationRequest, locationCallback, Looper.myLooper()
+                        )
+                    }
                 } else {
+                    Toast.makeText(root.context, task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }
             }
         } catch (e: SecurityException) {
@@ -317,11 +342,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     }
 
     //Function to move Camera
-    private fun moveCamera(latLng: LatLng, zoom: Float, moveType: Int = 0) {
-        when (moveType) {
-            0 -> mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
-            1 -> mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
-        }
+    private fun moveCamera(latLng: LatLng, zoom: Float) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
     }
 
     //Function to add markets
@@ -350,6 +372,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             ) {
                 init()
                 initMap()
+                getDevicesLocation()
                 permissionFlag = true
             } else {
                 requestPermissions(permissions, locationPermissionCode)

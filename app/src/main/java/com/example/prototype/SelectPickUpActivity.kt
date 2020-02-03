@@ -2,10 +2,10 @@ package com.example.prototype
 
 import android.content.Intent
 import android.graphics.Color
-import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.*
@@ -16,8 +16,7 @@ import com.example.prototype.dataModels.CarSharingDataModel
 import com.example.prototype.dataModels.DaysDataModel
 import com.example.prototype.dataModels.ReviewInformationDataModel
 import com.google.android.gms.common.api.Status
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -55,8 +54,6 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var polylineOptions: PolylineOptions
     private var polyFlag = false
 
-    //GeoCoder
-    private lateinit var geocoder: Geocoder
 
     //Widgets
     private var mGPS: ImageView? = null
@@ -139,9 +136,6 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun init() {
 
         daysDataModel = DaysDataModel()
-
-        geocoder = Geocoder(applicationContext, Locale.getDefault())
-
 
         mGPS!!.setOnClickListener {
             getDevicesLocation()
@@ -533,21 +527,40 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Function to get location
     private fun getDevicesLocation(){
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
-        try{
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(applicationContext)
+        try {
             var task: Task<Location>? = fusedLocationProviderClient.lastLocation
-            task!!.addOnCompleteListener{
-                if(task.isComplete){
-                    val location = task.result
-                    moveCamera(LatLng(location!!.latitude,location.longitude), Util.getBiggerZoomValue() , 1)
-                    init()
-                }else{
-                    Log.d("Maps Activity", "Location Not Found")
-
+            task!!.addOnCompleteListener {
+                if (task.isSuccessful) {
+                    var location = task.result
+                    if(location != null){
+                        moveCamera(
+                            LatLng(location.latitude, location.longitude),
+                            Util.getBiggerZoomValue()
+                        )
+                    }else{
+                        var locationCallback = object : LocationCallback(){
+                            override fun onLocationResult(p0: LocationResult) {
+                                moveCamera(LatLng(p0.lastLocation.latitude, p0.lastLocation.longitude),
+                                    Util.getBiggerZoomValue())
+                            }
+                        }
+                        var locationRequest = LocationRequest()
+                        locationRequest.priority = (LocationRequest.PRIORITY_HIGH_ACCURACY)
+                        locationRequest.interval = (0)
+                        locationRequest.fastestInterval = (0)
+                        locationRequest.numUpdates = (1)
+                        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(applicationContext)
+                        fusedLocationProviderClient.requestLocationUpdates(
+                            locationRequest, locationCallback, Looper.myLooper()
+                        )
+                    }
+                } else {
+                    Toast.makeText(applicationContext, task.exception!!.message, Toast.LENGTH_SHORT).show()
                 }
             }
-        }catch (e : SecurityException){
-            Log.e("MapActivity",e.message.toString())
+        } catch (e: SecurityException) {
+            Log.e("MapActivity", e.message.toString())
         }
     }
 
@@ -556,12 +569,19 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.setOnCameraIdleListener {
             if(!polyFlag){
                 mMap.clear()
-                var address = geocoder.getFromLocation(mMap.cameraPosition.target.latitude,mMap.cameraPosition.target.longitude, 1)
-                pickUpAddress = address.first().getAddressLine(0).toString()
-                autocompleteSupportFragment.setText(address.first().getAddressLine(0).toString())
-                addMarker(destinationLatLng,"Destination")
-                addMarker(mMap.cameraPosition.target, "Pickup")
-                customMarker!!.visibility = View.INVISIBLE
+                val url = Util.getGeoCodeUrl(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude, getString(R.string.google_maps_key))
+                async {
+                    val result = URL(url).readText()
+                    uiThread {
+                        val response = JSONObject(result)
+                        val routes: JSONArray = response.getJSONArray("results")
+                        pickUpAddress = routes.getJSONObject(0).getString("formatted_address")
+                        autocompleteSupportFragment.setText(pickUpAddress)
+                        addMarker(destinationLatLng,"Destination")
+                        addMarker(mMap.cameraPosition.target, "Pickup")
+                        customMarker!!.visibility = View.INVISIBLE
+                    }
+                }
             }
         }
         mMap.setOnCameraMoveListener {
@@ -571,6 +591,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
         }
         getDevicesLocation()
+        init()
     }
 
     //Function to add markets
@@ -581,11 +602,8 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     //Function to move Camera
-    private fun moveCamera(latLng: LatLng, zoom:Float, moveType:Int = 0){
-        when(moveType){
-            0 -> mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
-            1 -> mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
-        }
+    private fun moveCamera(latLng: LatLng, zoom:Float){
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
 
     }
 

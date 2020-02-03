@@ -73,6 +73,7 @@ class VerifyCodeActivity : AppCompatActivity() {
 
             override fun onVerificationFailed(p0: FirebaseException) {
                 Toast.makeText(applicationContext, p0.message, Toast.LENGTH_LONG).show()
+                verifyCodeProgressBar.visibility = View.INVISIBLE
                 //To change body of created functions use File | Settings | File Templates.
             }
 

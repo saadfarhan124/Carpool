@@ -84,6 +84,10 @@ class Util {
             return "https://maps.googleapis.com/maps/api/directions/json?$params"
         }
 
+        fun getGeoCodeUrl(lat: Double, lng: Double, key: String): String{
+            return "https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=$key"
+        }
+
         fun getDistance(pickupLatLng: LatLng, dropOffLatLng: LatLng): Float {
             var location = Location("")
             location.latitude = pickupLatLng.latitude
