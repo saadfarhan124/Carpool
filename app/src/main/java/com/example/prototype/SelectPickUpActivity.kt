@@ -72,22 +72,22 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var Sunday: Chip
 
     //time pickup
-    private lateinit var textViewMondayPickup:TextView
-    private lateinit var textViewTuesdayPickup:TextView
-    private lateinit var textViewWednesdayPickup:TextView
-    private lateinit var textViewThursdayPickup:TextView
-    private lateinit var textViewFridayPickup:TextView
-    private lateinit var textViewSaturdayPickup:TextView
-    private lateinit var textViewSundayPickup:TextView
+    private lateinit var textViewMondayPickup: TextView
+    private lateinit var textViewTuesdayPickup: TextView
+    private lateinit var textViewWednesdayPickup: TextView
+    private lateinit var textViewThursdayPickup: TextView
+    private lateinit var textViewFridayPickup: TextView
+    private lateinit var textViewSaturdayPickup: TextView
+    private lateinit var textViewSundayPickup: TextView
 
     //time dropoffs
-    private lateinit var textViewMondayDropoff:TextView
-    private lateinit var textViewTuesdayDropoff:TextView
-    private lateinit var textViewWednesdayDropoff:TextView
-    private lateinit var textViewThursdayDropoff:TextView
-    private lateinit var textViewFridayDropoff:TextView
-    private lateinit var textViewSaturdayDropoff:TextView
-    private lateinit var textViewSundayDropoff:TextView
+    private lateinit var textViewMondayDropoff: TextView
+    private lateinit var textViewTuesdayDropoff: TextView
+    private lateinit var textViewWednesdayDropoff: TextView
+    private lateinit var textViewThursdayDropoff: TextView
+    private lateinit var textViewFridayDropoff: TextView
+    private lateinit var textViewSaturdayDropoff: TextView
+    private lateinit var textViewSundayDropoff: TextView
 
 
     //Days datamodel
@@ -95,7 +95,6 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
     //Review data model
     private lateinit var reviewInfo: ReviewInformationDataModel
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -107,27 +106,36 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         btnSelectPickUp = findViewById(R.id.btnSelectPickUp)
 
         //Places API
-        autocompleteSupportFragment = supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
+        autocompleteSupportFragment =
+            supportFragmentManager.findFragmentById(R.id.autocomplete_fragment) as AutocompleteSupportFragment
         findViewById<EditText>(R.id.places_autocomplete_search_input).textSize = 15f
-        autocompleteSupportFragment.setPlaceFields(arrayListOf(Place.Field.ADDRESS, Place.Field.LAT_LNG))
+        autocompleteSupportFragment.setPlaceFields(
+            arrayListOf(
+                Place.Field.ADDRESS,
+                Place.Field.LAT_LNG
+            )
+        )
 
-        destinationLatLng = LatLng(intent.extras!!.get("DestLat").toString().toDouble(),intent.extras!!.get("DestLong").toString().toDouble())
+        destinationLatLng = LatLng(
+            intent.extras!!.get("DestLat").toString().toDouble(),
+            intent.extras!!.get("DestLong").toString().toDouble()
+        )
         destinationAddress = intent.extras!!.getString("DestAddress").toString()
         //Top App Bar
         val toolbar: Toolbar = findViewById(R.id.toolbarsp)
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
-        
+
     }
 
     //Top App Bar Back Nav
-    override fun onSupportNavigateUp():Boolean {
+    override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
     }
 
-    private fun initMap(){
+    private fun initMap() {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
@@ -162,10 +170,9 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
         btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                if(::marker.isInitialized){
+                if (::marker.isInitialized) {
                     if (counter == 0) {
                         polylineOptions = PolylineOptions()
-                        polylineOptions.color(Color.RED)
                         polylineOptions.width(5f)
                         val url = Util.getURL(
                             LatLng(marker.position.latitude, marker.position.longitude),
@@ -193,11 +200,23 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                                         100
                                     )
                                 )
-                                mMap.addPolyline(
+                                var polyline = mMap.addPolyline(
                                     PolylineOptions().addAll(PolyUtil.decode(encodedString)).color(
                                         Color.BLUE
-                                    ))
-
+                                    )
+                                )
+                                Log.d(
+                                    "SAaaad",
+                                    PolyUtil.isLocationOnEdge(
+                                        LatLng(
+                                            marker.position.latitude,
+                                            marker.position.longitude
+                                        ),
+                                        polyline.points,
+                                        true,
+                                        1000.toDouble()
+                                    ).toString()
+                                )
                             }
                         }
                         counter++
@@ -229,12 +248,17 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         //OnClick Chips
                         Monday.onClick {
                             if (Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                                Monday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Monday.chipBackgroundColor =
+                                    getColorStateList(R.color.chipBackgroundDisable)
                                 Monday.setTextColor(resources.getColor(R.color.colorText1))
-                            }else{
+                            } else {
                                 Monday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Monday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewMondayPickup, textViewMondayDropoff, Monday)
+                                val dialogFragment = Util.getCustomTimeDialog(
+                                    textViewMondayPickup,
+                                    textViewMondayDropoff,
+                                    Monday
+                                )
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -251,12 +275,18 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         //OnClick Chips
                         Tuesday.onClick {
                             if (Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                                Tuesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Tuesday.chipBackgroundColor =
+                                    getColorStateList(R.color.chipBackgroundDisable)
                                 Tuesday.setTextColor(resources.getColor(R.color.colorText1))
-                            }else{
-                                Tuesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            } else {
+                                Tuesday.chipBackgroundColor =
+                                    getColorStateList(R.color.colorPrimary)
                                 Tuesday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewTuesdayPickup, textViewTuesdayDropoff, Tuesday)
+                                val dialogFragment = Util.getCustomTimeDialog(
+                                    textViewTuesdayPickup,
+                                    textViewTuesdayDropoff,
+                                    Tuesday
+                                )
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -272,12 +302,18 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         //OnClick Chips
                         Wednesday.onClick {
                             if (Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                                Wednesday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Wednesday.chipBackgroundColor =
+                                    getColorStateList(R.color.chipBackgroundDisable)
                                 Wednesday.setTextColor(resources.getColor(R.color.colorText1))
-                            }else{
-                                Wednesday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            } else {
+                                Wednesday.chipBackgroundColor =
+                                    getColorStateList(R.color.colorPrimary)
                                 Wednesday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewWednesdayPickup, textViewWednesdayDropoff, Wednesday)
+                                val dialogFragment = Util.getCustomTimeDialog(
+                                    textViewWednesdayPickup,
+                                    textViewWednesdayDropoff,
+                                    Wednesday
+                                )
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -293,12 +329,18 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         //OnClick Chips
                         Thursday.onClick {
                             if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                                Thursday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Thursday.chipBackgroundColor =
+                                    getColorStateList(R.color.chipBackgroundDisable)
                                 Thursday.setTextColor(resources.getColor(R.color.colorText1))
-                            }else{
-                                Thursday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            } else {
+                                Thursday.chipBackgroundColor =
+                                    getColorStateList(R.color.colorPrimary)
                                 Thursday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewThursdayPickup, textViewThursdayDropoff, Thursday)
+                                val dialogFragment = Util.getCustomTimeDialog(
+                                    textViewThursdayPickup,
+                                    textViewThursdayDropoff,
+                                    Thursday
+                                )
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -314,12 +356,17 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         //OnClick Chips
                         Friday.onClick {
                             if (Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                                Friday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Friday.chipBackgroundColor =
+                                    getColorStateList(R.color.chipBackgroundDisable)
                                 Friday.setTextColor(resources.getColor(R.color.colorText1))
-                            }else{
+                            } else {
                                 Friday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Friday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewFridayPickup, textViewFridayDropoff, Friday)
+                                val dialogFragment = Util.getCustomTimeDialog(
+                                    textViewFridayPickup,
+                                    textViewFridayDropoff,
+                                    Friday
+                                )
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -335,12 +382,18 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         //OnClick Chips
                         Saturday.onClick {
                             if (Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                                Saturday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Saturday.chipBackgroundColor =
+                                    getColorStateList(R.color.chipBackgroundDisable)
                                 Saturday.setTextColor(resources.getColor(R.color.colorText1))
-                            }else{
-                                Saturday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
+                            } else {
+                                Saturday.chipBackgroundColor =
+                                    getColorStateList(R.color.colorPrimary)
                                 Saturday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewSaturdayPickup, textViewSaturdayDropoff, Saturday)
+                                val dialogFragment = Util.getCustomTimeDialog(
+                                    textViewSaturdayPickup,
+                                    textViewSaturdayDropoff,
+                                    Saturday
+                                )
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -356,13 +409,18 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         //OnClick Chips
                         Sunday.onClick {
                             if (Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
-                                Sunday.chipBackgroundColor = getColorStateList(R.color.chipBackgroundDisable)
+                                Sunday.chipBackgroundColor =
+                                    getColorStateList(R.color.chipBackgroundDisable)
                                 Sunday.setTextColor(resources.getColor(R.color.colorText1))
-                            }else{
+                            } else {
 
                                 Sunday.chipBackgroundColor = getColorStateList(R.color.colorPrimary)
                                 Sunday.setTextColor(resources.getColor(R.color.colorText))
-                                val dialogFragment = Util.getCustomTimeDialog(textViewSundayPickup, textViewSundayDropoff, Sunday)
+                                val dialogFragment = Util.getCustomTimeDialog(
+                                    textViewSundayPickup,
+                                    textViewSundayDropoff,
+                                    Sunday
+                                )
                                 val sf = supportFragmentManager.beginTransaction()
                                 sf.addToBackStack(null)
                                 dialogFragment.show(sf, "dialog")
@@ -375,7 +433,6 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         btnContinue.onClick {
                             insertRequest()
                         }
-
 
 
                         //Bus Part
@@ -394,121 +451,191 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     //Function to insert request
-    private fun insertRequest(){
+    private fun insertRequest() {
         var listOfDays = mutableListOf<CarSharingDataModel>()
 
         //Monday
-        if(Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
-            if(textViewMondayPickup.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Monday", Toast.LENGTH_LONG).show()
+        if (Monday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (textViewMondayPickup.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Monday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else if(textViewMondayDropoff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Monday", Toast.LENGTH_LONG).show()
+            } else if (textViewMondayDropoff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Monday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else{
-                var carSharingDataModel = CarSharingDataModel("Monday",
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Monday",
                     textViewMondayPickup.text.toString(),
-                    textViewMondayDropoff.text.toString())
+                    textViewMondayDropoff.text.toString()
+                )
                 daysDataModel.Monday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
         //Tuesday
-        if(Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
-            if(textViewTuesdayPickup.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Tuesday", Toast.LENGTH_LONG).show()
+        if (Tuesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (textViewTuesdayPickup.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else if(textViewTuesdayDropoff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Tuesday", Toast.LENGTH_LONG).show()
+            } else if (textViewTuesdayDropoff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Tuesday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else{
-                var carSharingDataModel     = CarSharingDataModel("Tuesday",
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Tuesday",
                     textViewTuesdayPickup.text.toString(),
-                    textViewTuesdayDropoff.text.toString())
+                    textViewTuesdayDropoff.text.toString()
+                )
                 daysDataModel.Tuesday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
         //Wednesday
-        if(Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
-            if(textViewWednesdayPickup.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Wednesday", Toast.LENGTH_LONG).show()
+        if (Wednesday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (textViewWednesdayPickup.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Wednesday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else if(textViewWednesdayDropoff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Wednesday", Toast.LENGTH_LONG).show()
+            } else if (textViewWednesdayDropoff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Wednesday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else{
-                var carSharingDataModel = CarSharingDataModel("Wednesday",
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Wednesday",
                     textViewWednesdayPickup.text.toString(),
-                    textViewWednesdayDropoff.text.toString())
+                    textViewWednesdayDropoff.text.toString()
+                )
                 daysDataModel.Wednesday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
 
         //Thursday
-        if(Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
-            if(textViewThursdayPickup.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Thursday", Toast.LENGTH_LONG).show()
+        if (Thursday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (textViewThursdayPickup.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Thursday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else if(textViewThursdayDropoff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Thursday", Toast.LENGTH_LONG).show()
+            } else if (textViewThursdayDropoff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Thursday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else{
-                var carSharingDataModel = CarSharingDataModel("Thursday",
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Thursday",
                     textViewThursdayPickup.text.toString(),
-                    textViewThursdayDropoff.text.toString())
+                    textViewThursdayDropoff.text.toString()
+                )
                 daysDataModel.Thursday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
 
         //Friday
-        if(Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
-            if(textViewFridayPickup.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Friday", Toast.LENGTH_LONG).show()
+        if (Friday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (textViewFridayPickup.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Friday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else if(textViewFridayDropoff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Friday", Toast.LENGTH_LONG).show()
+            } else if (textViewFridayDropoff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Friday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else{
-                var carSharingDataModel = CarSharingDataModel("Friday",
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Friday",
                     textViewFridayPickup.text.toString(),
-                    textViewFridayDropoff.text.toString())
+                    textViewFridayDropoff.text.toString()
+                )
                 daysDataModel.Friday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
 
         //Saturday
-        if(Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
-            if(textViewSaturdayPickup.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Saturday", Toast.LENGTH_LONG).show()
+        if (Saturday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (textViewSaturdayPickup.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Saturday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else if(textViewSaturdayDropoff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Saturday", Toast.LENGTH_LONG).show()
+            } else if (textViewSaturdayDropoff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Saturday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else{
-                var carSharingDataModel = CarSharingDataModel("Saturday",
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Saturday",
                     textViewSaturdayPickup.text.toString(),
-                    textViewSaturdayDropoff.text.toString())
+                    textViewSaturdayDropoff.text.toString()
+                )
                 daysDataModel.Saturday = true
                 listOfDays.add(carSharingDataModel)
             }
         }
 
         //Sunday
-        if(Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)){
-            if(textViewSundayPickup.text == ""){
-                Toast.makeText(applicationContext,"Please select pick up time for Sunday", Toast.LENGTH_LONG).show()
+        if (Sunday.chipBackgroundColor == getColorStateList(R.color.colorPrimary)) {
+            if (textViewSundayPickup.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select pick up time for Sunday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else if(textViewSundayDropoff.text == ""){
-                Toast.makeText(applicationContext,"Please select drop off time for Sunday", Toast.LENGTH_LONG).show()
+            } else if (textViewSundayDropoff.text == "") {
+                Toast.makeText(
+                    applicationContext,
+                    "Please select drop off time for Sunday",
+                    Toast.LENGTH_LONG
+                ).show()
                 return
-            }else{
-                var carSharingDataModel = CarSharingDataModel("Sunday",
+            } else {
+                var carSharingDataModel = CarSharingDataModel(
+                    "Sunday",
                     textViewSundayPickup.text.toString(),
-                    textViewSundayDropoff.text.toString())
+                    textViewSundayDropoff.text.toString()
+                )
                 daysDataModel.Sunday = true
                 listOfDays.add(carSharingDataModel)
             }
@@ -517,32 +644,37 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         var intent = Intent(applicationContext, ReviewInformationActivity::class.java)
         intent.putExtra("DaysData", daysDataModel)
 
-        reviewInfo = ReviewInformationDataModel(marker.position.latitude, marker.position.longitude, pickUpAddress,
+        reviewInfo = ReviewInformationDataModel(
+            marker.position.latitude, marker.position.longitude, pickUpAddress,
             destinationLatLng.latitude, destinationLatLng.longitude, destinationAddress,
-            "Pending")
+            "Pending"
+        )
         intent.putExtra("ReviewData", reviewInfo)
         intent.putExtra("TimeDetails", listOfDays as Serializable)
         startActivity(intent)
     }
 
     //Function to get location
-    private fun getDevicesLocation(){
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(applicationContext)
+    private fun getDevicesLocation() {
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(applicationContext)
         try {
             var task: Task<Location>? = fusedLocationProviderClient.lastLocation
             task!!.addOnCompleteListener {
                 if (task.isSuccessful) {
                     var location = task.result
-                    if(location != null){
+                    if (location != null) {
                         moveCamera(
                             LatLng(location.latitude, location.longitude),
                             Util.getBiggerZoomValue()
                         )
-                    }else{
-                        var locationCallback = object : LocationCallback(){
+                    } else {
+                        var locationCallback = object : LocationCallback() {
                             override fun onLocationResult(p0: LocationResult) {
-                                moveCamera(LatLng(p0.lastLocation.latitude, p0.lastLocation.longitude),
-                                    Util.getBiggerZoomValue())
+                                moveCamera(
+                                    LatLng(p0.lastLocation.latitude, p0.lastLocation.longitude),
+                                    Util.getBiggerZoomValue()
+                                )
                             }
                         }
                         var locationRequest = LocationRequest()
@@ -550,13 +682,15 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         locationRequest.interval = (0)
                         locationRequest.fastestInterval = (0)
                         locationRequest.numUpdates = (1)
-                        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(applicationContext)
+                        fusedLocationProviderClient =
+                            LocationServices.getFusedLocationProviderClient(applicationContext)
                         fusedLocationProviderClient.requestLocationUpdates(
                             locationRequest, locationCallback, Looper.myLooper()
                         )
                     }
                 } else {
-                    Toast.makeText(applicationContext, task.exception!!.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, task.exception!!.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         } catch (e: SecurityException) {
@@ -567,9 +701,13 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         mMap.setOnCameraIdleListener {
-            if(!polyFlag){
+            if (!polyFlag) {
                 mMap.clear()
-                val url = Util.getGeoCodeUrl(mMap.cameraPosition.target.latitude, mMap.cameraPosition.target.longitude, getString(R.string.google_maps_key))
+                val url = Util.getGeoCodeUrl(
+                    mMap.cameraPosition.target.latitude,
+                    mMap.cameraPosition.target.longitude,
+                    getString(R.string.google_maps_key)
+                )
                 async {
                     val result = URL(url).readText()
                     uiThread {
@@ -577,7 +715,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
                         val routes: JSONArray = response.getJSONArray("results")
                         pickUpAddress = routes.getJSONObject(0).getString("formatted_address")
                         autocompleteSupportFragment.setText(pickUpAddress)
-                        addMarker(destinationLatLng,"Destination")
+                        addMarker(destinationLatLng, "Destination")
                         addMarker(mMap.cameraPosition.target, "Pickup")
                         customMarker!!.visibility = View.INVISIBLE
                     }
@@ -585,7 +723,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
             }
         }
         mMap.setOnCameraMoveListener {
-            if(!polyFlag){
+            if (!polyFlag) {
                 customMarker!!.visibility = View.VISIBLE
             }
 
@@ -595,24 +733,27 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     //Function to add markets
-    private fun addMarker(latlng: LatLng, title:String?){
+    private fun addMarker(latlng: LatLng, title: String?) {
         val markerOptions = MarkerOptions().position(latlng).title(title)
             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yello))
         marker = mMap.addMarker(markerOptions)
     }
 
     //Function to move Camera
-    private fun moveCamera(latLng: LatLng, zoom:Float){
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
+    private fun moveCamera(latLng: LatLng, zoom: Float) {
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom))
 
     }
 
-    fun geolocate(place: Place){
+    fun geolocate(place: Place) {
         try {
-            moveCamera(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), Util.getBiggerZoomValue())
+            moveCamera(
+                LatLng(place.latLng!!.latitude, place.latLng!!.longitude),
+                Util.getBiggerZoomValue()
+            )
             addMarker(LatLng(place.latLng!!.latitude, place.latLng!!.longitude), place.address)
-        }catch (e: IOException){
-            Toast.makeText(applicationContext,e.toString(),Toast.LENGTH_SHORT).show()
+        } catch (e: IOException) {
+            Toast.makeText(applicationContext, e.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 }
