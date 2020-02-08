@@ -14,8 +14,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
 
-        android:paddingTop="18dp"
+        android:layout_marginBottom="8dp"
 
+        android:paddingTop="18dp"
         android:paddingBottom="18dp"
         android:text="Continue with mobile number"
         android:textColor="@color/colorText"
@@ -23,9 +24,7 @@
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toTopOf="@+id/login_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.958" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"
@@ -41,17 +40,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.912" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="200dp"
-        android:layout_height="155dp"
-        android:layout_marginTop="124dp"
-        android:src="@drawable/logo_big"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="16dp"
+        android:src="@mipmap/aftersplash"
+        app:layout_constraintBottom_toTopOf="@+id/signupMobile_btn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
