@@ -3,6 +3,7 @@ package com.example.prototype.Utilities
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,12 +55,15 @@ class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextVi
                     requestSectionPageAdapter.getInstantiatedFragment(1) as DropoffTimerFragment
                 textViewPickUp.text = pickupTimerFragment.returnPickUpTime()
                 textViewDropOff.text = dropOffFragment.returnDropOffTime()
+                Log.d("SAAAD", pickupTimerFragment.returnPickUpTime())
+                Log.d("SAAAD", dropOffFragment.returnDropOffTime())
                 dismiss()
             }else{
 
                 pickUpTimeSelected = true
                 tabs.getTabAt(1)!!.select()
             }
+
         }
 
         var btnCancel: MaterialButton = view.findViewById(R.id.btnCancel)

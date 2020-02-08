@@ -48,7 +48,7 @@ class PickupTimerFragment : Fragment() {
 
         timePickerPickUpTime.setOnTimeChangedListener { _, hour, minute ->
             calendar.set(Calendar.HOUR_OF_DAY, hour)
-            calendar.set(Calendar.MINUTE, minute)
+            calendar.set(Calendar.MINUTE, if(minute == 1) 30 else 0)
             pickupTime = SimpleDateFormat("HH:mm a").format(calendar.time)
         }
         return root

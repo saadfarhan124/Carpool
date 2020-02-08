@@ -40,7 +40,8 @@ class DropoffTimerFragment : Fragment() {
         dropoffTime = SimpleDateFormat("HH:mm a").format(calendar.time)
         timePickerDropOffTime.setOnTimeChangedListener{ _, hour, minute ->
             calendar.set(Calendar.HOUR_OF_DAY, hour)
-            calendar.set(Calendar.MINUTE, minute)
+            if(minute == 1) 30 else 0
+            calendar.set(Calendar.MINUTE, if(minute == 1) 30 else 0)
             dropoffTime = SimpleDateFormat("HH:mm a").format(calendar.time)
         }
         return root

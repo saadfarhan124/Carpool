@@ -65,6 +65,8 @@ class LoginActivity : AppCompatActivity() {
             lg_txt_password.text.toString()
         ).addOnFailureListener {
             Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
+            lg_txt_email.setText("")
+            lg_txt_password.setText("")
             loading.visibility = View.INVISIBLE
         }
             .addOnSuccessListener { task ->
