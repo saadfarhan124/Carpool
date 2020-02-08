@@ -12,20 +12,6 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_routes"
-        android:name="com.example.prototype.ui.routesearch.RoutesearchFragment"
-        android:label="@string/menu_routes"
-        tools:layout="@layout/fragment_routesearch" />
-
-<!--    Bus my ride-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/nav_myrides"-->
-<!--        android:name="com.example.prototype.ui.myrides.MyridesFragment"-->
-<!--        android:label="@string/menu_myrides"-->
-<!--        tools:layout="@layout/fragment_myrides_current" />-->
-
-    <fragment
         android:id="@+id/nav_myrides"
         android:name="com.example.prototype.ui.mysharerides.MyshareRidesFragment"
         android:label="@string/menu_myrides"
@@ -50,21 +36,12 @@
         android:name="com.example.prototype.ui.packages.PackageFragment"
         android:label="@string/menu_package"
         tools:layout="@layout/fragment_package" />
-    <fragment
-        android:id="@+id/nav_newroutes"
-        android:name="com.example.prototype.ui.newroutes.NewroutesFragment"
-        android:label="@string/menu_newroutes"
-        tools:layout="@layout/fragment_newroutes" />
+
     <fragment
         android:id="@+id/nav_feedback"
         android:name="com.example.prototype.ui.feedback.FeedbackFragment"
         android:label="@string/menu_feedback"
         tools:layout="@layout/fragment_feedback" />
-    <fragment
-        android:id="@+id/nav_freerides"
-        android:name="com.example.prototype.ui.freerides.FreeridesFragment"
-        android:label="@string/menu_freerides"
-        tools:layout="@layout/fragment_freerides" />
 
     <fragment
         android:id="@+id/nav_help"
