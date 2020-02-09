@@ -25,13 +25,13 @@
         android:layout_height="50dp"
 
         android:layout_marginStart="42dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:text="M"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/chip_tue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <com.google.android.material.chip.Chip
         android:id="@+id/chip_tue"
@@ -277,17 +277,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/roboto_medium"
         android:paddingLeft="92dp"
         android:paddingTop="14dp"
         android:paddingRight="92dp"
-        android:paddingBottom="14dp"
 
+        android:paddingBottom="14dp"
         android:text="Continue"
-        android:textSize="18sp"
+        android:textSize="16sp"
         app:backgroundTint="@color/colorPrimary"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="@+id/chip_sun"
         app:layout_constraintStart_toStartOf="@+id/chip_mon"
         app:layout_constraintTop_toBottomOf="@+id/chip_mon" />
+
+    <ImageView
+        android:id="@+id/imageView24"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/selectbookingdays" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Select your desire days"
+        android:textColor="@color/colorText1"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
