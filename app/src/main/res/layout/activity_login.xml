@@ -35,12 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         android:hint="Email"
-        app:layout_constraintBottom_toTopOf="@+id/lg_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loading">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/lg_txt_email"
@@ -55,12 +55,12 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
 
         android:hint="Password"
-        app:layout_constraintBottom_toTopOf="@+id/login"
         app:layout_constraintEnd_toEndOf="@+id/lg_email"
         app:layout_constraintStart_toStartOf="@+id/lg_email"
+        app:layout_constraintTop_toBottomOf="@+id/lg_email"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/colorPrimary">
 
@@ -81,8 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
         android:editable="false"
         android:enabled="true"
         android:onClick="authenticate"
@@ -93,9 +93,9 @@
         android:text="Log in "
         android:textSize="16sp"
         app:cornerRadius="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/forgotPass_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lg_password" />
 
     <ProgressBar
         android:id="@+id/loading"
@@ -132,13 +132,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="16dp"
         android:text="Forget Password?"
         android:textColor="@color/colorPrimary"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

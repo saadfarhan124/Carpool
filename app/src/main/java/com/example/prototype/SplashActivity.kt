@@ -5,20 +5,16 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.provider.MediaStore
-import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
-import com.google.android.gms.tasks.Tasks.await
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import org.jetbrains.anko.async
 import java.io.File
 
 class SplashActivity : AppCompatActivity() {
@@ -76,6 +72,11 @@ class SplashActivity : AppCompatActivity() {
                 global.user = user
 
                 //Loading picture from database and then saving it locally
+                getPreferences(Context.MODE_PRIVATE).getString("saad","saad")
+                with(getPreferences(Context.MODE_PRIVATE).edit()){
+                    putString("saad", "saad")
+                    commit()
+                }
                 if(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}","")!!.isNotEmpty()){
                     Util.getGlobals().userImage = BitmapFactory.decodeFile(getPreferences(Context.MODE_PRIVATE).getString("ImageUri${user!!.uid}",""))
                     startActivity(homeScreen)

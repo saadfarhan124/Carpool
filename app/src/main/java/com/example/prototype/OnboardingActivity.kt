@@ -9,6 +9,7 @@ import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype.adapters.OnboardingSectionPageAdapter
@@ -25,6 +26,22 @@ class OnboardingActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
+
+        val isFirstRun = getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE)
+            .getBoolean("isFirstRun", true)
+
+        if (isFirstRun) {
+            //show sign up activity
+            startActivity(Intent(this@OnboardingActivity, SplashActivity::class.java))
+            Toast.makeText(this@OnboardingActivity, "Run only once", Toast.LENGTH_LONG)
+                .show()
+        }
+
+
+        getSharedPreferences("PREFERENCE", Context.MODE_PRIVATE).edit()
+            .putBoolean("isFirstRun", false).commit()
 
         //make screen to be fullscreen
         requestWindowFeature(Window.FEATURE_NO_TITLE)
