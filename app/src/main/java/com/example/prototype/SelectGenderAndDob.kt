@@ -82,11 +82,11 @@ class SelectGenderAndDob : AppCompatActivity() {
             }else{
                 var userDataModel: UserDataModel? = null
                 if(maleFlag){
-                    userDataModel = UserDataModel(editTextDob.text.toString(), "Male")
-                    Toast.makeText(applicationContext, "Male ${editTextDob.text}" , Toast.LENGTH_SHORT).show()
+                    userDataModel = UserDataModel(editTextDob.text.toString(), "Male", Util.getGlobals().user!!.email!!,
+                        Util.getGlobals().user!!.displayName!!,Util.getGlobals().user!!.phoneNumber!!)
                 }else{
-                    userDataModel = UserDataModel(editTextDob.text.toString(), "Female")
-                    Toast.makeText(applicationContext, "Female", Toast.LENGTH_SHORT).show()
+                    userDataModel = UserDataModel(editTextDob.text.toString(), "Female", Util.getGlobals().user!!.email!!,
+                        Util.getGlobals().user!!.displayName!!,Util.getGlobals().user!!.phoneNumber!!)
                 }
                 Util.getFirebaseFireStore().collection("users")
                     .document(Util.getFirebaseAuth().currentUser!!.uid)

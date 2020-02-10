@@ -164,6 +164,21 @@ class PackageAdapter(
                 Toast.makeText(context, "Payment already being processed", Toast.LENGTH_SHORT)
                     .show()
             }
+            holder.btnChange.onClick {
+                var intent = Intent(context, UpdateDaysAndTime::class.java)
+                intent.putExtra("requestID", request.requestID)
+                context.startActivity(intent)
+            }
+        }else if(request!!.requestStatus == "Active"){
+            holder.btnPay.onClick {
+                Toast.makeText(context, "Payment already being processed", Toast.LENGTH_SHORT)
+                    .show()
+            }
+            holder.btnChange.onClick {
+                var intent = Intent(context, UpdateDaysAndTime::class.java)
+                intent.putExtra("requestID", request.requestID)
+                context.startActivity(intent)
+            }
         }
 
 

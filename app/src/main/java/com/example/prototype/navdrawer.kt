@@ -72,7 +72,11 @@ class navdrawer : AppCompatActivity() {
             .addOnSuccessListener {
                 globals.userDataModel = UserDataModel(
                     it["dateOfBirth"].toString(),
-                    it["gender"].toString()
+                    it["gender"].toString(),
+                    globals.user!!.email.toString(),
+                    globals.user!!.displayName.toString(),
+                    globals.user!!.phoneNumber.toString()
+
                 )
             }.addOnFailureListener{
                 Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()

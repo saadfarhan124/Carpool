@@ -2,12 +2,19 @@ package com.example.prototype.dataModels
 
 import java.io.Serializable
 
-class UserDataModel :Serializable{
-    public var dateOfBirth:String? = null
-    public var gender:String? = null
+class UserDataModel : Serializable {
+    var dateOfBirth: String? = null
+    var gender: String? = null
+    var email: String? = null
+    var name: String? = null
+    var number: String? = null
 
-    constructor(dateOfBirth: String, gender:String){
+    constructor(dateOfBirth: String, gender: String, email: String, name: String, number: String) {
         this.dateOfBirth = dateOfBirth
         this.gender = gender
+        this.email = email
+        this.name = name
+        this.number = number
+
     }
 }
