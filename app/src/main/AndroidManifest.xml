@@ -55,7 +55,7 @@
             android:name=".SelectPickUpActivity"
             android:label="@string/title_activity_select_drop_off" />
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -87,6 +87,7 @@
         <activity android:name=".navdrawer" />
         <activity android:name=".SignupUsernameActivity" />
         <activity android:name=".TicketActvity" />
+        <activity android:name=".SplashActivity" />
     </application>
 
 </manifest>

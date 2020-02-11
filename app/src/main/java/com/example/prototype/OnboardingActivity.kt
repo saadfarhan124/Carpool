@@ -34,7 +34,7 @@ class OnboardingActivity: AppCompatActivity() {
 
         if (isFirstRun) {
             //show sign up activity
-            startActivity(Intent(this@OnboardingActivity, SplashActivity::class.java))
+            startActivity(Intent(this@OnboardingActivity, OnboardingActivity::class.java))
             Toast.makeText(this@OnboardingActivity, "Run only once", Toast.LENGTH_LONG)
                 .show()
         }
@@ -51,7 +51,7 @@ class OnboardingActivity: AppCompatActivity() {
         )
 
         if (restorePrefData()) {
-            val mainActivity = Intent(applicationContext, MainActivity::class.java)
+            val mainActivity = Intent(applicationContext, SplashActivity::class.java)
             startActivity(mainActivity)
             finish()
         }
@@ -123,7 +123,7 @@ class OnboardingActivity: AppCompatActivity() {
         //get started button
 
         btnGetStarted.setOnClickListener {
-            val mainActivity = Intent(applicationContext, MainActivity::class.java)
+            val mainActivity = Intent(applicationContext, AfterSplashActivity::class.java)
             startActivity(mainActivity)
             savePrefsData()
             finish()
