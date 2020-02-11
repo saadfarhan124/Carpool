@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype.adapters.OnboardingSectionPageAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 
 class OnboardingActivity: AppCompatActivity() {
@@ -21,7 +22,7 @@ class OnboardingActivity: AppCompatActivity() {
     lateinit var onboardingSectionPageAdapter: OnboardingSectionPageAdapter
     lateinit var tabIndicator: TabLayout
     lateinit var btnSkip: Button
-    lateinit var btnGetStarted: Button
+    lateinit var btnGetStarted: FloatingActionButton
     lateinit var btnAnim: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
