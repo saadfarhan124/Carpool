@@ -20,7 +20,7 @@
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_chevron_left_white_24dp"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Back"
+            app:title="Review Details"
             app:titleTextColor="@color/colorText"></androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,7 +45,7 @@
         android:id="@+id/ripplePremium"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="@+id/txt_reviewInfo"
         app:layout_constraintStart_toStartOf="@+id/txt_reviewInfo"
         app:layout_constraintTop_toBottomOf="@+id/txt_reviewInfo"
@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerInside"
-            app:srcCompat="@mipmap/ic_logo_round" />
+            app:srcCompat="@mipmap/caravatar" />
     </com.skyfishjy.library.RippleBackground>
 
 
@@ -97,7 +97,7 @@
         android:id="@+id/txt_ac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="Standard"
         android:textColor="@color/colorText1"
         android:textSize="16sp"
@@ -109,7 +109,7 @@
         android:id="@+id/txt_priceAC"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="7,598"
         android:textColor="@color/colorText1"
         android:textSize="16sp"
@@ -122,7 +122,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"

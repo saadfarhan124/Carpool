@@ -6,23 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.NumberPicker
-import android.widget.TextView
 import android.widget.TimePicker
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.prototype.R
-import org.jetbrains.anko.find
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.min
 
 class PickupTimerFragment : Fragment() {
     private lateinit var root: View
     private lateinit var timePickerPickUpTime: TimePicker
     private lateinit var calendar: Calendar
     private lateinit var pickupTime: String
-
+    private var destroyFlag:Boolean  = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,6 +25,7 @@ class PickupTimerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+
         root = inflater.inflate(R.layout.activity_pickup_timer, container, false)
         calendar = Calendar.getInstance()
         timePickerPickUpTime = root.findViewById(R.id.timePickerPickUpTime)
@@ -43,7 +39,7 @@ class PickupTimerFragment : Fragment() {
 
 
         calendar.set(Calendar.HOUR_OF_DAY, timePickerPickUpTime.hour)
-        calendar.set(Calendar.MINUTE, timePickerPickUpTime.minute)
+        calendar.set(Calendar.MINUTE, if(timePickerPickUpTime.minute == 1) 30 else 0)
         pickupTime = SimpleDateFormat("HH:mm a").format(calendar.time)
 
         timePickerPickUpTime.setOnTimeChangedListener { _, hour, minute ->
@@ -51,12 +47,16 @@ class PickupTimerFragment : Fragment() {
             calendar.set(Calendar.MINUTE, if(minute == 1) 30 else 0)
             pickupTime = SimpleDateFormat("HH:mm a").format(calendar.time)
         }
+
+
         return root
     }
 
     fun returnPickUpTime(): String {
         return pickupTime
     }
+
+
 
 
 }

@@ -3,7 +3,6 @@ package com.example.prototype.Utilities
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.example.prototype.adapters.TimeDialogSectionPageAdapter
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.Chip
 import com.google.android.material.tabs.TabLayout
-import org.jetbrains.anko.enabled
 import org.jetbrains.anko.onClick
 
 
@@ -28,6 +26,7 @@ class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextVi
     DialogFragment() {
 
     private var pickUpTimeSelected = false
+    private var timeSelected = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,11 +54,9 @@ class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextVi
                     requestSectionPageAdapter.getInstantiatedFragment(1) as DropoffTimerFragment
                 textViewPickUp.text = pickupTimerFragment.returnPickUpTime()
                 textViewDropOff.text = dropOffFragment.returnDropOffTime()
-                Log.d("SAAAD", pickupTimerFragment.returnPickUpTime())
-                Log.d("SAAAD", dropOffFragment.returnDropOffTime())
+                timeSelected = true
                 dismiss()
             }else{
-
                 pickUpTimeSelected = true
                 tabs.getTabAt(1)!!.select()
             }
@@ -72,6 +69,19 @@ class CustomTimeDialog(var textViewPickUp: TextView, var textViewDropOff: TextVi
             clickedChip.setTextColor(resources.getColor(R.color.colorText1))
             dismiss()
         }
-
     }
+
+    override fun onDestroyView() {
+        if(!timeSelected){
+            clickedChip.chipBackgroundColor = getColorStateList(view!!.context,R.color.chipBackgroundDisable)
+            clickedChip.setTextColor(resources.getColor(R.color.colorText1))
+            textViewPickUp.text = ""
+            textViewDropOff.text = ""
+        }
+        super.onDestroyView()
+    }
+
+
+
+
 }

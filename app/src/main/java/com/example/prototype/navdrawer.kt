@@ -1,26 +1,22 @@
 package com.example.prototype
 
 import android.content.Intent
-import android.location.Location
 import android.os.Bundle
-import android.util.Log
-
+import android.view.Menu
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import android.view.View
-import android.widget.Toast
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.example.prototype.dataModels.UserDataModel
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
 
@@ -75,7 +71,8 @@ class navdrawer : AppCompatActivity() {
                     it["gender"].toString(),
                     globals.user!!.email.toString(),
                     globals.user!!.displayName.toString(),
-                    globals.user!!.phoneNumber.toString()
+                    globals.user!!.phoneNumber.toString(),
+                    it["amount"].toString().toInt()
 
                 )
             }.addOnFailureListener{

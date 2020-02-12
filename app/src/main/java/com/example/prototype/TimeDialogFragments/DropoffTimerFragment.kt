@@ -36,11 +36,10 @@ class DropoffTimerFragment : Fragment() {
         minute.setOnLongPressUpdateInterval(100)
 
         calendar.set(Calendar.HOUR_OF_DAY, timePickerDropOffTime.hour)
-        calendar.set(Calendar.MINUTE, timePickerDropOffTime.minute)
+        calendar.set(Calendar.MINUTE, if(timePickerDropOffTime.minute == 1) 30 else 0)
         dropoffTime = SimpleDateFormat("HH:mm a").format(calendar.time)
         timePickerDropOffTime.setOnTimeChangedListener{ _, hour, minute ->
             calendar.set(Calendar.HOUR_OF_DAY, hour)
-            if(minute == 1) 30 else 0
             calendar.set(Calendar.MINUTE, if(minute == 1) 30 else 0)
             dropoffTime = SimpleDateFormat("HH:mm a").format(calendar.time)
         }

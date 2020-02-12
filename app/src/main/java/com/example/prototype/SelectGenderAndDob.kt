@@ -2,20 +2,17 @@ package com.example.prototype
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.UserDataModel
 import com.skyfishjy.library.RippleBackground
-import kotlinx.android.synthetic.main.activity_gender.*
 import org.jetbrains.anko.onClick
-import java.time.LocalDate
 import java.util.*
-import javax.xml.datatype.DatatypeConstants.MONTHS
 
 class SelectGenderAndDob : AppCompatActivity() {
 
@@ -33,7 +30,7 @@ class SelectGenderAndDob : AppCompatActivity() {
 
     //Date of Birth Edit Text
     private lateinit var editTextDob:EditText
-
+    private lateinit var userDataModel: UserDataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,13 +77,13 @@ class SelectGenderAndDob : AppCompatActivity() {
             }else if(editTextDob.text.isNullOrEmpty()){
                 Toast.makeText(applicationContext, "Please select date of birth", Toast.LENGTH_LONG).show()
             }else{
-                var userDataModel: UserDataModel? = null
+
                 if(maleFlag){
                     userDataModel = UserDataModel(editTextDob.text.toString(), "Male", Util.getGlobals().user!!.email!!,
-                        Util.getGlobals().user!!.displayName!!,Util.getGlobals().user!!.phoneNumber!!)
+                        Util.getGlobals().user!!.displayName!!,Util.getGlobals().user!!.phoneNumber!!, 0)
                 }else{
                     userDataModel = UserDataModel(editTextDob.text.toString(), "Female", Util.getGlobals().user!!.email!!,
-                        Util.getGlobals().user!!.displayName!!,Util.getGlobals().user!!.phoneNumber!!)
+                        Util.getGlobals().user!!.displayName!!,Util.getGlobals().user!!.phoneNumber!!, 0)
                 }
                 Util.getFirebaseFireStore().collection("users")
                     .document(Util.getFirebaseAuth().currentUser!!.uid)
