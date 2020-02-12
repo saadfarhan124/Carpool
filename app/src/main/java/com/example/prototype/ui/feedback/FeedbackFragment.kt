@@ -61,6 +61,8 @@ class FeedbackFragment:Fragment() {
                     .addOnSuccessListener {
                         Toast.makeText(root.context, "Thank you for feedback", Toast.LENGTH_SHORT).show()
                         progressBar.visibility = View.INVISIBLE
+                        txtSuggest.text = ""
+                        txtType.text = ""
                     }
                     .addOnFailureListener{Toast.makeText(root.context, "Error Something Wrong", Toast.LENGTH_SHORT).show()}
             }

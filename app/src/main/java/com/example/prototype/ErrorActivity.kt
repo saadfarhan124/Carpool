@@ -46,6 +46,8 @@ class ErrorActivity:AppCompatActivity(){
                    .set(report)
                    .addOnSuccessListener {
                        Toast.makeText(this, "Thank you for reporting", Toast.LENGTH_SHORT).show()
+                       txtSuggest.text = ""
+                       txtType.text = ""
                        progressBar.visibility = View.INVISIBLE
                    }
                    .addOnFailureListener{ Toast.makeText(this, "Error Something Wrong", Toast.LENGTH_SHORT).show()}
