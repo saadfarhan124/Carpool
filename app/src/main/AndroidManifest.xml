@@ -66,6 +66,15 @@
         <!-- android:label="@string/title_activity_navdrawer" -->
         <!-- android:theme="@style/AppTheme.NoActionBar"></activity> -->
         <activity android:name=".AfterSplashActivity" />
+
+
+        <service android:name=".Utilities.FirebaseMessagingServiceActivity"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".SeeRoutesActivity"
             android:parentActivityName=".SelectPickUpActivity" />
@@ -88,6 +97,9 @@
         <activity android:name=".SignupUsernameActivity" />
         <activity android:name=".TicketActvity" />
         <activity android:name=".SplashActivity" />
+
+
+
     </application>
 
 </manifest>

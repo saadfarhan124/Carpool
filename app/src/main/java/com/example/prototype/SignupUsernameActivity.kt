@@ -1,10 +1,10 @@
 package com.example.prototype
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -38,12 +38,14 @@ class SignupUsernameActivity : AppCompatActivity() {
 
     fun profileSubmit(v : View){
         val profileUpdates = UserProfileChangeRequest.Builder().setDisplayName(sg_txt_username.text.toString()).build()
+        loading.visibility = View.VISIBLE
         user?.updateProfile(profileUpdates)?.addOnCompleteListener { task ->
             if(task.isSuccessful){
                 var intent = Intent(applicationContext, SelectGenderAndDob::class.java)
                 startActivity(intent)
             }else{
                 Toast.makeText(this,task.exception!!.message, Toast.LENGTH_LONG).show()
+                loading.visibility = View.INVISIBLE
             }
         }
     }
