@@ -31,5 +31,9 @@
     <string name="title_activity_track_ride">Track Activity</string>
     <string name="title_activity_test">Map</string>
 
+    <!-- Activity bank transfer -->
+    <string name="txt_lbl_transpayment">You can transfer your payment to our</string>
+
+
 
 </resources>
