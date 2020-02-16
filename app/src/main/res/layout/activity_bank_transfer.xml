@@ -21,7 +21,7 @@
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_chevron_left_white_24dp"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Back"
+            app:title="Payment"
             app:titleTextColor="@color/colorText"></androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -104,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Sath ChalooPvt LTD"
+                        android:text="Sath Chaloo Pvt LTD"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_accTitle"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_accTitle" />
@@ -247,8 +247,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_upload"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_upload"
-                        app:srcCompat="@drawable/mob"
-                        tools:srcCompat="@drawable/mob" />
+                        app:srcCompat="@mipmap/upload"
+                        />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnUploadSlip"

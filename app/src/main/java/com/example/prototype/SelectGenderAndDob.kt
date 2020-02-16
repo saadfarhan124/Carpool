@@ -49,7 +49,7 @@ class SelectGenderAndDob : AppCompatActivity() {
 
         //Male Image View
         maleImageView = findViewById(R.id.img_male)
-        maleImageView.setImageResource(R.mipmap.ic_gender)
+        maleImageView.setImageResource(R.mipmap.male)
         maleImageView.onClick {
             if(femaleFlag){
                 femaleRippleBackground.stopRippleAnimation()
@@ -61,7 +61,7 @@ class SelectGenderAndDob : AppCompatActivity() {
 
         //Female Image View
         femaleImageView = findViewById(R.id.img_female)
-        femaleImageView.setImageResource(R.mipmap.ic_female)
+        femaleImageView.setImageResource(R.mipmap.female)
         femaleImageView.onClick {
             if(maleFlag){
                 maleRippleBackground.stopRippleAnimation()
