@@ -43,6 +43,7 @@ class ShareHistoryFragment: Fragment() {
                 }else{
                     for(document in it.documents){
                         val myRides = document.toObject(CarSharingRidesDataModel::class.java)
+                        myRides!!.bookingID = document.id
                         ridesList.add(myRides!!)
                     }
                     mRecyclerView = root.findViewById(R.id.HistoryRecyclerView)

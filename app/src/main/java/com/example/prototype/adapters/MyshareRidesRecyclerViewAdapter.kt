@@ -1,13 +1,16 @@
 package com.example.prototype.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype.R
+import com.example.prototype.TrackRideActivity
 import com.example.prototype.dataModels.CarSharingRidesDataModel
+import org.jetbrains.anko.onClick
 
 
 class MyshareRidesAdapter(private val ridesList: MutableList<CarSharingRidesDataModel>,
@@ -31,6 +34,11 @@ class MyshareRidesAdapter(private val ridesList: MutableList<CarSharingRidesData
         holder.textViewPickUpTime.text = ride.pickUpTime
         holder.textViewDropOffTime.text = ride.dropOffTime
         holder.textViewStatus.text = ride.rideStatus
+        holder.itemView.onClick {
+            val intent = Intent(context, TrackRideActivity::class.java)
+            intent.putExtra("routeID", ride.routeID)
+            context.startActivity(intent)
+        }
     }
 }
 class MyshareRidesViewHolder(v: View) : RecyclerView.ViewHolder(v) {

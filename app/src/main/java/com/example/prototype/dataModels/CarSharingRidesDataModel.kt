@@ -10,6 +10,8 @@ class CarSharingRidesDataModel : Serializable{
     var dropOffTime:String? = null
     var rideStatus:String? = null
     var userID:String? = null
+    var bookingID: String? = null
+    var routeID:String? = null
 
     constructor(date:String,pickUpAddress:String ,dropOffAddress:String
                 ,pickUpTime:String ,dropOffTime:String

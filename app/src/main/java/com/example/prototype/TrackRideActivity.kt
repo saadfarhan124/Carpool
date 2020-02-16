@@ -60,8 +60,8 @@ class TrackRideActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     private fun initilize(){
-        Util.getFirebaseFireStore().collection("driver_routes")
-            .whereEqualTo("routeId", intent.extras!!.get("routeId"))
+        Util.getFirebaseFireStore().collection("DriverRoute")
+            .whereEqualTo("routeId", intent.extras!!.get("routeID"))
             .get()
             .addOnSuccessListener {
                 if(it.first()["rideStatus"] == "unbegun"){
