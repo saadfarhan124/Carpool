@@ -30,7 +30,7 @@ class MyshareRidesAdapter(private val ridesList: MutableList<CarSharingRidesData
         holder.textViewDropOffAddress.text = ride.dropOffAddress
         holder.textViewPickUpTime.text = ride.pickUpTime
         holder.textViewDropOffTime.text = ride.dropOffTime
-        holder.textViewStatus.text = ride.status
+        holder.textViewStatus.text = ride.rideStatus
     }
 }
 class MyshareRidesViewHolder(v: View) : RecyclerView.ViewHolder(v) {
