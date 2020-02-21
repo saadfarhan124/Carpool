@@ -283,6 +283,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                 uiThread {
                     val response = JSONObject(result)
                     val routes: JSONArray = response.getJSONArray("results")
+                    //bug
                     destAddress = routes.getJSONObject(0).getString("formatted_address")
                     autocompleteSupportFragment.setText(destAddress)
                     customMarker!!.visibility = View.INVISIBLE

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.example.prototype.R
 import com.example.prototype.Utilities.Util
 import com.example.prototype.adapters.NotificationAdapter
@@ -19,6 +20,7 @@ class NotificationFragment:Fragment() {
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var root:View
     private lateinit var listOfNotification: MutableList<NotificationDataModel>
+    private  lateinit var shimmerRecyclerView: ShimmerRecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -27,15 +29,17 @@ class NotificationFragment:Fragment() {
         notificationViewModel =
             ViewModelProviders.of(this).get(NotificationViewModel::class.java)
          root = inflater.inflate(R.layout.fragment_notificaiton, container, false)
-//        mRecyclerView = root.findViewById(R.id.notificationRecyclerView)
-//        mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-//        mRecyclerView.adapter = NotificationAdapter()
+
+        shimmerRecyclerView = root.findViewById(R.id.shimmer_recycler_view)
+
+
         loadNotification()
         return root
     }
 
     private fun loadNotification(){
-//    transactionProgressBar.visibility = View.VISIBLE
+
+        shimmerRecyclerView.visibility = View.VISIBLE
         listOfNotification = mutableListOf()
         Util.getFirebaseFireStore().collection("notification")
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
@@ -51,8 +55,8 @@ class NotificationFragment:Fragment() {
                     mRecyclerView.layoutManager = LinearLayoutManager(root.context)
                     mRecyclerView.adapter = NotificationAdapter(listOfNotification)
 
+                shimmerRecyclerView.visibility = View.INVISIBLE
 
-//            transactionProgressBar.visibility = View.INVISIBLE
             }
     }
 }
