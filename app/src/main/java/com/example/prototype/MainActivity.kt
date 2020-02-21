@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_bank_transfer)
+        setContentView(R.layout.activity_rating)
 //        val actv: AutoCompleteTextView = findViewById(R.id.outline_exposed_dropdown)
 //        val COUNTRIES = arrayOf("Item 1", "Item 2", "Item 3", "Item 4")
 //
