@@ -29,6 +29,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:outlineSpotShadowColor="@color/colorPrimaryDark"
+                app:cardBackgroundColor="#FFFF"
                 app:cardCornerRadius="18dp"
                 app:cardElevation="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +38,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#BCFEBD1B">
 
                     <ImageView
                         android:id="@+id/img_num"
@@ -54,10 +56,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Phone Number"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/img_num"
                         app:layout_constraintTop_toTopOf="@+id/img_num" />
 
@@ -68,6 +70,7 @@
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         android:text="0321-1234567"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_num"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_num" />
@@ -92,7 +95,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#BCFEBD1B">
 
                     <ImageView
                         android:id="@+id/img_email"
@@ -109,10 +113,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Email"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/img_email"
                         app:layout_constraintTop_toTopOf="@+id/img_email" />
 
@@ -122,7 +126,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/roboto_light"
                         android:text="abc@live.com"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_email"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_email" />
@@ -149,7 +155,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#BCFEBD1B">
 
                     <ImageView
                         android:id="@+id/img_pas"
@@ -166,10 +173,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Change Password"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/img_pas"
                         app:layout_constraintTop_toTopOf="@+id/img_pas" />
 
@@ -179,7 +186,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/roboto_light"
                         android:text="*********"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_pas"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_pas" />
@@ -206,7 +215,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#BCFEBD1B">
 
                     <ImageView
                         android:id="@+id/img_gen"
@@ -223,10 +233,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Gender"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/img_gen"
                         app:layout_constraintTop_toTopOf="@+id/img_gen" />
 
@@ -236,7 +246,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/roboto_light"
                         android:text="Male"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_gender"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_gender" />
@@ -261,7 +273,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#BCFEBD1B">
 
                     <ImageView
                         android:id="@+id/img_dob"
@@ -278,10 +291,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Date of Birth"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/img_dob"
                         app:layout_constraintTop_toTopOf="@+id/img_dob" />
 
@@ -291,7 +304,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/roboto_light"
                         android:text="4 May 2001"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_dob"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_dob" />
@@ -318,7 +333,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="#BCFEBD1B">
 
                     <ImageView
                         android:id="@+id/img_logout"
@@ -337,10 +353,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="Logout"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/img_logout"
                         app:layout_constraintStart_toEndOf="@id/img_logout"
                         app:layout_constraintTop_toTopOf="@+id/img_logout" />
