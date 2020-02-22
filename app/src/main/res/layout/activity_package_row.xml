@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Days"
+            android:text="@string/txtview10"
             android:textColor="@color/colorText1"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,8 +62,7 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Plot A 5/8, Block 5 A Block 5
-Nazimabad, Karach, Karachi City, Sindh"
+            android:text="@string/pickupAdd"
             android:textColor="@color/colorText1"
             app:layout_constraintBottom_toBottomOf="@+id/img_pickupAddress"
             app:layout_constraintStart_toEndOf="@+id/img_pickupAddress"
@@ -74,9 +73,7 @@ Nazimabad, Karach, Karachi City, Sindh"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Plot 177 S, Pakistan Employees Co-Operative
-Housing Society Block 2 PECHS, Karachi,
-Karachi City, Sindh, Pakistan"
+            android:text="@string/dropOffAdd"
             android:textColor="@color/colorText1"
             app:layout_constraintBottom_toBottomOf="@+id/img_dropoffAddress"
             app:layout_constraintStart_toEndOf="@+id/img_dropoffAddress"
@@ -92,7 +89,7 @@ Karachi City, Sindh, Pakistan"
             android:textAlignment="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView10"
-            android:text="M" />
+            android:text="@string/chp_m" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipWed"
@@ -102,7 +99,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintBottom_toBottomOf="@+id/chipTue"
             app:layout_constraintStart_toEndOf="@+id/chipTue"
             app:layout_constraintTop_toTopOf="@+id/chipTue"
-            android:text="W" />
+            android:text="@string/chp_w" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipThu"
@@ -112,7 +109,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintBottom_toBottomOf="@+id/chipWed"
             app:layout_constraintStart_toEndOf="@+id/chipWed"
             app:layout_constraintTop_toTopOf="@+id/chipWed"
-            android:text="T" />
+            android:text="@string/chp_t" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipFri"
@@ -122,7 +119,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintBottom_toBottomOf="@+id/chipThu"
             app:layout_constraintStart_toEndOf="@+id/chipThu"
             app:layout_constraintTop_toTopOf="@+id/chipThu"
-            android:text="F" />
+            android:text="@string/chp_f" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipSat"
@@ -132,7 +129,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintBottom_toBottomOf="@+id/chipFri"
             app:layout_constraintStart_toEndOf="@+id/chipFri"
             app:layout_constraintTop_toTopOf="@+id/chipFri"
-            android:text="S" />
+            android:text="@string/chp_s" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipSun"
@@ -142,7 +139,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintBottom_toBottomOf="@+id/chipSat"
             app:layout_constraintStart_toEndOf="@+id/chipSat"
             app:layout_constraintTop_toTopOf="@+id/chipSat"
-            android:text="S" />
+            android:text="@string/chp_s" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipTue"
@@ -152,7 +149,7 @@ Karachi City, Sindh, Pakistan"
             app:layout_constraintBottom_toBottomOf="@+id/chipMon"
             app:layout_constraintStart_toEndOf="@+id/chipMon"
             app:layout_constraintTop_toTopOf="@+id/chipMon"
-           android:text="T" />
+           android:text="@string/chp_t" />
 
         <View
             android:id="@+id/divider8"
@@ -173,7 +170,7 @@ Karachi City, Sindh, Pakistan"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="4dp"
-            android:text="Change"
+            android:text="@string/change_bt"
 
             android:textColor="@color/colorAccent"
             app:icon="@drawable/ic_sync_black_24dp"
@@ -191,7 +188,7 @@ Karachi City, Sindh, Pakistan"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
-            android:text="Cancel"
+            android:text="@string/btCancel"
 
             android:textColor="@color/colorRed"
             app:icon="@drawable/ic_delete_black_24dp"
@@ -206,7 +203,7 @@ Karachi City, Sindh, Pakistan"
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Pay"
+            android:text="@string/btn_Pay"
             android:textColor="@color/colorGreen"
             app:icon="@drawable/ic_track_changes_black_24dp"
             app:iconTint="@color/colorGreen"
@@ -221,7 +218,7 @@ Karachi City, Sindh, Pakistan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Total Amount"
+            android:text="@string/txtview40"
             android:textColor="@color/colorText1"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="@+id/img_dropoffAddress"
@@ -233,7 +230,7 @@ Karachi City, Sindh, Pakistan"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="64dp"
-            android:text="Status"
+            android:text="@string/txtview8"
             android:textColor="@color/colorText1"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -244,7 +241,7 @@ Karachi City, Sindh, Pakistan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="5000"
+            android:text="@string/txtviewAmt"
             android:textColor="@color/colorText1"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -256,7 +253,7 @@ Karachi City, Sindh, Pakistan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Pending"
+            android:text="@string/txtviewStat"
             android:textColor="@color/colorText1"
             android:textSize="16sp"
             android:textStyle="bold"

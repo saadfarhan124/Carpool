@@ -18,7 +18,7 @@
 
         android:paddingTop="18dp"
         android:paddingBottom="18dp"
-        android:text="Continue with mobile number"
+        android:text="@string/signupMobile"
         android:textColor="@color/colorText"
         android:textSize="16sp"
         app:cornerRadius="12dp"
@@ -34,7 +34,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="16dp"
-        android:text="or continue with Login"
+        android:text="@string/loginbt"
         android:textColor="@color/colorAccent"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

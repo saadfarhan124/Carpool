@@ -31,7 +31,7 @@
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Select Pickup Location"
+            android:hint="@string/select_pickup"
             android:textSize="0.1sp" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
     <com.google.android.material.appbar.AppBarLayout
@@ -91,7 +91,7 @@
         android:layout_marginBottom="64dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
-        android:text="Select Pickup"
+        android:text="@string/btn_select"
         android:textSize="16sp"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -31,7 +31,7 @@
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="Select Pickup Location"
+            android:hint="@string/pickup_loc"
             android:textSize="0.1sp" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -71,7 +71,7 @@
         android:layout_marginBottom="64dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
-        android:text="Select Destination"
+        android:text="@string/btn_selPick"
         android:textColor="@color/colorText"
         android:textSize="16sp"
         app:backgroundTint="@color/colorAccent"
@@ -93,7 +93,7 @@
         android:layout_marginBottom="8dp"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
-        android:text="Services"
+        android:text="@string/btn_serv"
         android:textSize="16sp"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toTopOf="@+id/btnSelectPickUp"

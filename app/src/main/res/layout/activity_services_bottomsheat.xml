@@ -49,7 +49,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/imageView15"
                         app:layout_constraintStart_toEndOf="@+id/imageView15"
                         app:layout_constraintTop_toTopOf="@+id/imageView15"
-                        android:text="Carpool" />
+                        android:text="@string/lbl_pool" />
 
                     <ImageView
                         android:id="@+id/imageView15"
@@ -92,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Car (Coming Soon)"
+                        android:text="@string/lbl_car"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView16"
                         app:layout_constraintStart_toEndOf="@+id/imageView16"
@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:fontFamily="@font/roboto_medium"
-                        android:text="Shuttle Bus (Coming Soon)"
+                        android:text="@string/lbl_bus"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                         app:layout_constraintStart_toEndOf="@+id/imageView7"

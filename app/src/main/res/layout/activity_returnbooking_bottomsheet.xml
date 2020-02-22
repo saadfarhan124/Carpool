@@ -20,7 +20,7 @@
         android:paddingBottom="14dp"
         app:cornerRadius="8dp"
 
-        android:text="Book now"
+        android:text="@string/btn8"
         app:layout_constraintEnd_toEndOf="@+id/textView41"
         app:layout_constraintStart_toStartOf="@+id/textView42"
         app:layout_constraintTop_toBottomOf="@+id/textView42" />
@@ -32,7 +32,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Book return ride"
+        android:text="@string/txtview19"
         android:textColor="@color/colorText1"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -46,7 +46,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Outside NADRA Mega Center - SITE"
+        android:text="@string/pickup_pt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -57,7 +57,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:text="Outside KFC - Gulistan e Johar"
+        android:text="@string/dropoff_pt"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView19" />
 </androidx.constraintlayout.widget.ConstraintLayout>

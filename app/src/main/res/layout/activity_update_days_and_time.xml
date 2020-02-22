@@ -40,7 +40,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_mon"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_mon"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_mon"
-                android:text="Monday" />
+                android:text="@string/chp_mo" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardViewMon"
@@ -78,7 +78,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:textStyle="bold"
-                        android:text="Pick up Time"
+                        android:text="@string/pick_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -89,7 +89,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Drop off Time"
+                        android:text="@string/drop_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/dividermon" />
@@ -126,7 +126,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_tue"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_tue"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_tue"
-                android:text="Tuesday"
+                android:text="@string/chp3"
 
                 />
 
@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
-                        android:text="Pick up Time"
+                        android:text="@string/pick_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -174,7 +174,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Drop off Time"
+                        android:text="@string/drop_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_tue" />
@@ -214,7 +214,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_wed"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_wed"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_wed"
-                android:text="Wednesday" />
+                android:text="@string/chp4" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardViewWed"
@@ -249,7 +249,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
-                        android:text="Pick up Time"
+                        android:text="@string/pick_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -260,7 +260,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Drop off Time"
+                        android:text="@string/drop_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_wed" />
@@ -301,7 +301,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_thur"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_thur"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_thur"
-                android:text="Thursday" />
+                android:text="@string/chp_thurs" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardViewThur"
@@ -335,7 +335,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
-                        android:text="Pick up Time"
+                        android:text="@string/pick_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -346,7 +346,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Drop off Time"
+                        android:text="@string/drop_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_thur" />
@@ -386,7 +386,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_fri"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_fri"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_fri"
-                android:text="Friday" />
+                android:text="@string/chp_fri" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardViewFri"
@@ -421,7 +421,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
-                        android:text="Pick up Time"
+                        android:text="@string/pick_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -432,7 +432,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Drop off Time"
+                        android:text="@string/drop_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_fri" />
@@ -472,7 +472,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_sat"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_sat"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_sat"
-                android:text="Saturday" />
+                android:text="@string/chp_sat" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardViewSat"
@@ -507,7 +507,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
-                        android:text="Pick up Time"
+                        android:text="@string/pick_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -518,7 +518,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Drop off Time"
+                        android:text="@string/drop_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_sat" />
@@ -557,7 +557,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/txt_date_sun"
                 app:layout_constraintStart_toEndOf="@+id/txt_date_sun"
                 app:layout_constraintTop_toTopOf="@+id/txt_date_sun"
-                android:text="Sunday" />
+                android:text="@string/chp_sun" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardViewSun"
@@ -616,7 +616,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
-                        android:text="Pick up Time"
+                        android:text="@string/pick_up"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -627,7 +627,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:text="Drop off Time"
+                        android:text="@string/drop_off"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider_sun" />
@@ -643,7 +643,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="1 Jan 2020"
+                android:text="@string/txtDate_mon"
                 android:textSize="16sp"
                 android:visibility="invisible"
                 app:layout_constraintStart_toStartOf="parent"
@@ -655,7 +655,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="2 Jan 2020"
+                android:text="@string/txtDate_tue"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewMon" />
@@ -666,7 +666,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="3 Jan 2020"
+                android:text="@string/txtDate_wed"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewTue" />
@@ -677,7 +677,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="4 Jan 2020"
+                android:text="@string/txtDate_thu"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewWed" />
@@ -688,7 +688,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="5 Jan 2020"
+                android:text="@string/txtDate_fri"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewThur" />
@@ -699,7 +699,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="6 Jan 2020"
+                android:text="@string/txtDate_sat"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewFri" />
@@ -710,7 +710,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="7 Jan 2020"
+                android:text="@string/txtDate_sun"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/materialCardViewSat" />
@@ -728,7 +728,7 @@
                 android:paddingTop="14dp"
                 android:paddingRight="92dp"
                 android:paddingBottom="14dp"
-                android:text="Continue"
+                android:text="@string/bt_con"
                 android:textSize="18sp"
                 app:backgroundTint="@color/colorPrimary"
                 app:cornerRadius="8dp"
@@ -744,7 +744,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:text="@string/txtView82"
                 app:layout_constraintBottom_toTopOf="@+id/materialCardViewSun"
                 app:layout_constraintEnd_toStartOf="@+id/materialCardViewSat" />
 
@@ -758,7 +758,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:text="Update Days and Timings"
+        android:text="@string/txtView_upd"
         android:textColor="@color/colorText1"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"

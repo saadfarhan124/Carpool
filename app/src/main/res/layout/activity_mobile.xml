@@ -36,7 +36,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="Enter your mobile number"
+        android:text="@string/txtview2"
         android:textColor="@color/colorText1"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +52,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto"
-        android:text="Enter your mobile number, to create an account or log in"
+        android:text="@string/txt_view3"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -73,7 +73,7 @@
         android:paddingTop="14dp"
         android:paddingRight="92dp"
         android:paddingBottom="14dp"
-        android:text="Continue"
+        android:text="@string/btn_cont"
         android:textSize="16sp"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -91,7 +91,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
-        android:hint="333xxxxxxx"
+        android:hint="@string/edit_ph"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/editTextPhoneNumbe"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:enabled="false"
             android:inputType="number"
-            android:text="+92"/>
+            android:text="@string/txt_lg"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
