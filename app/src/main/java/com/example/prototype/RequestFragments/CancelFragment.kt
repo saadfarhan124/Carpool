@@ -9,6 +9,7 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.example.prototype.R
 import com.example.prototype.Utilities.Util
 import com.example.prototype.adapters.PackageAdapter
@@ -17,7 +18,8 @@ import com.example.prototype.dataModels.ReviewInformationDataModel
 class CancelFragment : Fragment() {
     private lateinit var root: View
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var packageProgressBar: ProgressBar
+//    private lateinit var packageProgressBar: ProgressBar
+    private lateinit var shimmerRecyclerView: ShimmerRecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,7 +27,7 @@ class CancelFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.activity_request_active, container, false)
-
+        shimmerRecyclerView = root.findViewById(R.id.active_shimmer_recycler_view)
         loadRequests()
 
 
@@ -39,8 +41,9 @@ class CancelFragment : Fragment() {
     }
 
     fun loadRequests() {
-        packageProgressBar = root.findViewById(R.id.requestProgressBar)
-        packageProgressBar.visibility = View.VISIBLE
+//        packageProgressBar = root.findViewById(R.id.requestProgressBar)
+//        packageProgressBar.visibility = View.VISIBLE
+        shimmerRecyclerView.visibility = View.VISIBLE
         Util.getFirebaseFireStore().collection("carRideRequests")
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
             .whereEqualTo("requestStatus", "Cancelled")
@@ -54,8 +57,9 @@ class CancelFragment : Fragment() {
                 }
                 mRecyclerView = root.findViewById(R.id.requestRecyclerView)
                 mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-                mRecyclerView.adapter = PackageAdapter(requests, root.context, packageProgressBar)
-                packageProgressBar.visibility = View.INVISIBLE
+                mRecyclerView.adapter = PackageAdapter(requests, root.context, shimmerRecyclerView)
+                shimmerRecyclerView.visibility = View.INVISIBLE
+//                packageProgressBar.visibility = View.INVISIBLE
             }
     }
 }
