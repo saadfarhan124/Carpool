@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,11 +17,11 @@ class ShareScheduledFragment : Fragment() {
 
     private lateinit var mRecyclerView: RecyclerView
 
-    private lateinit var progressBar: ProgressBar
+//    private lateinit var progressBar: ProgressBar
     private lateinit var ridesList: MutableList<CarSharingRidesDataModel>
     private lateinit var root: View
     private val TAG = "SeeRoutessss"
-
+    private lateinit var shimerRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,8 +30,10 @@ class ShareScheduledFragment : Fragment() {
     ): View? {
 
         root = inflater.inflate(R.layout.activity_scheduled, container, false)
-        progressBar = root.findViewById(R.id.myRidesProgressBar)
-        progressBar.visibility = View.VISIBLE
+        shimerRecyclerView = root.findViewById(R.id.myshare_shimmer_recycler_view)
+        shimerRecyclerView.visibility = View.VISIBLE
+//        progressBar = root.findViewById(R.id.myRidesProgressBar)
+//        progressBar.visibility = View.VISIBLE
 //        loadRides()
 
         ridesList = mutableListOf()

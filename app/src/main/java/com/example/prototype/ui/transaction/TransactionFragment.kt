@@ -14,8 +14,6 @@ import com.example.prototype.R
 import com.example.prototype.Utilities.Util
 import com.example.prototype.adapters.TransactionAdapter
 import com.example.prototype.dataModels.InvoiceDataModel
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.android.synthetic.main.activity_transaction_row.*
 
 class TransactionFragment : Fragment() {
 
@@ -24,7 +22,7 @@ class TransactionFragment : Fragment() {
     private lateinit var root:View
     private lateinit var listOfInvoices: MutableList<InvoiceDataModel>
     private lateinit var transactionProgressBar: ProgressBar
-
+    private lateinit var shimmerRecyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,14 +31,16 @@ class TransactionFragment : Fragment() {
         transactionViewModel =
             ViewModelProviders.of(this).get(TransactionViewModel::class.java)
         root = inflater.inflate(R.layout.fragment_transaction, container, false)
-        transactionProgressBar = root.findViewById(R.id.transactionProgressBar)
+//        transactionProgressBar = root.findViewById(R.id.transactionProgressBar)
+        shimmerRecyclerView = root.findViewById(R.id.transaction_shimmer_recycler_view)
         loadInvoices()
 
         return root
     }
 
     private fun loadInvoices(){
-        transactionProgressBar.visibility = View.VISIBLE
+//        transactionProgressBar.visibility = View.VISIBLE
+        shimmerRecyclerView.visibility = View.VISIBLE
         listOfInvoices = mutableListOf()
         Util.getFirebaseFireStore().collection("invoices")
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
@@ -60,7 +60,8 @@ class TransactionFragment : Fragment() {
                     mRecyclerView.adapter = TransactionAdapter(listOfInvoices)
                 }
 
-                transactionProgressBar.visibility = View.INVISIBLE
+//                transactionProgressBar.visibility = View.INVISIBLE
+                shimmerRecyclerView.visibility = View.INVISIBLE
             }
     }
 
