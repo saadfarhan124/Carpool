@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView
 import com.example.prototype.DespositSlipUploadActivity
 import com.example.prototype.R
 import com.example.prototype.UpdateDaysAndTime
@@ -24,7 +25,8 @@ import org.jetbrains.anko.onClick
 class PackageAdapter(
     private val requestsDataModel: MutableList<ReviewInformationDataModel>,
     private val context: Context,
-    private val packageProgressBar: ProgressBar
+//    private val packageProgressBar: ProgressBar,
+private val shimmerRecyclerView: ShimmerRecyclerView
 ) : RecyclerView.Adapter<PackageViewHolder>() {
 
 
@@ -184,7 +186,7 @@ class PackageAdapter(
 
         if (request.requestStatus != "Cancelled") {
             holder.btnCancel.onClick {
-                packageProgressBar.visibility = View.VISIBLE
+                shimmerRecyclerView.visibility = View.VISIBLE
                 val alertDialog = Util.getAlertDialog(context)
                 alertDialog.setMessage("Do you really want to cancel this request?")
                 alertDialog.setPositiveButton("Yes") { _, _ ->
@@ -199,11 +201,11 @@ class PackageAdapter(
                                 Toast.LENGTH_LONG
                             )
                                 .show()
-                            packageProgressBar.visibility = View.INVISIBLE
+                            shimmerRecyclerView.visibility = View.INVISIBLE
                         }
                 }
                 alertDialog.setNegativeButton("No") { _, _ ->
-                    packageProgressBar.visibility = View.INVISIBLE
+                    shimmerRecyclerView.visibility = View.INVISIBLE
                 }
                 alertDialog.show()
             }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -38,24 +37,17 @@ class ShareScheduledFragment : Fragment() {
 
         ridesList = mutableListOf()
         //Getting Rides from database
-        Util.getFirebaseFireStore().collection("Booking")
+        Util.getFirebaseFireStore().collection("myRides")
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
-            .whereEqualTo("rideStatus", "Booked")
             .get()
             .addOnSuccessListener {
-                if (it.documents.size == 0) {
-                    Toast.makeText(root.context, "No rides found", Toast.LENGTH_SHORT).show()
-                } else {
-                    for (document in it.documents) {
-                        val myRides = document.toObject(CarSharingRidesDataModel::class.java)
-                        myRides!!.bookingID = document.id
-                        ridesList.add(myRides!!)
-                    }
-                    mRecyclerView = root.findViewById(R.id.myridesRecyclerView)
-                    mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-                    mRecyclerView.adapter = MyshareRidesAdapter(ridesList, root.context)
+                for(document in it.documents){
+                    val myRides = document.toObject(CarSharingRidesDataModel::class.java)
+                    ridesList.add(myRides!!)
                 }
-                progressBar.visibility = View.INVISIBLE
+                mRecyclerView = root.findViewById(R.id.myridesRecyclerView)
+                mRecyclerView.layoutManager = LinearLayoutManager(root.context)
+                mRecyclerView.adapter = MyshareRidesAdapter(ridesList, root.context)
             }
         return root
     }

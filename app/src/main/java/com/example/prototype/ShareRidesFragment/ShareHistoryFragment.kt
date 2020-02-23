@@ -38,10 +38,10 @@ class ShareHistoryFragment: Fragment() {
             .whereEqualTo("rideStatus", "completed")
             .get()
             .addOnSuccessListener {
-                if(it.documents.size == 0){
+                if (it.documents.size == 0) {
                     Toast.makeText(root.context, "No rides found", Toast.LENGTH_SHORT).show()
-                }else{
-                    for(document in it.documents){
+                } else {
+                    for (document in it.documents) {
                         val myRides = document.toObject(CarSharingRidesDataModel::class.java)
                         myRides!!.bookingID = document.id
                         ridesList.add(myRides!!)
@@ -50,7 +50,6 @@ class ShareHistoryFragment: Fragment() {
                     mRecyclerView.layoutManager = LinearLayoutManager(root.context)
                     mRecyclerView.adapter = MyshareRidesAdapter(ridesList, root.context)
                 }
-                progressBar.visibility = View.INVISIBLE
 
             }
         return root

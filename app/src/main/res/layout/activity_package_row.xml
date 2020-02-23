@@ -33,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:tint="@color/colorGreen"
             app:layout_constraintStart_toStartOf="@+id/chipMon"
             app:layout_constraintTop_toBottomOf="@+id/chipMon"
             app:srcCompat="@drawable/ic_panorama_fish_eye_black_24dp" />
@@ -42,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:tint="@color/colorRed"
             app:layout_constraintEnd_toEndOf="@+id/img_pickupAddress"
             app:layout_constraintStart_toStartOf="@+id/img_pickupAddress"
             app:layout_constraintTop_toBottomOf="@+id/divider10"

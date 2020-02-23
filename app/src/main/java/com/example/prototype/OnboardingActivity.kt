@@ -36,8 +36,8 @@ class OnboardingActivity: AppCompatActivity() {
         if (isFirstRun) {
             //show sign up activity
             startActivity(Intent(this@OnboardingActivity, OnboardingActivity::class.java))
-            Toast.makeText(this@OnboardingActivity, "Run only once", Toast.LENGTH_LONG)
-                .show()
+//            Toast.makeText(this@OnboardingActivity, "Run only once", Toast.LENGTH_LONG)
+//                .show()
         }
 
 

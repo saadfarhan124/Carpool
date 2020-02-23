@@ -3,6 +3,7 @@ package com.example.prototype
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -11,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.UserDataModel
 import com.skyfishjy.library.RippleBackground
+import kotlinx.android.synthetic.main.activity_gender.*
 import org.jetbrains.anko.onClick
 import java.util.*
 
@@ -47,7 +49,7 @@ class SelectGenderAndDob : AppCompatActivity() {
 
         //Male Image View
         maleImageView = findViewById(R.id.img_male)
-        maleImageView.setImageResource(R.mipmap.ic_gender)
+        maleImageView.setImageResource(R.mipmap.male)
         maleImageView.onClick {
             if(femaleFlag){
                 femaleRippleBackground.stopRippleAnimation()
@@ -59,7 +61,7 @@ class SelectGenderAndDob : AppCompatActivity() {
 
         //Female Image View
         femaleImageView = findViewById(R.id.img_female)
-        femaleImageView.setImageResource(R.mipmap.ic_female)
+        femaleImageView.setImageResource(R.mipmap.female)
         femaleImageView.onClick {
             if(maleFlag){
                 maleRippleBackground.stopRippleAnimation()
@@ -72,10 +74,13 @@ class SelectGenderAndDob : AppCompatActivity() {
 
         var btnContinue = findViewById<Button>(R.id.btnContinue)
         btnContinue.onClick {
+            loading.visibility = View.VISIBLE
             if(!femaleFlag && !maleFlag){
                 Toast.makeText(applicationContext, "Please select a gender", Toast.LENGTH_SHORT).show()
+                loading.visibility = View.INVISIBLE
             }else if(editTextDob.text.isNullOrEmpty()){
                 Toast.makeText(applicationContext, "Please select date of birth", Toast.LENGTH_LONG).show()
+                loading.visibility = View.INVISIBLE
             }else{
 
                 if(maleFlag){
@@ -91,6 +96,7 @@ class SelectGenderAndDob : AppCompatActivity() {
                     .addOnSuccessListener {
                         Toast.makeText(applicationContext, "Registered successfully", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(applicationContext, LoginActivity::class.java))
+                        loading.visibility = View.INVISIBLE
                     }
             }
         }
