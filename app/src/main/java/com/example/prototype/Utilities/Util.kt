@@ -39,13 +39,13 @@ class Util {
     companion object {
         fun logout(context: Context): Intent {
             FirebaseAuth.getInstance().signOut()
-            var intent = Intent(context, LoginActivity::class.java)
+            val intent = Intent(context, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             return intent
         }
 
         fun getGlobals(): com.example.prototype.companion.Companion.Globals {
-            var globals = com.example.prototype.companion.Companion.Globals
+            val globals = com.example.prototype.companion.Companion.Globals
             return globals
         }
 
@@ -94,11 +94,11 @@ class Util {
         }
 
         fun getDistance(pickupLatLng: LatLng, dropOffLatLng: LatLng): Float {
-            var location = Location("")
+            val location = Location("")
             location.latitude = pickupLatLng.latitude
             location.longitude = pickupLatLng.longitude
 
-            var locationtwo = Location("")
+            val locationtwo = Location("")
             locationtwo.latitude = dropOffLatLng.latitude
             locationtwo.longitude = dropOffLatLng.longitude
 
@@ -140,7 +140,7 @@ class Util {
 
         //Function to return alert dialog
         fun getAlertDialog(context: Context): AlertDialog.Builder {
-            var alertDialog =
+            val alertDialog =
                 AlertDialog.Builder(context, R.style.ThemeOverlay_MaterialComponents_Dialog)
             alertDialog.setTitle("Sath Chaloo")
             return alertDialog
@@ -174,7 +174,7 @@ class Util {
         //Create notifications
         fun sendNotification(context: Context, body: String) : NotificationCompat.Builder{
             return NotificationCompat.Builder(context, context.getString(R.string.androidChannelID))
-                .setSmallIcon(R.mipmap.ic_notification)
+                .setSmallIcon(R.mipmap.ic_logo)
                 .setColor(context.resources.getColor(R.color.colorAccent))
                 .setContentTitle("Sath Chaloo")
                 .setContentText(body)
