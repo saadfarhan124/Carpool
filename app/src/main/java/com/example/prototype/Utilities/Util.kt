@@ -1,5 +1,7 @@
 package com.example.prototype.Utilities
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -7,12 +9,15 @@ import android.content.SharedPreferences
 import android.graphics.BitmapFactory
 import android.location.Location
 import android.location.LocationManager
+import android.media.RingtoneManager
 import android.net.ConnectivityManager
+import android.os.Build
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.prototype.LoginActivity
@@ -145,5 +150,37 @@ class Util {
         fun getCustomTimeDialog(textViewPickUp: TextView, textViewDropOff: TextView, selectedChip: Chip): CustomTimeDialog{
             return CustomTimeDialog(textViewPickUp, textViewDropOff, selectedChip)
         }
+
+        //Create notification Channels
+        fun createNotificationChannels(context: Context){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                val name = context.getString(R.string.androidChannelName)
+                val descriptionText = context.getString(R.string.androidChannelDescription)
+                val id = context.getString(R.string.androidChannelID)
+                val importance = NotificationManager.IMPORTANCE_DEFAULT
+                val channel = NotificationChannel(id, name, importance).apply {
+                    description = descriptionText
+                }
+                getNotificationManager(context).createNotificationChannel(channel)
+            }
+        }
+
+        //Get Notification Manager
+        fun getNotificationManager(context: Context): NotificationManager{
+            return context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+        }
+
+        //Create notifications
+        fun sendNotification(context: Context, body: String) : NotificationCompat.Builder{
+            return NotificationCompat.Builder(context, context.getString(R.string.androidChannelID))
+                .setSmallIcon(R.mipmap.ic_notification)
+                .setColor(context.resources.getColor(R.color.colorAccent))
+                .setContentTitle("Sath Chaloo")
+                .setContentText(body)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
+
+    }
     }
 }

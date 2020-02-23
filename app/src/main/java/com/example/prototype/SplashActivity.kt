@@ -2,19 +2,25 @@ package com.example.prototype
 
 import android.animation.ValueAnimator
 import android.app.AlertDialog
+import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationManagerCompat
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.iid.FirebaseInstanceId
+import org.jetbrains.anko.notificationManager
 import java.io.File
 
 class SplashActivity : AppCompatActivity() {
@@ -61,6 +67,15 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun goToAfterSplash(){
+        Util.createNotificationChannels(applicationContext)
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnSuccessListener {
+                Log.d("SAaaaad", it.token)
+            }
+//        with(NotificationManagerCompat.from(this)){
+//            notify(0, Util.sendNotification(this@SplashActivity, "Hello boie").build())
+//        }
+
         user = FirebaseAuth.getInstance().currentUser
         val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
         val homeScreen = Intent(applicationContext,navdrawer::class.java)

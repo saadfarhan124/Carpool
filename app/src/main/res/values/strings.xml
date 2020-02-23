@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sath Chalo</string>
+    <string name="app_name">Sath Chaloo</string>
     <string name="title_activity_navdrawer">navdrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -35,5 +35,10 @@
     <string name="txt_lbl_transpayment">You can transfer your payment to our</string>
 
 
-
+    <!-- Channel ID -->
+    <string name="androidChannelID">sathchaloo.com.prototype</string>
+    <!-- Channel Name -->
+    <string name="androidChannelName">Android Channel</string>
+    <!--Channel Description-->
+    <string name="androidChannelDescription">Lorem ipsum</string>
 </resources>
