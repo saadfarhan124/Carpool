@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -37,5 +38,18 @@
         app:layout_constraintEnd_toEndOf="@+id/requestRecyclerView"
         app:layout_constraintStart_toStartOf="@+id/requestRecyclerView"
         app:layout_constraintTop_toTopOf="@+id/requestRecyclerView" />
+
+    <TextView
+        android:id="@+id/textViewActive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="TextView"
+        android:visibility="gone"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/active_shimmer_recycler_view"
+        app:layout_constraintTop_toTopOf="@+id/active_shimmer_recycler_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
