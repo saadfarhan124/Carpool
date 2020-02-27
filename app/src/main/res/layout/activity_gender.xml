@@ -33,7 +33,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/roboto_medium"
-        android:text="What's your DOB and Gender"
+        android:text="@string/txtview7"
         android:textColor="@color/colorText1"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="DOB"
+        android:hint="@string/ed_txt5"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/textView7">
@@ -65,7 +65,7 @@
         android:id="@+id/content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="@+id/editText5"
         app:layout_constraintTop_toBottomOf="@+id/editText5"
@@ -76,14 +76,15 @@
         app:rb_scale="6">
 
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/img_female"
-                android:layout_width="62dp"
-                android:layout_height="62dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
@@ -99,8 +100,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="FEMALE"
-                android:textSize="16sp"
+                android:text="@string/txt_fem"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/img_female"
@@ -129,8 +130,8 @@
 
             <ImageView
                 android:id="@+id/img_male"
-                android:layout_width="62dp"
-                android:layout_height="62dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
@@ -146,8 +147,8 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
-                android:text="MALE"
-                android:textSize="16sp"
+                android:text="@string/txt_mal"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/img_male"
@@ -161,21 +162,18 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:fontFamily="@font/roboto_medium"
         android:paddingLeft="92dp"
         android:paddingTop="14dp"
         android:paddingRight="92dp"
         android:paddingBottom="14dp"
-        android:text="Continue"
+        android:text="@string/bt_con"
         android:textSize="18sp"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/content"
-        app:layout_constraintStart_toStartOf="@+id/contentMale"
-        app:layout_constraintTop_toBottomOf="@+id/contentMale"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="@+id/contentMale" />
 
     <ImageView
         android:id="@+id/imageView4"

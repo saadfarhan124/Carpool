@@ -17,7 +17,7 @@
         android:paddingTop="14dp"
         android:paddingRight="92dp"
         android:paddingBottom="14dp"
-        android:text="Submit"
+        android:text="@string/submit"
         android:textSize="16sp"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +33,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="16dp"
         android:gravity="start|top"
-        android:hint="Suggestion"
+        android:hint="@string/txt_sug"
 
         app:layout_constraintEnd_toEndOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="@+id/spinner"
@@ -55,7 +55,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        android:hint="Suggestion Type"
+        android:hint="@string/txt_sugType"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView12">

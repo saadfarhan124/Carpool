@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
@@ -20,8 +21,8 @@
             android:background="?attr/colorPrimary"
             app:navigationIcon="@drawable/ic_chevron_left_white_24dp"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:title="Payment"
-            app:titleTextColor="@color/colorText" />
+            app:title="Back"
+            app:titleTextColor="@color/colorText"></androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -69,7 +70,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto"
-                        android:text="@string/txt_lbl_transpayment"
+                        android:text="@string/transpayment"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -80,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/roboto"
-                        android:text="bank account:"
+                        android:text="@string/bankAcc"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_transpayment"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_transpayment" />
@@ -91,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Account Title"
+                        android:text="@string/accTitle"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_bankAcc"
@@ -103,7 +104,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Sath Chaloo Pvt LTD"
+                        android:text="@string/accountTitle"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_accTitle"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_accTitle" />
@@ -114,7 +115,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:fontFamily="@font/roboto"
-                        android:text="Account Number"
+                        android:text="@string/accountNumber"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/txt_accountTitle"
@@ -126,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/roboto"
-                        android:text="0104263218"
+                        android:text="@string/accNum"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_accountNumber"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_accountNumber" />
@@ -136,7 +137,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
-                        android:text="Bank"
+                        android:text="@string/bank"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="@+id/txt_accountNumber"
@@ -147,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Meezan Bank (9964)"
+                        android:text="@string/txtbank"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_bank"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_bank" />
@@ -160,7 +161,7 @@
                         android:layout_marginTop="24dp"
                         android:layout_marginEnd="16dp"
                         android:fontFamily="@font/roboto"
-                        android:text="PLease submit the completed transaction slip using the form below. We'll review and update your wallet balance accordingly"
+                        android:text="@string/note"
                         android:textSize="16sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_bank"
@@ -187,7 +188,7 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
 
-                        android:hint="Transaction ID/Deposit slip number* "
+                        android:hint="@string/edtxt"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divider11">
@@ -195,8 +196,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextDepositSlipNumber"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:singleLine="true" />
+                            android:singleLine="true"
+                            android:layout_height="wrap_content" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -208,7 +209,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginEnd="16dp"
-                        android:hint="Amount*"
+                        android:hint="@string/edtxttwo"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ed_txt">
@@ -228,7 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="Upload deposit slip*"
+                        android:text="@string/upload"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/ed_txt_two"
                         app:layout_constraintTop_toBottomOf="@+id/ed_txt_two" />
@@ -246,8 +247,8 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_upload"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_upload"
-                        app:srcCompat="@mipmap/upload"
-                        />
+                        app:srcCompat="@drawable/mob"
+                        tools:srcCompat="@drawable/mob" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnUploadSlip"
@@ -263,7 +264,7 @@
                         android:paddingTop="14dp"
                         android:paddingRight="92dp"
                         android:paddingBottom="14dp"
-                        android:text="Submit"
+                        android:text="@string/submit"
                         android:textSize="18sp"
                         app:backgroundTint="@color/colorPrimary"
                         app:cornerRadius="8dp"

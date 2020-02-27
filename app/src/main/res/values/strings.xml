@@ -35,12 +35,408 @@
     <string name="txt_lbl_transpayment">You can transfer your payment to our</string>
 
 
+
+
+    <!-- TODO: act bank transfer -->
+    <string name="transpayment">You can transfer your payment to our</string>
+    <string name="bankAcc">bank account:</string>
+    <string name="accTitle">Account Title</string>
+    <string name="accountTitle">Sath ChalooPvt LTD</string>
+    <string name="accountNumber">Account Number</string>
+    <string name="accNum">0104263218</string>
+    <string name="bank">Bank</string>
+    <string name="txtbank">Meezan Bank (9964)</string>
+    <string name="note">PLease submit the completed transaction slip using the form below. We\'ll review and update your wallet balance accordingly</string>
+    <string name="upload">Upload deposit slip*</string>
+    <string name="edtxt">Transaction ID/Deposit slip number*</string>
+    <string name="edtxttwo">Amount*</string>
+    <string name="submit">Submit</string>
+
+    <!-- TODO: Act after splash -->
+
+    <string name="signupMobile">Continue with mobile number</string>
+    <string name="loginbt">or continue with Login</string>
+
+    <!-- TODO: Act booking -->
+
+    <string name="txtview3">Seats remaining:</string>
+    <string name="bookSeatsRemain">8</string>
+    <string name="txtView6">Minimum fare:</string>
+    <string name="orig_fare">30</string>
+    <string name="txtVew">Schedule for:</string>
+    <string name="sch_Date">Nov 15, 2019</string>
+    <string name="txtView5">Pickup Location</string>
+    <string name="bookStartLoc">Dilpasand Resturant Near Site</string>
+    <string name="txtView9">Start:</string>
+    <string name="bookStartTime">10:40 PM</string>
+    <string name="txtView11">Dropoff Location</string>
+    <string name="bookEndLoc">Dilpasand Resturant Near Site</string>
+    <string name="txtView13">Start:</string>
+    <string name="bookEndTime">10:40 PM</string>
+
+    <string name="txtview15">Minimum fare applicable</string>
+    <string name="txtview16">Number of seats:</string>
+    <string name="calFare">30.0</string>
+    <string name="txtview17">Total charges:</string>
+    <string name="btn_book">Book now</string>
+
+    <!-- TODO: Act custom timedialog -->
+
+    <string name="btCancel">Cancel</string>
+    <string name="bt_Ok">OK</string>
+
+    <!-- TODO: Act error -->
+
+    <string name="bt_Sub">Submit</string>
+    <string name="txt_sugg">Report</string>
+    <string name="eSpin">Error Category</string>
+    <string name="txtview12">Don\'t worry, it\'s not you - it\'s us Sorry about that, Please write in bellow section and submit the report</string>
+
+    <!-- TODO: forget_code -->
+
+    <string name="ed_lay2">Code</string>
+    <string name="ed_lay3">New Password</string>
+    <string name="ed_lay4">Re-try New Password</string>
+    <string name="bt3">Button</string>
+
+    <!-- TODO: forget_em -->
+
+    <string name="em_lay">Email</string>
+    <string name="bt_frg">Forget Password</string>
+
+    <!-- TODO: Act Gender -->
+
+    <string name="txtview7">What\'s your DOB and Gender</string>
+    <string name="ed_txt5">DOB</string>
+    <string name="txt_fem">FEMALE</string>
+    <string name="txt_mal">MALE</string>
+    <string name="bt_con">Continue</string>
+
+    <!-- TODO: Act Login -->
+
+    <string name="lgEmail">Email</string>
+    <string name="lg_pass">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="btn_frgPass">Forget Password?</string>
+
+    <!-- TODO: Act mobile -->
+
+    <string name="txtview2">Enter your mobile number</string>
+    <string name="txt_view3">Enter your mobile number, to create an account or log in</string>
+    <string name="edit_ph">333xxxxxxx</string>
+    <string name="txt_lg">+92</string>
+    <string name="btn_cont">Continue</string>
+
+    <!-- TODO: Act myrides_row -->
+
+    <string name="DateOfRide">Nov 18, 2019</string>
+    <string name="txtview53">Booking ID:</string>
+    <string name="txtViewBookID">1727914</string>
+    <string name="txtview55">RS:</string>
+    <string name="txtViewFare">50</string>
+    <string name="strtTime">5:39 PM</string>
+    <string name="endTime">6:15 PM</string>
+    <string name="pickup_pt">Outside NADRA Mega Center - SITE</string>
+    <string name="dropoff_pt">Outside KFC - Gulistan e Johar</string>
+    <string name="pay">Track</string>
+    <string name="change_bt">Change</string>
+
+
+    <!-- TODO: Act myrides_share_row -->
+
+    <string name="txtview30">Date</string>
+    <string name="txtViewDate">10 Jan 2020, Tuesday</string>
+    <string name="pickupAdd">Plot A 5/8, Block 5 A Block 5
+Nazimabad, Karach, Karachi City, Sindh</string>
+
+    <string name="dropOffAdd">Plot 177 S, Pakistan Employees Co-Operative
+Housing Society Block 2 PECHS, Karachi,
+Karachi City, Sindh, Pakistan</string>
+
+    <string name="txtview44">Pickup/Return Time</string>
+    <string name="pickupTime">9:00 AM</string>
+    <string name="dropoffTime">9:00 PM</string>
+    <string name="txtview77">Status:</string>
+    <string name="txtviewstat">Not Taken</string>
+
+    <!-- TODO: Act notification_row -->
+
+    <string name="txtviewNotif">Focus on your exam, not commute!</string>
+    <string name="txtviewNotifSub">Take FREE RIDES with us! We have launched multiple shifts from across Karachi to and from SZABIST University. Book your ride NOW</string>
+
+    <!-- TODO: Act onboarding -->
+
+    <string name="btn_sk">Skip</string>
+
+    <!-- TODO: Act onboarding_screen -->
+
+    <string name="intro_des">TextView</string>
+    <string name="intro_ti">TextView</string>
+
+    <!-- TODO: package -->
+
+    <string name="txtview10">Days</string>
+    <string name="chp_m">M</string>
+    <string name="chp_t">T</string>
+    <string name="chp_w">W:</string>
+    <string name="chp_f">F:</string>
+    <string name="chp_s">S:</string>
+
+    <string name="btn_Pay">Pay</string>
+    <string name="txtview40">Total Amount</string>
+    <string name="txtview8">Status</string>
+    <string name="txtviewAmt">5000</string>
+    <string name="txtviewStat">Pending</string>
+
+    <!-- TODO: profile -->
+
+    <string name="lbl_num">Phone Number</string>
+    <string name="txt_num">0321-1234567</string>
+    <string name="txt_email">abc@live.com</string>
+    <string name="lbl_pas">Change Password</string>
+    <string name="txt_pas">*********</string>
+    <string name="lbl_gen">Gender</string>
+    <string name="txt_gen">Male</string>
+
+    <string name="lbl_dob">Date of Birth</string>
+    <string name="txt_dob">4 May 2001</string>
+
+    <string name="lbl_log">Logout</string>
+    <string name="txt_name">Saad Anwar</string>
+
+
+    <!-- TODO: return booking_bottomsheet -->
+
+    <string name="btn8">Book now</string>
+    <string name="txtview19">Book return ride</string>
+
+    <!-- TODO: reviewinfo -->
+
+    <string name="reviewInfo">Review Information</string>
+    <string name="txtAc">Standard</string>
+    <string name="priceAc">7,598</string>
+    <string name="txtName">Name</string>
+    <string name="txt_na">Saad</string>
+
+    <string name="lbl_nb">Number</string>
+    <string name="txt_nb">+9233312131</string>
+
+    <string name="lbl_dt">Time to reach destination</string>
+    <string name="txt_st">9:00 - 9:30</string>
+
+    <string name="btn_sub">Submit Request</string>
+    <string name="lbl_rt">Return time</string>
+    <string name="txt_rt">18:00 - 18:30</string>
+
+
+    <!-- TODO: routesitem -->
+
+    <string name="dist_pickup">21 min from clifton beach</string>
+    <string name="start_pt">outside Madina Masjid-Clifton KHI</string>
+    <string name="end_pt">Outside Eidgah Bus Stop (Nazimabad No.3) Nazimabad</string>
+    <string name="dist_dropoff">1 min to Nazimabad</string>
+    <string name="start_ti">11:55 AM</string>
+    <string name="end_ti">12:56 PM</string>
+    <string name="seat_rem">Seats Remaning: 14</string>
+
+
+    <!-- TODO: seeroutes -->
+    <string name="chp2">Tomorrow</string>
+    <string name="chp3">Tuesday</string>
+    <string name="chp4">Wednesday</string>
+
+    <!-- TODO: select_pick_up -->
+
+    <string name="select_pickup">Select Pickup Location</string>
+    <string name="btn_select">Select Pickup</string>
+
+    <!-- TODO: selectdays -->
+
+    <string name="chp_mo">Monday</string>
+    <string name="chp_thurs">Thursday</string>
+    <string name="chp_fri">Friday</string>
+    <string name="chp_sat">Saturday</string>
+    <string name="chp_sun">Sunday</string>
+
+    <string name="select_DnT">Select Days and Timings</string>
+    <string name="pick_up">Pick up Time</string>
+    <string name="drop_off">Drop off Time</string>
+
+    <!-- TODO: selectdays_bottomsheet-->
+
+    <string name="chp_we">W</string>
+    <string name="chp_fi">F</string>
+    <string name="chp_sa">S</string>
+
+    <string name="txtview_MonDrop">TextView</string>
+    <string name="txtview_Monpick">TextView</string>
+
+    <string name="txtview_TueDrop">TextView</string>
+    <string name="txtview_Tuepick">TextView</string>
+
+    <string name="txtview_WedDrop">TextView</string>
+    <string name="txtview_Wedpick">TextView</string>
+
+    <string name="txtview_ThuDrop">TextView</string>
+    <string name="txtview_Thupick">TextView</string>
+
+
+    <string name="txtview_friDrop">TextView</string>
+    <string name="txtview_fripick">TextView</string>
+
+    <string name="txtview_SatDrop">TextView</string>
+    <string name="txtview_Satpick">TextView</string>
+
+    <string name="txtview_SunDrop">TextView</string>
+    <string name="txtview_Sunpick">TextView</string>
+
+    <string name="txtview18">Select your desire days</string>
+
+    <!-- TODO: services_bottomsheet -->
+
+    <string name="lbl_pool">Carpool</string>
+    <string name="lbl_car">Car (Coming Soon)</string>
+    <string name="lbl_bus">Shuttle Bus (Coming Soon)</string>
+
+    <!-- TODO: signup_email -->
+
+    <string name="txt_head">What\'s your email?</string>
+    <string name="txt_subhead">Get ride receipts along with promotions in your inbox</string>
+
+    <!-- TODO: signup_password -->
+
+    <string name="txt_phead">Create a Strong Password</string>
+    <string name="txt_psubhead">Using Capital letter, numbers and special character</string>
+
+
+    <!-- TODO: signup_username -->
+
+    <string name="txt_uhead">What\'s your Name?</string>
+    <string name="txt_usubhead">Your name helps rider to confirm who they\'re picking up</string>
+
+    <string name="txt_user">User Name</string>
+    <string name="txt_sign">Sign Up</string>
+
+    <!-- TODO: test -->
+
+    <string name="txt_sp">Enter Something</string>
+
+    <!-- TODO: ticket -->
+
+    <string name="txt_ticketStart">Outside NAD...</string>
+    <string name="txtView28">Start</string>
+    <string name="ticketStartTi">5:36 PM</string>
+    <string name="ticketEndTi">6:15 PM</string>
+
+    <string name="ticketEndLoc">Outside KFC..</string>
+    <string name="txtView31">End</string>
+    <string name="btn_booking">Return Booking</string>
+    <string name="txtView33">No. of Seats:</string>
+    <string name="ticket_seatNo">07</string>
+    <string name="txtView35">Booking ID</string>
+    <string name="txtView126">Car-Details</string>
+    <string name="txtView37">Date</string>
+    <string name="tick_bookID">1727914</string>
+
+    <string name="txtView39">JF-9246 White</string>
+    <string name="tick_Date">Saad Anwar</string>
+    <string name="pay_btn">Track Bus</string>
+    <string name="find_stp">Find Stop</string>
+
+
+    <!-- TODO: transaction_row -->
+
+    <string name="lbl_invoiceNo">Invoice No.</string>
+    <string name="txt_invoice">102034</string>
+    <string name="lbl_inAmt">Invoice Amount:</string>
+    <string name="txtVewDate">10 Jan, 2020</string>
+
+    <!-- TODO: transinfo_bottomsheet -->
+
+    <string name="txtView61">NEW BOOKING CREATED</string>
+    <string name="txtView62">Sat, 16 Nov 2019 01:48</string>
+    <string name="txtView63">Previous RS:</string>
+    <string name="txtView64">DEDUCTED:</string>
+    <string name="txtView65">300</string>
+    <string name="txtView66">50</string>
+    <string name="txtView67">250</string>
+    <string name="txtView68">Update RS:</string>
+
+    <!-- TODO: update_days_and_time -->
+
+    <string name="txtDate_mon">1 Jan 2020</string>
+    <string name="txtDate_tue">2 Jan 2020</string>
+    <string name="txtDate_wed">3 Jan 2020</string>
+    <string name="txtDate_thu">4 Jan 2020</string>
+    <string name="txtDate_fri">5 Jan 2020</string>
+    <string name="txtDate_sat">6 Jan 2020</string>
+    <string name="txtDate_sun">7 Jan 2020</string>
+
+    <string name="txtView82">TextView</string>
+    <string name="txtView_upd">Update Days and Timings</string>
+
+    <!-- TODO: upname -->
+
+    <string name="upd">Update</string>
+
+    <!-- TODO: uppass -->
+
+    <string name="c_pass">Current Password</string>
+    <string name="n_pass">New Password</string>
+    <string name="rn_pass">Re-try New Password</string>
+
+    <!-- TODO: verifycode -->
+
+    <string name="verify_c">Verification Code</string>
+    <string name="txtView4">Please type the verification code sent to</string>
+    <string name="pin_View">1</string>
+    <string name="code_bt">I didnt get the code</string>
+
+    <!-- TODO: fragment_feedback -->
+
+    <string name="txt_sug">Suggestion</string>
+    <string name="txt_sugType">Suggestion Type</string>
+
+    <!-- TODO: fragment_help -->
+
+    <string name="txt_con">Contact US</string>
+    <string name="txtView27">+92 335 2132463</string>
+    <string name="txtView29">info@sathchaloo.com</string>
+
+    <!-- TODO: fragment_home -->
+
+    <string name="pickup_loc">Select Pickup Location</string>
+    <string name="btn_selPick">Select Destination</string>
+    <string name="btn_serv">Services</string>
+
+    <!-- TODO: fragment_newroutes -->
+
+    <string name="auto_com">Enter something</string>
+
+    <!-- TODO: fragment_wallet -->
+
+
     <!-- Channel ID -->
     <string name="androidChannelID">sathchaloo.com.prototype</string>
     <!-- Channel Name -->
     <string name="androidChannelName">Android Channel</string>
     <!--Channel Description-->
     <string name="androidChannelDescription">Lorem ipsum</string>
+
+
+    <string name="txt_amount">300</string>
+    <string name="txtView15">Sath Chaloo Creditss</string>
+    <string name="txtView16">Buy a Package</string>
+    <string name="txtView17">You can load your wallet credits bellow. You can then use these credits to book rides.</string>
+    <string name="txtView20">1000 PKR</string>
+    <string name="txtView21">Rs: 1000</string>
+    <string name="btn_2">Coming Soon</string>
+    <string name="txtView22">3000 PKR</string>
+    <string name="txtView23">Rs: 3000</string>
+    <string name="txtView24">5000 PKR</string>
+    <string name="txtView25">Rs: 5000</string>
+
+
 
 
 </resources>
