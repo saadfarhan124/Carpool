@@ -5,7 +5,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Geocoder
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -23,7 +22,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -42,17 +40,14 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
-import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.async
-import org.jetbrains.anko.find
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.uiThread
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.IOException
-import java.lang.StringBuilder
 import java.net.URL
-import java.util.*
+import kotlin.system.exitProcess
 
 
 class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
@@ -76,8 +71,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             startActivity(intent)
         }
         alertDialog.setNegativeButton("No") { _, _ ->
-            activity!!.finishAffinity();
-            System.exit(0)
+            activity!!.finishAffinity()
+            exitProcess(0)
         }
     }
 
@@ -86,8 +81,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     private lateinit var mMap: GoogleMap
 
     //Permission Vars
-    private val FINE_LOCATION: String = Manifest.permission.ACCESS_FINE_LOCATION
-    private val COARSE_LOCATION: String = Manifest.permission.ACCESS_COARSE_LOCATION
+    private val fineLocation: String = Manifest.permission.ACCESS_FINE_LOCATION
+    private val coarseLocation: String = Manifest.permission.ACCESS_COARSE_LOCATION
 
     //Utility Vars
     private var permissionFlag = false
@@ -101,7 +96,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
 
     //Widgets
-    private lateinit var btn_service: Button
+    private lateinit var btnService: Button
     private lateinit var mGPS: ImageView
     private var customMarker: ImageView? = null
     private lateinit var btnSelectPickUp: Button
@@ -151,7 +146,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                 }
                 alertDialog.setNegativeButton("No") { _, _ ->
                     activity!!.finishAndRemoveTask()
-                    System.exit(0)
+                    exitProcess(0)
                 }
                 alertDialog.show()
 
@@ -163,8 +158,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             confirmDialog.setTitle("Sath Chaloo")
             confirmDialog.setMessage("Please connect to internet")
             confirmDialog.setPositiveButton("Ok") { _, _ ->
-                activity!!.finishAffinity();
-                System.exit(0)
+                activity!!.finishAffinity()
+                exitProcess(0)
             }
             confirmDialog.show()
         }
@@ -195,8 +190,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
 
 
-        btn_service = root.findViewById(R.id.btn_service)
-        btn_service.setOnClickListener {
+        btnService = root.findViewById(R.id.btn_service)
+        btnService.setOnClickListener {
             val dialog = BottomSheetDialog(root.context)
             val view = layoutInflater.inflate(R.layout.activity_services_bottomsheat, null)
             //Services On Click
@@ -212,7 +207,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             dialog.setContentView(view)
             dialog.show()
         }
-        mGPS!!.setOnClickListener {
+        mGPS.setOnClickListener {
             getDevicesLocation()
         }
 
@@ -233,18 +228,15 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             }
         })
 
-        btnSelectPickUp!!.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(p0: View?) {
-                if (::marker.isInitialized) {
-                    var intent = Intent(root.context, SelectPickUpActivity::class.java)
-                    intent.putExtra("DestAddress", destAddress)
-                    intent.putExtra("DestLat", marker.position.latitude)
-                    intent.putExtra("DestLong", marker.position.longitude)
-                    startActivity(intent)
-                }
-
+        btnSelectPickUp.onClick {
+            if (::marker.isInitialized) {
+                val intent = Intent(root.context, SelectPickUpActivity::class.java)
+                intent.putExtra("DestAddress", destAddress)
+                intent.putExtra("DestLat", marker.position.latitude)
+                intent.putExtra("DestLong", marker.position.longitude)
+                startActivity(intent)
             }
-        })
+        }
     }
 
     //Function to get geo location
@@ -295,7 +287,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             customMarker!!.visibility = View.VISIBLE
         }
 
-        btnSelectPickUp!!.visibility = View.VISIBLE
+        btnSelectPickUp.visibility = View.VISIBLE
 
         if (permissionFlag) {
             getDevicesLocation()
@@ -307,23 +299,23 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     private fun getDevicesLocation() {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(root.context)
         try {
-            var task: Task<Location>? = fusedLocationProviderClient.lastLocation
+            val task: Task<Location>? = fusedLocationProviderClient.lastLocation
             task!!.addOnCompleteListener {
                 if (task.isSuccessful) {
-                    var location = task.result
+                    val location = task.result
                     if(location != null){
                         moveCamera(
                             LatLng(location.latitude, location.longitude),
                             Util.getBiggerZoomValue()
                         )
                     }else{
-                        var locationCallback = object : LocationCallback(){
+                        val locationCallback = object : LocationCallback(){
                             override fun onLocationResult(p0: LocationResult) {
                                 moveCamera(LatLng(p0.lastLocation.latitude, p0.lastLocation.longitude),
                                         Util.getBiggerZoomValue())
                             }
                         }
-                        var locationRequest = LocationRequest()
+                        val locationRequest = LocationRequest()
                         locationRequest.priority = (LocationRequest.PRIORITY_HIGH_ACCURACY)
                         locationRequest.interval = (0)
                         locationRequest.fastestInterval = (0)
@@ -349,7 +341,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
     //Function to add markets
     private fun addMarker(latlng: LatLng, title: String?) {
-        var markerOptions = MarkerOptions().position(latlng).title(title)
+        val markerOptions = MarkerOptions().position(latlng).title(title)
             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_yello))
         marker = mMap.addMarker(markerOptions)
     }
@@ -363,12 +355,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
         )
         if (ContextCompat.checkSelfPermission(
                 root.context,
-                FINE_LOCATION
+                fineLocation
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             if (ContextCompat.checkSelfPermission(
                     root.context,
-                    COARSE_LOCATION
+                    coarseLocation
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 init()
@@ -393,13 +385,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
             locationPermissionCode -> if (grantResults.isNotEmpty()) {
                 for (i in 0 until grantResults.size - 1) {
                     if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
-                        var alertDialog = Util.getAlertDialog(root.context)
+                        val alertDialog = Util.getAlertDialog(root.context)
                         alertDialog.setMessage("You need to enable location in order to get the most out of Sath Chaloo")
                         alertDialog.setPositiveButton("Enable Location") { _, _ ->
                             getLocationPermission()
                         }
                         alertDialog.setNegativeButton("Don't allow") { _, _ ->
-                            System.exit(0)
+                            exitProcess(0)
                         }
                         alertDialog.show()
                         permissionFlag = false
