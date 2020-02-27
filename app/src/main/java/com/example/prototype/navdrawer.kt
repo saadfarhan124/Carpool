@@ -63,7 +63,6 @@ class navdrawer : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         FirebaseInstanceId.getInstance().instanceId
             .addOnSuccessListener {
 
@@ -80,8 +79,15 @@ class navdrawer : AppCompatActivity() {
                     globals.user!!.displayName.toString(),
                     globals.user!!.phoneNumber.toString(),
                     it["amount"].toString().toInt()
-
                 )
+                FirebaseInstanceId.getInstance().instanceId
+                    .addOnSuccessListener {tokenResult ->
+                        globals.userDataModel!!.fcmToken = tokenResult.token
+                        Util.getFirebaseFireStore().collection("users")
+                            .document(globals.user!!.uid)
+                            .set(globals.userDataModel!!)
+                    }
+
             }.addOnFailureListener{
                 Toast.makeText(applicationContext, it.message, Toast.LENGTH_SHORT).show()
             }

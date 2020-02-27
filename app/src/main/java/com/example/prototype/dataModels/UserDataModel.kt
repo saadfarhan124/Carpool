@@ -9,6 +9,7 @@ class UserDataModel : Serializable {
     var name: String? = null
     var number: String? = null
     var amount: Int? = 0
+    var fcmToken: String? = null
 
     constructor(dateOfBirth: String, gender: String, email: String, name: String, number: String, amount: Int) {
         this.dateOfBirth = dateOfBirth
