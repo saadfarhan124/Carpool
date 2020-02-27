@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +22,7 @@ class NotificationFragment:Fragment() {
     private lateinit var root:View
     private lateinit var listOfNotification: MutableList<NotificationDataModel>
     private  lateinit var shimmerRecyclerView: ShimmerRecyclerView
+    private lateinit var noNotification: TextView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,7 +33,7 @@ class NotificationFragment:Fragment() {
          root = inflater.inflate(R.layout.fragment_notificaiton, container, false)
 
         shimmerRecyclerView = root.findViewById(R.id.shimmer_recycler_view)
-
+noNotification = root.findViewById(R.id.textView32)
 
         loadNotification()
         return root
@@ -41,23 +43,29 @@ class NotificationFragment:Fragment() {
 
         shimmerRecyclerView.visibility = View.VISIBLE
         listOfNotification = mutableListOf()
-        Util.getFirebaseFireStore().collection("notification")
-            .whereEqualTo("userID", Util.getGlobals().user!!.uid)
-            .get()
-            .addOnSuccessListener {
+            Util.getFirebaseFireStore().collection("notification")
+                .whereEqualTo("userID", Util.getGlobals().user!!.uid)
+                .get()
+                .addOnSuccessListener {
+                    if (it.documents.size == 0) {
+                        noNotification.visibility = View.VISIBLE
+                        noNotification.text = "No Notification Found"
+                        shimmerRecyclerView.visibility = View.INVISIBLE
+                    } else {
+                        for (document in it.documents) {
 
-                    for(document in it.documents){
+                            val notification = document.toObject(NotificationDataModel::class.java)
+                            listOfNotification.add(notification!!)
+                        }
+                        mRecyclerView = root.findViewById(R.id.notificationRecyclerView)
+                        mRecyclerView.layoutManager = LinearLayoutManager(root.context)
+                        mRecyclerView.adapter = NotificationAdapter(listOfNotification)
 
-                        val notification = document.toObject(NotificationDataModel::class.java)
-                        listOfNotification.add(notification!!)
+                        shimmerRecyclerView.visibility = View.INVISIBLE
+
                     }
-                    mRecyclerView = root.findViewById(R.id.notificationRecyclerView)
-                    mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-                    mRecyclerView.adapter = NotificationAdapter(listOfNotification)
+                }
 
-                shimmerRecyclerView.visibility = View.INVISIBLE
-
-            }
     }
 }
 

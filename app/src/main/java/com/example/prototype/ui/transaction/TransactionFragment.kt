@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
@@ -23,6 +24,7 @@ class TransactionFragment : Fragment() {
     private lateinit var listOfInvoices: MutableList<InvoiceDataModel>
     private lateinit var transactionProgressBar: ProgressBar
     private lateinit var shimmerRecyclerView: RecyclerView
+    private lateinit var noInvoice: TextView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,6 +35,7 @@ class TransactionFragment : Fragment() {
         root = inflater.inflate(R.layout.fragment_transaction, container, false)
 //        transactionProgressBar = root.findViewById(R.id.transactionProgressBar)
         shimmerRecyclerView = root.findViewById(R.id.transaction_shimmer_recycler_view)
+        noInvoice = root.findViewById(R.id.textViewInvoice)
         loadInvoices()
 
         return root
@@ -47,7 +50,9 @@ class TransactionFragment : Fragment() {
             .get()
             .addOnSuccessListener {
                 if(it.documents.size == 0){
-                    Toast.makeText(root.context, "No Invoices found", Toast.LENGTH_SHORT).show()
+                    noInvoice.visibility = View.VISIBLE
+                    noInvoice.text = "No Invoice Found"
+                    shimmerRecyclerView.visibility = View.INVISIBLE
                 }else{
                     for(document in it.documents){
                         val invoice = InvoiceDataModel()

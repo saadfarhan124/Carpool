@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,6 +21,7 @@ class PendingFragment : Fragment() {
     private lateinit var mRecyclerView: RecyclerView
 //    private lateinit var packageProgressBar: ProgressBar
     private lateinit var shimmerRecyclerView: ShimmerRecyclerView
+    private lateinit var noPending:TextView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +30,7 @@ class PendingFragment : Fragment() {
         // Inflate the layout for this fragment
         root = inflater.inflate(R.layout.activity_request_active, container, false)
         shimmerRecyclerView = root.findViewById(R.id.active_shimmer_recycler_view)
+        noPending = root.findViewById(R.id.textViewActive)
         loadRequests()
         return root
     }
@@ -49,18 +52,24 @@ class PendingFragment : Fragment() {
             )
             .get()
             .addOnSuccessListener {
-                val requests = mutableListOf<ReviewInformationDataModel>()
-                for (documents in it.documents) {
-                    val info = documents.toObject(ReviewInformationDataModel::class.java)
-                    info!!.requestID = documents.id
-                    requests.add(info!!)
-                }
-                mRecyclerView = root.findViewById(R.id.requestRecyclerView)
-                mRecyclerView.layoutManager = LinearLayoutManager(root.context)
-                mRecyclerView.adapter =
-                    PackageAdapter(requests, root.context, shimmerRecyclerView)
+                if (it.documents.size == 0) {
+                    noPending.visibility = View.VISIBLE
+                    noPending.text = "No Pending Request Found"
+                    shimmerRecyclerView.visibility = View.INVISIBLE
+                } else {
+                    val requests = mutableListOf<ReviewInformationDataModel>()
+                    for (documents in it.documents) {
+                        val info = documents.toObject(ReviewInformationDataModel::class.java)
+                        info!!.requestID = documents.id
+                        requests.add(info!!)
+                    }
+                    mRecyclerView = root.findViewById(R.id.requestRecyclerView)
+                    mRecyclerView.layoutManager = LinearLayoutManager(root.context)
+                    mRecyclerView.adapter =
+                        PackageAdapter(requests, root.context, shimmerRecyclerView)
 //                packageProgressBar.visibility = View.INVISIBLE
-                shimmerRecyclerView.visibility = View.INVISIBLE
+                    shimmerRecyclerView.visibility = View.INVISIBLE
+                }
             }
     }
 }
