@@ -20,7 +20,7 @@ class PushNotificationService : FirebaseMessagingService() {
         if(p0 != null){
             if(p0.data != null){
                 with(NotificationManagerCompat.from(this)){
-                    notify(0, Util.sendNotification(this@PushNotificationService, "Hello boie").build())
+                    notify(0, Util.sendNotification(this@PushNotificationService, p0.data.toString()).build())
                 }
             }
         }
