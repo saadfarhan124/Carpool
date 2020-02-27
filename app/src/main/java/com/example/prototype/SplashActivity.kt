@@ -2,7 +2,6 @@ package com.example.prototype
 
 import android.animation.ValueAnimator
 import android.app.AlertDialog
-import android.app.NotificationManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
@@ -12,16 +11,14 @@ import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.NotificationManagerCompat
 import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.iid.FirebaseInstanceId
-import org.jetbrains.anko.notificationManager
 import java.io.File
+import kotlin.system.exitProcess
 
 class SplashActivity : AppCompatActivity() {
 
@@ -47,7 +44,7 @@ class SplashActivity : AppCompatActivity() {
                 confirmDialog.setMessage("Please connect to internet")
                 confirmDialog.setPositiveButton("Ok") { _, _ ->
                     finishAffinity();
-                    System.exit(0)
+                    exitProcess(0)
                 }
                 confirmDialog.show()
             }
@@ -70,7 +67,7 @@ class SplashActivity : AppCompatActivity() {
         Util.createNotificationChannels(applicationContext)
         FirebaseInstanceId.getInstance().instanceId
             .addOnSuccessListener {
-                Log.d("SAaaaad", it.token)
+                Log.d("SAAAAAD", "Token : ${it.token}")
             }
 //        with(NotificationManagerCompat.from(this)){
 //            notify(0, Util.sendNotification(this@SplashActivity, "Hello boie").build())
