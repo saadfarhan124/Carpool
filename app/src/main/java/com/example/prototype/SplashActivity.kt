@@ -43,7 +43,7 @@ class SplashActivity : AppCompatActivity() {
                 confirmDialog.setTitle("Sath Chaloo")
                 confirmDialog.setMessage("Please connect to internet")
                 confirmDialog.setPositiveButton("Ok") { _, _ ->
-                    finishAffinity();
+                    finishAffinity()
                     exitProcess(0)
                 }
                 confirmDialog.show()
@@ -54,25 +54,21 @@ class SplashActivity : AppCompatActivity() {
     private fun animation(){
         //animation
         splashLogo = findViewById(R.id.splash_logo)
-        var anim = ScaleAnimation(0.5f, 1f, .5f, 1f,
+        val anim = ScaleAnimation(0.5f, 1f, .5f, 1f,
             Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
-        anim.setRepeatCount(ValueAnimator.INFINITE);
-        anim.setRepeatMode(ValueAnimator.REVERSE);
+        anim.repeatCount = (ValueAnimator.INFINITE)
+        anim.repeatMode = (ValueAnimator.REVERSE)
         anim.duration = 2000
         anim.fillAfter = true
         splashLogo.startAnimation(anim)
     }
 
     private fun goToAfterSplash(){
-        Util.createNotificationChannels(applicationContext)
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnSuccessListener {
-                Log.d("SAAAAAD", "Token : ${it.token}")
-            }
 //        with(NotificationManagerCompat.from(this)){
 //            notify(0, Util.sendNotification(this@SplashActivity, "Hello boie").build())
 //        }
-
+        //Create notification channels
+        Util.createNotificationChannels(applicationContext)
         user = FirebaseAuth.getInstance().currentUser
         val afterSplashActivityIntent = Intent(applicationContext,AfterSplashActivity::class.java)
         val homeScreen = Intent(applicationContext,navdrawer::class.java)
@@ -80,7 +76,7 @@ class SplashActivity : AppCompatActivity() {
             if (user!!.email.isNullOrEmpty()){
                 startActivity(Intent(applicationContext, SignupEmailActivity::class.java))
             }else{
-                var global = Companion.Globals
+                val global = Companion.Globals
                 global.user = user
 
                 //Loading picture from database and then saving it locally

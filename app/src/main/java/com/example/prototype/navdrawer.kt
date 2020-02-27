@@ -17,6 +17,7 @@ import com.example.prototype.Utilities.Util
 import com.example.prototype.companion.Companion
 import com.example.prototype.dataModels.UserDataModel
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_navdrawer.*
 import kotlinx.android.synthetic.main.nav_header_navdrawer.view.*
 
@@ -47,7 +48,7 @@ class navdrawer : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
 
-        var globals = Companion.Globals
+        val globals = Companion.Globals
         val headerView: View = nav_view.getHeaderView(0)
         headerView.txtUsername.text = globals.user!!.displayName
         headerView.txtEmail.text = globals.user!!.email
@@ -61,6 +62,12 @@ class navdrawer : AppCompatActivity() {
             val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
+
+
+        FirebaseInstanceId.getInstance().instanceId
+            .addOnSuccessListener {
+
+            }
         //Loading user properties gender and dob
         Util.getFirebaseFireStore().collection("users")
             .document(globals.user!!.uid)
