@@ -24,7 +24,7 @@
 
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +35,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintStart_toStartOf="@+id/view2"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
 
@@ -44,7 +44,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view3"
             app:layout_constraintStart_toEndOf="@+id/view3"
             app:layout_constraintTop_toTopOf="@+id/view3" />
@@ -54,7 +54,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view4"
             app:layout_constraintStart_toEndOf="@+id/view4"
             app:layout_constraintTop_toTopOf="@+id/view4" />
@@ -64,7 +64,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view5"
             app:layout_constraintStart_toEndOf="@+id/view5"
             app:layout_constraintTop_toTopOf="@+id/view5" />
@@ -75,7 +75,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view6"
             app:layout_constraintStart_toEndOf="@+id/view6"
             app:layout_constraintTop_toTopOf="@+id/view6" />
@@ -85,7 +85,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view7"
             app:layout_constraintStart_toEndOf="@+id/view7"
             app:layout_constraintTop_toTopOf="@+id/view7" />
@@ -96,7 +96,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -108,7 +108,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintStart_toStartOf="@+id/view2"
             app:layout_constraintTop_toBottomOf="@+id/view3" />
 
@@ -117,7 +117,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintStart_toStartOf="@+id/view10"
             app:layout_constraintTop_toBottomOf="@+id/view10" />
 
@@ -127,7 +127,7 @@
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginStart="32dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view10"
             app:layout_constraintEnd_toEndOf="@+id/view2"
             app:layout_constraintStart_toEndOf="@+id/view10"
@@ -138,7 +138,7 @@
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginStart="32dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view11"
             app:layout_constraintEnd_toEndOf="@+id/view12"
             app:layout_constraintStart_toEndOf="@+id/view11"
@@ -150,7 +150,7 @@
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/view11"
             app:layout_constraintTop_toBottomOf="@+id/view11" />
@@ -160,7 +160,7 @@
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="@+id/view14"
             app:layout_constraintStart_toStartOf="@+id/view14"
             app:layout_constraintTop_toBottomOf="@+id/view14" />
@@ -172,7 +172,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view15" />
@@ -183,7 +183,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="12dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view18"
             app:layout_constraintStart_toStartOf="@+id/view18"

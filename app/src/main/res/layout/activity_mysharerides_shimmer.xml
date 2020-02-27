@@ -21,10 +21,9 @@
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +35,7 @@
             android:layout_gravity="center"
 
             android:layout_marginTop="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="@+id/view2"
             app:layout_constraintStart_toStartOf="@+id/view2"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
@@ -48,7 +47,7 @@
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintStart_toStartOf="@+id/view17"
             app:layout_constraintTop_toBottomOf="@+id/view17" />
 
@@ -57,7 +56,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintStart_toStartOf="@+id/view10"
             app:layout_constraintTop_toBottomOf="@+id/view10" />
 
@@ -67,7 +66,7 @@
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginStart="32dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view10"
             app:layout_constraintEnd_toEndOf="@+id/view17"
             app:layout_constraintStart_toEndOf="@+id/view10"
@@ -78,7 +77,7 @@
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginStart="32dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="@+id/view11"
             app:layout_constraintEnd_toEndOf="@+id/view12"
             app:layout_constraintStart_toEndOf="@+id/view11"
@@ -89,7 +88,7 @@
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="@+id/view13"
             app:layout_constraintStart_toStartOf="@+id/view2"
             app:layout_constraintTop_toBottomOf="@+id/view11" />
@@ -99,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintEnd_toEndOf="@+id/view14"
             app:layout_constraintStart_toStartOf="@+id/view14"
             app:layout_constraintTop_toBottomOf="@+id/view14" />
@@ -110,7 +109,7 @@
             android:layout_height="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:background="#24000000"
+            android:background="@drawable/round"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/view15"
             app:layout_constraintStart_toStartOf="@+id/view15"
