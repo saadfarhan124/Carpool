@@ -85,20 +85,15 @@
             android:name=".SeeRoutesActivity"
             android:parentActivityName=".SelectPickUpActivity" />
         <activity
-            android:name=".MobileActivity"
-            android:parentActivityName=".AfterSplashActivity" />
+            android:name=".MobileActivity" />
         <activity
-            android:name=".VerifyCodeActivity"
-            android:parentActivityName=".MobileActivity" />
+            android:name=".VerifyCodeActivity" />
         <activity
-            android:name=".LoginActivity"
-            android:parentActivityName=".AfterSplashActivity" />
+            android:name=".LoginActivity" />
         <activity
-            android:name=".SignupEmailActivity"
-            android:parentActivityName=".AfterSplashActivity" />
+            android:name=".SignupEmailActivity" />
         <activity
-            android:name=".SignupPasswordActivity"
-            android:parentActivityName=".SignupEmailActivity" />
+            android:name=".SignupPasswordActivity" />
         <activity android:name=".navdrawer" />
         <activity android:name=".SignupUsernameActivity" />
         <activity android:name=".TicketActvity" />

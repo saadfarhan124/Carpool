@@ -37,7 +37,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorCardAccent">
 
                     <ImageView
                         android:id="@+id/img_num"
@@ -45,6 +46,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:contentDescription="@string/lbl_num"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_phone_black_32dp" />
@@ -57,7 +59,7 @@
                         android:text="@string/lbl_num"
                         android:textColor="@color/colorText1"
                         android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:fontFamily="@font/roboto_medium"
                         app:layout_constraintStart_toEndOf="@+id/img_num"
                         app:layout_constraintTop_toTopOf="@+id/img_num" />
 
@@ -65,9 +67,11 @@
                         android:id="@+id/txt_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginBottom="8dp"
                         android:text="@string/txt_num"
+                        android:fontFamily="@font/roboto_light"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_num"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_num" />
@@ -92,7 +96,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorCardAccent">
 
                     <ImageView
                         android:id="@+id/img_email"
@@ -100,6 +105,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:contentDescription="@string/lgEmail"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_mail_outline_black_32dp" />
@@ -109,10 +115,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
+                        android:fontFamily="@font/roboto_medium"
                         android:text="@string/lgEmail"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/img_email"
                         app:layout_constraintTop_toTopOf="@+id/img_email" />
 
@@ -120,8 +126,10 @@
                         android:id="@+id/txt_email"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginBottom="8dp"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_light"
                         android:text="@string/txt_email"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_email"
@@ -149,12 +157,14 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorCardAccent">
 
                     <ImageView
                         android:id="@+id/img_pas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/lbl_pas"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -168,8 +178,8 @@
                         android:layout_marginStart="24dp"
                         android:text="@string/lbl_pas"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_medium"
                         app:layout_constraintStart_toEndOf="@+id/img_pas"
                         app:layout_constraintTop_toTopOf="@+id/img_pas" />
 
@@ -177,9 +187,11 @@
                         android:id="@+id/txt_pas"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginBottom="8dp"
                         android:text="@string/txt_pas"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/roboto_light"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_pas"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_pas" />
@@ -206,12 +218,14 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorCardAccent">
 
                     <ImageView
                         android:id="@+id/img_gen"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:contentDescription="@string/lbl_gen"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -225,8 +239,8 @@
                         android:layout_marginStart="24dp"
                         android:text="@string/lbl_gen"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_medium"
                         app:layout_constraintStart_toEndOf="@+id/img_gen"
                         app:layout_constraintTop_toTopOf="@+id/img_gen" />
 
@@ -234,9 +248,11 @@
                         android:id="@+id/txt_gender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginBottom="8dp"
                         android:text="@string/txt_gen"
+                        android:fontFamily="@font/roboto_light"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_gender"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_gender" />
@@ -261,7 +277,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorCardAccent">
 
                     <ImageView
                         android:id="@+id/img_dob"
@@ -269,6 +286,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
+                        android:contentDescription="@string/lbl_dob"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/ic_today_blue_32dp" />
@@ -280,8 +298,8 @@
                         android:layout_marginStart="24dp"
                         android:text="@string/lbl_dob"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_medium"
                         app:layout_constraintStart_toEndOf="@+id/img_dob"
                         app:layout_constraintTop_toTopOf="@+id/img_dob" />
 
@@ -289,9 +307,11 @@
                         android:id="@+id/txt_dob"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="4dp"
                         android:layout_marginBottom="8dp"
                         android:text="@string/txt_dob"
+                        android:fontFamily="@font/roboto_light"
+                        android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/txt_lbl_dob"
                         app:layout_constraintTop_toBottomOf="@+id/txt_lbl_dob" />
@@ -313,11 +333,13 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialCardViewDOB">
+                app:layout_constraintTop_toBottomOf="@+id/materialCardViewDOB"
+                app:layout_constraintVertical_bias="0.0">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorCardAccent">
 
                     <ImageView
                         android:id="@+id/img_logout"
@@ -326,6 +348,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginBottom="13dp"
+                        android:contentDescription="@string/lbl_log"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -338,8 +361,8 @@
                         android:layout_marginStart="24dp"
                         android:text="@string/lbl_log"
                         android:textColor="@color/colorText1"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/roboto_medium"
                         app:layout_constraintBottom_toBottomOf="@+id/img_logout"
                         app:layout_constraintStart_toEndOf="@id/img_logout"
                         app:layout_constraintTop_toTopOf="@+id/img_logout" />
@@ -401,17 +424,15 @@
 <!--        app:srcCompat="@mipmap/ic_launcher_round" />-->
 
 
-
-
     <TextView
         android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_medium"
         android:text="@string/txt_name"
         android:textColor="@color/colorText1"
         android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/img_user"
         app:layout_constraintStart_toStartOf="@+id/img_user"
         app:layout_constraintTop_toBottomOf="@+id/img_user" />
@@ -431,7 +452,7 @@
         android:id="@+id/imageView6"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="@+id/img_user"
         app:layout_constraintEnd_toEndOf="@+id/img_user"
         app:layout_constraintStart_toStartOf="@+id/img_user"

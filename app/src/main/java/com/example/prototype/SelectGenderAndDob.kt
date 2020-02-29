@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.prototype.Utilities.Util
 import com.example.prototype.dataModels.UserDataModel
 import com.skyfishjy.library.RippleBackground
@@ -38,8 +39,17 @@ class SelectGenderAndDob : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gender)
         init()
+        //Top App Bar
+        val toolbar: Toolbar = findViewById(R.id.toolbargender)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
-
+    }
+    //Top App Bar Back Nav
+    override fun onSupportNavigateUp():Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun init(){

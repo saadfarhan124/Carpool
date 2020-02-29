@@ -312,7 +312,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                         val locationCallback = object : LocationCallback(){
                             override fun onLocationResult(p0: LocationResult) {
                                 moveCamera(LatLng(p0.lastLocation.latitude, p0.lastLocation.longitude),
-                                        Util.getBiggerZoomValue())
+                                    Util.getBiggerZoomValue())
                             }
                         }
                         val locationRequest = LocationRequest()
