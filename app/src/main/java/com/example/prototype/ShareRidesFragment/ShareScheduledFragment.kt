@@ -43,7 +43,7 @@ class ShareScheduledFragment : Fragment() {
         ridesList = mutableListOf()
         //Getting Rides from database
         shimmerRecyclerView.visibility = View.VISIBLE
-        Util.getFirebaseFireStore().collection("Booking")
+        Util.getFirebaseFireStore().collection("Booking") 
             .whereEqualTo("userID", Util.getGlobals().user!!.uid)
             .whereEqualTo("rideStatus", "Booked")
             .get()
