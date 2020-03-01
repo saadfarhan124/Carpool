@@ -36,19 +36,6 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
-
-    <ImageView
-        android:id="@+id/ic_gps"
-        android:layout_width="34dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="center"
-        android:src="@drawable/ic_my_location_black_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginRight="16dp" />
-
     <ImageView
         android:id="@+id/ic_marker"
         android:layout_width="30dp"
@@ -66,9 +53,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:fontFamily="@font/roboto_medium"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:text="@string/btn_selPick"
@@ -86,11 +74,9 @@
         style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto_medium"
         android:paddingTop="14dp"
         android:paddingBottom="14dp"
         android:text="@string/btn_serv"
@@ -99,6 +85,17 @@
         app:layout_constraintBottom_toTopOf="@+id/btnSelectPickUp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_gps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        app:backgroundTint="@color/colorAccent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_service"
+        app:layout_constraintEnd_toEndOf="@+id/btn_service"
+        app:srcCompat="@drawable/ic_my_location_black_24dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,6 +29,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.chip.Chip
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.maps.android.PolyUtil
 import org.jetbrains.anko.async
 import org.jetbrains.anko.onClick
@@ -56,7 +57,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     //Widgets
-    private var mGPS: ImageView? = null
+    private var mGPS: FloatingActionButton? = null
     private var customMarker: ImageView? = null
     private var btnSelectPickUp: Button? = null
     private var counter = 0
@@ -101,7 +102,7 @@ class SelectPickUpActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_select_pick_up)
         initMap()
-        mGPS = findViewById(R.id.ic_gps)
+        mGPS = findViewById(R.id.floatingActionButton_gps)
         customMarker = findViewById(R.id.ic_marker)
         btnSelectPickUp = findViewById(R.id.btnSelectPickUp)
 

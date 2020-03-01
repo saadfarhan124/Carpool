@@ -40,6 +40,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.jetbrains.anko.async
 import org.jetbrains.anko.onClick
 import org.jetbrains.anko.uiThread
@@ -97,7 +98,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
 
     //Widgets
     private lateinit var btnService: Button
-    private lateinit var mGPS: ImageView
+    private lateinit var mGPS: FloatingActionButton
     private var customMarker: ImageView? = null
     private lateinit var btnSelectPickUp: Button
 
@@ -170,7 +171,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
     //Setting Editor On Action Listener for the Enter Key
     private fun init() {
 
-        mGPS = root.findViewById(R.id.ic_gps)
+        mGPS = root.findViewById(R.id.floatingActionButton_gps)
         customMarker = root.findViewById(R.id.ic_marker)
 
         btnSelectPickUp = root.findViewById(R.id.btnSelectPickUp)
