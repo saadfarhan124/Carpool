@@ -408,6 +408,7 @@ Karachi City, Sindh, Pakistan</string>
     <string name="pickup_loc">Select Pickup Location</string>
     <string name="btn_selPick">Select Destination</string>
     <string name="btn_serv">Services</string>
+    <string name="loader">Progress bar</string>
 
     <!-- TODO: fragment_newroutes -->
 
