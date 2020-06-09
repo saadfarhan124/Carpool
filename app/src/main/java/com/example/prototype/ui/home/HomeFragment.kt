@@ -134,6 +134,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                         this
                     )
 
+
                 } catch (e: SecurityException) {
                     Toast.makeText(root.context, e.message, Toast.LENGTH_SHORT).show()
                 }
@@ -143,6 +144,20 @@ class HomeFragment : Fragment(), OnMapReadyCallback, LocationListener {
                 alertDialog.setPositiveButton("Ok") { _, _ ->
                     val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
                     startActivity(intent)
+                    try {
+                        getLocationPermission()
+
+                        locationManager.requestLocationUpdates(
+                            LocationManager.GPS_PROVIDER,
+                            15000,
+                            10f,
+                            this
+                        )
+
+
+                    } catch (e: SecurityException) {
+                        Toast.makeText(root.context, e.message, Toast.LENGTH_SHORT).show()
+                    }
                 }
                 alertDialog.setNegativeButton("No") { _, _ ->
                     activity!!.finishAndRemoveTask()
